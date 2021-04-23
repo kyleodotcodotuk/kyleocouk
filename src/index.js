@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './sass/sass_all.scss';
+import Header from './Header';
+import Welcome from './Welcome';
+import Skills from './Skills';
+import Footer from './Footer';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Header />
+    <Welcome />
+    <Skills />
+    <Footer />
   </React.StrictMode>,
   document.getElementById('root')
 );
