@@ -11,7 +11,7 @@ function Footer() {
         <ul class="social-icons">
           <li><a href="https://twitter.com/kyleocouk" class="social-icon" alt=""> <i class="fa fa-twitter"></i></a></li>
           <li><a href="mailto:kyle@kyleo.co.uk" class="social-icon" alt=""> <i class="fa fa-envelope"></i></a></li>
-          <li><a href="https://github.com/kyleodotcodotuk" class="social-icon" alt=""> <i class="fa fa-github"></i></a></li>
+          <li><a href="https://github.com/kyleodotcodotuk/kyleocouk" class="social-icon" alt=""> <i class="fa fa-github"></i></a></li>
         </ul>
 
       </div>
