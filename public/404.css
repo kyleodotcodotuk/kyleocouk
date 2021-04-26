@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    margin: auto;
+    font-family: 'Lato', sans-serif;
+}
+
+#fourzerofour-page {
+    max-width: 990px;
+    margin: auto;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+ul {}

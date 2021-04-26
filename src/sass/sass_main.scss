@@ -33,6 +33,10 @@ body::-webkit-scrollbar-thumb {
     background-color: #ccc;
 }
 
+img {
+    max-width: 100%;
+}
+
 .backstretch {
     img {
         top: 0px !important;
