@@ -20,7 +20,7 @@ body a {
 }
 
 body::-webkit-scrollbar-track {
-    background-color: green;
+    background-color: #004225;
 }
 
 body::-webkit-scrollbar {
@@ -79,7 +79,7 @@ h3 {
 header {
     text-align: center;
     padding: 0 10%;
-    height: 100vh;
+    height: calc(100vh - 228px);
     background: url(./../../src/img/bgs/010.JPG) no-repeat top center;
     background-size: cover;
     background-attachment: fixed;
@@ -120,7 +120,8 @@ header {
 
 #welcome {
     padding: 5vh 0;
-    background-color: #ccc;
+    background-color: #004225;
+    box-shadow: inset 0 0 0 5px #004225, inset 0 0 0 6px white;
     overflow: hidden;
 
     .wrapper {
@@ -130,6 +131,7 @@ header {
     h2 {
         margin: 0 0 2% 0;
         font-weight: bold;
+        color: #fff;
     }
 
     p {
@@ -137,6 +139,7 @@ header {
         line-height: 1.26;
         margin: 0.5% 0;
         max-width: 60%;
+        color: #fff;
 
         &:first-of-type {
             font-weight: 600;
@@ -159,6 +162,7 @@ header {
 
 #skillset {
     padding: 5vh 0;
+    background: url('./../img/bgs/skills-bg.png') repeat;
 
     .skill {
         display: flex;
@@ -167,18 +171,20 @@ header {
             width: 40%;
             padding: 3%;
             margin: 0 auto;
-            background-color: #ccc;
-            box-shadow: inset 0 0 0 5px #ccc, inset 0 0 0 6px white;
+            background-color: #004225;
+            box-shadow: inset 0 0 0 5px #004225, inset 0 0 0 6px white;
 
             h2 {
                 display: block;
                 font-weight: 700;
                 padding: 1vh 10% 2vh 0;
                 font-size: 1.5em;
+                color: #fff;
             }
 
             p {
                 line-height: 1.36;
+                color: #fff;
             }
         }
     }

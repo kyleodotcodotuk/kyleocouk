@@ -4,7 +4,7 @@ function Footer() {
     <footer>
       <div className="wrapper">
 
-        <p>London, UK <img src="./svg/contact-ic.svg" alt="location" /><br />
+        <p>London, UK<br />
         Kyle O'Connor &middot; https://kyleo.co.uk &middot; <a href="https://raw.githubusercontent.com/kyleodotcodotuk/kyleocouk/main/LICENSE" alt="legal">Legal Notice</a><br />
         2021 &middot; My own photographs &middot; Coded with <a target="_blank" href="https://github.com/kyleodotcodotuk/kyleocouk" rel="noreferrer">React</a></p>
 

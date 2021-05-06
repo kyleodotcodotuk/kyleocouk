@@ -1,9 +1,15 @@
 @media only screen and (max-width: 989px) {
 
     header {
+        height: 100vh;
+
         img#logo {
             margin: 30px auto 0;
         }
+    }
+
+    .wrapper {
+        width: 100%;
     }
 
     #welcome {
@@ -24,13 +30,39 @@
         }
     }
 
+    #skillset {
+        .skill {
+            display: block;
+
+            .skill-box {
+                width: 90%;
+                margin: 5% auto;
+                text-align: center;
+
+                h2 {
+                    padding: 10px 0;
+                    margin: 0 auto;
+                }
+
+                p {
+                    width: 85%;
+                    margin: 3% auto 10%;
+                }
+
+            }
+
+        }
+    }
+
     footer {
         height: auto;
+        width: 90%;
+        padding: 0 5%;
         line-height: normal;
 
         p {
             float: none;
-            margin: 5px auto;
+            margin: 25px auto;
             text-align: center;
             width: 100%;
         }
