@@ -4,9 +4,9 @@ function Footer() {
     <footer>
       <div className="wrapper">
 
-        <p>London, UK<br />
-        Kyle O'Connor &middot; https://kyleo.co.uk &middot; <a href="https://raw.githubusercontent.com/kyleodotcodotuk/kyleocouk/main/LICENSE" alt="legal">Legal Notice</a><br />
-        2021 &middot; My own photographs &middot; Coded with <a target="_blank" href="https://github.com/kyleodotcodotuk/kyleocouk" rel="noreferrer">React</a></p>
+        <p>London, UK &nbsp;<i class="fa fa-map-pin"></i><br />
+        Kyle O'Connor &nbsp;<i class="fa fa-mouse-pointer"></i>&nbsp; https://kyleo.co.uk &nbsp;<i class="fa fa-legal"></i>&nbsp; <a href="https://raw.githubusercontent.com/kyleodotcodotuk/kyleocouk/main/LICENSE" alt="legal">Legal Notice</a><br />
+        2021 &nbsp;<i class="fa fa-calendar"></i>&nbsp; My own photographs &nbsp;<i class="fa fa-camera"></i> &nbsp;Coded with <a target="_blank" href="https://github.com/kyleodotcodotuk/kyleocouk" rel="noreferrer">React</a></p>
 
         <ul class="social-icons">
           <li><a href="https://twitter.com/kyleocouk" rel="noreferrer" target="_blank" class="social-icon" alt="Twitter"> <i class="fa fa-twitter"></i></a></li>

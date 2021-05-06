@@ -5,11 +5,28 @@ import Header from './Header';
 import Welcome from './Welcome';
 import Skills from './Skills';
 import Footer from './Footer';
+import image1 from './img/bgs/010.JPG';
+import image2 from './img/bgs/020.JPG';
+import image3 from './img/bgs/030.JPG';
+import image4 from './img/bgs/040.JPG';
+import image5 from './img/bgs/050.JPG';
+import image6 from './img/bgs/060.JPG';
+import image7 from './img/bgs/070.JPG';
+import image8 from './img/bgs/080.JPG';
+import image9 from './img/bgs/090.JPG';
+import image10 from './img/bgs/100.JPG';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import BackgroundSlider from 'react-background-slider';
 
 ReactDOM.render(
+
+
+
   <React.StrictMode>
+    <BackgroundSlider
+      images={[image1, image2, image3, image4, image5, image6, image7, image8, image9, image10]}
+      duration={4} transition={1} />
     <Header />
     <Welcome />
     <Skills />

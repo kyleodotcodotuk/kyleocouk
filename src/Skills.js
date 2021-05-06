@@ -6,7 +6,7 @@ function Skills() {
 
                 <div className="skill">
                     <div className="skill-box">
-                        <h2>Web Development <i class="fa fa-mouse-pointer"></i></h2>
+                        <h2>Web Development <i class="fa fa-headphones"></i></h2>
 
                         <p>
                             Proficient with front-end, with over 500 bespoke websites and templates.<br />
