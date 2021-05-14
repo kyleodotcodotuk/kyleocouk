@@ -4,6 +4,7 @@ function Header() {
         <header>
 
             <img src="./logo.png" alt="logo" id="logo" title="title" />
+            <img src="./mobile-logo.png" alt="logo" id="mobile-logo" title="title" />
 
             <h1>Kyle O&apos;Connor</h1>
 
