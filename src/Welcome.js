@@ -10,7 +10,7 @@ function Welcome() {
 
         <p>Currently employed, this site is currently serving testing purposes</p>
 
-        <img src="https://picsum.photos/150" title="Associated Image" alt="" id="welcome-image" />
+        <img src="https://picsum.photos/150" title="Associated Image" alt="" id="welcome-image" width="150" height="150" />
 
       </div>
     </section>
