@@ -8,7 +8,7 @@ function Welcome() {
         <p>I am primarily a front end developer from Yorkshire now living in London
         </p>
 
-        <p>Currently employed, mind the grey, this site is currently serving testing purposes</p>
+        <p>Currently employed, this site is currently serving testing purposes</p>
 
         <img src="https://picsum.photos/150" title="Associated Image" alt="" id="welcome-image" />
 
