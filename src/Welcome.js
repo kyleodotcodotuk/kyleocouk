@@ -3,7 +3,7 @@ function Welcome() {
   return (
     <section id="welcome">
       <div className="wrapper">
-        <h2>Hello world, I'm Kyle <i className="fa fa-download"></i></h2>
+        <h2>Hello world, I'm Kyle <i className="fa fa-home"></i></h2>
 
         <p>I am primarily a front end developer from Yorkshire now living in London
         </p>
