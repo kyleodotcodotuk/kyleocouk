@@ -1,31 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta  name="description" content="Personal Website for Web Developer and Designer"  />
-    <meta name="keywords" content="Web Developer, Web Designer, Freelance, Kyle O'Connor, oconnor" />
-    <meta name="author" content="Kyle O'Connor"/>
-    <meta name="revisit-after" content="7 days"/> 
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-    <title>Kyle O'Connor - Web Developer</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    
-    <div id="root"></div>
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Personal Website for Web Developer and Designer" />
+  <meta name="keywords" content="Web Developer, Web Designer, Freelance, Kyle O'Connor, oconnor, London" />
+  <meta name="author" content="Kyle O'Connor" />
+  <meta name="revisit-after" content="7 days" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
 
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'UA-72070431-1');
-    </script>
-  </body>
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+  <title>Kyle O'Connor - Web Developer</title>
+
+  <script type='application/ld+json'>
+    {
+      "@context": "http://www.schema.org",
+      "@type": "PersonalWebsite",
+      "url": "https://kyleo.co.uk/",
+      "description": "Website Developer and Designer",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "London",
+        "addressCountry": "United Kingdom"
+      },
+    }
+  </script>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+
+  <div id="root"></div>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-72070431-1');
+  </script>
+
+
+</body>
+
 </html>
