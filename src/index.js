@@ -6,11 +6,11 @@ import Welcome from './Welcome';
 import Skills from './Skills';
 import Footer from './Footer';
 import BackgroundSlider from 'react-background-slider';
-import image1 from './img/bgs/010.JPG';
-import image2 from './img/bgs/020.JPG';
-import image3 from './img/bgs/030.JPG';
-import image4 from './img/bgs/040.JPG';
-import image5 from './img/bgs/050.JPG';
+import image1 from './img/bgs/010.webp';
+import image2 from './img/bgs/020.webp';
+import image3 from './img/bgs/030.webp';
+import image4 from './img/bgs/040.webp';
+import image5 from './img/bgs/050.webp';
 import reportWebVitals from './reportWebVitals';
 
 
