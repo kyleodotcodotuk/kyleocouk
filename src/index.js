@@ -7,7 +7,6 @@ import Skills from './Skills';
 import Footer from './Footer';
 import BackgroundSlider from 'react-background-slider';
 import image1 from './img/bgs/010.JPG';
-import image2 from './img/bgs/020.JPG';
 import image3 from './img/bgs/030.JPG';
 import image4 from './img/bgs/040.JPG';
 import image5 from './img/bgs/050.JPG';
@@ -23,8 +22,8 @@ ReactDOM.render(
 
   <React.StrictMode>
     <BackgroundSlider
-      images={[image1, image2, image3, image4, image5, image6, image7, image8, image9, image10]}
-      duration={6} transition={2} />
+      images={[image1, image3, image4, image5, image6, image7, image8, image9, image10]}
+      duration={6} transition={2} shuffle />
     <Header />
     <Welcome />
     <Skills />
