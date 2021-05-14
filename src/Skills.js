@@ -6,7 +6,7 @@ function Skills() {
 
                 <div className="skill">
                     <div className="skill-box">
-                        <h2>Web Development <i class="fa fa-headphones"></i></h2>
+                        <h2>Web Development <i className="fa fa-headphones"></i></h2>
 
                         <p>
                             Proficient with front-end, with over 500 bespoke websites and templates.<br />
@@ -15,7 +15,7 @@ function Skills() {
                     </div>
 
                     <div className="skill-box">
-                        <h2>Web Design <i class="fa fa-apple"></i></h2>
+                        <h2>Web Design <i className="fa fa-apple"></i></h2>
 
                         <p>
                             Knowing a websites capabilities within a browser gives me a good balance of design and function.<br />
