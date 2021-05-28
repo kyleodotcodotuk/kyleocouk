@@ -1,5 +1,3 @@
-import { TwitterTimelineEmbed } from 'react-twitter-embed';
-
 function Welcome() {
   return (
     <section id="welcome">
