@@ -2,6 +2,7 @@
   "short_name": "Kyleocouk",
   "name": "Kyle O'Connor Personal Website",
   "description": "Personal Website for Web Developer and Designer",
+  "author": "Kyle O'Connor",
   "icons": [
     {
       "src": "favicon.ico",
