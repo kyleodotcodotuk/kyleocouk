@@ -1,6 +1,7 @@
 {
   "short_name": "Kyleocouk",
   "name": "Kyle O'Connor Personal Website",
+  "description": "Personal Website for Web Developer and Designer",
   "icons": [
     {
       "src": "favicon.ico",
