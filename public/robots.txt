@@ -10,4 +10,5 @@ Disallow: /nogooglebot/
 User-agent: *
 Allow: /
 
+# Sitemap
 Sitemap: https://kyleo.co.uk/sitemap.xml
