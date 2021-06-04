@@ -16,6 +16,7 @@ function Welcome() {
         </p>
 
         <p>Currently employed as a Web Developer and Designer in London, this site is a means to keep in touch with JS frameworks.
+          
         </p>
 
         <img src={me} title="My Avatar" alt="" id="welcome-image" width="250" height="250" />
