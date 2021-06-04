@@ -12,7 +12,7 @@ function Welcome() {
         <p>I have a degree in Web Design from the University of Bradford, over 5 years of commercial experience having coded over 500 bespoke websites and templates.</p>
 
         <p>
-          I used to primarily create websites for schools but now I'm working on websites for an array of businesses.
+          I used to create websites for schools but now I'm working on websites for an array of businesses.
         </p>
 
         <p>Currently employed as a Web Developer and Designer in London, this site is currently serving testing purposes.</p>
