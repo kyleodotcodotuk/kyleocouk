@@ -15,7 +15,8 @@ function Welcome() {
           I used to create websites for schools but now I'm working on websites for an array of businesses.
         </p>
 
-        <p>Currently employed as a Web Developer and Designer in London, this site is currently serving testing purposes.</p>
+        <p>Currently employed as a Web Developer and Designer in London, this site is a means to keep in touch with JS frameworks.
+        </p>
 
         <img src={me} title="My Avatar" alt="" id="welcome-image" width="250" height="250" />
 
