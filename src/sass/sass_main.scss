@@ -84,6 +84,10 @@ h3 {
     left: 0;
     z-index: -1;
 
+    >figure {
+        background-position: top center !important;
+    }
+
     &:before {
         content: '';
         position: absolute;

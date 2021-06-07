@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './sass/sass_all.scss';
 import Header from './Header';
 import Welcome from './Welcome';
+// import Wordpress from './Wordpress';
 import Skills from './Skills';
 import Footer from './Footer';
 import BackgroundSlider from 'react-background-slider';
@@ -22,6 +23,7 @@ ReactDOM.render(
       duration={6} transition={2} />
     <Header />
     <Welcome />
+    {/* <Wordpress /> */}
     <Skills />
     <Footer />
   </React.StrictMode>,
