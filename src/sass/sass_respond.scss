@@ -1,93 +1,92 @@
 @media only screen and (max-width: 989px) {
+  header {
+    height: 100vh;
 
-    header {
-        height: 100vh;
-
-        img#logo {
-            margin: 30px auto 0;
-            display: none;
-        }
-
-        img#mobile-logo {
-            margin: 30px auto 20px;
-            display: block;
-        }
+    img#logo {
+      margin: 30px auto 0;
+      display: none;
     }
 
-    .wrapper {
-        width: 100%;
+    img#mobile-logo {
+      margin: 30px auto 20px;
+      display: block;
+    }
+  }
+
+  .wrapper {
+    width: 100%;
+  }
+
+  #welcome {
+    h2,
+    p {
+      max-width: 100%;
+      width: 80%;
+      margin: 4% auto !important;
+      text-align: center;
+      display: block;
+
+      &:before {
+        display: none;
+      }
     }
 
-    #welcome {
-
-        h2,
-        p {
-            max-width: 100%;
-            width: 80%;
-            margin: 4% auto !important;
-            text-align: center;
-            display: block;
-
-            &:before {
-                display: none;
-            }
-        }
-
-        #welcome-image {
-            position: inherit;
-            right: 0;
-            margin: 5% auto;
-            display: block;
-        }
+    #welcome-image {
+      position: inherit;
+      right: 0;
+      margin: 5% auto;
+      display: block;
     }
 
-    #skillset {
-        .skill {
-            display: block;
-
-            .skill-box {
-                width: 90%;
-                margin: 5% auto;
-                text-align: center;
-
-                h2 {
-                    padding: 10px 0;
-                    margin: 0 auto;
-
-                    &:before {
-                        display: none;
-                    }
-                }
-
-                p {
-                    width: 85%;
-                    margin: 3% auto 10%;
-                }
-
-            }
-
-        }
+    .cta {
+      margin: auto;
+      display: block;
+      width: fit-content;
     }
+  }
 
-    footer {
-        height: auto;
+  #skillset {
+    .skill {
+      display: block;
+
+      .skill-box {
         width: 90%;
-        padding: 0 5%;
-        line-height: normal;
+        margin: 5% auto;
+        text-align: center;
+
+        h2 {
+          padding: 10px 0;
+          margin: 0 auto;
+
+          &:before {
+            display: none;
+          }
+        }
 
         p {
-            float: none;
-            margin: 25px auto;
-            text-align: center;
-            width: 100%;
+          width: 85%;
+          margin: 3% auto 10%;
         }
+      }
+    }
+  }
 
-        ul.social-icons {
-            position: inherit;
-            margin: 10px auto 25px;
-        }
+  footer {
+    height: auto;
+    width: 90%;
+    padding: 0 5%;
+    line-height: normal;
 
+    p {
+      float: none;
+      margin: 25px auto;
+      text-align: center;
+      width: 100%;
     }
 
-
+    ul.social-icons {
+      position: inherit;
+      margin: 10px auto 25px;
+    }
+  }
 }
