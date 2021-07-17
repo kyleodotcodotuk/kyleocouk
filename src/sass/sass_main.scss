@@ -130,12 +130,13 @@ header {
     letter-spacing: 0.03em;
   }
 
-  h2.sub-text {
+  span.sub-text {
     color: #fff;
     padding: 2vh 0;
     opacity: 0.9;
     text-shadow: 3px 3px 10px black;
     letter-spacing: 0.03em;
+    display: block;
   }
 }
 

@@ -26,7 +26,7 @@ function Skills() {
 
 
             </div>
-        </section >
+        </section>
 
 
     );
