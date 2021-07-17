@@ -1,6 +1,6 @@
 import me from './img/me.png';
 
-function Welcome() {
+export default function Welcome() {
   return (
     <section id="welcome">
       <div className="wrapper">
@@ -20,12 +20,9 @@ function Welcome() {
 
         <a href="mailto:kyleocouk@gmail.com" className="cta">Contact</a>
 
-
         <img src={me} title="My Avatar" alt="My Avatar" id="welcome-image" width="250" height="250" />
 
       </div>
     </section>
   );
 }
-
-export default Welcome;

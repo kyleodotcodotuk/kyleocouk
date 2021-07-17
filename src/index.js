@@ -10,9 +10,7 @@ import image1 from './img/bgs/010.webp';
 import image2 from './img/bgs/020.webp';
 import image3 from './img/bgs/030.webp';
 import image4 from './img/bgs/040.webp';
-import image5 from './img/bgs/050.webp';
-import reportWebVitals from './reportWebVitals';
-
+import image5 from './img/bgs/050.webp'; 
 
 ReactDOM.render(
 
@@ -27,8 +25,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals(console.log);

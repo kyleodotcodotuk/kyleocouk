@@ -1,5 +1,5 @@
 
-function Skills() {
+export default function Skills() {
     return (
         <section id="skillset">
             <div className="wrapper">
@@ -30,6 +30,4 @@ function Skills() {
 
 
     );
-}
-
-export default Skills;
+} 

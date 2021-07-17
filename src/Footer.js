@@ -1,5 +1,5 @@
 
-function Footer() {
+export default function Footer() {
   return (
     <footer>
       <div className="wrapper">
@@ -19,6 +19,4 @@ function Footer() {
 
 
   );
-}
-
-export default Footer;
+} 
