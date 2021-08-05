@@ -1,3 +1,6 @@
+import React from 'react';
+import Popup from 'reactjs-popup';
+
 
 export default function Skills() {
     return (
@@ -23,6 +26,10 @@ export default function Skills() {
                         </p>
                     </div>
                 </div>
+
+                <Popup trigger={<button>Business Cards</button>} position="top center">
+                    <h2>Popup content here !!</h2>
+                </Popup>
 
 
             </div>
