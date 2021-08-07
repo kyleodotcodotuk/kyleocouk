@@ -12,6 +12,8 @@ export default function Header() {
                 </span>
             </h1>
 
+            <h2>I'll create for you!</h2>
+
         </header>
 
     );

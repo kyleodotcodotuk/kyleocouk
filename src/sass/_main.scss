@@ -139,11 +139,29 @@ header {
     display: block;
     font-size: 70%;
   }
+
+  h2 {
+    color: #fff;
+    text-shadow: 3px 3px 10px black;
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      height: 3px;
+      width: 100px;
+      background: #fff;
+      left: 0;
+      right: 0;
+      bottom: -15px;
+      margin: auto;
+      box-shadow: 3px 3px 10px black;
+    }
+  }
 }
 
 // WELCOME
 
-@keyframes AnimationName {
+@keyframes bgChange {
   0% {
     background-position: 0% 50%;
   }
@@ -160,7 +178,7 @@ header {
   margin: auto;
   background: linear-gradient(180deg, #004225, rgba(0, 0, 0, 1));
   background-size: 400% 400%;
-  animation: AnimationName 20s ease infinite;
+  animation: bgChange 20s ease infinite;
   overflow: hidden;
 
   .wrapper {
