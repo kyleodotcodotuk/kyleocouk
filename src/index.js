@@ -20,7 +20,7 @@ ReactDOM.render(
       duration={6} transition={2} />
     <Header />
     <Welcome />
-    <Skills /> 
+    <Skills />
     <Footer />
   </React.StrictMode>,
   document.getElementById('root')

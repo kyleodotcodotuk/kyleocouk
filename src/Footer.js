@@ -9,7 +9,7 @@ export default function Footer() {
 
         <ul className="social-icons">
           <li><a href="https://twitter.com/kyleocouk" rel="noreferrer" target="_blank" className="social-icon" alt="Twitter" title="Twitter"> <i className="fa fa-twitter"></i></a></li>
-          <li><a href="mailto:kyleo.co.uk@gmail.com" target="_blank" rel="noreferrer" className="social-icon" alt="Email" title="Email"> <i className="fa fa-envelope"></i></a></li>
+          <li><a href="mailto:info@kyleo.co.uk" target="_blank" rel="noreferrer" className="social-icon" alt="Email" title="Email"> <i className="fa fa-envelope"></i></a></li>
           <li><a href="https://github.com/kyleodotcodotuk" target="_blank" rel="noreferrer" className="social-icon" alt="GitHub" title="GitHub"> <i className="fa fa-github"></i></a></li>
         </ul>
 
