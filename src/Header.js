@@ -10,12 +10,11 @@ export default function Header() {
 
             <h1>Kyle O&apos;Connor<br />
 
-            <span className="sub-text">
-                Web Developer &amp; Designer
+                <span className="sub-text">
+                    Web Developer &amp; Designer
                 </span>
             </h1>
 
-            <h2>I'll create for you!</h2>
 
         </header>
 
