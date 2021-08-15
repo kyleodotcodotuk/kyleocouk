@@ -53,6 +53,7 @@
         width: 90%;
         margin: 5% auto;
         text-align: center;
+        padding: 5% 0;
 
         h2 {
           padding: 10px 0;
@@ -66,6 +67,11 @@
         p {
           width: 85%;
           margin: 3% auto 10%;
+          font-size: 18px;
+
+          &:last-of-type {
+            margin-bottom: 3%;
+          }
         }
       }
     }
