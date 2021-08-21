@@ -81,12 +81,12 @@ h3 {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   left: 0;
   z-index: -1;
 
   > figure {
-    background-position: top center !important;
+    background-position: bottom center !important;
   }
 
   &:before {
@@ -99,8 +99,8 @@ h3 {
     background: -webkit-linear-gradient(
       top,
       rgba(0, 0, 0, 0.6) 0%,
-      rgba(0, 0, 0, 0) 50%,
-      rgba(0, 0, 0, 0) 99%
+      rgba(0, 0, 0, 0.2) 50%,
+      rgba(0, 0, 0, 0) 100%
     );
     z-index: 1;
   }
@@ -111,7 +111,7 @@ h3 {
 header {
   text-align: center;
   padding: 0 10%;
-  height: 70vh;
+  height: 100vh;
   background-size: cover;
   background-attachment: fixed;
   position: relative;
