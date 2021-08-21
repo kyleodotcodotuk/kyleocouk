@@ -1,4 +1,6 @@
 import React from "react";
+// import devImage from "./img/bgs/010.jpg";
+// import desImage from "./img/bgs/050.jpg";
 // import Popup from 'reactjs-popup';
 
 export default function Skills() {
@@ -7,6 +9,7 @@ export default function Skills() {
       <div className="wrapper">
         <div className="skill">
           <div className="skill-box">
+            {/* <img src={devImage} alt="" /> */}
             <h2>
               Web Development <i className="fa fa-html5"></i>
             </h2>
@@ -23,11 +26,12 @@ export default function Skills() {
           </div>
 
           <div className="skill-box">
+            {/* <img src={desImage} alt="" /> */}
             <h2>
               Web Design <i className="fa fa-apple"></i>
-            </h2> 
+            </h2>
             <p>
-              You want your brand and website to look good, be impactful, 
+              You want your brand and website to look good, be impactful,
               memorable and last but not least consistent.
             </p>
             <p>
