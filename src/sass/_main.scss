@@ -166,6 +166,17 @@ header {
     align-items: center;
     justify-content: center;
     align-content: center;
+    // animation: slideIn 2s ease 1;
+    position: relative;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    top: -700px;
+  }
+  100% {
+    top: 0;
   }
 }
 
