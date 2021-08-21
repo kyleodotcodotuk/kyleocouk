@@ -11,7 +11,7 @@ export default function Skills() {
           <div className="skill-box">
             <img src={devImage} alt="" />
             <h2>
-              Web Development <i className="fa fa-html5"></i>
+              Web Development <i className="fa fa-code"></i>
             </h2>
 
             <p>
@@ -28,7 +28,7 @@ export default function Skills() {
           <div className="skill-box">
             <img src={desImage} alt="" />
             <h2>
-              Web Design <i className="fa fa-apple"></i>
+              Web Design <i className="fa fa-paint-brush"></i>
             </h2>
             <p>
               You want your brand and website to look good, be impactful,
