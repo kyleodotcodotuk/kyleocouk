@@ -20,7 +20,7 @@ body a {
 }
 
 body::-webkit-scrollbar-track {
-  background-color: #004225;
+  background-color: #000;
 }
 
 body::-webkit-scrollbar {
@@ -197,7 +197,8 @@ header {
 #welcome {
   padding: 50px 0;
   margin: auto;
-  background: linear-gradient(180deg, #004225, rgba(0, 0, 0, 1));
+  background: #000;
+  // background: linear-gradient(180deg, #004225, rgba(0, 0, 0, 1));
   background-size: 400% 400%;
   animation: bgChange 20s ease infinite;
   overflow: hidden;
@@ -240,14 +241,14 @@ header {
     display: inline-block;
     padding: 12px 30px;
     background-color: #fff;
-    color: #004225;
+    color: #000;
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;
     text-align: center;
 
     &:hover {
-      background-color: #004225;
+      background-color: #ccc;
       color: #fff;
     }
   }
@@ -266,7 +267,7 @@ header {
       width: 40%;
       padding: 3%;
       margin: 0 auto;
-      background-color: #004225;
+      background-color: #000;
       box-shadow: 1px 1px 5px 1px #999;
       position: relative;
       transition: 1s;
@@ -319,7 +320,7 @@ footer {
   background: url("./../img/bgs/footer-bg.png") repeat;
   min-height: 50px;
   width: 100%;
-  padding: 4% 0;
+  padding: 2% 0;
 
   .wrapper {
     position: relative;
@@ -334,7 +335,7 @@ footer {
     margin: 0;
     line-height: 1.66;
     color: #fff;
-    font-size: 16px;
+    font-size: 14px;
     letter-spacing: 0.03em;
     text-align: left;
 
