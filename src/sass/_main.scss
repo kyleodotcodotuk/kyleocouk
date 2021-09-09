@@ -212,17 +212,6 @@ header {
     font-weight: bold;
     color: #fff;
     position: relative;
-    display: inline-block;
-
-    &:before {
-      content: "";
-      position: absolute;
-      height: 3px;
-      width: 100px;
-      background: #fff;
-      left: 0;
-      bottom: -15px;
-    }
   }
 
   p {
@@ -280,31 +269,24 @@ header {
       background-color: #004225;
       box-shadow: 1px 1px 5px 1px #999;
       position: relative;
+      transition: 1s;
 
       &:hover {
         img {
           opacity: 0;
           transition: 1s;
         }
+        box-shadow: 1px 1px 5px 1px #999, inset 10px 0 0 0 #fff;
+        transition: 1s;
       }
 
       h2 {
         display: block;
         font-weight: 700;
-        padding: 1vh 5% 10% 0;
+        padding: 1vh 5% 5% 0;
         font-size: 1.5em;
         color: #fff;
         position: relative;
-
-        &:before {
-          content: "";
-          position: absolute;
-          height: 3px;
-          width: 50px;
-          background: #fff;
-          left: 0;
-          bottom: 20%;
-        }
       }
 
       img {
@@ -323,6 +305,7 @@ header {
         font-weight: 400;
         margin: 8px 0;
         position: relative;
+        font-size: 18px;
       }
     }
   }
