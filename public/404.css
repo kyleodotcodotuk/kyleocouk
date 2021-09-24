@@ -1,84 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 html {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    background-color: antiquewhite;
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    margin: auto;
-    font-family: 'Lato', sans-serif;
-    display: table;
-    height: 100%
+  background-color: antiquewhite;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  margin: auto;
+  font-family: "Lato", sans-serif;
+  display: table;
+  height: 100%;
 }
 
 #fourzerofour {
-    max-width: 990px;
-    margin: auto;
-    overflow: hidden;
-    vertical-align: middle;
-    display: table-cell;
-    text-align: center;
-
+  max-width: 990px;
+  margin: auto;
+  overflow: hidden;
+  vertical-align: middle;
+  display: table-cell;
+  text-align: left;
 }
 
 #fourzerofour a {
-    display: inline-block;
-    background-color: #004225;
-    color: #fff;
-    font-size: 18px;
-    border-radius: 40px;
-    width: auto;
-    padding: 0 25px;
-    text-align: center;
-    height: 50px;
-    line-height: 48px;
-    font-weight: 300;
-    margin: 20px 0;
-    text-decoration: none;
-    transition: 1s;
+  display: inline-block;
+  background-color: #004225;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 40px;
+  width: auto;
+  padding: 0 25px;
+  text-align: center;
+  height: 50px;
+  line-height: 48px;
+  font-weight: 300;
+  margin: 20px 0;
+  text-decoration: none;
+  transition: 1s;
 }
 
 #fourzerofour a:hover {
-    background-color: #fff;
-    color: #004225;
-    transition: 1s;
-    box-shadow: inset 0 0 0 1px #004225;
+  background-color: #fff;
+  color: #004225;
+  transition: 1s;
+  box-shadow: inset 0 0 0 1px #004225;
 }
 
 h1 {
-    font-size: 48px;
-    position: relative;
-    display: inline-block;
-}
-
-h1:before {
-    content: '';
-    position: absolute;
-    height: 5px;
-    width: 100px;
-    background: #000;
-    left: 0;
-    bottom: -20%;
+  font-size: 48px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0;
 }
 
 ul {
-    text-align: left;
+  text-align: left;
 }
 
 ul li {
-    margin: 5px 0;
+  margin: 5px 0;
 }
 
 @media only screen and (max-width: 989px) {
-
-    #fourzerofour {
-        padding: 5%;
-        margin: 5%;
-        width: 80%;
-    }
-
+  #fourzerofour {
+    padding: 5%;
+    margin: 5%;
+    width: 80%;
+  }
 }
