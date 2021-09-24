@@ -4,7 +4,7 @@ export default function Welcome() {
   return (
     <section id="welcome">
       <div className="wrapper">
-        <h2>Hello world, I'm Kyle <i className="fa fa-home"></i></h2>
+        <h1>Hello world, I'm Kyle <i className="fa fa-home"></i></h1>
 
         <p>I am primarily a front end developer from Yorkshire now living in South London, I moved here in order to start my career as a developer.
         </p>

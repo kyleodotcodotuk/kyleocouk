@@ -1,16 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./sass/sass_all.scss";
+import BackgroundSlider from "react-background-slider";
+// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import { Overview, Services, Navigation, Portfolio } from "./components";
 import Header from "./Header";
 import Welcome from "./Welcome";
-import Skills from "./Skills";
 import Footer from "./Footer";
-import BackgroundSlider from "react-background-slider";
 import image1 from "./img/bgs/010.webp";
 import image2 from "./img/bgs/020.webp";
 import image3 from "./img/bgs/030.webp";
 import image4 from "./img/bgs/040.webp";
 import image5 from "./img/bgs/050.webp";
+import "./sass/sass_all.scss";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,7 +22,14 @@ ReactDOM.render(
     />
     <Header />
     <Welcome />
-    <Skills />
+    {/* <Router>
+      <Navigation />
+      <Switch>
+        <Route path="/" exact component={() => <Overview />} />
+        <Route path="/services" exact component={() => <Services />} />
+        <Route path="/portfolio" exact component={() => <Portfolio />} />
+      </Switch>
+    </Router> */}
     <Footer />
   </React.StrictMode>,
   document.getElementById("root")

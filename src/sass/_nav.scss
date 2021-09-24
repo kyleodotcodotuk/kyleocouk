@@ -1,0 +1,39 @@
+nav.navigation {
+  background-color: #4f5b93;
+  padding: 10px 20px;
+  text-align: center;
+
+  ul {
+    li {
+      display: inline-block;
+      padding: 5px 0px;
+      margin: 0 15px;
+
+      a {
+        font-size: 18px;
+        padding: 5px 20px 5px 0px;
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.active {
+  transition: 1s;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    right: 0px;
+    top: 2px;
+    bottom: 0;
+    margin: auto;
+    height: 12px;
+    width: 12px;
+    transform: rotate(90deg);
+    background: url("./../img/nav-arrow.svg") repeat;
+    transition: 1s;
+  }
+}
