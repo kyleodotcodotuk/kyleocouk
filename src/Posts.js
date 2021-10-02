@@ -8,7 +8,7 @@ export default function Posts() {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
         async function loadPosts() {
-            const response = await fetch('https://kyle.epizy.com/wordpress/wp-json/wp/v2/posts');
+            const response = await fetch('http://blogfeed.local/wp-json/wp/v2/posts');
             if (!response.ok) {
                 // oups! something went wrong
                 return;
