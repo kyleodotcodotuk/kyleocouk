@@ -4,6 +4,7 @@ import BackgroundSlider from "react-background-slider";
 // import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import { Overview, Services, Navigation, Portfolio } from "./components";
 import Header from "./Header";
+import WP from "./Posts";
 import Welcome from "./Welcome";
 import Footer from "./Footer";
 import image1 from "./img/bgs/010.webp";
@@ -22,6 +23,7 @@ ReactDOM.render(
     />
     <Header />
     <Welcome />
+    <WP />
     {/* <Router>
       <Navigation />
       <Switch>
