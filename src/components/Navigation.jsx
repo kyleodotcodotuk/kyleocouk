@@ -20,22 +20,6 @@ function Navigation(props) {
         >
           <Link to="/services">Services</Link>
         </li>
-
-        <li
-          className={`nav  ${
-            props.location.pathname === "/portfolio" ? "active" : ""
-          }`}
-        >
-          <Link to="/portfolio">Portfolio</Link>
-        </li>
-
-        <li
-          className={`nav  ${
-            props.location.pathname === "/what" ? "active" : ""
-          }`}
-        >
-          <Link to="/what">Coding</Link>
-        </li>
       </ul>
     </nav>
   );

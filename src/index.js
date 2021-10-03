@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import BackgroundSlider from "react-background-slider";
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import { Overview, Services, Navigation, Portfolio } from "./components";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Overview, Services } from "./components";
 import Header from "./Header";
 // import WP from "./Posts";
 import Welcome from "./Welcome";
@@ -24,14 +24,13 @@ ReactDOM.render(
     <Header />
     <Welcome />
     {/* <WP /> */}
-    {/* <Router>
-      <Navigation />
+    <Router>
+      {/* <Navigation /> */}
       <Switch>
         <Route path="/" exact component={() => <Overview />} />
         <Route path="/services" exact component={() => <Services />} />
-        <Route path="/portfolio" exact component={() => <Portfolio />} />
       </Switch>
-    </Router> */}
+    </Router>
     <Footer />
   </React.StrictMode>,
   document.getElementById("root")
