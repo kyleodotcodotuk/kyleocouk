@@ -15,7 +15,7 @@ export default function Welcome() {
           I used to create websites for schools around the UK but now I'm working on websites for an array of businesses.<br />
         </p>
 
-        <p>Currently employed as a Web Developer and Designer in Sidcup, this site is a means to keep in touch with JS frameworks.
+        <p>Currently employed as a Web Developer and Designer in London, this site is a means to keep in touch with JS frameworks.
         </p>
 
         {/* <a href="mailto:info@kyleo.co.uk" className="cta">Contact</a> */}
