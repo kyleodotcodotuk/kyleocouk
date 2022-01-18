@@ -60,3 +60,11 @@ label {
   line-height: 23px;
   padding: 1px 0px 0px 25px !important;
 }
+
+@media only screen and (max-width: 450px) {
+  .react-cookie-law-dialog {
+    width: 300px !important;
+  }
+
+  .react-cookie-law-policy { display: none;}
+}
