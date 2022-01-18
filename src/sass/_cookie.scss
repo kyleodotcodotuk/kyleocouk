@@ -1,5 +1,6 @@
 .react-cookie-law-dialog {
-  background-color: black !important;
+  background: black url("/../src/icons/important.svg") no-repeat left 150px
+    center !important;
   box-shadow: inset 10px 0 0 0 #d80d34;
   font-family: "Lato", sans-serif;
   bottom: 0.5em !important;
@@ -61,10 +62,12 @@ label {
   padding: 1px 0px 0px 25px !important;
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 550px) {
   .react-cookie-law-dialog {
     width: 300px !important;
   }
 
-  .react-cookie-law-policy { display: none;}
+  .react-cookie-law-policy {
+    display: none;
+  }
 }
