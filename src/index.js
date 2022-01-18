@@ -32,9 +32,9 @@ ReactDOM.render(
     </Router>
     <Footer />
     <CookieBanner
-      message="This website uses cookies. By accepting, you consent to the use of cookies"
+      message="This website uses cookies. By accepting, you consent to the use of cookies."
       wholeDomain={true}
-      policyLink="/docs/privacy-policy.pdf"
+      policyLink="/docs/privacy_policy.pdf"
       onAccept={() => { }}
       onAcceptPreferences={() => { }}
       onAcceptStatistics={() => { }}
