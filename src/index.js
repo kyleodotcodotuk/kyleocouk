@@ -4,9 +4,9 @@ import BackgroundSlider from "react-background-slider";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Overview, Services } from "./components";
 import Header from "./Header";
-// import WP from "./Posts";
 import Welcome from "./Welcome";
 import Footer from "./Footer";
+import { CookieBanner } from "@palmabit/react-cookie-law";
 import image1 from "./img/bgs/010.webp";
 import image2 from "./img/bgs/020.webp";
 import image3 from "./img/bgs/030.webp";
@@ -23,7 +23,6 @@ ReactDOM.render(
     />
     <Header />
     <Welcome />
-    {/* <WP /> */}
     <Router>
       {/* <Navigation /> */}
       <Switch>
@@ -32,6 +31,16 @@ ReactDOM.render(
       </Switch>
     </Router>
     <Footer />
+    <CookieBanner
+      message="This website uses cookies. By accepting, you consent to the use of cookies"
+      wholeDomain={true}
+      policyLink="/docs/privacy-policy.pdf"
+      onAccept={() => { }}
+      onAcceptPreferences={() => { }}
+      onAcceptStatistics={() => { }}
+      onAcceptMarketing={() => { }}
+    />
+
   </React.StrictMode>,
   document.getElementById("root")
 );
