@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Overview, Services } from "./components";
 import Header from "./Header";
 import Welcome from "./Welcome";
+import Posts from "./Posts";
+import Projects from "./Projects";
 import Footer from "./Footer";
 import { CookieBanner } from "@palmabit/react-cookie-law";
 import image1 from "./img/bgs/010.webp";
@@ -23,6 +25,7 @@ ReactDOM.render(
     />
     <Header />
     <Welcome />
+    <Posts />
     <Router>
       {/* <Navigation /> */}
       <Switch>
@@ -31,6 +34,7 @@ ReactDOM.render(
       </Switch>
     </Router>
     <Footer />
+    <Projects />
     <CookieBanner
       message="This website uses cookies. By accepting, you consent to the use of cookies."
       wholeDomain={true}

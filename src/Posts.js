@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import category from './icons/information.svg';
+import author from './icons/author.svg';
+import calendar from './icons/calendar.svg';
 
 export default function Posts() {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
         async function loadPosts() {
-            const response = await fetch('https://kyle.epizy.com/wordpress/wp-json/wp/v2/posts', { mode: 'no-cors' });
+            const response = await fetch('https://kyle.resknow.co/wp-json/wp/v2/posts?_embed');
             if (!response.ok) {
                 // oups! something went wrong
                 return;
@@ -15,26 +18,32 @@ export default function Posts() {
         }
 
         loadPosts();
-
-
     }, [])
     return (
-        <section className="wordPressFeed">
-            <div className="wrapper">
-                {posts.map((post, index) => (
-                    <div key={index}>
+        <div className='blogfeed'>
 
-                        <blogPost
-                            gutterBottom
-                            dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-                        <blogPost
-                            component="content"
-                            dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+            <h1>Read Between the Designs</h1>
+            {posts.slice(0, 3).map((post, index) => (
+                <div className="blogposts" key={index}>
 
 
-                    </div>
-                ))}
-            </div>
-        </section>
+
+                    <div className="blogtitle" dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+
+                    <h4><img className='author' alt="" src={author} /><a href={post._embedded['author'].name}>{post._embedded['author'][0].name}</a></h4>
+                    <div className="blogcontent" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+
+                    <img className='ass-img' alt={post.title.rendered} title={post.title.rendered} src={post._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url} />
+
+                    <a target="_blank" rel="noreferrer" className='more' href={post.link}>Full Post</a>
+
+                    <h4><img className='calendar' alt="" src={calendar} />{post.formatted_date}</h4>
+                    <h4><img className='category' alt="" src={category} />Category - {post._embedded['wp:term'][0][0].name}</h4>
+                </div>
+            ))}
+        </div>
+
+
     );
 }
+
