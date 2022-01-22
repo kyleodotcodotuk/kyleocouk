@@ -103,5 +103,5 @@ dist
 # TernJS port file
 .tern-port
 
-# blog
+# Hidden Images
 /src/image-hidden
