@@ -20,29 +20,26 @@ export default function Posts() {
         loadPosts();
     }, [])
     return (
-        <div className='blogfeed'>
+        <section className='blogfeed'>
 
             <h1>Read Between the Designs</h1>
-            {posts.slice(0, 3).map((post, index) => (
-                <div className="blogposts" key={index}>
-
-
+            {posts.slice(0, 6).map((post, index) => (
+                <article className="blogposts" key={index}>
 
                     <div className="blogtitle" dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
 
-                    <h4><img className='author' alt="" src={author} /><a href={post._embedded['author'].name}>{post._embedded['author'][0].name}</a></h4>
+                    <h4><img className='author' alt="" src={author} /><a href={post._embedded['author'].name}> {post._embedded['author'][0].name}</a></h4>
                     <div className="blogcontent" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
 
-                    <img className='ass-img' alt={post.title.rendered} title={post.title.rendered} src={post._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url} />
+                    <img loading='lazy' className='ass-img' alt={post.title.rendered} title={post.title.rendered} src={post._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url} />
 
-                    <a target="_blank" rel="noreferrer" className='more' href={post.link}>Full Post</a>
+                    <a target="_blank" rel="noreferrer" className='more' href={post.link}>Read More</a>
 
-                    <h4><img className='calendar' alt="" src={calendar} />{post.formatted_date}</h4>
-                    <h4><img className='category' alt="" src={category} />Category - {post._embedded['wp:term'][0][0].name}</h4>
-                </div>
+                    <h4><img className='calendar' alt="" src={calendar} /> {post.formatted_date}</h4>
+                    <h4><img className='category' alt="" src={category} />Category &middot; {post._embedded['wp:term'][0][0].name}</h4>
+                </article>
             ))}
-        </div>
-
+        </section>
 
     );
 }

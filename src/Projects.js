@@ -8,7 +8,7 @@ class Projects extends Component {
         }
     }
     componentDidMount() {
-        let dataURL = "http://kyleocouk.local/wp-json/wp/v2/projects?_embed";
+        let dataURL = "https://kyle.resknow.co/wp-json/wp/v2/projects?_embed";
         fetch(dataURL)
             .then(res => res.json())
             .then(res => {
