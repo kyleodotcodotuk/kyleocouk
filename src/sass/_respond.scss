@@ -18,12 +18,18 @@
   }
 
   #welcome {
+    padding: 2em 0;
+    h1 {
+      font-size: 2em;
+      .fa {
+        display: none;
+      }
+    }
     h1,
     p {
       max-width: 100%;
       width: 80%;
       margin: 4% auto !important;
-      text-align: center;
       display: block;
 
       &:before {
@@ -46,6 +52,7 @@
   }
 
   #skillset {
+    padding: 2em 0;
     .skill {
       display: block;
 

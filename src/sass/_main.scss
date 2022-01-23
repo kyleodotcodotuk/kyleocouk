@@ -6,7 +6,8 @@ body {
   padding: 0;
   font-size: 16px;
   margin: auto;
-  font-family: "Lato", sans-serif;
+
+  font-family: "Nunito", sans-serif;
 }
 
 body a {
@@ -48,7 +49,7 @@ img {
 h1,
 h2,
 h3 {
-  font-family: "Ubuntu Mono", monospace;
+  font-family: "Nunito", sans-serif;
 }
 
 h1 {
@@ -97,8 +98,8 @@ h3 {
     background: -webkit-linear-gradient(
       top,
       rgba(0, 0, 0, 0.6) 0%,
-      rgba(0, 0, 0, 0.2) 50%,
-      rgba(0, 0, 0, 0) 100%
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.2) 100%
     );
     z-index: 1;
   }
@@ -193,7 +194,7 @@ header {
 }
 
 #welcome {
-  padding: 50px 0;
+  padding: 4em 0;
   margin: auto;
   background: #000;
   // background: linear-gradient(180deg, #004225, rgba(0, 0, 0, 1));
@@ -255,7 +256,7 @@ header {
 // SKILLS
 
 #skillset {
-  padding: 8vh 0;
+  padding: 4em 0;
   background: url("./../img/bgs/skills-bg.png") repeat;
 
   .skill {
@@ -445,13 +446,6 @@ header {
   }
 }
 
-// BLOG
-
-.wordPressFeed {
-  padding: 30px 0;
-  background-color: red;
-}
-
 // FOOTER
 
 footer {
@@ -460,7 +454,7 @@ footer {
   background: url("./../img/bgs/footer-bg.png") repeat;
   min-height: 50px;
   width: 100%;
-  padding: 2% 0;
+  padding: 2em 0;
 
   .wrapper {
     position: relative;
