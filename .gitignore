@@ -105,3 +105,6 @@ dist
 
 # Hidden Images
 /src/image-hidden
+
+#Base files
+/src/Custom.js

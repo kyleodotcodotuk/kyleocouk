@@ -104,10 +104,14 @@
       bottom: -5px;
       height: 2px;
       width: 55px;
+      transition: 1s;
       background: #565656;
     }
     &:hover {
-      color: #004225;
+      &:before {
+        width: 25px;
+        transition: 1s;
+      }
     }
   }
 }

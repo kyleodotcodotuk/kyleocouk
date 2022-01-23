@@ -2,6 +2,7 @@ import me from './img/me.png';
 
 export default function Welcome() {
   return (
+
     <section id="welcome">
       <div className="wrapper">
         <h1>Hello world, I'm Kyle <i className="fa fa-home"></i></h1>

@@ -23,7 +23,7 @@ export default function Posts() {
         <section className='blogfeed'>
 
             <h1>Read Between the Designs</h1>
-            {posts.slice(0, 6).map((post, index) => (
+            {posts.slice(0, 3).map((post, index) => (
                 <article className="blogposts" key={index}>
 
                     <div className="blogtitle" dangerouslySetInnerHTML={{ __html: post.title.rendered }} />

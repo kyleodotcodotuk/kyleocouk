@@ -1,7 +1,7 @@
 import React from "react";
 
-
 export default function Footer() {
+
   return (
     <footer>
       <div className="wrapper">
@@ -16,10 +16,10 @@ export default function Footer() {
           <li><a href="https://github.com/kyleodotcodotuk" target="_blank" rel="noreferrer" className="social-icon" alt="GitHub" title="GitHub"> <i className="fa fa-github"></i></a></li>
         </ul>
 
-
       </div>
     </footer>
 
-
   );
 }
+
+
