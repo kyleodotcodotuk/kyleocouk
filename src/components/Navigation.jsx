@@ -9,7 +9,7 @@ function Navigation(props) {
           className={`nav  ${props.location.pathname === "/" ? "active" : ""}`}
         >
           <Link to="/">
-            Overview
+            Expertise
             <span className="sr-only">(current)</span>
           </Link>
         </li>
@@ -19,6 +19,14 @@ function Navigation(props) {
           }`}
         >
           <Link to="/services">Services</Link>
+        </li>
+
+        <li
+          className={`nav  ${
+            props.location.pathname === "/blogfeed" ? "active" : ""
+          }`}
+        >
+          <Link to="/blogfeed">Reading</Link>
         </li>
       </ul>
     </nav>

@@ -15,7 +15,7 @@
   padding: 1em;
   display: inline-block;
   text-align: left;
-  box-shadow: inset 0 0 0 1px #000;
+  box-shadow: 0 0 5px 0 #555;
   background: #fff;
   overflow: hidden;
 
@@ -27,16 +27,6 @@
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    overflow: hidden;
-
-    &:before {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      height: 2px;
-      width: 50px;
-      background: #000;
-    }
   }
 
   .blogcontent {
@@ -66,17 +56,17 @@
     height: 200px;
     width: 100%;
     object-fit: cover;
-    box-shadow: 0 0 5px 0 #565656;
+    box-shadow: 0 0 5px 0 #555;
   }
 
   h3 {
     margin: 0.3em 0;
-    color: grey;
+    color: #555;
     font-size: 0.7em;
   }
   h4 {
     margin: 0.7em 0;
-    color: grey;
+    color: #555;
     font-size: 0.7em;
     display: inline-block;
     padding: 0 1em 0 0;

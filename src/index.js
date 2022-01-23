@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import BackgroundSlider from "react-background-slider";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Overview, Services } from "./components";
+import { Overview, Services, Blogfeed } from "./components";
 import Header from "./Header";
 import Welcome from "./Welcome";
 import Posts from "./Posts";
@@ -30,6 +30,7 @@ ReactDOM.render(
       <Switch>
         <Route path="/" exact component={() => <Overview />} />
         <Route path="/services" exact component={() => <Services />} />
+        <Route path="/blogfeed" exact component={() => <Blogfeed />} />
       </Switch>
     </Router>
     <Footer />

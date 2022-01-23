@@ -25,11 +25,11 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar {
   width: 10px;
   border-radius: 10px;
-  background-color: #ccc;
+  background-color: #fff;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #ccc;
+  background-color: #555;
 }
 
 img {
@@ -159,6 +159,10 @@ header {
     }
   }
 
+  hr {
+    width: 100%;
+  }
+
   .centered {
     display: grid;
     justify-items: center;
@@ -201,6 +205,7 @@ header {
   background-size: 400% 400%;
   animation: bgChange 20s ease infinite;
   overflow: hidden;
+  position: relative;
 
   .wrapper {
     position: relative;
@@ -216,8 +221,8 @@ header {
 
   p {
     letter-spacing: 0.01em;
-    line-height: 1.26;
-    margin: 2.5% 0;
+    line-height: 1.3;
+    margin: 1.5em 0;
     max-width: 60%;
     color: #fff;
 
@@ -233,17 +238,16 @@ header {
     top: 0;
     bottom: 0;
     margin: auto;
-    right: 5%;
+    right: 0;
   }
 
-  .cta {
+  .btn {
     display: inline-block;
-    padding: 12px 30px;
+    padding: 0.5em 1.5em;
     background-color: #fff;
     color: #000;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 20px;
+    letter-spacing: 0.05em;
     text-align: center;
 
     &:hover {
@@ -257,7 +261,8 @@ header {
 
 #skillset {
   padding: 4em 0;
-  background: url("./../img/bgs/skills-bg.png") repeat;
+  background: #000 url("./../img/bgs/skills-bg.png") repeat;
+  background-attachment: fixed;
 
   .skill {
     display: flex;
@@ -268,7 +273,7 @@ header {
       padding: 3%;
       margin: 0 auto;
       background-color: #000;
-      box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 5px 0 #555;
       position: relative;
       transition: 1s;
 
@@ -451,10 +456,11 @@ header {
 footer {
   text-align: center;
   overflow: hidden;
-  background: url("./../img/bgs/footer-bg.png") repeat;
+  // background: url("./../img/bgs/footer-bg.png") repeat;
+  background: #000;
   min-height: 50px;
   width: 100%;
-  padding: 2em 0;
+  padding: 1.5em 0;
 
   .wrapper {
     position: relative;
@@ -467,9 +473,9 @@ footer {
 
   p {
     margin: 0;
-    line-height: 1.66;
+    line-height: 1.4;
     color: #fff;
-    font-size: 14px;
+    font-size: 0.9em;
     letter-spacing: 0.03em;
     text-align: left;
 

@@ -14,8 +14,8 @@ export default function Overview() {
             </h2>
 
             <p>
-              Proficient with front-end, capable with back-end. Over 500 bespoke
-              websites and customisable templates in my experience.
+              Proficient with frontend and knowledgeable with backend. Over 500
+              bespoke websites and customisable templates in my experience.
             </p>
             <p>
               Through my career I have created templates, maintained codebases,

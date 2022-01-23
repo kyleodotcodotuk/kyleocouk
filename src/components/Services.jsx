@@ -7,8 +7,6 @@ export default function Services() {
   return (
     <section id="skillset">
       <div className="wrapper">
-        <h2>Services</h2>
-
         <div className="service-boxes">
           <p>
             <img src={serviceOne} alt="" />

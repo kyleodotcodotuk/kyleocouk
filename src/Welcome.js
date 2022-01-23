@@ -5,21 +5,18 @@ export default function Welcome() {
 
     <section id="welcome">
       <div className="wrapper">
-        <h1>Hello world, I'm Kyle <i className="fa fa-home"></i></h1>
+        <h1>Hello world <i className="fa fa-home"></i></h1>
 
-        <p>I am primarily a front end developer from Yorkshire now living in South London, I moved here in order to start my career as a developer.
+        <p>I am website developer from Yorkshire now living in London, I moved there in the summer of 2016 to start my career as a developer.
         </p>
 
-        <p>I have a degree in Web Design from the University of Bradford, over 5 years of commercial experience having coded over 500 bespoke websites and templates.</p>
+        <p>After graduating with my degree in Web Design from the University of Bradford, I gained over 6 years of commercial experience. During which I have coded over 500 bespoke websites and templates with bespoke editable features.</p>
 
-        <p>
-          I used to create websites for schools around the UK but now I'm working on websites for an array of businesses.<br />
-        </p>
+        <p>Currently full time employed at a digital agency as a developer, if you wish to enquire about a website, get in touch.</p>
 
-        <p>Currently employed as a Web Developer and Designer in London, this site is a means to keep in touch with JS frameworks.
-        </p>
+        <a href="mailto:info@kyleo.co.uk" alt="" className='btn'>Contact</a>
 
-        <img src={me} title="My Avatar" alt="My Avatar" id="welcome-image" width="250" height="250" />
+        <img src={me} title="My Avatar" alt="My Avatar" id="welcome-image" width="300" height="300" />
 
       </div>
     </section>

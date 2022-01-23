@@ -44,10 +44,21 @@
       display: block;
     }
 
-    .cta {
-      margin: auto;
+    .btn {
+      margin-left: 10%;
       display: block;
       width: fit-content;
+    }
+  }
+
+  // Blogfeed
+
+  .blogfeed {
+    padding: 2em 0;
+    h1 {
+      font-size: 2em;
+      max-width: 80%;
+      margin: 0.1em auto;
     }
   }
 
@@ -59,12 +70,12 @@
       .skill-box {
         width: 90%;
         margin: 5% auto;
-        text-align: center;
         padding: 5% 0;
 
         h2 {
           padding: 10px 0;
           margin: 0 auto;
+          width: 85%;
 
           &:before {
             display: none;
@@ -73,7 +84,7 @@
 
         p {
           width: 85%;
-          margin: 3% auto 10%;
+          margin: 3% auto 5%;
           font-size: 18px;
 
           &:last-of-type {
@@ -86,20 +97,19 @@
 
   footer {
     height: auto;
-    width: 90%;
-    padding: 0 5%;
     line-height: normal;
 
     p {
       float: none;
-      margin: 25px auto;
-      text-align: center;
-      width: 200px;
+      margin: 1em auto;
+      width: 80%;
     }
 
     ul.social-icons {
       position: inherit;
-      margin: 10px auto 25px;
+      text-align: left;
+      margin: auto;
+      width: 80%;
     }
   }
 }
