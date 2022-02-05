@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import category from './icons/information.svg';
+import category from './icons/category.svg';
 // import author from './icons/author.svg';
 import calendar from './icons/calendar.svg';
 
