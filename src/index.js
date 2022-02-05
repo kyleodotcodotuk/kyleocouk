@@ -39,6 +39,7 @@ ReactDOM.render(
       wholeDomain={true}
       policyLink="/docs/privacy_policy.pdf"
       onAccept={() => { }}
+      managePreferencesButtonText="Manage cookies"
       onAcceptPreferences={() => { }}
       onAcceptStatistics={() => { }}
       onAcceptMarketing={() => { }}

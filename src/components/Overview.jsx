@@ -8,24 +8,25 @@ export default function Overview() {
       <div className="wrapper">
         <div className="skill">
           <div className="skill-box">
-            <img src={devImage} alt="" />
+            <img src={devImage} alt="" width="100%" height="100%" />
             <h2>
               Development <i className="fa fa-code"></i>
             </h2>
 
             <p>
-              Proficient with frontend and knowledgeable with backend. Over 500
-              bespoke websites and customisable templates in my experience.
+              Proficient with frontend languages like JavaScript and
+              knowledgeable with backend. Over 6 years commerical experience
+              making websites for a range of businesses.
             </p>
             <p>
-              Through my career I have created templates, maintained codebases,
-              repositories and documentation.
+              Through my years of experience I have handled a range of duties
+              such as, creating templates, website maintenance and producing
+              documentation.
             </p>
-            <p>I also managed the dev department as a lead developer.</p>
           </div>
 
           <div className="skill-box">
-            <img src={desImage} alt="" />
+            <img src={desImage} alt="" width="100%" height="100%" />
             <h2>
               Design <i className="fa fa-paint-brush"></i>
             </h2>

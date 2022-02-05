@@ -22,7 +22,7 @@ export default function Posts() {
     return (
         <section className='blogfeed'>
 
-            <h1>Read Between the Designs</h1>
+            <h2>Read Between the Designs</h2>
             {posts.slice(0, 3).map((post, index) => (
                 <article className="blogposts" key={index}>
 
@@ -33,10 +33,10 @@ export default function Posts() {
 
                     <img loading='lazy' className='ass-img' alt={post.title.rendered} title={post.title.rendered} src={post._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url} />
 
-                    <a target="_blank" rel="noreferrer" className='more' href={post.link}>Read More</a>
+                    <a target="_blank" rel="noreferrer" className='more' href={post.link}>Full Post</a>
 
-                    <h4><img className='calendar' alt="" src={calendar} /> {post.formatted_date}</h4>
-                    <h4><img className='category' alt="" src={category} />{post._embedded['wp:term'][0][0].name}</h4>
+                    <h4><img className='calendar' width="18px" height="18px" alt="" src={calendar} /> {post.formatted_date}</h4>
+                    <h4><img className='category' width="18px" height="18px" alt="" src={category} />{post._embedded['wp:term'][0][0].name}</h4>
                 </article>
             ))}
         </section>
