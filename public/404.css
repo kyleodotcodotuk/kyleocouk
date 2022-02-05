@@ -1,16 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
 html {
   height: 100%;
 }
 
 body {
-  background-color: antiquewhite;
+  background-color: #fff;
   margin: 0;
   padding: 0;
-  font-size: 16px;
+  font-size: 1.2em;
   margin: auto;
-  font-family: "Lato", sans-serif;
+  font-family: "Nunito", sans-serif;
   display: table;
   height: 100%;
 }
@@ -26,10 +26,9 @@ body {
 
 #fourzerofour a {
   display: inline-block;
-  background-color: #004225;
+  background-color: #000;
   color: #fff;
   font-size: 18px;
-  border-radius: 40px;
   width: auto;
   padding: 0 25px;
   text-align: center;
@@ -43,9 +42,9 @@ body {
 
 #fourzerofour a:hover {
   background-color: #fff;
-  color: #004225;
+  color: #000;
   transition: 1s;
-  box-shadow: inset 0 0 0 1px #004225;
+  box-shadow: inset 0 0 0 1px #000;
 }
 
 h1 {
@@ -65,8 +64,8 @@ ul li {
 
 @media only screen and (max-width: 989px) {
   #fourzerofour {
-    padding: 5%;
-    margin: 5%;
-    width: 80%;
+    padding: 2em;
+    margin: 1em;
+    width: 100%;
   }
 }
