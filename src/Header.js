@@ -1,14 +1,16 @@
-import tempLogo from './logo.svg';
+import Logo from './logo.svg';
+import Down from './icons/down.svg';
+import { Link } from "react-scroll";
+
 
 export default function Header() {
+
     return (
         <header>
 
             <div className="centered">
 
-                <img src={tempLogo} alt="Logo" id="logo" title="Logo" />
-                {/* <img src="/logo.png" alt="logo" id="logo" title="logo" width="186" height="66" /> */}
-                <img src={tempLogo} alt="Logo" width="200" height="220" id="mobile-logo" title="logo" />
+                <img src={Logo} alt="Logo" id="logo" title="Logo" height="325px" width="325px" />
 
                 <h1>Kyle O&apos;Connor<br />
 
@@ -19,7 +21,17 @@ export default function Header() {
                 <hr />
             </div>
 
-        </header>
+            <Link className='scroll-down'
+                activeClass="active"
+                to="welcome"
+                smooth={true}
+                offset={0}
+                duration={1000}
+            ><img alt="Downwards Arrow" src={Down} /></Link>
+
+
+
+        </header >
 
     );
 }

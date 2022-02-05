@@ -117,11 +117,7 @@ header {
   display: grid;
 
   img#logo {
-    margin: 2vh auto;
-  }
-
-  img#mobile-logo {
-    display: none;
+    margin: 2em auto;
   }
 
   h1 {
@@ -170,6 +166,15 @@ header {
     align-content: center;
     // animation: slideIn 2s ease 1;
     position: relative;
+  }
+
+  .scroll-down {
+    position: absolute;
+    bottom: 2em;
+    cursor: pointer;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
 }
 
