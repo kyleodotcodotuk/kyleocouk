@@ -28,7 +28,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #555;
+  background-color: #ccc;
 }
 
 img {
@@ -96,9 +96,9 @@ h3 {
     height: 100%;
     background: -webkit-linear-gradient(
       top,
-      rgba(0, 0, 0, 0.6) 0%,
-      rgba(0, 0, 0, 0.4) 50%,
-      rgba(0, 0, 0, 0.2) 100%
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.1) 100%
     );
     z-index: 1;
   }
@@ -118,6 +118,7 @@ header {
 
   img#logo {
     margin: 2em auto;
+    transition: 1s;
   }
 
   h1 {

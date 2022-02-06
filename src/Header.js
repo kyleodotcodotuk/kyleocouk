@@ -22,14 +22,9 @@ export default function Header() {
             </div>
 
             <Link className='scroll-down'
-                activeClass="active"
-                to="welcome"
-                smooth={true}
-                offset={0}
-                duration={1000}
+                activeClass="active" to="welcome"
+                smooth={true} offset={0} duration={1000}
             ><img alt="Downwards Arrow" src={Down} /></Link>
-
-
 
         </header >
 
