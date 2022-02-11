@@ -1,6 +1,6 @@
 @media only screen and (max-width: 989px) {
   header {
-    height: 100vh;
+    height: 95vh;
 
     img#logo {
       margin: 2em auto;
@@ -51,10 +51,11 @@
 
   .blogfeed {
     padding: 2em 0;
-    h1 {
+    h2 {
       font-size: 2em;
       max-width: 80%;
       margin: 0.1em auto;
+      text-align: left;
     }
   }
 

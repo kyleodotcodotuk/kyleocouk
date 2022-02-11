@@ -21,7 +21,7 @@ export default function Header() {
                 <hr />
             </div>
 
-            <Link className='scroll-down'
+            <Link className='scroll-down' href="/#welcome"
                 activeClass="active" to="welcome"
                 smooth={true} offset={0} duration={1000}
             ><img alt="Downwards Arrow" src={Down} /></Link>
