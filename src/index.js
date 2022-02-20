@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import BackgroundSlider from "react-background-slider";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Overview, Services, Blogfeed } from "./components";
+import { Overview } from "./components";
 import Header from "./Header";
 import Welcome from "./Welcome";
 import Posts from "./Posts";
@@ -13,7 +13,7 @@ import image2 from "./img/bgs/020.webp";
 import image3 from "./img/bgs/030.webp";
 import image4 from "./img/bgs/040.webp";
 import image5 from "./img/bgs/050.webp";
-import "./sass/sass_all.scss";
+import "./sass/_all.scss";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,8 +29,8 @@ ReactDOM.render(
       {/* <Navigation /> */}
       <Switch>
         <Route path="/" exact component={() => <Overview />} />
-        <Route path="/services" exact component={() => <Services />} />
-        <Route path="/blogfeed" exact component={() => <Blogfeed />} />
+        {/* <Route path="/services" exact component={() => <Services />} /> */}
+        {/* <Route path="/blogfeed" exact component={() => <Blogfeed />} /> */}
       </Switch>
     </Router>
     <Footer />

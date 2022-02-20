@@ -24,7 +24,7 @@ export default function Header() {
             <Link className='scroll-down' href="/#welcome"
                 activeClass="active" to="welcome"
                 smooth={true} offset={0} duration={1000}
-            ><img alt="Downwards Arrow" src={Down} /></Link>
+            ><img height="38px" width="38px" alt="Downwards Arrow" src={Down} /></Link>
 
         </header >
 

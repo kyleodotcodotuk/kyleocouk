@@ -23,13 +23,34 @@ export default function Posts() {
   }, []);
   return (
     <section className="blogfeed">
-      {/* <h1>Read Between the Designs</h1> */}
+      <h2>Read Between the Designs</h2>
       {posts.slice(0, 3).map((post, index) => (
         <article className="blogposts" key={index}>
           <div
             className="blogtitle"
             dangerouslySetInnerHTML={{ __html: post.title.rendered }}
           />
+
+          <h4>
+            <img
+              className="calendar"
+              width="18px"
+              height="18px"
+              alt=""
+              src={calendar}
+            />{" "}
+            {post.formatted_date}
+          </h4>
+          <h4>
+            <img
+              className="category"
+              width="18px"
+              height="18px"
+              alt=""
+              src={category}
+            />
+            {post._embedded["wp:term"][0][0].name}
+          </h4>
 
           {/* <h4><img className='author' alt="" src={author} /><a href={post._embedded['author'].name}> {post._embedded['author'][0].name}</a></h4> */}
           <div
@@ -49,17 +70,8 @@ export default function Posts() {
           />
 
           <a target="_blank" rel="noreferrer" className="more" href={post.link}>
-            Read More
+            Full Post
           </a>
-
-          <h4>
-            <img className="calendar" alt="" src={calendar} />{" "}
-            {post.formatted_date}
-          </h4>
-          <h4>
-            <img className="category" alt="" src={category} />
-            Category &middot; {post._embedded["wp:term"][0][0].name}
-          </h4>
         </article>
       ))}
     </section>
