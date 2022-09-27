@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import BackgroundSlider from "react-background-slider";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Blogfeed, Overview, Navigation, Portfolio } from "./components";
+import { Blogfeed, Overview, Navigation } from "./components";
 import Header from "./Header";
 import Welcome from "./Welcome";
 import Footer from "./Footer";
