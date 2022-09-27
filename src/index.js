@@ -27,7 +27,7 @@ ReactDOM.render(
       <Navigation />
       <Switch>
         <Route path="/" exact component={() => <Overview />} />
-        <Route path="/portfolio" exact component={() => <Portfolio />} />
+        {/* <Route path="/portfolio" exact component={() => <Portfolio />} /> */}
         <Route path="/blogfeed" exact component={() => <Blogfeed />} />
       </Switch>
     </Router>

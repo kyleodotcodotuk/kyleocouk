@@ -21,13 +21,13 @@ function Navigation(props) {
           <Link to="/blogfeed">Blog Feed</Link>
         </li>
 
-        <li
+        {/* <li
           className={`nav  ${
             props.location.pathname === "/portfolio" ? "active" : ""
           }`}
         >
           <Link to="/portfolio">Recent Work</Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
