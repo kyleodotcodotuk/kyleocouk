@@ -15,18 +15,18 @@ function Navigation(props) {
         </li>
         <li
           className={`nav  ${
-            props.location.pathname === "/services" ? "active" : ""
+            props.location.pathname === "/blogfeed" ? "active" : ""
           }`}
         >
-          <Link to="/services">Services</Link>
+          <Link to="/blogfeed">Blog Feed</Link>
         </li>
 
         <li
           className={`nav  ${
-            props.location.pathname === "/blogfeed" ? "active" : ""
+            props.location.pathname === "/portfolio" ? "active" : ""
           }`}
         >
-          <Link to="/blogfeed">Reading</Link>
+          <Link to="/portfolio">Recent Work</Link>
         </li>
       </ul>
     </nav>

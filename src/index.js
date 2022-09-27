@@ -2,10 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import BackgroundSlider from "react-background-slider";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Overview } from "./components";
+import { Blogfeed, Overview, Navigation, Portfolio } from "./components";
 import Header from "./Header";
 import Welcome from "./Welcome";
-import Posts from "./Posts";
 import Footer from "./Footer";
 import { CookieBanner } from "@palmabit/react-cookie-law";
 import image1 from "./img/bgs/010.webp";
@@ -24,13 +23,12 @@ ReactDOM.render(
     />
     <Header />
     <Welcome />
-    <Posts />
     <Router>
-      {/* <Navigation /> */}
+      <Navigation />
       <Switch>
         <Route path="/" exact component={() => <Overview />} />
-        {/* <Route path="/services" exact component={() => <Services />} /> */}
-        {/* <Route path="/blogfeed" exact component={() => <Blogfeed />} /> */}
+        <Route path="/portfolio" exact component={() => <Portfolio />} />
+        <Route path="/blogfeed" exact component={() => <Blogfeed />} />
       </Switch>
     </Router>
     <Footer />
@@ -42,7 +40,6 @@ ReactDOM.render(
       managePreferencesButtonText="Manage cookies"
       onAcceptPreferences={() => { }}
       onAcceptStatistics={() => { }}
-      onAcceptMarketing={() => { }}
     />
 
   </React.StrictMode>,
