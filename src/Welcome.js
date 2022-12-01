@@ -14,9 +14,8 @@ export default function Welcome() {
 
         <p>Currently full time employed at a digital agency as a developer, if you wish to enquire about a website, get in touch.</p>
 
-        <a href="mailto:info@kyleo.co.uk" alt="" className='btn'>Contact</a>
 
-        <img src={me} title="My Avatar" alt="My Avatar" id="welcome-image" width="300" height="300" />
+        <img src={me} title="My Avatar" alt="My Avatar" id="welcome-image" width="330" height="330" />
 
       </div>
     </section>

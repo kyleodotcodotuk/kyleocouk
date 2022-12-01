@@ -6,9 +6,9 @@ export default function Footer() {
     <footer>
       <div className="wrapper">
 
-        <p>Kyle O'Connor &middot; London, UK &nbsp;<i className="fa fa-map-pin"></i><br />
+        <p>Kyle O'Connor &middot; London, UK  <br />
           {new Date().getFullYear()}&nbsp;&middot;&nbsp;
-          <a href="/docs/privacy_policy.pdf" target="_blank" alt="Privacy Policy" title="Privacy Policy">Privacy Policy</a>  &nbsp;<i className="fa fa-legal"></i>  </p>
+          <a href="/docs/privacy_policy.pdf" target="_blank" alt="Privacy Policy" title="Privacy Policy">Privacy Policy</a>   </p>
 
         <ul className="social-icons">
           <li><a href="https://twitter.com/kyleocouk" rel="noreferrer" target="_blank" className="social-icon" alt="Twitter" title="Twitter"> <i className="fa fa-twitter"></i></a></li>

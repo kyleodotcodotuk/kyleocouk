@@ -62,7 +62,7 @@ export default function TimeLine() {
                             <span className="flag flag-l">RPA Design</span>
                         </div>
                         <div className="desc">
-                            <span>Internship &middot; West Yorkshire</span>
+                            <span>Developer Internship &middot; West Yorkshire</span>
                             <hr />
                             Implementing a custom Wordpress theme, PHP bugs and miscellaneous tickets.
                         </div>
@@ -77,9 +77,9 @@ export default function TimeLine() {
                             <span className="flag">University</span>
                         </div>
                         <div className="desc">
-                            <span>Student &middot; West Yorkshire</span>
+                            <span>Web Design Student &middot; West Yorkshire</span>
                             <hr />
-                            Studying in my hometown at the University of Bradford on the subject of web design, putting my skils to use and developing know-how on the industry.
+                            Studying in my hometown at the University of Bradford on the subject of web design, putting my skills to use and developing know-how on the industry.
                         </div>
                     </div>
                     <div className="direction-l"><span className="time">2012 &middot; 2015</span>
