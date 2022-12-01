@@ -1,3 +1,5 @@
+$icon-colours: #777;
+
 .social-icon {
   color: #fff;
 }
@@ -26,7 +28,7 @@ ul.social-icons {
 .fa-envelope {
   padding: 10px 14px;
   transition: 0.5s;
-  background-color: #555;
+  background-color: $icon-colours;
 }
 
 .fa-envelope:hover {
@@ -36,7 +38,7 @@ ul.social-icons {
 .fa-twitter {
   padding: 10px 12px;
   transition: 0.5s;
-  background-color: #555;
+  background-color: $icon-colours;
 }
 
 .fa-twitter:hover {
@@ -46,7 +48,7 @@ ul.social-icons {
 .fa-github {
   padding: 10px 14px;
   transition: 0.5s;
-  background-color: #555;
+  background-color: $icon-colours;
 }
 
 .fa-github:hover {
@@ -56,7 +58,7 @@ ul.social-icons {
 .fa-instagram {
   padding: 10px 14px;
   transition: 0.5s;
-  background-color: #555;
+  background-color: $icon-colours;
 }
 
 .fa-instagram:hover {

@@ -89,9 +89,9 @@ h3 {
     height: 100%;
     background: -webkit-linear-gradient(
       top,
-      rgba(0, 0, 0, 0.4) 0%,
-      rgba(0, 0, 0, 0.2) 50%,
-      rgba(0, 0, 0, 0.05) 100%
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.1) 100%
     );
     z-index: 1;
   }
@@ -119,6 +119,7 @@ header {
     color: #fff;
     text-shadow: 3px 3px 10px black;
     letter-spacing: 0.03em;
+    text-transform: lowercase;
   }
 
   span.sub-text {
@@ -242,7 +243,7 @@ header {
 
   .btn {
     display: inline-block;
-    padding: 0.8em 2.5em;
+    padding: 0.6em 2.5em;
     background-color: #fff;
     color: #000;
     text-decoration: none;
@@ -387,7 +388,7 @@ header {
 footer {
   text-align: center;
   overflow: hidden;
-  // background: url("./../img/bgs/footer-bg.png") repeat;
+  background: url("./../img/bgs/footer-bg.png") repeat;
   background: #000;
   min-height: 50px;
   width: 100%;
