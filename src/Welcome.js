@@ -12,7 +12,7 @@ export default function Welcome() {
 
         <p>After graduating with my degree in Web Design from the University of Bradford, I have gained over 6 years of commercial experience. During which I have coded over 500 bespoke websites and templates with editable features.</p>
 
-        <p>Currently full time employed at a digital agency as a developer, if you wish to enquire about a website, get in touch.</p>
+        <p>Currently full time employed and awesome at UI.</p>
 
 
         <img src={me} title="My Avatar" alt="My Avatar" id="welcome-image" width="330" height="330" />

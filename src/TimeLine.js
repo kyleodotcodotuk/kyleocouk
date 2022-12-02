@@ -6,6 +6,8 @@ export default function TimeLine() {
 
         <section className="professional-timeline">
 
+            <h2>Professional Development</h2>
+
             <ul className="timeline">
 
                 <li>

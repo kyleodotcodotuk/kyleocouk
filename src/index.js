@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import BackgroundSlider from "react-background-slider";
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import { Blogfeed, Overview, Navigation } from "./components";
 import Header from "./Header";
 import Welcome from "./Welcome";
 import TimeLine from "./TimeLine";
@@ -24,13 +22,6 @@ ReactDOM.render(
     <Header />
     <Welcome />
     <TimeLine />
-    {/* <Router>
-      <Navigation />
-      <Switch>
-        <Route path="/" exact component={() => <Overview />} />
-        <Route path="/blogfeed" exact component={() => <Blogfeed />} />
-      </Switch>
-    </Router> */}
     <Footer />
     <CookieBanner
       message="This website uses cookies."
