@@ -13,12 +13,10 @@ export default function TimeLine() {
                 <li>
                     <div className="direction-r">
                         <div className="flag-wrapper">
-                            <span className="flag">Unily</span>
+                            <span className="flag">UI Developer &middot; Surrey</span>
                         </div>
                         <div className="desc">
 
-                            <span>UI Developer &middot; Surrey</span>
-                            <hr />
                             Working on the front end of intranet designs, fixing bugs, creating customised design packages.
 
                         </div>
@@ -30,11 +28,9 @@ export default function TimeLine() {
                 <li>
                     <div className="direction-l">
                         <div className="flag-wrapper">
-                            <span className="flag flag-l">Resknow</span>
+                            <span className="flag flag-l">Web Developer &middot; London</span>
                         </div>
                         <div className="desc">
-                            <span>Web Developer &middot; London</span>
-                            <hr />
                             Working within a design agency, designing and developing websites, managing projects by meeting clients, giving clients training and management.
                         </div>
                     </div>
@@ -46,11 +42,9 @@ export default function TimeLine() {
                 <li>
                     <div className="direction-r">
                         <div className="flag-wrapper">
-                            <span className="flag">Vividise</span>
+                            <span className="flag">Lead Developer &middot; London</span>
                         </div>
                         <div className="desc">
-                            <span>Lead Developer &middot; London</span>
-                            <hr />
                             Developing websites for mainly the education sector, taking designs and implementing them into the custom build CMS.
                         </div>
                     </div>
@@ -61,11 +55,9 @@ export default function TimeLine() {
                 <li>
                     <div className="direction-l">
                         <div className="flag-wrapper">
-                            <span className="flag flag-l">RPA Design</span>
+                            <span className="flag flag-l">Internship &middot; West Yorkshire</span>
                         </div>
                         <div className="desc">
-                            <span>Developer Internship &middot; West Yorkshire</span>
-                            <hr />
                             Implementing a custom Wordpress theme, PHP bugs and miscellaneous tickets.
                         </div>
                     </div>
@@ -76,11 +68,9 @@ export default function TimeLine() {
                 <li>
                     <div className="direction-r">
                         <div className="flag-wrapper">
-                            <span className="flag">University</span>
+                            <span className="flag">University &middot; West Yorkshire</span>
                         </div>
                         <div className="desc">
-                            <span>Web Design Student &middot; West Yorkshire</span>
-                            <hr />
                             Studying in my hometown at the University of Bradford on the subject of web design, putting my skills to use and developing know-how on the industry.
                         </div>
                     </div>
