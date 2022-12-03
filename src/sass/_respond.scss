@@ -15,6 +15,7 @@
 
   #welcome {
     padding: 2em 0;
+    text-align: center;
     h1 {
       font-size: 2em;
       .fa {
@@ -27,6 +28,7 @@
       width: 80%;
       margin: 4% auto !important;
       display: block;
+      text-align: center;
 
       &:before {
         display: none;
@@ -99,11 +101,12 @@
       float: none;
       margin: 1em auto;
       width: 80%;
+      text-align: center;
     }
 
     ul.social-icons {
       position: inherit;
-      text-align: left;
+      text-align: center;
       margin: 1em auto;
       width: 80%;
     }

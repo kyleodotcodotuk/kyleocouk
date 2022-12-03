@@ -15,7 +15,7 @@ export default function Header() {
                 <h1>Kyle O&apos;Connor<br />
 
                     <span className="sub-text">
-                        Web developer &amp; designer.
+                        Web developer <br />&amp; designer
                     </span>
                 </h1>
                 <hr />

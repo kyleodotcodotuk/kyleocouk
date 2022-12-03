@@ -296,6 +296,8 @@ $flag-color: white;
 @media only screen and (max-width: 989px) {
   .direction-l .desc,
   .direction-r .desc {
-    margin: 0.75em 4em 0 4em;
+    margin: 0.75em auto 0;
+    width: calc(100% - 4em);
+    box-shadow: none;
   }
 }
