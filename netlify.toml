@@ -10,7 +10,7 @@
   force = true 
 
 [[redirects]]
-  from ="/locksmith"
-  to = "/master-locksmith"
+  from ="/example"
+  to = "/example"
   status = 301
   force = true
