@@ -189,9 +189,17 @@ $flag-color: white;
 }
 
 @media screen and (max-width: 990px) {
+  .professional-timeline {
+    padding: 5%;
+
+    h2 {
+      padding-bottom: 0;
+    }
+  }
+
   .timeline {
     width: 100%;
-    padding: 4em 0 1em 0;
+    padding: 1em 0 1em 0;
   }
 
   .timeline li {
@@ -202,7 +210,6 @@ $flag-color: white;
   .direction-r {
     float: none;
     width: 100%;
-    background-color: #fff;
     z-index: 99;
 
     text-align: center;
@@ -255,6 +262,10 @@ $flag-color: white;
     z-index: 14;
   }
 
+  .time {
+    background-color: #fff;
+  }
+
   .direction-l .time-wrapper {
     float: none;
   }
@@ -285,6 +296,6 @@ $flag-color: white;
 @media only screen and (max-width: 989px) {
   .direction-l .desc,
   .direction-r .desc {
-    margin: 1em 4em 0 4em;
+    margin: 0.75em 4em 0 4em;
   }
 }
