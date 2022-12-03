@@ -1,11 +1,12 @@
 $background-bg: #fff;
-$arrow-flair: grey;
+$arrow-flair: black;
 $stop-border: black;
 $stop-inside: white;
 $flag-bg: $arrow-flair;
 $flag-color: white;
 
 .professional-timeline {
+  background: url("./../img/bgs/tl-bg.webp") repeat;
   background-color: $background-bg;
   padding: 4em 0;
 
