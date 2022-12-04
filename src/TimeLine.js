@@ -16,9 +16,7 @@ export default function TimeLine() {
                             <span className="flag">UI Developer &middot; Surrey</span>
                         </div>
                         <div className="desc">
-
                             Working on the front end of intranet designs, fixing bugs, creating customised design packages.
-
                         </div>
                     </div>
                     <div className="direction-l"><span className="time">2022 &middot; PRESENT</span>
@@ -80,9 +78,7 @@ export default function TimeLine() {
 
             </ul>
 
-
         </section>
-
 
     );
 }

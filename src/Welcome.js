@@ -14,12 +14,10 @@ export default function Welcome() {
 
         <p>Currently full time employed and awesome at UI.</p>
 
-
         <img src={me} title="My Avatar" alt="My Avatar" id="welcome-image" width="330" height="330" />
 
       </div>
     </section>
-
 
   );
 }
