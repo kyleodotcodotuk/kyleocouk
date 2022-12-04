@@ -388,11 +388,12 @@ header {
 footer {
   text-align: center;
   overflow: hidden;
-  // background: url("./../img/bgs/footer-bg.png") repeat;
   background: #000;
   min-height: 50px;
   width: 100%;
   padding: 1.5em 0;
+  display: grid;
+  align-content: center;
 
   .wrapper {
     position: relative;
@@ -405,7 +406,7 @@ footer {
 
   p {
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.2;
     color: #fff;
     font-size: 0.9em;
     letter-spacing: 0.03em;

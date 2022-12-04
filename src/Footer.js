@@ -1,4 +1,3 @@
-import React from "react";
 import Twitter from './icons/twitter.svg';
 import Email from './icons/email.svg';
 import GitHub from './icons/github.svg';
