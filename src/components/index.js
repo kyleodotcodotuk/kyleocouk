@@ -1,4 +1,4 @@
-export { default as Navigation } from "./Navigation";
-export { default as Overview } from "./Overview";
-export { default as Blogfeed } from "./Blogfeed";
-// export { default as Portfolio } from "./Portfolio"; 
+export { default as Header } from "./header";
+export { default as Welcome } from "./welcome";
+export { default as Timeline } from "./timeline";
+export { default as Footer } from "./footer";

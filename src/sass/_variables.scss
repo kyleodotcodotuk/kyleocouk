@@ -1,0 +1,23 @@
+$main-colour: #004225;
+$secondary-colour: #210836;
+$teriary-colour: #ffffff;
+
+$gold-colour: #FFD700;
+
+$main-lighten-10: lighten($main-colour,10%);
+$main-lighten-20: lighten($main-colour,20%);
+$main-lighten-30: lighten($main-colour,30%);
+
+$main-darken-10: darken($main-colour,10%);
+$main-darken-20: darken($main-colour,20%);
+$main-darken-30: darken($main-colour,30%);
+
+$pure-white: #ffffff;
+$main-white: #F1E9DA;
+
+$pure-black: #000000;
+$main-black: #1F271B;
+
+$warning-colour: #FFDC5E;
+$danger-colour: #B80C09;
+$success-colour: $main-colour;
