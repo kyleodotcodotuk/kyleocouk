@@ -1,4 +1,4 @@
-$background-bg: $gold-colour;
+$background-bg: $secondary-colour;
 $arrow-flair: black;
 $stop-border: black;
 $stop-inside: white;
@@ -14,7 +14,6 @@ $flag-color: white;
     text-align: center;
     font-weight: bold;
     padding: 1em 0;
-    
   }
 
   p {
@@ -22,7 +21,7 @@ $flag-color: white;
     margin: 5vh auto;
     text-align: center;
     font-size: 1.1em;
-    
+
     line-height: 1.1em;
   }
 }

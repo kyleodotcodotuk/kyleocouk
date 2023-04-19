@@ -1,23 +1,23 @@
 $main-colour: #004225;
-$secondary-colour: #210836;
+$secondary-colour: #20a5ce;
 $teriary-colour: #ffffff;
 
-$gold-colour: #FFD700;
+$gold-colour: #ffd700;
 
-$main-lighten-10: lighten($main-colour,10%);
-$main-lighten-20: lighten($main-colour,20%);
-$main-lighten-30: lighten($main-colour,30%);
+$main-lighten-10: lighten($main-colour, 10%);
+$main-lighten-20: lighten($main-colour, 20%);
+$main-lighten-30: lighten($main-colour, 30%);
 
-$main-darken-10: darken($main-colour,10%);
-$main-darken-20: darken($main-colour,20%);
-$main-darken-30: darken($main-colour,30%);
+$main-darken-10: darken($main-colour, 10%);
+$main-darken-20: darken($main-colour, 20%);
+$main-darken-30: darken($main-colour, 30%);
 
 $pure-white: #ffffff;
-$main-white: #F1E9DA;
+$main-white: #f1e9da;
 
 $pure-black: #000000;
-$main-black: #1F271B;
+$main-black: #1f271b;
 
-$warning-colour: #FFDC5E;
-$danger-colour: #B80C09;
+$warning-colour: #ffdc5e;
+$danger-colour: #b80c09;
 $success-colour: $main-colour;
