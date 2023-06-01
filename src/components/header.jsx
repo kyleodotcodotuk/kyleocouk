@@ -1,6 +1,6 @@
 import Me from "../img/me.jpg";
 // import Down from './icons/down.svg';
-// import { Link } from "react-scroll";1
+// import { Link } from "react-scroll";
 
 export default function Header() {
   return (
@@ -10,7 +10,7 @@ export default function Header() {
           src={Me}
           alt="Me"
           id="Me"
-          class="blob"
+          className="blob"
           title="Me"
           height="350px"
           width="350px"
