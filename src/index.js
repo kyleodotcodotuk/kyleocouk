@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Header, Welcome, Timeline, Footer } from "./components";
+import { Header, Welcome, Content, Timeline, Footer } from "./components";
 import CookieBanner from 'react-cookie-banner';
 import "./sass/_all.scss";
 
@@ -10,6 +10,7 @@ root.render(
     <Header />
     <Welcome />
     <Timeline />
+    <Content />
     <Footer />
     <CookieBanner
       message="I don't use cookies"

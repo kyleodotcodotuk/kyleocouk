@@ -67,3 +67,26 @@ h3 {
   margin: auto;
   height: 100%;
 }
+
+
+// CONTENT
+
+#contentbox {
+  padding: 5em 0;
+  color: #fff;
+  line-height: 1.2em;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    padding-bottom: 1em;
+  }
+
+  p {
+    padding-bottom: 1em;
+  }
+
+}
