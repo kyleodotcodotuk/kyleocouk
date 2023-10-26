@@ -24,7 +24,7 @@ export default function Header() {
             UI<br /> developer <br />
           </span>
         </h1>
-        <h2>London, UK</h2>
+        <h2>Greater Manchester, UK</h2>
         </div>
       </div>
 

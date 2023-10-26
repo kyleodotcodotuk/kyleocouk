@@ -3,7 +3,7 @@
 export default function Content() {
     return (
 
-        <section id="contentbox">
+        <section className="contentbox">
             <div className="wrapper">
 
                 <h1>De hominibus dici non necesse est.</h1>
@@ -17,28 +17,12 @@ export default function Content() {
                 </blockquote>
 
 
-                <ol>
-                    <li>Utrum igitur tibi litteram videor an totas paginas commovere?</li>
-                    <li>Qui autem esse poteris, nisi te amor ipse ceperit?</li>
-                </ol>
-
-
                 <pre>Num igitur dubium est, quin, si in re ipsa nihil peccatur a
                     superioribus, verbis illi commodius utantur?
 
                     Nec tamen ullo modo summum pecudis bonum et hominis idem
                     mihi videri potest.
                 </pre>
-
-
-                <dl>
-                    <dt><dfn>Erat enim Polemonis.</dfn></dt>
-                    <dd>Itaque hoc frequenter dici solet a vobis, non intellegere nos, quam dicat Epicurus voluptatem.</dd>
-                    <dt><dfn>Tenent mordicus.</dfn></dt>
-                    <dd>Quamquam haec quidem praeposita recte et reiecta dicere licebit.</dd>
-                    <dt><dfn>Bork</dfn></dt>
-                    <dd>Ait enim se, si uratur, Quam hoc suave! dicturum.</dd>
-                </dl>
 
 
                 <ul>

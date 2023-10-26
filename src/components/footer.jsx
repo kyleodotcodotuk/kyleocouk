@@ -7,10 +7,9 @@ export default function Footer() {
       <div className="wrapper">
 
         <p>Kyle O'Connor<br />
-          {new Date().getFullYear()}&nbsp;&middot;&nbsp;
+          {new Date().getFullYear()}&nbsp;&middot;&nbsp; Greater Manchester, UK<br />
           <a href="/docs/privacy_policy.pdf" target="_blank" alt="Privacy Policy" title="Privacy Policy">Privacy Policy</a>   
-        <br />
-        London, UK 
+        
         </p>
         <br />
         <ul className="social-icons">
