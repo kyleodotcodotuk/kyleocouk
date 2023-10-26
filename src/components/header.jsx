@@ -1,6 +1,4 @@
-import Me from "../img/me.jpg";
-// import Down from './icons/down.svg';
-// import { Link } from "react-scroll";
+import Me from "../img/me.jpg"; 
 
 export default function Header() {
   return (
@@ -27,11 +25,7 @@ export default function Header() {
         <h2>Greater Manchester, UK</h2>
         </div>
       </div>
-
-      {/* <Link className='scroll-down' href="/#welcome"
-                activeClass="active" to="welcome"
-                smooth={true} offset={0} duration={1000}
-            ><img height="38px" width="38px" alt="Downwards Arrow" src={Down} /></Link> */}
+ 
     </header>
   );
 }

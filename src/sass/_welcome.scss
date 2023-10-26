@@ -28,8 +28,13 @@
     background: $secondary-colour;
     color: $pure-black;
     padding: 5em;
-    border-radius: 40px;
+    border-radius: 40px 0 40px 0;
+
+    .content-half {
+    display: flex; 
+    gap: 5em;
   }
+}
 
   h1 {
     margin: 0 0 3% 0;
@@ -45,7 +50,7 @@
 
     &:first-of-type {
       font-weight: 600;
-      font-size: 1.2em;
+      font-size: 1.1em;
       margin: 1% 0;
     }
   }
