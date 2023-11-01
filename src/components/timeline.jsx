@@ -24,7 +24,7 @@ export default function TimeLine() {
               <li>
                   <div className="direction-l">
                       <div className="flag-wrapper">
-                          <span className="flag flag-l">Web Developer &middot; London</span>
+                          <span className="flag flag-l">Web Developer &middot; Kent</span>
                       </div>
                       <div className="desc">
                           Working within a design agency, designing and developing websites, managing projects by meeting clients, giving clients training and management.

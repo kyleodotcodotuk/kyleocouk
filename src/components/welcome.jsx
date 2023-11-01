@@ -1,4 +1,4 @@
-import WelcomeImage from "../img/me.jpg";
+import WelcomeImage from "../img/me.svg";
 
 export default function Welcome() {
   return (
@@ -7,10 +7,10 @@ export default function Welcome() {
       <div className="wrapper">
 
         <div className="welcome-panel">
-          <h1>Hello world </h1>
-
+         
           <div className="content-half">
             <div>
+            <h1>Hello world </h1>
               <p>Originally from Yorkshire, I have gained valuable experience over the years. After living in London for 8 years, I have now settled in Manchester.</p>
 
               <p>

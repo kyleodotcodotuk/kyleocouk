@@ -19,7 +19,7 @@ export default function Header() {
           Kyle<br /> O&apos;Connor
           <br />
           <span className="sub-text">
-            UI<br /> developer <br />
+            UI developer <br />
           </span>
         </h1>
         <h2>Greater Manchester, UK</h2>

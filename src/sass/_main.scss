@@ -18,18 +18,18 @@ body a {
 }
 
 body::-webkit-scrollbar-track {
-  background-color: #000;
+  background-color: $main-colour;
 }
 
 body::-webkit-scrollbar {
   width: 10px;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: $secondary-colour;
   border-radius: 10px;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #fff;
+  background-color: $secondary-colour;
   border-radius: 10px;
 }
 
