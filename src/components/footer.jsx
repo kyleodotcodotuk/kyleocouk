@@ -6,8 +6,8 @@ export default function Footer() {
     <footer>
       <div className="wrapper">
 
-        <p>Kyle O'Connor<br />
-          {new Date().getFullYear()}&nbsp;&middot;&nbsp; Greater Manchester, UK<br />
+        <p>Kyle O'Connor &middot; {new Date().getFullYear()}<br />
+          Greater Manchester, UK<br />
           <a href="/docs/privacy_policy.pdf" target="_blank" alt="Privacy Policy" title="Privacy Policy">Privacy Policy</a>   
         
         </p>
