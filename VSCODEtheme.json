@@ -1,0 +1,32 @@
+{
+    "security.workspace.trust.untrustedFiles": "open",
+    "git.confirmSync": false,
+    "explorer.confirmDelete": false,
+    "editor.accessibilitySupport": "off",
+    "git.openRepositoryInParentFolders": "always",
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.colorCustomizations": {
+        "[Default Dark+]": {
+            "sideBar.background": "#000000",
+            "sideBarTitle.foreground": "#feffb3",
+            "statusBar.background": "#9e0000",
+            "editor.background": "#000000",
+            "activityBar.background": "#000000",
+            "activityBar.foreground": "#00be29",
+            "activityBar.inactiveForeground": "#feffb3",
+            "activityBarBadge.background": "#9e0000",
+            "activityBarBadge.foreground": "#ffffff",
+            "button.background": "#9e0000",
+            "button.foreground": "#ffffff",
+            "titleBar.activeBackground": "#000000",
+            "titleBar.activeForeground": "#FFFFFF",
+            "gitDecoration.ignoredResourceForeground": "#ff8800",
+            "gitDecoration.modifiedResourceForeground": "#feffb3",
+        }
+    },
+    "terminal.integrated.fontSize": 18,
+    "editor.semanticTokenColorCustomizations": {
+
+    },
+    
+}
