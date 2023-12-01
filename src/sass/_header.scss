@@ -14,7 +14,7 @@ header {
     bottom: 40px;
     height: 115px;
     width: 115px;
-    content: '';
+    content: "";
     border-right: 10px solid $secondary-colour;
     border-top: 10px solid $secondary-colour;
     border-radius: 100px;
@@ -28,7 +28,7 @@ header {
     top: 40px;
     height: 115px;
     width: 115px;
-    content: '';
+    content: "";
     border-right: 10px solid $secondary-colour;
     border-top: 10px solid $secondary-colour;
     animation: CircleChangeR 5s infinite;
@@ -63,7 +63,6 @@ header {
       transform: rotate(-360deg);
     }
   }
-
 
   img#Me {
     margin: 2em auto;
@@ -140,7 +139,6 @@ header {
   }
 }
 
-
 .blob {
   animation: morph 6s ease-in-out infinite;
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
@@ -159,5 +157,34 @@ header {
 
   100% {
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+#google_translate_element {
+  opacity: 0;
+}
+
+.goog-te-combo {
+  width: 50px;
+  height: 50px;
+}
+
+.translate {
+  position: fixed;
+  background: $secondary-colour url(../icons/translate.svg) no-repeat center
+    center;
+  background-size: 50%;
+  top: 20px;
+  left: 20px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+
+  option {
+    color: $pure-white;
+    font-size: 1.3em;
+    font-family: "Nunito", sans-serif;
+    background-color: $main-colour;
   }
 }
