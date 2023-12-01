@@ -14,9 +14,7 @@
 
 #welcome {
   padding: 0 0 8em 0;
-  margin: auto;
-
-  // background: $secondary-colour;
+  margin: auto; 
   overflow: hidden;
   position: relative;
 
@@ -67,7 +65,7 @@
   }
 
   #welcome-img {
-    border-radius: 50%;
+    border-radius: $border-radius 0;
     background-color: $main-colour;
   }
 

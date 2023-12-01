@@ -25,8 +25,12 @@
   }
 
   #welcome {
-    padding: 2em 0;
+    padding: 0;
     text-align: center;
+
+    #welcome-img {
+      margin: 1em auto;
+    }
 
     h2 {
       font-size: 2em;
@@ -38,7 +42,9 @@
 
     .welcome-panel {
       padding: 2em 1em;
-       .content-half { display: block;}
+      .content-half {
+        display: block;
+      }
     }
 
     h2,
@@ -71,7 +77,7 @@
   // Blogfeed
 
   .blogfeed {
-    padding: 2em 0;
+    padding: 2em 1em;
 
     h2 {
       font-size: 2em;
@@ -86,7 +92,10 @@
     margin: 1em auto;
   }
 
-
+  .time {
+    padding: 0.8em 1.2em;
+    font-size: 0.6em;
+  }
 
   footer {
     height: auto;
