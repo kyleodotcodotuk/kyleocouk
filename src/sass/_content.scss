@@ -1,0 +1,68 @@
+.contentbox {
+    padding: 5em 0;
+    color: #fff;
+    line-height: 1.2em;
+    margin: 0 auto;
+    max-width: 80%;
+
+    a {
+        color: inherit;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 0.5em 0 1em;
+    }
+
+    p {
+        margin: 1em 0 1.5em;
+    }
+
+    ul {
+        padding: 0 0 0 1.2em;
+        margin: 2em 0 1em;
+        position: relative;
+
+        li {
+            margin-bottom: 0.5em;
+            position: relative;
+
+            &:before {
+                content: '';
+                position: absolute;
+                left: -1.1em;
+                top: 0;
+                bottom: 0;
+                height: 5px;
+                width: 5px;
+                margin: auto;
+                border-radius: 50%;
+                background-color: $pure-white;
+            }
+        }
+    }
+
+    blockquote {
+        padding: 2em 1.5em;
+        box-shadow: inset 5px 0 0 0 $pure-white;
+        margin: 1em 0 1.5em;
+        background-color: rgba(0, 0, 0, 0.4);
+        max-width: 80%;
+    }
+
+    pre {
+        display: block;
+        font-family: Consolas, monospace;
+        white-space: pre;
+        margin: 1em 0 1.5em;
+        padding: 2em 1.5em;
+        background-color: lightgray;
+        white-space: pre-wrap;
+        color: $pure-black;
+        max-width: 80%;
+    }
+}
