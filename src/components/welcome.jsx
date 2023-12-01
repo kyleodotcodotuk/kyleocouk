@@ -10,7 +10,7 @@ export default function Welcome() {
          
           <div className="content-half">
             <div>
-            <h1>Hello world </h1>
+            <h2>Hello world </h2>
               <p>Originally from Yorkshire, I have gained valuable experience over the years. After living in London for 8 years, I have now settled in Manchester.</p>
 
               <p>
@@ -25,7 +25,7 @@ export default function Welcome() {
             <img
               src={WelcomeImage}
               alt="Welcome"
-              id="Welcome"
+              id="welcome-img"
               title="Welcome"
               height="300px"
               width="300px"

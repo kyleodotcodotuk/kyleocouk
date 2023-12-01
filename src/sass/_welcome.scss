@@ -13,7 +13,7 @@
 // }
 
 #welcome {
-  padding: 0 0 10em 0;
+  padding: 0 0 8em 0;
   margin: auto;
 
   // background: $secondary-colour;
@@ -31,26 +31,27 @@
     border-radius: 40px 0 40px 0;
 
     .content-half {
-    display: flex; 
-    gap: 5em;
+      display: flex;
+      gap: 5em;
+      align-items: center;
+    }
   }
-}
 
-  h1 {
+  h2 {
     padding: 0 0 5% 0;
     font-weight: bold;
-    position: relative;
-    &:before {
-      content: "";
-      position: absolute;
-      height: 2px;
-      width: 200px;
-      background: $pure-black;
-      left: 0;
-      bottom: 20%;
-      border-radius: 10px;
-      margin: auto; 
-    }
+    // position: relative;
+    // &:before {
+    //   content: "";
+    //   position: absolute;
+    //   height: 2px;
+    //   width: 200px;
+    //   background: $pure-black;
+    //   left: 0;
+    //   bottom: 20%;
+    //   border-radius: 10px;
+    //   margin: auto; 
+    // }
   }
 
   p {
@@ -65,12 +66,9 @@
     }
   }
 
-  #welcome-image {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    right: 0;
+  #welcome-img {
+    border-radius: 50%;
+    background-color: $main-colour;
   }
 
   .btn {

@@ -8,15 +8,72 @@ header {
   z-index: 1;
   display: grid;
 
+  &:before {
+    position: absolute;
+    left: 40px;
+    bottom: 40px;
+    height: 115px;
+    width: 115px;
+    content: '';
+    border-right: 10px solid $secondary-colour;
+    border-top: 10px solid $secondary-colour;
+    border-radius: 100px;
+    animation: CircleChange 8s infinite;
+    transition: 1s;
+  }
+
+  &:after {
+    position: absolute;
+    right: 40px;
+    top: 40px;
+    height: 115px;
+    width: 115px;
+    content: '';
+    border-right: 10px solid $secondary-colour;
+    border-top: 10px solid $secondary-colour;
+    animation: CircleChangeR 5s infinite;
+    border-radius: 100px;
+    transition: 1s;
+  }
+
+  @keyframes CircleChange {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    50% {
+      transform: rotate(180deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes CircleChangeR {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    50% {
+      transform: rotate(-180deg);
+    }
+
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+
+
   img#Me {
     margin: 2em auto;
     transition: 1s;
-    background-color: #fff;
+    background-color: $pure-white;
     border-radius: 50%;
   }
 
   h1 {
-    color: #F1E9DA;
+    color: $pure-white;
     text-shadow: 3px 3px 10px black;
     letter-spacing: 0.03em;
     text-transform: capitalize;
@@ -32,17 +89,17 @@ header {
   }
 
   h2 {
-    color: #F1E9DA;
     text-shadow: 3px 3px 10px black;
     position: relative;
     font-size: 1em;
+    color: $pure-white;
 
     &:before {
       content: "";
       position: absolute;
       height: 2px;
       width: 85px;
-      background: #fff;
+      background: $pure-white;
       left: 0;
       right: 0;
       bottom: -15px;
