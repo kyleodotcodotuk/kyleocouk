@@ -3,10 +3,7 @@ import Me from "../img/me.jpg";
 export default function Header() {
   return (
     <header>
-      <div className="translate" title="Choose Language">
-        <div id="google_translate_element"></div>
-      </div>
-
+      
       <div className="centered">
         <img
           src={Me}
