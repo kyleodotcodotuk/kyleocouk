@@ -31,6 +31,7 @@
     position: relative;
     padding: 0 0 0.1em 0;
     display: -webkit-box;
+    color: $pure-white;
     -webkit-line-clamp: 1;
     overflow: hidden;
     -webkit-box-orient: vertical;
@@ -45,7 +46,7 @@
     padding: 0.2em 0;
     line-height: 1.2em;
     height: 54px;
-    color: $pure-black;
+    color: $pure-white;
   }
 
   .author {
@@ -61,7 +62,7 @@
   }
 
   .ass-img {
-    height: 240px;
+    height: 180px;
     width: 100%;
     object-fit: cover;
     box-shadow: 0 0 5px 0 #222;
@@ -82,30 +83,31 @@
     padding: 0 1em 0 0;
 
     a {
-      color: $pure-black;
+      color: $pure-white;
       text-decoration: none;
     }
   }
 
   .more {
     margin: 2em 0 0.5em 0;
-    padding: 0.8em 2em;
+    padding: 1em 2em;
     display: block;
-    background-color: $main-colour;
-    color: $pure-white;
-    max-width: 65px;
-    text-align: left;
+    color: $secondary-colour;
+    background-color: $pure-white;
+    max-width: 85px;
     font-size: 0.8em;
     text-decoration: none;
-    text-transform: capitalize;
+    text-transform: uppercase;
     letter-spacing: 0.01em;
+    font-weight: bold;
     position: relative;
     border-radius: $border-radius 0;
     text-align: center;
 
-    &:hover {
+    &:hover { 
+      background-color: $secondary-colour;
       color: $pure-white;
-      background-color: $main-lighten-30;
+      box-shadow: 0 0 0 1px $pure-white;
     }
   }
 }

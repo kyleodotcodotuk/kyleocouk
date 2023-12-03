@@ -1,17 +1,5 @@
 // WELCOME
 
-// @keyframes bgChange {
-//   0% {
-//     background-position: 0% 50%;
-//   }
-//   50% {
-//     background-position: 100% 50%;
-//   }
-//   100% {
-//     background-position: 0% 50%;
-//   }
-// }
-
 #welcome {
   padding: 0 0 8em 0;
   margin: auto; 
@@ -24,32 +12,20 @@
 
   .welcome-panel {
     background: $secondary-colour;
-    color: $pure-black;
-    padding: 5em;
+    color: $pure-white;
+    padding: 5em 3em;
     border-radius: 40px 0 40px 0;
 
     .content-half {
       display: flex;
-      gap: 5em;
+      gap: 2em;
       align-items: center;
     }
   }
 
   h2 {
     padding: 0 0 5% 0;
-    font-weight: bold;
-    // position: relative;
-    // &:before {
-    //   content: "";
-    //   position: absolute;
-    //   height: 2px;
-    //   width: 200px;
-    //   background: $pure-black;
-    //   left: 0;
-    //   bottom: 20%;
-    //   border-radius: 10px;
-    //   margin: auto; 
-    // }
+    font-weight: bold; 
   }
 
   p {
@@ -72,8 +48,8 @@
   .btn {
     display: inline-block;
     padding: 0.6em 2.5em;
-    background-color: #fff;
-    color: #000;
+    background-color: $pure-white;
+    color: $pure-black;
     text-decoration: none;
     letter-spacing: 0.05em;
     text-align: center;
@@ -81,7 +57,7 @@
 
     &:hover {
       background-color: #ccc;
-      color: #fff;
+      color: $pure-white;
     }
   }
 }
