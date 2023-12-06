@@ -28,7 +28,7 @@ export default function Welcome() {
               id="welcome-img"
               title="Welcome"
               height="300px"
-              width="300px"
+              width="300px" loading='lazy'
             />
           </div>
         </div>

@@ -12,7 +12,7 @@ export default function Header() {
           className="blob"
           title="Me"
           height="350px"
-          width="350px"
+          width="350px" loading='lazy'
         />
 
         <div>
