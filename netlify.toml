@@ -1,0 +1,16 @@
+[build]
+  base = "."
+  publish = "build/"
+  command = "npm run build"
+
+[[redirects]]
+  from = "/url-here"
+  to = "/new-url-here"
+  status = 301
+  force = true 
+
+[[redirects]]
+  from ="/example"
+  to = "/example"
+  status = 301
+  force = true
