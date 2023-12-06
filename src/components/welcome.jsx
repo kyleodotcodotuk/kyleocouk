@@ -10,8 +10,8 @@ export default function Welcome() {
          
           <div className="content-half">
             <div>
-            <h2>Hello world </h2>
-              <p>Originally from Yorkshire, I have gained valuable experience over the years. After living in London for 8 years, I have now settled in Manchester.</p>
+            <h2>Hello world!</h2>
+              <p>Originally from West Yorkshire, I moved to London after graduating from University to find work. Unfortunately, all the opportunities seem to be in the capital. After living in London for over 8 years and starting my career, now I have settled in Manchester, closer to home since I now work from home.</p>
 
               <p>
                 With expertise/experience in front-end development including the likes of React, JavaScript and PHP. I am well-equipped to tackle a wide range of web development projects, including my current positon where I work primarily with software.

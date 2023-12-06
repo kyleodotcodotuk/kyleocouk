@@ -38,7 +38,7 @@ export default function Posts() {
 
                             <img loading='lazy' className='ass-img' alt={post.title.rendered} title={post.title.rendered} src={post._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url} />
 
-                            <a target="_blank" rel="noreferrer" className='more' href={post.link}>Read More</a>
+                            <a target="_blank" rel="noreferrer" className='more' href={post.link}>Full Post</a>
 
                         </article>
                     ))}
