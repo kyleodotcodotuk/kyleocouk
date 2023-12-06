@@ -14,7 +14,7 @@ export default function TimeLine() {
                           <span className="flag">UI Developer &middot; Surrey</span>
                       </div>
                       <div className="desc">
-                          Working on the front end of intranet designs, fixing bugs, creating customised design packages.
+                          Working on the front end of intranet designs, fixing design bugs, creating customised design packages.
                       </div>
                   </div>
                   <div className="direction-l"><span className="time">2022 &middot; PRESENT</span>
@@ -27,7 +27,7 @@ export default function TimeLine() {
                           <span className="flag flag-l">Web Developer &middot; Kent</span>
                       </div>
                       <div className="desc">
-                          Working within a design agency, designing and developing websites, managing projects by meeting clients, giving clients training and management.
+                          Working within an agency, designing, developing websites, managing projects, meeting clients, giving CMS training and administration.
                       </div>
                   </div>
                   <div className="direction-r">
@@ -41,7 +41,7 @@ export default function TimeLine() {
                           <span className="flag">Lead Developer &middot; London</span>
                       </div>
                       <div className="desc">
-                          Developing websites for mainly the education sector, taking designs and implementing them into the custom build CMS.
+                          Developing hundreds of websites for mainly the education sector, taking the designs and implementing them into the custom purpose CMS.
                       </div>
                   </div>
                   <div className="direction-l"><span className="time">2016 &middot; 2021</span>
