@@ -19,10 +19,16 @@
     width: 100%;
   }
 
+  .translate {
+    top: 10px;
+    left: 10px;
+  }
+
   // Grids
 
   .grid-3-3-3 {
     grid-template-columns: inherit;
+    gap: 0;
   }
 
   #welcome {
@@ -43,6 +49,7 @@
 
     .welcome-panel {
       padding: 2em 1em;
+
       .content-half {
         display: block;
       }
@@ -101,6 +108,7 @@
   footer {
     height: auto;
     line-height: normal;
+    padding: 1em 0;
 
     p {
       float: none;
