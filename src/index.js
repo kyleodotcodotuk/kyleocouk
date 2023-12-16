@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Header, Language, Welcome, Content, Posts, Timeline, Footer } from "./components";
+import { Header, Welcome, Content, Posts, Timeline, Footer } from "./components";
 import "./sass/_all.scss";
 
 const website = ReactDOM.createRoot(document.getElementById('website'));
 website.render(
-  <React.StrictMode>
-    <Language />
+  <React.StrictMode> 
     <Header />
     <Welcome />
     <Posts />
