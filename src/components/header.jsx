@@ -1,4 +1,4 @@
-import Me from "../img/me.jpg";
+import Me from "../img/me.png";
 
 export default function Header() {
 
@@ -19,7 +19,7 @@ export default function Header() {
         <div>
           <h1>Kyle O'Connor</h1>
           <br />
-          <h2>UI developer <br />&middot;<br /> Greater Manchester, UK</h2>
+          <h2>UI developer</h2>
         </div>
       </div>
     </header>

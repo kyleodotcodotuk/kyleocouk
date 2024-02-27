@@ -67,7 +67,7 @@ export default function TimeLine() {
                           <span className="flag">University &middot; West Yorkshire</span>
                       </div>
                       <div className="desc"> 
-                          Received a 2.1 at the University of Bradford on the subject of web development.<br /><br /><br />
+                          Received a 2.1 at the University of Bradford on the subject of web development.<br /><br /> 
                       </div>
                   </div>
                   <div className="direction-l"><span className="time">2012 &middot; 2015</span>
