@@ -27,7 +27,7 @@ export default function TimeLine() {
                           <span className="flag flag-l">Web Developer &middot; Kent</span>
                       </div>
                       <div className="desc">
-                          Working within an agency, designing, developing websites, managing projects, meeting clients, giving CMS training and administration.
+                          Working within an agency, designing, developing websites, managing projects and meeting the needs of clients.
                       </div>
                   </div>
                   <div className="direction-r">
@@ -54,7 +54,7 @@ export default function TimeLine() {
                           <span className="flag flag-l">Internship &middot; West Yorkshire</span>
                       </div>
                       <div className="desc">
-                          Implementing a custom Wordpress theme, PHP bugs and miscellaneous tickets.
+                          Implemented a design into a Wordpress theme, PHP bugs and miscellaneous tickets.
                       </div>
                   </div>
                   <div className="direction-r"><span className="time">2015 &middot; 2016</span>
@@ -66,8 +66,8 @@ export default function TimeLine() {
                       <div className="flag-wrapper">
                           <span className="flag">University &middot; West Yorkshire</span>
                       </div>
-                      <div className="desc">
-                          Studying in my hometown at the University of Bradford on the subject of web design, putting my skills to use and developing know-how on the industry.
+                      <div className="desc"> 
+                          Received a 2.1 at the University of Bradford on the subject of web development.<br /><br /><br />
                       </div>
                   </div>
                   <div className="direction-l"><span className="time">2012 &middot; 2015</span>

@@ -104,6 +104,7 @@
     text-align: center;
     line-height: 40px;
     height: 40px;
+    box-shadow: $box-shadow-default;
 
     &:hover {
       background-color: $secondary-colour;

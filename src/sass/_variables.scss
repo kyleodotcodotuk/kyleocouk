@@ -25,4 +25,15 @@ $warning-colour: #ffdc5e;
 $danger-colour: #b80c09;
 $success-colour: $main-colour;
 
-$border-radius: 20px 0;
+$border-radius: 7px;
+$border-radius-circle: 50%;
+
+// $box-shadow-default: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, green 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px, yellow 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px, orange 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px, red 40px -40px;
+$box-shadow-default: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+
+// Light theme
+
+$colour-light-theme-main: #E6A4B4;
+$colour-light-theme-secondary: #FFF8E3;
+$colour-light-theme-accent: #F3D7CA;
+$colour-light-theme-background: #F5EEE6;

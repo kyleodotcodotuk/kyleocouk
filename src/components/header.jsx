@@ -1,32 +1,28 @@
 import Me from "../img/me.jpg";
 
 export default function Header() {
+
   return (
+
     <header>
-      
+
       <div className="centered">
         <img
-          src={Me}
-          alt="Me"
-          id="Me"
+          src={Me} alt="Me" id="Me"
           className="blob"
-          title="Me"
-          height="350px"
-          width="350px" loading='lazy'
+          title="A picture of me"
+          height="330px"
+          width="330px" loading='lazy'
         />
 
+
         <div>
-          <h1>
-            Kyle
-            <br /> O&apos;Connor
-            <br />
-            <span className="sub-text">
-              UI developer <br />
-            </span>
-          </h1>
-          <h2>Greater Manchester, UK</h2>
+          <h1>Kyle O'Connor</h1>
+          <br />
+          <h2>UI developer <br />&middot;<br /> Greater Manchester, UK</h2>
         </div>
       </div>
     </header>
   );
 }
+

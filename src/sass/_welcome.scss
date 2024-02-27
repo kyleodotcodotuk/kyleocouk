@@ -1,7 +1,7 @@
 // WELCOME
 
 #welcome {
-  padding: 0 0 8em 0;
+  padding: 4em 0 8em 0;
   margin: auto;
   overflow: hidden;
   position: relative;
@@ -14,7 +14,7 @@
     background: $secondary-colour;
     color: $pure-white;
     padding: 5em 3em;
-    border-radius: 40px 0 40px 0;
+    border-radius: $border-radius;
 
     .content-half {
       display: flex;

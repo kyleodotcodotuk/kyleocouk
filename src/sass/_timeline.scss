@@ -8,7 +8,7 @@ $flag-color: white;
 .professional-timeline {
   background-color: $background-bg;
   padding: 3em 0;
-  border-radius: 20% 0 20% 0;
+  border-radius: $border-radius;
 
   h2 {
     text-align: center;
@@ -90,7 +90,7 @@ $flag-color: white;
   color: $flag-color;
   box-shadow: inset 5px 0 0 0 $arrow-flair;
   padding: 0.5em 1.5em;
-  border-radius: 20px;
+  border-radius: $border-radius;
   font-weight: 500;
   letter-spacing: 0.03em;
   text-align: left;
@@ -167,7 +167,7 @@ $flag-color: white;
   display: inline-block;
   padding: 4px 6px;
   font-size: 0.8em;
-  color: $pure-black;
+  color: $pure-white;
 }
 
 .desc {
@@ -199,9 +199,7 @@ $flag-color: white;
     }
   }
 
-  .time {
-    border-radius: 20px;
-  }
+
 
   .timeline {
     width: 100%;
@@ -270,6 +268,9 @@ $flag-color: white;
 
   .time {
     background-color: $pure-white;
+    color: $pure-black;
+    border-radius: 20px;
+
   }
 
   .direction-l .time-wrapper {
@@ -287,6 +288,10 @@ $flag-color: white;
     background: rgb(245, 245, 245);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
     z-index: 15;
+
+    br {
+      display: none;
+    }
   }
 
   .direction-l .desc,
