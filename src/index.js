@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { useState } from 'react';
-import { Header, Welcome, Content, Posts, Timeline, Footer } from "./components";
+import { Header, Welcome, Posts, Timeline, Footer } from "./components";
 import "./sass/_all.scss";
 
 const Website = () => {
@@ -21,7 +21,6 @@ const Website = () => {
         <Welcome />
         <Posts />
         <Timeline />
-        <Content />
         <Footer />
       </div>
     </React.StrictMode>

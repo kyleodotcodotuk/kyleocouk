@@ -84,7 +84,7 @@
         background-color: $colour-light-theme-secondary;
 
         img#Me {
-            background: radial-gradient(circle, rgba(230,164,180,1) 0%, rgba(245,238,230,1) 100%);
+            background: radial-gradient(circle, rgba(230, 164, 180, 1) 0%, rgba(245, 238, 230, 1) 100%);
         }
 
         h1,
@@ -170,7 +170,9 @@
         }
     }
 
-    .time { color: $pure-black;}
+    .time {
+        color: $pure-black;
+    }
 
     footer {
         background-color: $colour-light-theme-secondary;
