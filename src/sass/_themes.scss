@@ -67,7 +67,7 @@
 
 
 .light-theme {
-    background-color: $colour-light-theme-secondary;
+    background: radial-gradient(circle, rgba(230,164,180,1) 0%, rgba(255,248,227,1) 100%);
     position: fixed;
     top: 0;
     left: 0;
@@ -81,7 +81,7 @@
     }
 
     header {
-        background-color: $colour-light-theme-secondary;
+        background-color: transparent;
 
         img#Me {
             background: radial-gradient(circle, rgba(230, 164, 180, 1) 0%, rgba(245, 238, 230, 1) 100%);
@@ -102,22 +102,22 @@
     #welcome {
 
         .welcome-panel {
-            background-color: $colour-light-theme-main;
+            background-color: $colour-light-theme-secondary;
             color: $pure-black;
             box-shadow: $box-shadow-default;
         }
     }
 
     .blogfeed {
-        background-color: $colour-light-theme-secondary;
+        background-color: transparent;
 
         h2 {
-            color: $colour-light-theme-main;
+            color: $pure-black;
         }
     }
 
     .blogposts {
-        background-color: $colour-light-theme-main;
+        background-color: $colour-light-theme-secondary;
         box-shadow: $box-shadow-default;
 
         .blogtitle,
@@ -128,7 +128,7 @@
 
         a {
             color: $pure-black;
-            background-color: $colour-light-theme-secondary;
+            background-color: $colour-light-theme-main;
         }
 
         .more {
@@ -138,8 +138,14 @@
         }
     }
 
+    .Skills {
+        h2 {   
+            color: $pure-black;
+            font-weight: 700;}
+    }
+
     .professional-timeline {
-        background-color: $colour-light-theme-main;
+        background-color: transparent;
     }
 
     .timeline:before {
