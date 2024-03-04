@@ -46,7 +46,7 @@ export default function Posts() {
                 src={post._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url}
               />
 
-              <a target="_blank" rel="noreferrer" className='more' href={post.link}>Full Post</a>
+              <a target="_blank" rel="noreferrer" className='more' href={post.link}>Read full post<span class="visually-hidden">Read full post of {post.title.rendered}</span></a>
             </article>
           ))}
         </div>

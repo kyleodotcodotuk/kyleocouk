@@ -1,3 +1,5 @@
+// POSTS
+
 .blogfeed {
   background: $main-colour;
   background-attachment: fixed;
@@ -22,7 +24,6 @@
   background: $secondary-colour;
   overflow: hidden;
   transition: 1s;
-
 
   .blogtitle {
     font-size: 1.6em;
@@ -95,9 +96,8 @@
     display: block;
     color: $secondary-colour;
     background-color: $pure-white;
-    font-size: 0.8em;
+    font-size: 1.2em;
     text-decoration: none;
-    text-transform: uppercase;
     letter-spacing: 0.01em;
     font-weight: bold;
     border-radius: $border-radius;

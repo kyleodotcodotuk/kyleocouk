@@ -1,14 +1,17 @@
+// Priority
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 @import "reset";
 @import "variables";
-@import "grid";
-@import "themes";
+@import "wcag";
+
+// Components
 @import "main";
-@import "content";
 @import "header";
-@import "welcome";
+@import "content";
 @import "posts";
 @import "footer";
 @import "timeline";
-@import "respond";
 @import "skills";
+@import "themes";
+// Mobile
+@import "respond";

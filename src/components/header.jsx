@@ -1,16 +1,17 @@
 import Me from "../img/me.png";
 
 export default function Header() {
-
   return (
-
     <header>
       <div className="centered">
         <img
-          src={Me} alt="Me" id="Me"
+          src={Me}
+          alt="Me"
+          id="Me"
           title="A picture of me"
-          height="330px" width="330px"
-          loading='lazy'
+          height="330px"
+          width="330px"
+          loading="lazy"
         />
 
         <div>

@@ -1,3 +1,5 @@
+// HEADER
+
 header {
   text-align: center;
   padding: 0 10%;
@@ -13,7 +15,11 @@ header {
     transition: 1s;
     border-radius: $border-radius-circle;
     box-shadow: $box-shadow-default;
-    background: radial-gradient(circle, rgba(62, 136, 91, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    background: radial-gradient(
+      circle,
+      rgba(62, 136, 91, 1) 0%,
+      rgba(0, 0, 0, 1) 100%
+    );
   }
 
   h1 {
@@ -45,27 +51,7 @@ header {
     justify-items: center;
     align-items: center;
     justify-content: center;
-    align-content: center; 
+    align-content: center;
     position: relative;
-  }
-
-  .scroll-down {
-    position: absolute;
-    bottom: 2em;
-    cursor: pointer;
-    width: 41px;
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
-}
-
-@keyframes slideIn {
-  0% {
-    top: -700px;
-  }
-
-  100% {
-    top: 0;
   }
 }
