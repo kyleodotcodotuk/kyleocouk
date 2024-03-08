@@ -17,7 +17,7 @@ export default function Header() {
         <div>
           <h1>Kyle O'Connor</h1>
           <br />
-          <h2>UI developer</h2>
+          <h2>UI Developer</h2>
         </div>
       </div>
     </header>

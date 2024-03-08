@@ -1,5 +1,7 @@
-// Priority
+// GFonts
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+// Base styles
 @import "reset";
 @import "variables";
 @import "wcag";
@@ -13,5 +15,6 @@
 @import "timeline";
 @import "skills";
 @import "themes";
-// Mobile
+
+// Mob rules
 @import "respond";
