@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client'; 
-import { Header, Welcome, Posts, Timeline, Footer, Skills } from "./components";
+import { Header, Welcome, Posts, Timeline, Footer } from "./components";
 import './sass/_all.scss'; 
 
 function Website() {
@@ -16,8 +16,7 @@ function Website() {
         </button>
         <Header />
         <Welcome />
-        <Posts />
-        <Skills /> 
+        <Posts /> 
         <Timeline/>    
         <Footer />
       </div>

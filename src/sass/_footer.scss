@@ -1,14 +1,16 @@
 // FOOTER
 
-footer { 
-  overflow: hidden; 
+footer {
+  overflow: hidden;
   width: 100%;
   padding: 0.2em 0;
- 
   border-radius: 40px 40px 0 0px;
 
   .wrapper {
-    position: relative;   display: flex;  align-items: center; justify-content: space-between;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   h2 {
@@ -51,7 +53,7 @@ $icon-colours: $secondary-colour;
 ul.social-icons {
   right: 0;
   top: 0;
-  bottom: 0;  
+  bottom: 0;
 }
 
 .social-icons li {
@@ -66,14 +68,15 @@ ul.social-icons {
   text-decoration: none;
 }
 
-.fa-envelope {
-  padding: 10px 10px;
+.fa-codepen {
+  padding: 2px 2px;
   transition: 0.5s;
   background-color: $icon-colours;
   border-radius: 20px;
+  height: 32px;
 }
 
-.fa-envelope:hover {
+.fa-codepen:hover {
   background-color: #bb001b;
 }
 
@@ -89,10 +92,11 @@ ul.social-icons {
 }
 
 .fa-github {
-  padding: 10px 10px;
+  padding: 6px 6px;
   transition: 0.5s;
   background-color: $icon-colours;
   border-radius: 20px;
+  height: 24px;
 }
 
 .fa-github:hover {
