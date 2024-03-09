@@ -1,17 +1,14 @@
 // FOOTER
 
-footer {
-  text-align: center;
-  overflow: hidden;
-  min-height: 50px;
+footer { 
+  overflow: hidden; 
   width: 100%;
-  padding: 2.5em 0;
-  display: grid;
-  align-content: center;
+  padding: 0.2em 0;
+ 
   border-radius: 40px 40px 0 0px;
 
   .wrapper {
-    position: relative;
+    position: relative;   display: flex;  align-items: center; justify-content: space-between;
   }
 
   h2 {
@@ -54,9 +51,7 @@ $icon-colours: $secondary-colour;
 ul.social-icons {
   right: 0;
   top: 0;
-  bottom: 0;
-  margin: 1em auto 0;
-  height: 36px;
+  bottom: 0;  
 }
 
 .social-icons li {
