@@ -5,6 +5,21 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 
+const ordinalSuffixOf = (i) => {
+  const j = i % 10;
+  const k = i % 100;
+  if (j === 1 && k !== 11) {
+    return "st";
+  }
+  if (j === 2 && k !== 12) {
+    return "nd";
+  }
+  if (j === 3 && k !== 13) {
+    return "rd";
+  }
+  return "th";
+}
+
 export default function Header() {
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -39,7 +54,7 @@ export default function Header() {
           <p>
             <strong>{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</strong>
             <span>|</span>
-            {`${monthNames[currentTime.getMonth()]} ${currentTime.getDate()}, ${currentTime.getFullYear()}`}
+            {`${currentTime.getDate()}${ordinalSuffixOf(currentTime.getDate())} ${monthNames[currentTime.getMonth()]} ${currentTime.getFullYear()}`}
           </p>
         </div>
       </div>
