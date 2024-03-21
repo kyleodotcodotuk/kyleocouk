@@ -54,4 +54,19 @@ header {
     align-content: center;
     position: relative;
   }
+  .date-and-time {
+    display: grid;
+    padding: 0.8em 1.8em;
+    margin: 1.6em auto 0;
+    background-color: $secondary-colour;
+    color: $pure-white;
+    border-radius: $border-radius;
+    font-size: 0.9em;
+
+    span {
+      opacity: 0.5;
+      font-size: 1.2em;
+      padding: 0 0.4em 0 0.4em;
+    }
+  }
 }
