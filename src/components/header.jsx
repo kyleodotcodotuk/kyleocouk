@@ -31,6 +31,16 @@ export default function Header() {
     return () => clearInterval(timer);
   }, []);
 
+  const getMeridian = (hour) => {
+    return hour >= 12 ? 'PM' : 'AM';
+  }
+
+  const formatTime = (time) => {
+    const hours = time.getHours() % 12 || 12; // Handle 0 hour as 12 AM
+    const minutes = time.getMinutes().toString().padStart(2, '0'); // Pad minutes with leading 0
+    return `${hours}:${minutes} ${getMeridian(time.getHours())}`;
+  }
+
   return (
     <header>
       <div className="centered">
@@ -52,7 +62,7 @@ export default function Header() {
 
         <div className="date-and-time">
           <p>
-            <strong>{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</strong>
+            <strong>{formatTime(currentTime)}</strong>
             <span>|</span>
             {`${currentTime.getDate()}${ordinalSuffixOf(currentTime.getDate())} ${monthNames[currentTime.getMonth()]} ${currentTime.getFullYear()}`}
           </p>
