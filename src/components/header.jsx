@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Me from "../img/me.png"; 
+import Me from "../img/me.png";
 
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
