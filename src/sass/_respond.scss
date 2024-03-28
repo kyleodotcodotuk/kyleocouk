@@ -113,18 +113,20 @@
   footer {
     height: auto;
     line-height: normal;
-    padding: 1em 0;
+    padding: 5%;
+    width: auto;
+    border-radius: 0;
 
     p {
       float: none;
       margin: 1em auto;
       width: 80%;
-      text-align: center;
+      text-align: left;
     }
 
     ul.social-icons {
       position: inherit;
-      text-align: center;
+      text-align: right;
       margin: 1em auto;
       display: block;
       width: 80%;
