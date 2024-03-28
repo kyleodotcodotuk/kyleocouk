@@ -1,31 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom/client'; 
 import { Header, Welcome, Posts, Timeline, Footer } from "./components";
-import "./sass/_all.scss";
+import './sass/_all.scss'; 
 
-const Website = () => {
+function Website() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  const handleToggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  const buttonText = isDarkMode ? 'Default Theme' : 'Light Theme';
+  const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
   return (
     <React.StrictMode>
-      <div className={!isDarkMode ? 'default ' : 'light-theme'}>
-        <button className='theme-changer' onClick={handleToggleTheme}>Switch theme to: {buttonText}</button>
+      <div className={`${isDarkMode ? 'light-theme' : 'default'}`}>
+        <button className="theme-changer" onClick={toggleTheme}>
+          Switch theme to: {isDarkMode ? 'Dark' : 'Pastel'}
+        </button>
         <Header />
         <Welcome />
-        <Posts />
-        <Timeline />
+        <Posts /> 
+        <Timeline/>    
         <Footer />
       </div>
     </React.StrictMode>
   );
-};
+}
 
 const root = ReactDOM.createRoot(document.getElementById('website'));
 root.render(<Website />);
