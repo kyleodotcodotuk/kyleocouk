@@ -20,8 +20,7 @@ export default function Posts() {
   return (
     <section className='blogfeed'>
       <div className='wrapper'>
-        <h2>Read Between the Designs</h2>
-
+        
         <div className='grid grid-3-3-3'>
           {posts.slice(0, 3).map((post, index) => (
             <article className="blogposts" key={index}>

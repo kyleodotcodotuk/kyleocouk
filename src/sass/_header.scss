@@ -1,7 +1,6 @@
 // HEADER
 
 header {
-  text-align: center;
   padding: 0 10%;
   height: 100vh;
   min-height: 700px;
@@ -9,22 +8,32 @@ header {
   position: relative;
   z-index: 1;
   display: grid;
+  grid-template-columns: 40% 40%;
+  align-content: center;
+  align-items: center;
+  gap: 20%;
+
+  .left-side {
+    display: grid;
+    justify-items: start;
+    justify-content: start;
+  }
 
   img#Me {
     margin: 2em auto 4em;
     transition: 1s;
-    border-radius: $border-radius-circle;
+    clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
     box-shadow: $box-shadow-default;
-    background: radial-gradient(
-      circle,
-      rgba(62, 136, 91, 1) 0%,
-      rgba(0, 0, 0, 1) 100%
-    );
+    background: $pure-black;
   }
 
   h1 {
-    color: $pure-white;
-    text-shadow: 3px 3px 10px black;
+    @if lightness($main-colour) >= 43% {
+      color: $pure-black;
+    } @else {
+      color: $pure-white;
+    }
+    text-shadow: $subtle-shadow-text;
     letter-spacing: 0.03em;
     text-transform: capitalize;
     line-height: 1.2em;
@@ -40,29 +49,38 @@ header {
   }
 
   h2 {
-    text-shadow: 3px 3px 10px black;
     position: relative;
     font-size: 1.23em;
-    color: $pure-white;
+    text-shadow: $subtle-shadow-text;
   }
 
-  .centered {
+  .blurb {
     display: grid;
-    justify-items: center;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    position: relative;
+    justify-items: end;
+    background: $pure-black;
+    padding: 24px;
+    p {
+      margin: 12px 0 4px 0;
+      @if lightness($pure-black) >= 43% {
+        color: $pure-black;
+      } @else {
+        color: $pure-white;
+      }
+       
+    }
   }
   .date-and-time {
     display: grid;
     padding: 0.8em 1.8em;
-    margin: 1.6em auto 0;
-    background-color: $secondary-colour;
-    color: $pure-white;
+    margin: 0.6em 0 0 0;
+    background-color: $main-darken-30;
     border-radius: $border-radius;
     font-size: 0.9em;
     text-transform: capitalize;
+
+    p {
+      margin: 0;
+    }
 
     span {
       opacity: 0.5;

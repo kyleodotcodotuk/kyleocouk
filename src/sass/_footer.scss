@@ -4,7 +4,8 @@ footer {
   overflow: hidden;
   width: 100%;
   padding: 0.2em 0;
-  border-radius: 40px 40px 0 0px; 
+  position: fixed;
+  top: 0;
 
   .wrapper {
     position: relative;
@@ -44,10 +45,14 @@ footer {
   }
 }
 
-$icon-colours: $secondary-colour;
+$icon-colours: $main-darken-30;
 
 .social-icon {
-  color: $pure-white;
+  @if lightness($main-colour) >= 43% {
+    color: $pure-black;
+  } @else {
+    color: $pure-white;
+  }
 }
 
 ul.social-icons {

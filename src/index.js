@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client'; 
-import { Header, Welcome, Posts, Timeline, Footer } from "./components";
+import { Header, Timeline, Footer } from "./components";
 import './sass/_all.scss'; 
 
 function Website() {
@@ -15,9 +15,7 @@ function Website() {
           Switch theme to: {isDarkMode ? 'Dark' : 'Pastel'}
         </button>
         <Header />
-        <Welcome />
-        <Posts /> 
-        <Timeline/>    
+        <Timeline/> 
         <Footer />
       </div>
     </React.StrictMode>

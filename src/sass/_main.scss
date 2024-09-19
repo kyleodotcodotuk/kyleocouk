@@ -7,6 +7,12 @@ body {
   font-size: 16px;
   margin: auto;
   font-family: "Nunito", sans-serif;
+
+  @if lightness($main-colour) >= 43% {
+    color: $pure-black;
+  } @else {
+    color: $pure-white;
+  }
 }
 
 body a {

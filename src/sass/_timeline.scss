@@ -6,7 +6,8 @@ $flag-bg: $arrow-flair;
 $flag-color: white;
 
 .professional-timeline {
-  background: linear-gradient(180deg, #161616 0%, #3E885B 15%, #3E885B 99%, #161616 100%);
+  background: $main-colour;
+ 
   padding: 13em 0 6em;
   border-radius: $border-radius;
 
@@ -21,7 +22,6 @@ $flag-color: white;
     margin: 5vh auto;
     text-align: center;
     font-size: 1.1em;
-
     line-height: 1.1em;
   }
 }

@@ -70,19 +70,22 @@
 // WELCOME
 
 #welcome {
-  padding: 5em 0;
+  padding: 3em 0;
   margin: auto;
   overflow: hidden;
   position: relative;
-  background: linear-gradient(180deg, $main-colour 0%, $secondary-colour 10%, $secondary-colour 95%, $main-colour 100%);
-
+  @if lightness($main-colour) >= 43% {
+    color: $pure-black;
+  } @else {
+    color: $pure-white;
+  }
+ 
   .wrapper {
     position: relative;
   }
 
   .welcome-panel {
-    // background: $secondary-colour;
-    color: $pure-white;
+    // background: $secondary-colour; 
     padding: 5em 3em;
     border-radius: $border-radius;
 
@@ -94,7 +97,7 @@
   }
 
   h2 {
-    padding: 0 0 5% 0;
+    padding: 0 0 1% 0;
     font-weight: bold;
   }
 
