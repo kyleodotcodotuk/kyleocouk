@@ -35,80 +35,9 @@
     grid-template-columns: inherit;
     gap: 0;
   }
-
-  #welcome {
-    padding: 0;
-    text-align: center;
-
-    #welcome-img {
-      margin: 1em auto;
-    }
-
-    h2 {
-      font-size: 2em;
-
-      .fa {
-        display: none;
-      }
-    }
-
-    .welcome-panel {
-      padding: 2em 1em;
-
-      .content-half {
-        display: block;
-      }
-    }
-
-    h2,
-    p {
-      max-width: 100%;
-      width: 80%;
-      margin: 4% auto !important;
-      display: block;
-      text-align: center;
-
-      &:before {
-        display: none;
-      }
-    }
-
-    #welcome-image {
-      position: inherit;
-      right: 0;
-      margin: 5% auto;
-      display: block;
-    }
-
-    .btn {
-      margin-left: 10%;
-      display: block;
-      width: fit-content;
-    }
-  }
-
-  // Blogfeed
-
-  .blogfeed {
-    padding: 2em 1em;
-
-    h2 {
-      font-size: 2em;
-      max-width: 80%;
-      margin: 0.8em auto;
-      text-align: center;
-    }
-  }
-
-  .blogposts {
-    max-width: 90%;
-    margin: 1em auto;
-  }
-
-  .time {
-    padding: 0.8em 1.2em;
-    font-size: 0.8em;
-  }
+ 
+ 
+   
 
   footer {
     height: auto;
@@ -116,21 +45,5 @@
     padding: 5%;
     width: auto;
     border-radius: 0;
-
-    p {
-      float: none;
-      margin: 1em auto;
-      width: 80%;
-      text-align: left;
-    }
-
-    ul.social-icons {
-      position: inherit;
-      text-align: right;
-      margin: 1em auto;
-      display: block;
-      width: 80%;
-      height: auto;
-    }
   }
 }

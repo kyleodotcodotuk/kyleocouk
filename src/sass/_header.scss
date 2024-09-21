@@ -89,3 +89,36 @@ header {
     }
   }
 }
+
+
+$icon-colours: $main-darken-50;
+
+.social-icon {
+  @if lightness($main-colour) >= 43% {
+    color: $pure-black;
+  } @else {
+    color: $pure-white;
+  }
+  li {
+    vertical-align: top;
+    display: inline;
+    height: 100px;
+    margin: 0 0.5px;
+  }
+
+  a {
+    color: $pure-white;
+    text-decoration: none;
+  }
+}
+
+.fa-github {
+  padding: 6px 6px;
+  transition: 0.5s;
+  background-color: $icon-colours;
+  border-radius: 20px;
+  height: 24px;
+  &:hover {
+    background-color: #5a32a3;
+  }
+}

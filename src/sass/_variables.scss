@@ -14,23 +14,27 @@ $success-colour: #138f2b;
 $main-lighten-10: lighten($main-colour, 10%);
 $main-lighten-20: lighten($main-colour, 20%);
 $main-lighten-30: lighten($main-colour, 30%);
+$main-lighten-40: lighten($main-colour, 40%);
+$main-lighten-50: lighten($main-colour, 50%);
 
 // Dark shades
 $main-darken-10: darken($main-colour, 10%);
 $main-darken-20: darken($main-colour, 20%);
 $main-darken-30: darken($main-colour, 30%);
+$main-darken-40: darken($main-colour, 40%);
+$main-darken-50: darken($main-colour, 50%);
 
-// White
+// Whites
 $pure-white: #ffffff;
 $main-white: #f1e9da;
 
-// Black
+// Blacks
 $pure-black: #000000;
 $main-black: #1f271b;
 
 // Text colour
-$text-colour-dark: #000000;
-$text-colour-light: #ffffff;
+$text-dark: #000000;
+$text-light: #ffffff;
 
 // Styling consistency
 $border-radius: 7px;
@@ -39,11 +43,8 @@ $box-shadow-default: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
 $subtle-shadow-text: 1px 1px 1px rgba(0, 0, 0, 0.35);
 // $box-shadow-abstract: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, green 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px, yellow 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px, orange 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px, red 40px -40px;
 
-// Light pastel theme colours 2024
+// Theme colours 2024
 $colour-light-theme-main: #e6a4b4;
 $colour-light-theme-secondary: #fff8e3;
 $colour-light-theme-accent: #f3d7ca;
 $colour-light-theme-background: #f5eee6;
-
-$primary-color: #333;
- 
