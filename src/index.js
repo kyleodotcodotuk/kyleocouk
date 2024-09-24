@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client'; 
-import { Header, Timeline, Footer } from "./components";
+import { Header, Timeline } from "./components";
 import './sass/_all.scss'; 
 
 function Website() {
@@ -16,7 +16,6 @@ function Website() {
         </button>
         <Header />
         <Timeline/> 
-        <Footer />
       </div>
     </React.StrictMode>
   );

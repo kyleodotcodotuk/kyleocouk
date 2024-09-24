@@ -3,14 +3,11 @@
 
 // Base styles
 @import "reset";
-@import "variables";
-@import "wcag";
+@import "var";
 
 // Components
 @import "main";
-@import "header";
-@import "content";
-@import "footer";
+@import "header"; 
 @import "timeline";
 
 // Theme

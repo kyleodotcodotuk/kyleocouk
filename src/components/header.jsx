@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Me from "../img/me.svg";
-import GitHub from "./../icons/github.svg";
 
 const monthNames = [
   "January",
@@ -55,64 +54,34 @@ export default function Header() {
 
   return (
     <header>
-      <div className="left-side">
-        <img
-          src={Me}
-          alt="Me"
-          id="Me"
-          title="A picture of me"
-          height="330px"
-          width="330px"
-          loading="lazy"
-        />
-        <h1>Kyle O'Connor</h1>
-        <h2>UI Developer</h2>
-        
-        <ul className="social-icons">
-          <li>
-            <a
-              href="https://github.com/kyleodotcodotuk"
-              target="_blank"
-              rel="noreferrer"
-              className="social-icon"
-              alt="GitHub"
-              title="GitHub"
-            >
-              <img
-                src={GitHub}
-                className="fa fa-github"
-                alt="GitHub"
-                title="GitHub"
-              />
-            </a>
-          </li>
-        </ul>
-        <div className="date-and-time">
-          <p>
-            <strong>{formatTime(currentTime)}</strong>
-            <span>|</span>
-            {`${currentTime.getDate()}${ordinalSuffixOf(
-              currentTime.getDate()
-            )} ${
-              monthNames[currentTime.getMonth()]
-            } ${currentTime.getFullYear()}`}
-          </p>
-        </div>
-      </div>
+      <div className="left-side"> 
+          <img
+            src={Me}
+            alt="Me"
+            id="Me"
+            title="A picture of me"
+            height="330px"
+            width="330px"
+            loading="lazy"
+          />
+          <h1>UI Developer<br /> Kyle O'Connor</h1> 
 
-      <div className="blurb">
-        <p>
-          With vast expertise in front-end development including the likes of
-          React, JavaScript and PHP. I am well-equipped to tackle a wide range
-          of web development projects, including my current positon where I work
-          primarily with software.
-        </p>
-        <p>
-          With several years and experience in different areas, my experience
-          has given me a unique perspective and adaptability to work in diverse
-          environments and different types of businesses.
-        </p>
-      </div>
+          <div className="date-and-time">
+            <p>
+              <strong>{formatTime(currentTime)} GMT</strong>
+              <br />
+              {`${currentTime.getDate()}${ordinalSuffixOf(
+                currentTime.getDate()
+              )} ${
+                monthNames[currentTime.getMonth()]
+              } ${currentTime.getFullYear()}`}
+            </p>
+          </div>
+        </div>
+
+        <div className="right-side">
+          
+        </div> 
     </header>
   );
 }

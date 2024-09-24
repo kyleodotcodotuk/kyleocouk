@@ -19,12 +19,16 @@ header {
     justify-content: start;
   }
 
+  .right-side {
+    display: grid;
+    justify-items: end;
+    justify-content: end;
+  }
+
   img#Me {
-    margin: 2em auto 4em;
+    margin: 12px 0 24px;
     transition: 1s;
-    clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
-    box-shadow: $box-shadow-default;
-    background: $pure-black;
+    background: $main-darken-50;
   }
 
   h1 {
@@ -37,88 +41,24 @@ header {
     letter-spacing: 0.03em;
     text-transform: capitalize;
     line-height: 1.2em;
-    font-size: 3em;
+    font-size: 2.2em;
   }
 
-  span.sub-text {
-    padding: 2vh 0;
-    opacity: 0.9;
-    letter-spacing: 0.03em;
-    display: block;
-    font-size: 70%;
-  }
-
-  h2 {
-    position: relative;
-    font-size: 1.23em;
-    text-shadow: $subtle-shadow-text;
-  }
-
-  .blurb {
-    display: grid;
-    justify-items: end;
-    background: $pure-black;
-    padding: 24px;
-    p {
-      margin: 12px 0 4px 0;
-      @if lightness($pure-black) >= 43% {
-        color: $pure-black;
-      } @else {
-        color: $pure-white;
-      }
-       
-    }
-  }
   .date-and-time {
-    display: grid;
-    padding: 0.8em 1.8em;
-    margin: 0.6em 0 0 0;
-    background-color: $main-darken-30;
+    padding: 0;
+    margin: 12px 0 0 0;
     border-radius: $border-radius;
-    font-size: 0.9em;
+    font-size: 1.2em;
     text-transform: capitalize;
 
     p {
       margin: 0;
+      color: $pure-black;
     }
 
     span {
-      opacity: 0.5;
-      font-size: 1.2em;
-      padding: 0 0.4em 0 0.4em;
+      opacity: 0.3;
+      padding: 0 8px;
     }
-  }
-}
-
-
-$icon-colours: $main-darken-50;
-
-.social-icon {
-  @if lightness($main-colour) >= 43% {
-    color: $pure-black;
-  } @else {
-    color: $pure-white;
-  }
-  li {
-    vertical-align: top;
-    display: inline;
-    height: 100px;
-    margin: 0 0.5px;
-  }
-
-  a {
-    color: $pure-white;
-    text-decoration: none;
-  }
-}
-
-.fa-github {
-  padding: 6px 6px;
-  transition: 0.5s;
-  background-color: $icon-colours;
-  border-radius: 20px;
-  height: 24px;
-  &:hover {
-    background-color: #5a32a3;
   }
 }
