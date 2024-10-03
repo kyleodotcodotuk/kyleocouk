@@ -4,7 +4,7 @@ header {
   padding: 0 10%;
   height: 100vh;
   min-height: 700px;
-  background-color: $main-colour;
+  // background-color: $main-colour;
   position: relative;
   z-index: 1;
   display: grid;
@@ -12,7 +12,25 @@ header {
   align-content: center;
   align-items: center;
   gap: 20%;
+  background: linear-gradient(342deg, $main-colour, $secondary-colour);
+  background-size: 400% 400%;
+  animation: MainGrad 14s ease infinite;
 
+  @keyframes MainGrad {
+    0% {
+      background-position: 23% 0%;
+    }
+
+    50% {
+      background-position: 78% 100%;
+    }
+
+    100% {
+      background-position: 23% 0%;
+    }
+  }
+
+  // Layout
   .left-side {
     display: grid;
     justify-items: start;
@@ -25,14 +43,9 @@ header {
     justify-content: end;
   }
 
-  img#Me {
-    margin: 12px 0 24px;
-    transition: 1s;
-    background: $main-darken-50;
-  }
-
+  // Information
   h1 {
-    @if lightness($main-colour) >= 43% {
+    @if lightness($main-colour) >=43% {
       color: $pure-black;
     } @else {
       color: $pure-white;
@@ -40,25 +53,151 @@ header {
     text-shadow: $subtle-shadow-text;
     letter-spacing: 0.03em;
     text-transform: capitalize;
-    line-height: 1.2em;
-    font-size: 2.2em;
+    font-size: 4em;
+    position: relative;
+    margin-bottom: 24px;
+
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      height: 1px;
+      width: 100%;
+      opacity: 0.5;
+
+      @if lightness($main-colour) >=43% {
+        background-color: $pure-black;
+      } @else {
+        background-color: $pure-white;
+      }
+    }
+  }
+
+  h2 {
+    font-size: 2.8em;
   }
 
   .date-and-time {
     padding: 0;
-    margin: 12px 0 0 0;
+    margin: 0;
     border-radius: $border-radius;
-    font-size: 1.2em;
     text-transform: capitalize;
+    position: relative;
+    line-height: 28px;
 
-    p {
+    &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height: 1px;
+      width: 100%;
+      opacity: 0.5;
+
+      @if lightness($main-colour) >=43% {
+        background-color: $pure-black;
+      } @else {
+        background-color: $pure-white;
+      }
+    }
+  }
+
+  // Social
+  .social-icons {
+    padding: 0;
+    margin: 8px 0;
+    li {
+      padding: 0;
       margin: 0;
-      color: $pure-black;
+      a {
+        background-color: $main-colour;
+        overflow: hidden;
+        height: 32px;
+        width: 32px;
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        border-radius: 50%;
+        img {
+          min-height: 20px;
+        }
+      }
+    }
+  }
+
+  // Image
+  .image-wrapper {
+    position: relative;
+    padding: 30px;
+
+    @keyframes RotateItAlways {
+      0% {
+        transform: 0;
+      }
+
+      50% {
+        transform: rotate(180deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
-    span {
-      opacity: 0.3;
-      padding: 0 8px;
+    &:before {
+      content: "";
+      border-radius: 999px;
+      display: block;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 110%;
+      width: 110%;
+      animation: RotateItAlways 5s linear infinite;
+      background: conic-gradient(
+        from 30deg,
+        $secondary-colour,
+        $pure-black 46%,
+        transparent 46%
+      );
+      mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - 4px),
+        #fff calc(100% - 4px + 1px)
+      );
+    }
+
+    &:after {
+      content: "";
+      border-radius: 999px;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      animation: RotateItAlways 7s linear infinite;
+      background: conic-gradient(
+        from 30deg,
+        $secondary-colour,
+        $pure-black 46%,
+        transparent 46%
+      );
+      mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - 3px),
+        #fff calc(100% - 3px + 1px)
+      );
+    }
+
+    img {
+      border-radius: 999px;
+      display: block;
+      width: calc(100vw - 80px);
+      max-width: 360px;
+      max-height: 360px;
+      background-color: $pure-black;
     }
   }
 }

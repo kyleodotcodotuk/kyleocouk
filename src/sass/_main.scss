@@ -20,28 +20,28 @@ body {
   ::-webkit-scrollbar-track {
     background-color: $pure-black;
   }
-  
+
   ::-webkit-scrollbar {
     width: 10px;
     border-radius: 10px;
     background-color: $main-darken-50;
     border-radius: 10px;
   }
-  
+
   ::-webkit-scrollbar-thumb {
     background-color: $pure-black;
     border-radius: 10px;
   }
 }
 
-
-
 img {
   max-width: 100%;
   transition: 1s;
 }
 
-strong { font-weight: bold;}
+strong {
+  font-weight: bold;
+}
 
 // HEADINGS
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client'; 
-import { Header, Timeline } from "./components";
+import { Main } from "./components";
 import './sass/_all.scss'; 
 
 function Website() {
@@ -14,8 +14,8 @@ function Website() {
         <button className="theme-changer" onClick={toggleTheme}>
           Switch theme to: {isDarkMode ? 'Dark' : 'Pastel'}
         </button>
-        <Header />
-        <Timeline/> 
+        <Main />
+        {/* <Timeline/>  */}
       </div>
     </React.StrictMode>
   );

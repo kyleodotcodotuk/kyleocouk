@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Me from "../img/me.svg";
+import Github from "../icons/github.svg";
 
 const monthNames = [
   "January",
@@ -54,34 +55,41 @@ export default function Header() {
 
   return (
     <header>
-      <div className="left-side"> 
+      <div className="left-side">
+        <h1>Kyle O'Connor</h1>
+        <h2>UI Developer</h2>
+
+        <ul className="social-icons">
+          <li>
+            <a href="/" alt="#">
+              <img src={Github} alt="" />
+            </a>
+          </li>
+        </ul>
+
+        <p className="date-and-time">
+          Manchester &middot; United Kingdom
+          <br />
+          {formatTime(currentTime)}
+          &nbsp;&middot;&nbsp;
+          {`${currentTime.getDate()}${ordinalSuffixOf(currentTime.getDate())} ${
+            monthNames[currentTime.getMonth()]
+          } ${currentTime.getFullYear()}`}
+        </p>
+      </div>
+
+      <div className="right-side">
+        <div className="image-wrapper">
           <img
             src={Me}
             alt="Me"
-            id="Me"
             title="A picture of me"
-            height="330px"
-            width="330px"
+            height="360px"
+            width="360px"
             loading="lazy"
           />
-          <h1>UI Developer<br /> Kyle O'Connor</h1> 
-
-          <div className="date-and-time">
-            <p>
-              <strong>{formatTime(currentTime)} GMT</strong>
-              <br />
-              {`${currentTime.getDate()}${ordinalSuffixOf(
-                currentTime.getDate()
-              )} ${
-                monthNames[currentTime.getMonth()]
-              } ${currentTime.getFullYear()}`}
-            </p>
-          </div>
         </div>
-
-        <div className="right-side">
-          
-        </div> 
+      </div>
     </header>
   );
 }
