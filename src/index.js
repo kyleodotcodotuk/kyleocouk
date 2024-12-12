@@ -14,8 +14,7 @@ function Website() {
         <button className="theme-changer" onClick={toggleTheme}>
           Switch theme to: {isDarkMode ? 'Dark' : 'Pastel'}
         </button>
-        <Main />
-        {/* <Timeline/>  */}
+        <Main /> 
       </div>
     </React.StrictMode>
   );

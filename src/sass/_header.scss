@@ -1,17 +1,13 @@
-// HEADER
-
 header {
   padding: 0 10%;
   height: 100vh;
   min-height: 700px;
-  // background-color: $main-colour;
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 40% 40%;
+  grid-template-columns: 50% 50%;
   align-content: center;
-  align-items: center;
-  gap: 20%;
+  align-items: center; 
   background: linear-gradient(342deg, $main-colour, $secondary-colour);
   background-size: 400% 400%;
   animation: MainGrad 14s ease infinite;
@@ -56,22 +52,6 @@ header {
     font-size: 4em;
     position: relative;
     margin-bottom: 24px;
-
-    &:before {
-      content: "";
-      position: absolute;
-      bottom: -12px;
-      left: 0;
-      height: 1px;
-      width: 100%;
-      opacity: 0.5;
-
-      @if lightness($main-colour) >=43% {
-        background-color: $pure-black;
-      } @else {
-        background-color: $pure-white;
-      }
-    }
   }
 
   h2 {
@@ -81,35 +61,16 @@ header {
   .date-and-time {
     padding: 0;
     margin: 0;
-    border-radius: $border-radius;
-    text-transform: capitalize;
-    position: relative;
-    line-height: 28px;
-
-    &:before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 0;
-      height: 1px;
-      width: 100%;
-      opacity: 0.5;
-
-      @if lightness($main-colour) >=43% {
-        background-color: $pure-black;
-      } @else {
-        background-color: $pure-white;
-      }
-    }
+    border-radius: $border-radius; 
+    line-height: 20px;
+    font-size: 1em;
   }
 
   // Social
   .social-icons {
     padding: 0;
-    margin: 8px 0;
+    margin: 16px 0 0 0;
     li {
-      padding: 0;
-      margin: 0;
       a {
         background-color: $main-colour;
         overflow: hidden;
@@ -192,7 +153,7 @@ header {
     }
 
     img {
-      border-radius: 999px;
+      border-radius: 50%;
       display: block;
       width: calc(100vw - 80px);
       max-width: 360px;

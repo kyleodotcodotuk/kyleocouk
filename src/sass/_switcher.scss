@@ -1,0 +1,45 @@
+.content-switcher {
+  color: #ffffff;
+  background-color: $secondary-colour;
+  overflow: hidden;
+  border-radius: $border-radius;
+  margin: 24px 0 0 0;
+  max-width: 480px;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    color: black;
+    font-size: 1.2em;
+    li {
+      display: inline-grid;
+      padding: 20px 15px;
+      width: calc(33.3% - 30px);
+      text-align: center;
+      cursor: pointer;
+      &:hover {
+        background-color: $secondary-colour;
+        color: #ffffff;
+      }
+      &:not(:last-child) {
+        box-shadow: 1px 0px 0px 0px black;
+      }
+    }
+    .active {
+      background-color: $secondary-colour;
+      color: #ffffff;
+    }
+  }
+  .tab-content {
+    padding: 36px 20px;
+    border-top: none;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;  
+    img { 
+      height: auto;
+    }
+  }
+}
