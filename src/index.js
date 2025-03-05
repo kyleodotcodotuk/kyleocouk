@@ -12,7 +12,7 @@ function Website() {
     <React.StrictMode>
       <div className={`${isDarkMode ? 'light-theme' : 'default'}`}>
         <button className="theme-changer" onClick={toggleTheme}>
-          Switch theme to: {isDarkMode ? 'Dark' : 'Pastel'}
+          Switch theme to: {isDarkMode ? 'Dark' : 'High-Vis'}
         </button>
         <Main /> 
       </div>

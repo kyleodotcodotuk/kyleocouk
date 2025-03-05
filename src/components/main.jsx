@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Me from "../img/me.svg";
+import Code from "../img/code.png";
 import Github from "../icons/github.svg";
+import Bitcoin from "../icons/bitcoin.svg";
 
 const monthNames = [
   "January",
@@ -80,8 +82,23 @@ export default function Header() {
 
         <ul className="social-icons">
           <li>
-            <a href="/" alt="#">
-              <img src={Github} alt="" />
+            <a
+              href="https://github.com/kyleodotcodotuk"
+              target="_blank"
+              rel="noreferrer"
+              alt="Scrutinise me"
+            >
+              <img src={Github} alt="github icon" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://strike.me/kyleocouk/"
+              target="_blank"
+              rel="noreferrer"
+              alt="Gimmie gimmie gimmie"
+            >
+              <img src={Bitcoin} alt="bitcoin icon" />
             </a>
           </li>
         </ul>
@@ -90,64 +107,72 @@ export default function Header() {
           <ul>
             <li
               onClick={() => handleTabClick(0)}
+              onKeyDown={(e) => e.key === "Enter" && handleTabClick(0)}
               className={activeTab === 0 ? "active" : ""}
+              tabIndex="0"
             >
-              UI
+              Me
             </li>
             <li
               onClick={() => handleTabClick(1)}
+              onKeyDown={(e) => e.key === "Enter" && handleTabClick(1)}
               className={activeTab === 1 ? "active" : ""}
+              tabIndex="0"
             >
-              Backend
-            </li>
-            <li
-              onClick={() => handleTabClick(2)}
-              className={activeTab === 2 ? "active" : ""}
-            >
-              New page
+              What I do
             </li>
           </ul>
           <div>
             {activeTab === 0 && (
               <div className="tab-content">
                 <div>
-                  <h2>Test</h2>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Praesent neque nisl, cursus a condimentum eu, posuere non
-                    augue.
+                    Hello, I am Kyle O'Connor!
+                    <br />
+                    Currently a UI developer, also known as a front end
+                    developer, web designer or other similar roles.
+                  </p>
+                  <p>
+                    I live in Tameside, more well known as a part of Greater
+                    Manchester with a remote based job for a company in Surrey
+                  </p>
+                  <p>
+                    Interested in any services, I'll see what I do for you, email me at
+                    </p>
+                    <p>
+                    <a className="btn" href="mailto:info@kyleo.co.uk">info@kyleo.co.uk</a>
                   </p>
                 </div>
-                <img
-                  width={200}
-                  height={200}
-                  src="https://picsum.photos/200"
-                  alt=""
-                />
+                <img src={Code} alt="" />
               </div>
             )}
             {activeTab === 1 && (
               <div className="tab-content">
                 <div>
-                  <h2>Test</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Praesent neque nisl, cursus a condimentum eu, posuere non
+                    augue.
+                  </p>
+
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Praesent neque nisl, cursus a condimentum eu, posuere non
+                    augue.
+                  </p>
+
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Praesent neque nisl, cursus a condimentum eu, posuere non
                     augue.
                   </p>
                 </div>
-                <img
-                  width={200}
-                  height={200}
-                  src="https://picsum.photos/200"
-                  alt=""
-                />
+                <img src="https://picsum.photos/250" alt="" />
               </div>
             )}
             {activeTab === 2 && (
               <div className="tab-content">
                 <div>
-                  <h2>Test</h2>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Praesent neque nisl, cursus a condimentum eu, posuere non

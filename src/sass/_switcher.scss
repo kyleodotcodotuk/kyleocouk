@@ -1,45 +1,83 @@
 .content-switcher {
-  color: #ffffff;
-  background-color: $secondary-colour;
+  @if lightness($secondary-colour) >= 43% {
+    color: $pure-black;
+  } @else {
+    color: $pure-white;
+  }
   overflow: hidden;
   border-radius: $border-radius;
   margin: 24px 0 0 0;
-  max-width: 480px;
+  padding: 0;
+  max-width: 660px;
   ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    background-color: white;
-    color: black;
+    background-color: transparent;
     font-size: 1.2em;
     li {
       display: inline-grid;
       padding: 20px 15px;
-      width: calc(33.3% - 30px);
+      width: calc(50% - 30px);
       text-align: center;
+      font-size: 1.5em;
+      border-radius: 20px 20px 0 0;
+      background-color: rgba(46, 101, 68, 0.7);
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
       cursor: pointer;
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: $secondary-colour;
-        color: #ffffff;
       }
       &:not(:last-child) {
-        box-shadow: 1px 0px 0px 0px black;
+        box-shadow: 1px 0px 0px 0px transparent;
       }
     }
     .active {
-      background-color: $secondary-colour;
-      color: #ffffff;
+      background-color: $secondary-colour; 
     }
   }
   .tab-content {
-    padding: 36px 20px;
+    height: 380px;
+    padding: 16px 36px;
     border-top: none;
-
     display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 20px;  
-    img { 
-      height: auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    justify-items: end;
+    align-items: center;
+    background-color: $secondary-colour;
+    img {
+      height: 250px;
+      width: 250px;
+      border-radius: $border-radius-circle;
+      object-fit: none;
+    }
+    h2 {
+      border-bottom: 2px solid black;
+      display: inline-block;
+    }
+    p {
+      margin: 24px 0 12px 0;
+      line-height: 1.2em;
+      letter-spacing: 0.015em;
+    }
+    a {
+      color: inherit;
+    }
+    .btn {
+      display: inline-block;
+      background-color: $pure-white;
+      color: $pure-black; 
+      font-weight: 700;
+      text-align: center; 
+      cursor: pointer; 
+      padding: 8px 16px;
+      border-radius: 12px;
+      user-select: none;
     }
   }
 }

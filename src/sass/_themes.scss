@@ -9,10 +9,15 @@
   border-radius: $border-radius;
   margin: 1em;
   z-index: 999;
-  font-family: "Nunito", sans-serif;
   cursor: pointer;
   transition: 1s;
   box-shadow: $box-shadow-default;
+  background-color: $pure-black;
+  @if lightness($main-colour) >=43% {
+    color: $pure-white;
+  } @else {
+    color: $pure-black;
+  }
 
   &:hover {
     transition: 1s;
@@ -83,7 +88,7 @@
   }
 
   header {
-    background-color: transparent;
+    background: black;
 
     img#Me {
       background: radial-gradient(
@@ -106,7 +111,7 @@
     .date-and-time {
       background: $colour-light-theme-secondary;
       color: $pure-black;
-  }
+    }
   }
 
   #welcome {

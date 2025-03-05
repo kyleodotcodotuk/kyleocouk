@@ -8,9 +8,10 @@ header {
   grid-template-columns: 50% 50%;
   align-content: center;
   align-items: center; 
-  background: linear-gradient(342deg, $main-colour, $secondary-colour);
-  background-size: 400% 400%;
-  animation: MainGrad 14s ease infinite;
+  // background: linear-gradient(342deg, $main-colour, $secondary-colour);
+  // background-size: 400% 400%;
+  // animation: MainGrad 14s ease infinite;
+  background: linear-gradient(to top, #f1e767 0%, #feb645 100%);
 
   @keyframes MainGrad {
     0% {
@@ -28,9 +29,7 @@ header {
 
   // Layout
   .left-side {
-    display: grid;
-    justify-items: start;
-    justify-content: start;
+    display: grid; 
   }
 
   .right-side {
@@ -70,18 +69,23 @@ header {
   .social-icons {
     padding: 0;
     margin: 16px 0 0 0;
+    display: inline-flex;
     li {
+      margin: 0 4px 0 0;
       a {
-        background-color: $main-colour;
+        background-color: darken($main-colour, 10%);
         overflow: hidden;
-        height: 32px;
-        width: 32px;
+        height: 52px;
+        width: 52px;
         display: grid;
         align-content: center;
         justify-content: center;
         border-radius: 50%;
         img {
           min-height: 20px;
+        }
+        &:hover,&:focus {
+          background-color: darken($main-colour, 20%);
         }
       }
     }
