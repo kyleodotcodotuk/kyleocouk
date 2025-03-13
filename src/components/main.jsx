@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Me from "../img/me.svg";
+import Me2 from "../img/me.png";
 import Code from "../img/code.png";
 import Github from "../icons/github.svg";
 import Bitcoin from "../icons/bitcoin.svg";
@@ -66,20 +67,6 @@ export default function Header() {
       <div className="left-side">
         <h1>UI Developer</h1>
 
-        <p className="date-and-time">
-          Manchester &middot; United Kingdom
-          <br />
-          {formatTime(currentTime)}
-          &nbsp;&middot;&nbsp;
-          <strong>
-            {`${currentTime.getDate()}${ordinalSuffixOf(
-              currentTime.getDate()
-            )} ${
-              monthNames[currentTime.getMonth()]
-            } ${currentTime.getFullYear()}`}
-          </strong>
-        </p>
-
         <ul className="social-icons">
           <li>
             <a
@@ -103,6 +90,16 @@ export default function Header() {
           </li>
         </ul>
 
+        <p className="date-and-time">
+          Manchester &middot; United Kingdom
+          <br />
+          <strong>{formatTime(currentTime)}</strong>
+          &nbsp;&middot;&nbsp;
+          {`${currentTime.getDate()}${ordinalSuffixOf(currentTime.getDate())} ${
+            monthNames[currentTime.getMonth()]
+          } ${currentTime.getFullYear()}`}
+        </p>
+
         <div className="content-switcher">
           <ul>
             <li
@@ -119,7 +116,7 @@ export default function Header() {
               className={activeTab === 1 ? "active" : ""}
               tabIndex="0"
             >
-              What I do
+              Expertise
             </li>
           </ul>
           <div>
@@ -129,45 +126,50 @@ export default function Header() {
                   <p>
                     Hello, I am Kyle O'Connor!
                     <br />
-                    Currently a UI developer, also known as a front end
-                    developer, web designer or other similar roles.
+                    Currently a UI developer, AKA a front end developer, web
+                    designer or other similar terminology.
                   </p>
                   <p>
                     I live in Tameside, more well known as a part of Greater
-                    Manchester with a remote based job for a company in Surrey
+                    Manchester. With a remote based job for a company in Surrey.
                   </p>
                   <p>
-                    Interested in any services, I'll see what I do for you, email me at
-                    </p>
-                    <p>
-                    <a className="btn" href="mailto:info@kyleo.co.uk">info@kyleo.co.uk</a>
+                    Interested in any services, I'll see what I can do for you,
+                    email me.
+                  </p>
+                  <p>
+                    <a
+                      className="btn"
+                      tabIndex="0"
+                      href="mailto:info@kyleo.co.uk"
+                    >
+                      info@kyleo.co.uk
+                    </a>
                   </p>
                 </div>
-                <img src={Code} alt="" />
+                <img src={Me2} alt="Me" />
               </div>
             )}
             {activeTab === 1 && (
               <div className="tab-content">
                 <div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Praesent neque nisl, cursus a condimentum eu, posuere non
-                    augue.
+                  <p>
+                    I make sure a website or interface looks good, feels smooth,
+                    and is intuitive for all users.
+                  </p>
+                  <p>
+                    My job is basically to turn a designer's vision into reality
+                    using code. However, due to factors like accessibility
+                    guidelines and common sense, I occasionally overrule the
+                    designer.
                   </p>
 
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Praesent neque nisl, cursus a condimentum eu, posuere non
-                    augue.
-                  </p>
-
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Praesent neque nisl, cursus a condimentum eu, posuere non
-                    augue.
+                    Having been doing it for almost a decade, I can confidently
+                    say I am an expert at front end.
                   </p>
                 </div>
-                <img src="https://picsum.photos/250" alt="" />
+                <img src={Code} alt="" />
               </div>
             )}
             {activeTab === 2 && (

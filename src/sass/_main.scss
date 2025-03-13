@@ -11,10 +11,10 @@ body {
   }
 
   a {
-    transition: 1s;
+    transition: 0.3s;
 
     &:hover {
-      transition: 1s;
+      transition: 0.3s;
     }
   }
   ::-webkit-scrollbar-track {
@@ -85,10 +85,11 @@ h3 {
   justify-content: space-between;
 }
 
-button { 
+button {
   font-family: "Nunito", sans-serif;
 }
 
-a:focus {
-  outline: 2px dashed blue; /* Customize the focus outline */
+a:focus-visible {
+  outline: 2px solid #ffdd00;
+  outline-offset: -2px;
 }
