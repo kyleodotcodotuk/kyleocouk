@@ -60,7 +60,17 @@ const Sidebar = () => {
     document.body.classList.toggle('dark-mode', newMode);
   };
 
-  const [menuItems, setMenuItems] = useState([
+  // Load menu state from localStorage if available
+  const getInitialMenuItems = () => {
+    const saved = localStorage.getItem('sidebarMenuItems');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        // fallback to default if parse fails
+      }
+    }
+    return [
     {
       id: 'dashboard',
       label: 'Dashboard',
@@ -142,16 +152,20 @@ const Sidebar = () => {
         { id: 'integrations', label: 'Integrations', icon: 'extension', path: '/admin/settings/integrations' }
       ]
     }
-  ]);
+    ];
+  };
+  const [menuItems, setMenuItems] = useState(getInitialMenuItems);
 
   const toggleMenuItem = (item) => {
     if (item.children && item.children.length > 0) {
-      setMenuItems(prevItems => 
-        prevItems.map(menuItem => ({
+      setMenuItems(prevItems => {
+        const updated = prevItems.map(menuItem => ({
           ...menuItem,
           expanded: menuItem.id === item.id ? !menuItem.expanded : false
-        }))
-      );
+        }));
+        localStorage.setItem('sidebarMenuItems', JSON.stringify(updated));
+        return updated;
+      });
     } else {
       setActiveItem(item.id);
       if (item.path) {
@@ -162,8 +176,8 @@ const Sidebar = () => {
 
   const toggleSubMenuItem = (parentItem, subItem) => {
     if (subItem.children && subItem.children.length > 0) {
-      setMenuItems(prevItems => 
-        prevItems.map(menuItem => {
+      setMenuItems(prevItems => {
+        const updated = prevItems.map(menuItem => {
           if (menuItem.id === parentItem.id) {
             return {
               ...menuItem,
@@ -174,8 +188,10 @@ const Sidebar = () => {
             };
           }
           return menuItem;
-        })
-      );
+        });
+        localStorage.setItem('sidebarMenuItems', JSON.stringify(updated));
+        return updated;
+      });
     } else {
       setActiveSubItem(parentItem, subItem);
       if (subItem.path) {
@@ -185,8 +201,8 @@ const Sidebar = () => {
   };
 
   const setActiveItem = (itemId) => {
-    setMenuItems(prevItems => 
-      prevItems.map(item => ({
+    setMenuItems(prevItems => {
+      const updated = prevItems.map(item => ({
         ...item,
         active: item.id === itemId,
         children: item.children ? item.children.map(child => ({
@@ -197,13 +213,15 @@ const Sidebar = () => {
             active: false
           })) : undefined
         })) : undefined
-      }))
-    );
+      }));
+      localStorage.setItem('sidebarMenuItems', JSON.stringify(updated));
+      return updated;
+    });
   };
 
   const setActiveSubItem = (parentItem, subItem) => {
-    setMenuItems(prevItems => 
-      prevItems.map(item => ({
+    setMenuItems(prevItems => {
+      const updated = prevItems.map(item => ({
         ...item,
         active: false,
         expanded: item.id === parentItem.id ? true : item.expanded,
@@ -215,13 +233,15 @@ const Sidebar = () => {
             active: false
           })) : undefined
         })) : undefined
-      }))
-    );
+      }));
+      localStorage.setItem('sidebarMenuItems', JSON.stringify(updated));
+      return updated;
+    });
   };
 
   const setActiveSubSubItem = (parentItem, subItem, subSubItem) => {
-    setMenuItems(prevItems => 
-      prevItems.map(item => ({
+    setMenuItems(prevItems => {
+      const updated = prevItems.map(item => ({
         ...item,
         active: false,
         expanded: item.id === parentItem.id ? true : item.expanded,
@@ -234,8 +254,10 @@ const Sidebar = () => {
             active: grandChild.id === subSubItem.id
           })) : undefined
         })) : undefined
-      }))
-    );
+      }));
+      localStorage.setItem('sidebarMenuItems', JSON.stringify(updated));
+      return updated;
+    });
     if (subSubItem.path) {
       navigate(subSubItem.path);
     }

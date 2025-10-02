@@ -2493,9 +2493,17 @@ body.dark-mode {
   position: relative;
 }
 
-.nav-item:hover, .sub-nav-item:hover, .sub-sub-nav-item:hover {
+.nav-item:hover {
+  background: #232a36; // 30% darker than #2d3748
+  color: white;
+}
+.sub-nav-item, .sub-sub-nav-item {
+  transition: padding-left 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.sub-nav-item:hover, .sub-sub-nav-item:hover {
   background: #2d3748;
   color: white;
+  padding-left: 4rem;
 }
 
 .nav-item {
@@ -2537,7 +2545,10 @@ body.dark-mode {
   transform: rotate(90deg);
 }
 
-.cms-nav li.active > .nav-item,
+.cms-nav li.active > .nav-item {
+  background: rgba(39, 103, 166, 0.85); // 30% darker than #4299e1 and slightly transparent
+  color: white;
+}
 .cms-nav li.active > .sub-nav-item,
 .cms-nav li.active > .sub-sub-nav-item {
   background: #4299e1;
@@ -2740,7 +2751,10 @@ body:not(.dark-mode) .sub-sub-nav-item {
   color: #4a5568;
 }
 
-body:not(.dark-mode) .nav-item:hover,
+body:not(.dark-mode) .nav-item:hover {
+  background: #c0c7d1; // 30% darken from #f7fafc
+  color: #1a202c;
+}
 body:not(.dark-mode) .sub-nav-item:hover,
 body:not(.dark-mode) .sub-sub-nav-item:hover {
   background: #f7fafc;

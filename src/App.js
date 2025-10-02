@@ -7,7 +7,8 @@ import Login from './components/admin/Login';
 import AdminDashboard from './components/admin/AdminDashboard';
 import PersonalEditor from './components/admin/PersonalEditor';
 import ExpertiseEditor from './components/admin/ExpertiseEditor';
-import SettingsEditor from './components/admin/SettingsEditor';
+import SettingsEditor from './components/admin/SettingsEditor'; 
+import { NewPage } from './components/admin';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import LoadingSpinner from './components/common/LoadingSpinner';
 import './sass/_all.scss';
@@ -62,6 +63,11 @@ function AppContent() {
           <Route path="/admin/settings" element={
             <ProtectedRoute>
               <SettingsEditor />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/posts/create" element={
+            <ProtectedRoute>
+              <NewPage />
             </ProtectedRoute>
           } />
         </Routes>
