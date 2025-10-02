@@ -8,7 +8,7 @@ import AdminDashboard from './components/admin/AdminDashboard';
 import PersonalEditor from './components/admin/PersonalEditor';
 import ExpertiseEditor from './components/admin/ExpertiseEditor';
 import SettingsEditor from './components/admin/SettingsEditor'; 
-import { NewPage } from './components/admin';
+import { NewPage, FavouritesPage, UserSettings, SecuritySettings } from './components/admin';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import LoadingSpinner from './components/common/LoadingSpinner';
 import './sass/_all.scss';
@@ -65,9 +65,24 @@ function AppContent() {
               <SettingsEditor />
             </ProtectedRoute>
           } />
+          <Route path="/admin/settings/user" element={
+            <ProtectedRoute>
+              <UserSettings />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/settings/security" element={
+            <ProtectedRoute>
+              <SecuritySettings />
+            </ProtectedRoute>
+          } />
           <Route path="/admin/posts/create" element={
             <ProtectedRoute>
               <NewPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/favourites" element={
+            <ProtectedRoute>
+              <FavouritesPage />
             </ProtectedRoute>
           } />
         </Routes>

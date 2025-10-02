@@ -3,6 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import { getCurrentUser, getAllUsers, setCurrentUser } from '../../data/users';
 
 const Sidebar = () => {
+  const [favourites, setFavourites] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('cmsFavourites')) || [];
+    } catch {
+      return [];
+    }
+  });
+
+  // Add/remove a page from favourites
+  const toggleFavourite = (fav) => {
+    setFavourites(prev => {
+      let updated;
+      if (prev.some(f => f.path === fav.path)) {
+        updated = prev.filter(f => f.path !== fav.path);
+      } else {
+        updated = [...prev, fav];
+      }
+      localStorage.setItem('cmsFavourites', JSON.stringify(updated));
+      return updated;
+    });
+  };
   const navigate = useNavigate();
   const [isDarkMode, setIsDarkMode] = useState(true); // Default to dark mode
   const [currentUser, setCurrentUserState] = useState(null);
@@ -147,9 +168,8 @@ const Sidebar = () => {
       icon: 'settings',
       expanded: false,
       children: [
-        { id: 'general', label: 'General', icon: 'tune', path: '/admin/settings' },
-        { id: 'security', label: 'Security', icon: 'shield', path: '/admin/settings/security' },
-        { id: 'integrations', label: 'Integrations', icon: 'extension', path: '/admin/settings/integrations' }
+        { id: 'user-settings', label: 'User Settings', icon: 'person', path: '/admin/settings/user' },
+        { id: 'security', label: 'Security', icon: 'shield', path: '/admin/settings/security' }
       ]
     }
     ];
@@ -161,7 +181,7 @@ const Sidebar = () => {
       setMenuItems(prevItems => {
         const updated = prevItems.map(menuItem => ({
           ...menuItem,
-          expanded: menuItem.id === item.id ? !menuItem.expanded : false
+          expanded: menuItem.id === item.id ? !menuItem.expanded : menuItem.expanded
         }));
         localStorage.setItem('sidebarMenuItems', JSON.stringify(updated));
         return updated;
@@ -183,7 +203,7 @@ const Sidebar = () => {
               ...menuItem,
               children: menuItem.children.map(child => ({
                 ...child,
-                expanded: child.id === subItem.id ? !child.expanded : (child.expanded || false)
+                expanded: child.id === subItem.id ? !child.expanded : child.expanded
               }))
             };
           }
@@ -379,32 +399,48 @@ const Sidebar = () => {
                       <div className="sub-nav-item" onClick={() => toggleSubMenuItem(item, subItem)}>
                         <span className="sub-nav-icon material-icons">{subItem.icon}</span>
                         <span className="sub-nav-label">{subItem.label}</span>
-                        {subItem.children && subItem.children.length > 0 && (
-                          <span className={`expand-icon material-icons ${subItem.expanded ? 'rotated' : ''}`}>
-                            chevron_right
+                        {/* Only show favourite star for sub menu items without children (leaf nodes) */}
+                        {!subItem.children && (
+                          <span className="material-icons favourite-star" style={{marginLeft: 8, fontSize: '1rem', color: favourites.some(f => f.path === subItem.path) ? '#ffd700' : '#b0b7c3', opacity: 0.7, cursor: 'pointer', verticalAlign: 'middle'}} onClick={e => {e.stopPropagation(); toggleFavourite({label: subItem.label, path: subItem.path, icon: subItem.icon});}}>
+                            {favourites.some(f => f.path === subItem.path) ? 'star' : 'star_border'}
                           </span>
                         )}
-                      </div>
+                          {subItem.children && subItem.children.length > 0 && (
+                            <span className={`expand-icon material-icons ${subItem.expanded ? 'rotated' : ''}`}>
+                              chevron_right
+                            </span>
+                          )}
+                        </div>
 
-                      {/* Third-level menu items */}
-                      {subItem.expanded && subItem.children && (
-                        <ul className="sub-sub-menu">
-                          {subItem.children.map((subSubItem) => (
-                            <li key={subSubItem.id} className={subSubItem.active ? 'active' : ''}>
-                              <div className="sub-sub-nav-item" onClick={() => setActiveSubSubItem(item, subItem, subSubItem)}>
-                                <span className="sub-sub-nav-icon material-icons">{subSubItem.icon}</span>
-                                <span className="sub-sub-nav-label">{subSubItem.label}</span>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
+                        {/* Third-level menu items */}
+                        {subItem.expanded && subItem.children && (
+                          <ul className="sub-sub-menu">
+                            {subItem.children.map((subSubItem) => (
+                              <li key={subSubItem.id} className={subSubItem.active ? 'active' : ''}>
+                                <div className="sub-sub-nav-item" onClick={() => setActiveSubSubItem(item, subItem, subSubItem)}>
+                                  <span className="sub-sub-nav-icon material-icons">{subSubItem.icon}</span>
+                                  <span className="sub-sub-nav-label">{subSubItem.label}</span>
+                                  <span className="material-icons favourite-star" style={{marginLeft: 8, fontSize: '1rem', color: favourites.some(f => f.path === subSubItem.path) ? '#ffd700' : '#b0b7c3', opacity: 0.7, cursor: 'pointer', verticalAlign: 'middle'}} onClick={e => {e.stopPropagation(); toggleFavourite({label: subSubItem.label, path: subSubItem.path, icon: subSubItem.icon});}}>
+                                    {favourites.some(f => f.path === subSubItem.path) ? 'star' : 'star_border'}
+                                  </span>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                     </li>
                   ))}
                 </ul>
               )}
             </li>
           ))}
+          {/* Favourites menu item */}
+          <li className="favourites-menu">
+            <div className="nav-item" onClick={() => navigate('/admin/favourites')} style={{cursor: 'pointer'}}>
+              <span className="nav-icon material-icons">star</span>
+              <span className="nav-label">Favourites</span>
+            </div>
+          </li>
         </ul>
       </nav>
 
