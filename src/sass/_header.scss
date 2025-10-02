@@ -7,7 +7,7 @@ header {
   display: grid;
   grid-template-columns: 50% 50%;
   align-content: center;
-  align-items: center; 
+  align-items: center;
   background: linear-gradient(342deg, $main-colour, $main-lighten-50);
   background-size: 400% 400%;
   animation: MainGrad 14s ease infinite;
@@ -29,7 +29,7 @@ header {
 
   // Layout
   .left-side {
-    display: grid; 
+    display: grid;
   }
 
   .right-side {
@@ -50,17 +50,24 @@ header {
     text-transform: capitalize;
     font-size: 4em;
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
   }
 
   h2 {
+    text-shadow: $subtle-shadow-text;
     font-size: 2.8em;
+    margin-bottom: 32px;
+    @if lightness($main-colour) >=43% {
+      color: $pure-black;
+    } @else {
+      color: $pure-white;
+    }
   }
 
   .date-and-time {
     padding: 0;
     margin: 0;
-    border-radius: $border-radius; 
+    border-radius: $border-radius;
     line-height: 20px;
     font-size: 1em;
   }
@@ -84,7 +91,8 @@ header {
         img {
           min-height: 20px;
         }
-        &:hover,&:focus {
+        &:hover,
+        &:focus {
           background-color: lighten($main-colour, 20%);
         }
       }

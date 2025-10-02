@@ -1,0 +1,11 @@
+{
+  "name": "setup-database",
+  "version": "1.0.0",
+  "description": "Setup script for CMS database integration",
+  "scripts": {
+    "setup": "npm install @supabase/supabase-js && echo 'Dependencies installed! Check DEPLOYMENT_GUIDE.md for next steps.'",
+    "dev": "npm start",
+    "build": "npm run build",
+    "deploy-preview": "npm run build && echo 'Build complete! Ready for Netlify deployment.'"
+  }
+}

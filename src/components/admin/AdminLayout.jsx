@@ -1,0 +1,139 @@
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import Sidebar from './Sidebar'; 
+
+export default function AdminLayout({ children }) {
+  const { logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const [dashboardInfo, setDashboardInfo] = useState({
+    currentTime: new Date(),
+    userIP: 'Loading...',
+    location: 'Loading...',
+    sessionStart: localStorage.getItem('cms_session_start') || new Date().toISOString()
+  });
+
+  useEffect(() => {
+    // Update time every second
+    const timer = setInterval(() => {
+      setDashboardInfo(prev => ({
+        ...prev,
+        currentTime: new Date()
+      }));
+    }, 1000);
+
+    // Get user IP and location
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        setDashboardInfo(prev => ({
+          ...prev,
+          userIP: data.ip || 'Unknown',
+          location: `${data.city || 'Unknown'}, ${data.country_name || 'Unknown'}`
+        }));
+      } catch (error) {
+        setDashboardInfo(prev => ({
+          ...prev,
+          userIP: 'Private Network',
+          location: 'Local Environment'
+        }));
+      }
+    };
+
+    // Set session start time if not exists
+    if (!localStorage.getItem('cms_session_start')) {
+      localStorage.setItem('cms_session_start', new Date().toISOString());
+    }
+
+    fetchUserInfo();
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTime = (date) => {
+    return date.toLocaleTimeString('en-GB', { 
+      hour: '2-digit', 
+      minute: '2-digit',
+      second: '2-digit'
+    });
+  };
+
+  const formatDate = (date) => {
+    return date.toLocaleDateString('en-GB', { 
+      weekday: 'long',
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
+
+  const getSessionDuration = () => {
+    const start = new Date(dashboardInfo.sessionStart);
+    const now = new Date();
+    const diff = Math.floor((now - start) / 1000 / 60); // minutes
+    return diff < 60 ? `${diff}m` : `${Math.floor(diff / 60)}h ${diff % 60}m`;
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('cms_session_start');
+    logout();
+    navigate('/');
+  };
+
+  if (!isAuthenticated) {
+    return null;
+  }
+
+  return (
+    <div className="admin-layout">
+      <nav className="admin-top-nav">
+        <div className="admin-nav-brand">
+          <h1>Grey Cat CMS</h1>
+          <span className="system-status">System Online</span>
+        </div>
+        
+        <div className="admin-nav-info">
+          <div className="nav-info-item">
+            <span className="info-label">Time</span>
+            <span className="info-value">{formatTime(dashboardInfo.currentTime)}</span>
+          </div>
+          <div className="nav-info-item">
+            <span className="info-label">Date</span>
+            <span className="info-value">{formatDate(dashboardInfo.currentTime)}</span>
+          </div>
+          <div className="nav-info-item">
+            <span className="info-label">Location</span>
+            <span className="info-value">{dashboardInfo.location}</span>
+          </div>
+          <div className="nav-info-item">
+            <span className="info-label">IP</span>
+            <span className="info-value">{dashboardInfo.userIP}</span>
+          </div>
+          <div className="nav-info-item">
+            <span className="info-label">Session</span>
+            <span className="info-value">{getSessionDuration()}</span>
+          </div>
+        </div>
+        
+        <div className="admin-nav-actions">
+          <button onClick={() => navigate('/')} className="btn-secondary">
+            <span className="btn-icon">◯</span>
+            View Site
+          </button>
+          <button onClick={handleLogout} className="btn-danger">
+            <span className="btn-icon">◉</span>
+            Logout
+          </button>
+        </div>
+      </nav>
+      
+      <div className="admin-body">
+        <Sidebar />
+        <main className="admin-main">
+          {children}
+        </main>
+      </div>
+    </div>
+  );
+}

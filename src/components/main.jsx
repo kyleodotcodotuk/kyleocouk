@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useContent } from "../contexts/ContentContext";
 import Me from "../img/me.svg";
 import Me2 from "../img/me.png";
 import Code from "../img/code.png";
@@ -36,6 +37,7 @@ const ordinalSuffixOf = (i) => {
 };
 
 export default function Header() {
+  const { content } = useContent();
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
@@ -65,33 +67,38 @@ export default function Header() {
   return (
     <header>
       <div className="left-side">
-        <h1>UI Developer</h1>
+        <h1>{content.personal.title}</h1>
+        <h2>{content.personal.name}</h2>
 
         <ul className="social-icons">
-          <li>
-            <a
-              href="https://github.com/kyleodotcodotuk"
-              target="_blank"
-              rel="noreferrer"
-              alt="Scrutinise me"
-            >
-              <img src={Github} alt="github icon" />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://strike.me/kyleocouk/"
-              target="_blank"
-              rel="noreferrer"
-              alt="Gimmie gimmie gimmie"
-            >
-              <img src={Bitcoin} alt="bitcoin icon" />
-            </a>
-          </li>
+          {content.social.github && (
+            <li>
+              <a
+                href={content.social.github}
+                target="_blank"
+                rel="noreferrer"
+                alt="Scrutinise me"
+              >
+                <img src={Github} alt="github icon" />
+              </a>
+            </li>
+          )}
+          {content.social.bitcoin && (
+            <li>
+              <a
+                href={content.social.bitcoin}
+                target="_blank"
+                rel="noreferrer"
+                alt="Gimmie gimmie gimmie"
+              >
+                <img src={Bitcoin} alt="bitcoin icon" />
+              </a>
+            </li>
+          )}
         </ul>
 
         <p className="date-and-time">
-          Manchester &middot; United Kingdom
+          {content.personal.location}
           <br />
           <strong>{formatTime(currentTime)}</strong>
           &nbsp;&middot;&nbsp;
@@ -123,27 +130,16 @@ export default function Header() {
             {activeTab === 0 && (
               <div className="tab-content">
                 <div>
-                  <p>
-                    Hello, I am Kyle O'Connor!
-                    <br />
-                    Currently a UI developer, AKA a front end developer, web
-                    designer or other similar terminology.
-                  </p>
-                  <p>
-                    I live in Tameside, more well known as a part of Greater
-                    Manchester. With a remote based job for a company in Surrey.
-                  </p>
-                  <p>
-                    Interested in any services, I'll see what I can do for you,
-                    email me.
-                  </p>
+                  {content.personal.bio.split('\n').map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
                   <p>
                     <a
                       className="btn"
                       tabIndex="0"
-                      href="mailto:info@kyleo.co.uk"
+                      href={`mailto:${content.personal.email}`}
                     >
-                      info@kyleo.co.uk
+                      {content.personal.email}
                     </a>
                   </p>
                 </div>
@@ -153,21 +149,9 @@ export default function Header() {
             {activeTab === 1 && (
               <div className="tab-content">
                 <div>
-                  <p>
-                    I make sure a website or interface looks good, feels smooth,
-                    and is intuitive for all users.
-                  </p>
-                  <p>
-                    My job is basically to turn a designer's vision into reality
-                    using code. However, due to factors like accessibility
-                    guidelines and common sense, I occasionally overrule the
-                    designer.
-                  </p>
-
-                  <p>
-                    Having been doing it for almost a decade, I can confidently
-                    say I am an expert at front end.
-                  </p>
+                  {content.expertise.description.split('\n').map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
                 </div>
                 <img src={Code} alt="" />
               </div>
