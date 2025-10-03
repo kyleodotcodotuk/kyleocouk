@@ -6,7 +6,7 @@ export default function UserSettings() {
     <AdminLayout>
       <section className="cms-section">
         <h1>User Settings</h1>
-        <p>This is the User Settings page. Add your user preferences and profile options here.</p>
+        <p>Manage your personal preferences and profile options on this page. Update your information to personalize your CMS experience.</p>
       </section>
     </AdminLayout>
   );

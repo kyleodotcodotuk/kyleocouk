@@ -6,7 +6,7 @@ export default function SecuritySettings() {
     <AdminLayout>
       <section className="cms-section">
         <h1>Security</h1>
-        <p>This is the Security page. Add your security settings and options here.</p>
+        <p>Configure your account and site security settings here. Use this page to update passwords, enable 2FA, and manage security options.</p>
       </section>
     </AdminLayout>
   );

@@ -18,6 +18,7 @@ export default function FavouritesPage() {
     <AdminLayout>
       <section className="cms-section">
         <h1>Favourites</h1>
+        <p>Quickly access your most-used CMS pages here. Favourite any page from the menu for easy access.</p>
         {favourites.length === 0 ? (
           <p className="cms-favourites-empty">You have not favourited any pages yet.</p>
         ) : (

@@ -86,8 +86,9 @@ export default function AdminLayout({ children }) {
   }
 
   return (
-    <div className="admin-layout">
-      <nav className="admin-top-nav">
+    <div className="back-end-admin">
+      <div className="admin-layout">
+        <nav className="admin-top-nav">
         <div className="admin-nav-brand">
           <h1>Grey Cat CMS</h1>
           <span className="system-status">System Online</span>
@@ -102,14 +103,7 @@ export default function AdminLayout({ children }) {
             <span className="info-label">Date</span>
             <span className="info-value">{formatDate(dashboardInfo.currentTime)}</span>
           </div>
-          <div className="nav-info-item">
-            <span className="info-label">Location</span>
-            <span className="info-value">{dashboardInfo.location}</span>
-          </div>
-          <div className="nav-info-item">
-            <span className="info-label">IP</span>
-            <span className="info-value">{dashboardInfo.userIP}</span>
-          </div>
+          {/* Location and IP removed as requested */}
           <div className="nav-info-item">
             <span className="info-label">Session</span>
             <span className="info-value">{getSessionDuration()}</span>
@@ -128,11 +122,12 @@ export default function AdminLayout({ children }) {
         </div>
       </nav>
       
-      <div className="admin-body">
-        <Sidebar />
-        <main className="admin-main">
-          {children}
-        </main>
+        <div className="admin-body">
+          <Sidebar />
+          <main className="admin-main">
+            {children}
+          </main>
+        </div>
       </div>
     </div>
   );

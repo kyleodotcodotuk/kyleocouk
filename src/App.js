@@ -8,7 +8,14 @@ import AdminDashboard from './components/admin/AdminDashboard';
 import PersonalEditor from './components/admin/PersonalEditor';
 import ExpertiseEditor from './components/admin/ExpertiseEditor';
 import SettingsEditor from './components/admin/SettingsEditor'; 
-import { NewPage, FavouritesPage, UserSettings, SecuritySettings } from './components/admin';
+import {
+  NewPage, FavouritesPage, UserSettings, SecuritySettings,
+  AllPosts, DraftPosts, PublishedPosts,
+  Pages, CreatePage, ExistingPages, PageTemplates,
+  Categories, CreateCategory, ManageCategories,
+  AllUsers, RolesPermissions, UserGroups,
+  Images, Videos, Documents
+} from './components/admin';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import LoadingSpinner from './components/common/LoadingSpinner';
 import './sass/_all.scss';
@@ -80,6 +87,30 @@ function AppContent() {
               <NewPage />
             </ProtectedRoute>
           } />
+            <Route path="/admin/posts" element={<ProtectedRoute><AllPosts /></ProtectedRoute>} />
+            <Route path="/admin/posts/drafts" element={<ProtectedRoute><DraftPosts /></ProtectedRoute>} />
+            <Route path="/admin/posts/published" element={<ProtectedRoute><PublishedPosts /></ProtectedRoute>} />
+
+            {/* Pages */}
+            <Route path="/admin/pages" element={<ProtectedRoute><Pages /></ProtectedRoute>} />
+            <Route path="/admin/pages/create" element={<ProtectedRoute><CreatePage /></ProtectedRoute>} />
+            <Route path="/admin/pages/templates" element={<ProtectedRoute><PageTemplates /></ProtectedRoute>} />
+            <Route path="/admin/pages/existing" element={<ProtectedRoute><ExistingPages /></ProtectedRoute>} />
+
+            {/* Categories */}
+            <Route path="/admin/categories" element={<ProtectedRoute><Categories /></ProtectedRoute>} />
+            <Route path="/admin/categories/create" element={<ProtectedRoute><CreateCategory /></ProtectedRoute>} />
+            <Route path="/admin/categories/manage" element={<ProtectedRoute><ManageCategories /></ProtectedRoute>} />
+
+            {/* Users */}
+            <Route path="/admin/users" element={<ProtectedRoute><AllUsers /></ProtectedRoute>} />
+            <Route path="/admin/users/roles" element={<ProtectedRoute><RolesPermissions /></ProtectedRoute>} />
+            <Route path="/admin/users/groups" element={<ProtectedRoute><UserGroups /></ProtectedRoute>} />
+
+            {/* Media */}
+            <Route path="/admin/media/images" element={<ProtectedRoute><Images /></ProtectedRoute>} />
+            <Route path="/admin/media/videos" element={<ProtectedRoute><Videos /></ProtectedRoute>} />
+            <Route path="/admin/media/documents" element={<ProtectedRoute><Documents /></ProtectedRoute>} />
           <Route path="/admin/favourites" element={
             <ProtectedRoute>
               <FavouritesPage />

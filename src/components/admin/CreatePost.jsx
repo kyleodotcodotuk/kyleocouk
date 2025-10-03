@@ -14,6 +14,7 @@ const CreatePost = () => {
   return (
     <section className="cms-section">
       <h1>Create New Post</h1>
+      <p>Use this page to create a new post for your website. Fill in the title and content, then publish when ready.</p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
         <input
