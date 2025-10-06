@@ -71,9 +71,35 @@ export default function Images() {
       <section className="cms-section">
         <h1>Images</h1>
         <p>Manage your image library. Upload, edit, or delete images here.</p>
-        <input type="file" accept="image/*" onChange={handleUpload} disabled={uploading} />
-        {uploading && <LoadingSpinner message="Uploading..." />}
-        {error && <div className="error-message">{error}</div>}
+        <form
+          onSubmit={e => e.preventDefault()}
+          style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem' }}
+        >
+          <label htmlFor="image-upload" style={{ fontWeight: 600 }}>Select an image to upload:</label>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <input
+              id="image-upload"
+              type="file"
+              accept="image/*"
+              style={{ flex: 1 }}
+              onChange={e => {
+                handleUpload(e);
+                e.target.value = '';
+              }}
+              disabled={uploading}
+            />
+            <button
+              type="button"
+              onClick={() => document.getElementById('image-upload').click()}
+              disabled={uploading}
+              style={{ padding: '0.5rem 1.2rem', fontWeight: 600 }}
+            >
+              Upload
+            </button>
+          </div>
+          {uploading && <LoadingSpinner message="Uploading..." />}
+          {error && <div className="error-message">{error}</div>}
+        </form>
         <div className="file-tree">
           {files.length === 0 && <p>No images uploaded yet.</p>}
           <ul>

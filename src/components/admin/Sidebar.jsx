@@ -289,8 +289,63 @@ const Sidebar = () => {
     ));
   };
 
+  // Burger menu state for mobile
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Close sidebar on route change or resize
+  useEffect(() => {
+    const closeOnResize = () => {
+      if (window.innerWidth > 500) setSidebarOpen(false);
+    };
+    window.addEventListener('resize', closeOnResize);
+    return () => {
+      window.removeEventListener('resize', closeOnResize);
+    };
+  }, []);
+
   return (
-    <aside className="cms-sidebar">
+    <>
+      {/* Burger menu button for mobile */}
+      <button
+        className="sidebar-toggle"
+        aria-label={sidebarOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={sidebarOpen}
+        onClick={() => setSidebarOpen((open) => !open)}
+        style={{
+          display: window.innerWidth > 500 ? 'none' : 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'fixed',
+          top: '1rem',
+          left: '1rem',
+          zIndex: 1100,
+          background: '#5b21b6',
+          color: '#fff',
+          border: 'none',
+          borderRadius: '50%',
+          width: 48,
+          height: 48,
+          padding: 0,
+          boxShadow: '0 2px 8px rgba(76,29,149,0.15)',
+          cursor: 'pointer',
+          transition: 'background 0.2s',
+        }}
+      >
+        <span className="material-icons" style={{ fontSize: 32, color: '#fff' }}>{sidebarOpen ? 'close' : 'menu'}</span>
+      </button>
+      <aside className={`cms-sidebar${sidebarOpen ? ' open' : ''}`}
+        style={window.innerWidth <= 500 ? {
+          transform: sidebarOpen ? 'translateX(0)' : 'translateX(-100%)',
+          transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1)',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          height: '100vh',
+          zIndex: 1000,
+          background: '#5b21b6',
+          boxShadow: '4px 0 20px rgba(76, 29, 149, 0.4)',
+        } : {}}
+      >
       {/* User Profile Section */}
       <div className="user-profile">
         <div 
@@ -466,7 +521,8 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-    </aside>
+      </aside>
+    </>
   );
 };
 
