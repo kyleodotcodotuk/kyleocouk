@@ -51,3 +51,6 @@ $colour-light-theme-main: #ffffff;
 $colour-light-theme-secondary: #fff8e3;
 $colour-light-theme-accent: #f3d7ca;
 $colour-light-theme-background: #f5eee6;
+
+// Import all token files through the tokens index
+@import 'tokens/index';

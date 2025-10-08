@@ -1,0 +1,29 @@
+:root {
+  // Frontend Component Tokens
+  --fe-border-radius-sm: 0.25rem;
+  --fe-border-radius-md: 0.375rem;
+  --fe-border-radius-lg: 0.5rem;
+  --fe-border-radius-full: 9999px;
+
+  --fe-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --fe-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --fe-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  --fe-transition-fast: 150ms;
+  --fe-transition-normal: 250ms;
+  --fe-transition-slow: 350ms;
+
+  // Admin Component Tokens
+  --ad-border-radius-sm: 0.25rem;
+  --ad-border-radius-md: 0.375rem;
+  --ad-border-radius-lg: 0.5rem;
+  --ad-border-radius-full: 9999px;
+
+  --ad-shadow-sm: 0 1px 3px 0 rgba(60, 64, 67, 0.3);
+  --ad-shadow-md: 0 4px 8px 0 rgba(60, 64, 67, 0.3);
+  --ad-shadow-lg: 0 8px 16px 0 rgba(60, 64, 67, 0.3);
+
+  --ad-transition-fast: 150ms;
+  --ad-transition-normal: 250ms;
+  --ad-transition-slow: 350ms;
+}

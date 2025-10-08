@@ -1,0 +1,26 @@
+:root {
+  // Frontend Spacing Tokens
+  --fe-spacing-xs: 0.25rem;
+  --fe-spacing-sm: 0.5rem;
+  --fe-spacing-md: 1rem;
+  --fe-spacing-lg: 1.5rem;
+  --fe-spacing-xl: 2rem;
+
+  // Frontend Layout Tokens
+  --fe-container-max-width: 1200px;
+  --fe-container-padding: 1rem;
+  --fe-grid-gap: 1rem;
+
+  // Admin Spacing Tokens
+  --ad-spacing-xs: 0.25rem;
+  --ad-spacing-sm: 0.5rem;
+  --ad-spacing-md: 1rem;
+  --ad-spacing-lg: 1.5rem;
+  --ad-spacing-xl: 2rem;
+
+  // Admin Layout Tokens
+  --ad-sidebar-width: 250px;
+  --ad-header-height: 64px;
+  --ad-container-padding: 1.5rem;
+  --ad-grid-gap: 1.25rem;
+}
