@@ -1,0 +1,132 @@
+// Form group base styles
+.form-group {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 0.95rem;
+    letter-spacing: 0.025em;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+    color: #1e293b;
+
+    &:focus {
+      outline: none;
+      border-color: #3b82f6;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 140px;
+    line-height: 1.6;
+  }
+
+  small {
+    display: block;
+    margin-top: 0.75rem;
+    color: #64748b;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+}
+
+// Form actions
+.form-actions {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+// Message styles
+.success-message {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 1.25rem;
+  border-radius: 12px;
+  margin-top: 1.5rem;
+  border: 1px solid #34d399;
+  font-weight: 600;
+  box-shadow: 0 4px 6px -1px rgba(52, 211, 153, 0.1);
+}
+
+.error-message {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 1.25rem;
+  border-radius: 12px;
+  margin-top: 1.5rem;
+  border: 1px solid #f87171;
+  font-weight: 600;
+  box-shadow: 0 4px 6px -1px rgba(248, 113, 113, 0.1);
+}
+
+// Loading states
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+// Loading spinner sizes
+.loading-spinner {
+  position: relative;
+  display: inline-block;
+
+  &-small .spinner-circle {
+    width: 24px;
+    height: 24px;
+  }
+
+  &-medium .spinner-circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  &-large .spinner-circle {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+.spinner-circle {
+  border: 3px solid #e2e8f0;
+  border-top: 3px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-message {
+  margin-top: 1rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

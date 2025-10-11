@@ -1,0 +1,214 @@
+// Dashboard layout
+.dashboard {
+  width: 100%;
+  min-height: 100vh;
+
+  &-welcome {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+
+    .welcome-text {
+      h2 {
+        color: #1e293b;
+        margin: 0 0 0.5rem 0;
+        font-size: 2.25rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+      }
+
+      p {
+        color: #64748b;
+        margin: 0 0 0.75rem 0;
+        font-size: 1.125rem;
+        font-weight: 400;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  &-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: #5b21b6;
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+      border-color: #cbd5e1;
+
+      &::before {
+        transform: scaleX(1);
+      }
+
+      .card-icon {
+        background: #dbeafe;
+        border-color: #bfdbfe;
+        transform: scale(1.05);
+      }
+
+      .card-arrow {
+        color: #3b82f6;
+        transform: translateX(4px);
+      }
+    }
+  }
+}
+
+// Card components within dashboard
+.card {
+  &-icon {
+    font-size: 2.75rem;
+    background: #f0f9ff;
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #e0f2fe;
+    transition: all 0.3s ease;
+  }
+
+  &-content {
+    flex: 1;
+
+    h3 {
+      margin: 0 0 0.75rem 0;
+      color: #1e293b;
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+
+    p {
+      margin: 0;
+      color: #64748b;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+  }
+
+  &-arrow {
+    font-size: 1.5rem;
+    color: #94a3b8;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+}
+
+// Stats overview section
+.dashboard-stats-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+
+  .stat-overview-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #5b21b6;
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #1e293b;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: #64748b;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .stat-trend {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.25rem;
+      font-weight: bold;
+
+      &.up { color: #10b981; }
+      &.down { color: #ef4444; }
+      &.stable { color: #64748b; }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .dashboard {
+    &-welcome {
+      flex-direction: column;
+      text-align: center;
+      padding: 1.5rem;
+
+      .welcome-text h2 {
+        font-size: 1.75rem;
+      }
+    }
+
+    &-grid {
+      grid-template-columns: 1fr;
+    }
+
+    &-card {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+}
