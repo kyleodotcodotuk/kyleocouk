@@ -1,0 +1,22 @@
+/* Backend Components - Complete Import Structure */
+
+// Import variables from frontend
+@use '../frontend/var' as *;
+
+// Base backend styles
+@use 'admin_minimal';
+
+// Layout components
+@use 'layout/index' as layout;
+
+// Component styles
+@use 'components/index' as components;
+
+// Dashboard styles
+@use 'dashboard/index' as dashboard;
+
+// Page styles
+@use 'pages/index' as pages;
+
+// Utility classes
+@use 'utils/index' as utils;

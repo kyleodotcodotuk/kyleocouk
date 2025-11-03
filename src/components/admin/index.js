@@ -1,22 +1,14 @@
-export { default as CreatePost } from './CreatePost';
-export { default as NewPage } from './NewPage';
-export { default as AllPosts } from './AllPosts';
-export { default as DraftPosts } from './DraftPosts';
-export { default as PublishedPosts } from './PublishedPosts';
-export { default as Pages } from './Pages';
-export { default as CreatePage } from './CreatePage';
-export { default as ExistingPages } from './ExistingPages';
-export { default as PageTemplates } from './PageTemplates';
-export { default as Categories } from './Categories';
-export { default as CreateCategory } from './CreateCategory';
-export { default as ManageCategories } from './ManageCategories';
-export { default as AllUsers } from './AllUsers';
-export { default as RolesPermissions } from './RolesPermissions';
-export { default as UserGroups } from './UserGroups';
-export { default as Images } from './Images';
-export { default as Videos } from './Videos';
-export { default as Documents } from './Documents';
+// Clean admin components - only exports for components that are actually used
+export { default as AdminDashboard } from './AdminDashboard';
+export { default as AdminLayout } from './AdminLayout';
+export { default as BlogEditor } from './BlogEditor';
+export { default as BlogManager } from './BlogManager';
 export { default as FavouritesPage } from './FavouritesPage';
-export { default as UserSettings } from './UserSettings';
-export { default as SecuritySettings } from './SecuritySettings';
-// ...existing exports for admin components
+export { default as Login } from './Login';
+export { default as MediaLibrary } from './MediaLibrary';
+export { default as Portfolio } from './Portfolio';
+export { default as ProjectEditor } from './ProjectEditor';
+export { default as ProtectedRoute } from './ProtectedRoute';
+export { default as Settings } from './Settings';
+export { default as Sidebar } from './Sidebar';
+export { default as UserManager } from './UserManager';

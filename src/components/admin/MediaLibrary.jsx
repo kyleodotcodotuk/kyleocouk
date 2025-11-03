@@ -1,0 +1,267 @@
+import React, { useState, useEffect } from 'react';
+import AdminLayout from './AdminLayout';
+
+export default function MediaLibrary() {
+  const [mediaFiles, setMediaFiles] = useState([]);
+  const [isUploading, setIsUploading] = useState(false);
+  const [view, setView] = useState('all'); // all, images, videos, documents
+
+  useEffect(() => {
+    // Load media files from localStorage
+    const savedMedia = localStorage.getItem('mediaFiles');
+    if (savedMedia) {
+      try {
+        setMediaFiles(JSON.parse(savedMedia));
+      } catch {
+        setMediaFiles([]);
+      }
+    }
+  }, []);
+
+  const saveMediaFiles = (updatedFiles) => {
+    setMediaFiles(updatedFiles);
+    localStorage.setItem('mediaFiles', JSON.stringify(updatedFiles));
+  };
+
+  const deleteMediaFile = (fileId) => {
+    const updatedFiles = mediaFiles.filter(f => f.id !== fileId);
+    saveMediaFiles(updatedFiles);
+  };
+
+  const handleFileUpload = (event) => {
+    const files = Array.from(event.target.files);
+    setIsUploading(true);
+
+    // Simulate file upload process
+    files.forEach((file, index) => {
+      setTimeout(() => {
+        const fileType = file.type.startsWith('image/') ? 'image' : 
+                        file.type.startsWith('video/') ? 'video' : 'document';
+        
+        const newFile = {
+          id: Date.now() + index,
+          name: file.name,
+          type: fileType,
+          size: file.size,
+          uploadedAt: new Date().toISOString(),
+          url: URL.createObjectURL(file), // In production, this would be your actual upload URL
+          mimeType: file.type
+        };
+
+        const currentFiles = JSON.parse(localStorage.getItem('mediaFiles') || '[]');
+        const updatedFiles = [...currentFiles, newFile];
+        saveMediaFiles(updatedFiles);
+
+        if (index === files.length - 1) {
+          setIsUploading(false);
+        }
+      }, 500 * (index + 1));
+    });
+  };
+
+  const handleUrlUpload = (url, type) => {
+    if (!url.trim()) return;
+
+    const newFile = {
+      id: Date.now(),
+      name: url.split('/').pop() || 'Untitled',
+      type: type || 'image',
+      size: 0,
+      uploadedAt: new Date().toISOString(),
+      url: url.trim(),
+      mimeType: type === 'image' ? 'image/jpeg' : type === 'video' ? 'video/mp4' : 'application/pdf'
+    };
+
+    const updatedFiles = [...mediaFiles, newFile];
+    saveMediaFiles(updatedFiles);
+  };
+
+  const formatFileSize = (bytes) => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  };
+
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
+  };
+
+  const filteredFiles = mediaFiles.filter(file => {
+    if (view === 'images') return file.type === 'image';
+    if (view === 'videos') return file.type === 'video';
+    if (view === 'documents') return file.type === 'document';
+    return true;
+  });
+
+  const getFileIcon = (file) => {
+    switch (file.type) {
+      case 'image': return 'image';
+      case 'video': return 'videocam';
+      case 'document': return 'description';
+      default: return 'insert_drive_file';
+    }
+  };
+
+  return (
+    <AdminLayout>
+      <div className="media-library">
+        <div className="media-header">
+          <h1>Media Library</h1>
+          <div className="upload-section">
+            <input
+              type="file"
+              id="file-upload"
+              multiple
+              accept="image/*,video/*,.pdf,.doc,.docx,.txt"
+              onChange={handleFileUpload}
+              style={{ display: 'none' }}
+            />
+            <button 
+              className="btn btn-primary"
+              onClick={() => document.getElementById('file-upload').click()}
+              disabled={isUploading}
+            >
+              <span className="material-icons">upload</span>
+              {isUploading ? 'Uploading...' : 'Upload Files'}
+            </button>
+          </div>
+        </div>
+
+        <div className="media-tabs">
+          <button 
+            className={view === 'all' ? 'active' : ''}
+            onClick={() => setView('all')}
+          >
+            <span className="material-icons">folder</span>
+            All Files ({mediaFiles.length})
+          </button>
+          <button 
+            className={view === 'images' ? 'active' : ''}
+            onClick={() => setView('images')}
+          >
+            <span className="material-icons">image</span>
+            Images ({mediaFiles.filter(f => f.type === 'image').length})
+          </button>
+          <button 
+            className={view === 'videos' ? 'active' : ''}
+            onClick={() => setView('videos')}
+          >
+            <span className="material-icons">videocam</span>
+            Videos ({mediaFiles.filter(f => f.type === 'video').length})
+          </button>
+          <button 
+            className={view === 'documents' ? 'active' : ''}
+            onClick={() => setView('documents')}
+          >
+            <span className="material-icons">description</span>
+            Documents ({mediaFiles.filter(f => f.type === 'document').length})
+          </button>
+        </div>
+
+        <div className="upload-from-url">
+          <details>
+            <summary>Add from URL</summary>
+            <div className="url-upload-form">
+              <input
+                type="url"
+                placeholder="Enter image, video, or document URL"
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    const url = e.target.value;
+                    const type = url.match(/\.(jpg|jpeg|png|gif|webp)$/i) ? 'image' :
+                               url.match(/\.(mp4|webm|ogg)$/i) ? 'video' : 'document';
+                    handleUrlUpload(url, type);
+                    e.target.value = '';
+                  }
+                }}
+              />
+              <button 
+                className="btn btn-secondary"
+                onClick={(e) => {
+                  const input = e.target.previousElementSibling;
+                  const url = input.value;
+                  const type = url.match(/\.(jpg|jpeg|png|gif|webp)$/i) ? 'image' :
+                             url.match(/\.(mp4|webm|ogg)$/i) ? 'video' : 'document';
+                  handleUrlUpload(url, type);
+                  input.value = '';
+                }}
+              >
+                Add
+              </button>
+            </div>
+          </details>
+        </div>
+
+        {filteredFiles.length === 0 ? (
+          <div className="empty-state">
+            <span className="material-icons">perm_media</span>
+            <h3>No media files yet</h3>
+            <p>Upload your first image, video, or document to get started</p>
+            <button 
+              className="btn btn-primary"
+              onClick={() => document.getElementById('file-upload').click()}
+            >
+              Upload Files
+            </button>
+          </div>
+        ) : (
+          <div className="media-grid">
+            {filteredFiles.map(file => (
+              <div key={file.id} className="media-item">
+                <div className="media-preview">
+                  {file.type === 'image' ? (
+                    <img src={file.url} alt={file.name} />
+                  ) : (
+                    <div className="file-icon">
+                      <span className="material-icons">{getFileIcon(file)}</span>
+                    </div>
+                  )}
+                </div>
+                
+                <div className="media-info">
+                  <h4 title={file.name}>{file.name}</h4>
+                  <div className="media-meta">
+                    <span>{formatFileSize(file.size)}</span>
+                    <span>{formatDate(file.uploadedAt)}</span>
+                  </div>
+                </div>
+
+                <div className="media-actions">
+                  <button 
+                    className="btn btn-icon"
+                    onClick={() => navigator.clipboard.writeText(file.url)}
+                    title="Copy URL"
+                  >
+                    <span className="material-icons">link</span>
+                  </button>
+                  
+                  <button 
+                    className="btn btn-icon"
+                    onClick={() => window.open(file.url, '_blank')}
+                    title="View full size"
+                  >
+                    <span className="material-icons">open_in_new</span>
+                  </button>
+                  
+                  <button 
+                    className="btn btn-icon danger"
+                    onClick={() => deleteMediaFile(file.id)}
+                    title="Delete file"
+                  >
+                    <span className="material-icons">delete</span>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </AdminLayout>
+  );
+}

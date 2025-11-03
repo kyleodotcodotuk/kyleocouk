@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { usersAPI } from '../../data/users';
 import Sidebar from './Sidebar'; 
 
 export default function AdminLayout({ children }) {
@@ -14,13 +15,30 @@ export default function AdminLayout({ children }) {
   });
 
   useEffect(() => {
-    // Update time every second
+    // Update time every second and track user activity
     const timer = setInterval(() => {
       setDashboardInfo(prev => ({
         ...prev,
         currentTime: new Date()
       }));
+      
+      // Update user activity every 30 seconds
+      if (isAuthenticated) {
+        usersAPI.updateUserActivity();
+      }
     }, 1000);
+
+    // Track user activity on page interactions
+    const trackActivity = () => {
+      if (isAuthenticated) {
+        usersAPI.updateUserActivity();
+      }
+    };
+
+    // Listen for user interactions
+    window.addEventListener('click', trackActivity);
+    window.addEventListener('keypress', trackActivity);
+    window.addEventListener('scroll', trackActivity);
 
     // Get user IP and location
     const fetchUserInfo = async () => {
@@ -48,8 +66,13 @@ export default function AdminLayout({ children }) {
 
     fetchUserInfo();
 
-    return () => clearInterval(timer);
-  }, []);
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener('click', trackActivity);
+      window.removeEventListener('keypress', trackActivity);
+      window.removeEventListener('scroll', trackActivity);
+    };
+  }, [isAuthenticated]);
 
   const formatTime = (date) => {
     return date.toLocaleTimeString('en-GB', { 
@@ -76,9 +99,15 @@ export default function AdminLayout({ children }) {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('cms_session_start');
-    logout();
-    navigate('/');
+    const isConfirmed = window.confirm(
+      'Are you sure you want to logout?\n\nThis will end your current session and redirect you to the homepage.'
+    );
+    
+    if (isConfirmed) {
+      localStorage.removeItem('cms_session_start');
+      logout();
+      navigate('/');
+    }
   };
 
   if (!isAuthenticated) {
@@ -90,32 +119,30 @@ export default function AdminLayout({ children }) {
       <div className="admin-layout">
         <nav className="admin-top-nav">
         <div className="admin-nav-brand">
-          <h1>Grey Cat CMS</h1>
+ 
           <span className="system-status">System Online</span>
         </div>
         
         <div className="admin-nav-info">
-          <div className="nav-info-item">
-            <span className="info-label">Time</span>
+          <div className="nav-info-item"> 
             <span className="info-value">{formatTime(dashboardInfo.currentTime)}</span>
           </div>
-          <div className="nav-info-item">
-            <span className="info-label">Date</span>
+          <div className="nav-info-item"> 
             <span className="info-value">{formatDate(dashboardInfo.currentTime)}</span>
           </div>
           {/* Location and IP removed as requested */}
           <div className="nav-info-item">
-            <span className="info-label">Session</span>
+            <span className="info-label">Session: </span>
             <span className="info-value">{getSessionDuration()}</span>
           </div>
         </div>
         
         <div className="admin-nav-actions">
-          <button onClick={() => navigate('/')} className="btn-secondary">
+          <button onClick={() => window.open('/', '_blank')} className="btn btn-secondary">
             <span className="btn-icon">◯</span>
             View Site
           </button>
-          <button onClick={handleLogout} className="btn-danger">
+          <button onClick={handleLogout} className="btn btn-danger">
             <span className="btn-icon">◉</span>
             Logout
           </button>

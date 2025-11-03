@@ -2,19 +2,20 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { ContentProvider, useContent } from './contexts/ContentContext';
-import { Main } from "./components";
+import { Main, NotFound } from "./components";
 import Login from './components/admin/Login';
 import AdminDashboard from './components/admin/AdminDashboard';
-import PersonalEditor from './components/admin/PersonalEditor';
-import ExpertiseEditor from './components/admin/ExpertiseEditor';
-import SettingsEditor from './components/admin/SettingsEditor'; 
+import Portfolio from './components/admin/Portfolio';
+import ProjectEditor from './components/admin/ProjectEditor';
+import BlogManager from './components/admin/BlogManager';
+import BlogEditor from './components/admin/BlogEditor';
+import MediaLibrary from './components/admin/MediaLibrary';
+import Settings from './components/admin/Settings';
+import UserManager from './components/admin/UserManager';
+import PortfolioPage from './components/PortfolioPage';
+import ProjectDetailPage from './components/ProjectDetailPage';
 import {
-  NewPage, FavouritesPage, UserSettings, SecuritySettings,
-  AllPosts, DraftPosts, PublishedPosts,
-  Pages, CreatePage, ExistingPages, PageTemplates,
-  Categories, CreateCategory, ManageCategories,
-  AllUsers, RolesPermissions, UserGroups,
-  Images, Videos, Documents
+  FavouritesPage
 } from './components/admin';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import LoadingSpinner from './components/common/LoadingSpinner';
@@ -48,6 +49,10 @@ function AppContent() {
             </>
           } />
           
+          {/* Public Portfolio routes */}
+          <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/portfolio/:slug" element={<ProjectDetailPage />} />
+          
           {/* Auth routes */}
           <Route path="/login" element={<Login />} />
           
@@ -57,65 +62,121 @@ function AppContent() {
               <AdminDashboard />
             </ProtectedRoute>
           } />
-          <Route path="/admin/personal" element={
+          
+          {/* Portfolio Management */}
+          <Route path="/admin/portfolio" element={
             <ProtectedRoute>
-              <PersonalEditor />
+              <Portfolio />
             </ProtectedRoute>
           } />
-          <Route path="/admin/expertise" element={
+          <Route path="/admin/portfolio/projects" element={
             <ProtectedRoute>
-              <ExpertiseEditor />
+              <Portfolio />
             </ProtectedRoute>
           } />
+          <Route path="/admin/portfolio/projects/create" element={
+            <ProtectedRoute>
+              <ProjectEditor />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/portfolio/projects/edit/:id" element={
+            <ProtectedRoute>
+              <ProjectEditor />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/portfolio/skills" element={
+            <ProtectedRoute>
+              <Portfolio />
+            </ProtectedRoute>
+          } />
+
+          {/* Blog Management */}
+          <Route path="/admin/blog" element={
+            <ProtectedRoute>
+              <BlogManager />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/blog/posts" element={
+            <ProtectedRoute>
+              <BlogManager />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/blog/drafts" element={
+            <ProtectedRoute>
+              <BlogManager />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/blog/create" element={
+            <ProtectedRoute>
+              <BlogEditor />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/blog/edit/:id" element={
+            <ProtectedRoute>
+              <BlogEditor />
+            </ProtectedRoute>
+          } />
+
+          {/* Media Library */}
+          <Route path="/admin/media" element={
+            <ProtectedRoute>
+              <MediaLibrary />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/media/images" element={
+            <ProtectedRoute>
+              <MediaLibrary />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/media/videos" element={
+            <ProtectedRoute>
+              <MediaLibrary />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/media/documents" element={
+            <ProtectedRoute>
+              <MediaLibrary />
+            </ProtectedRoute>
+          } />
+
+          {/* User Management */}
+          <Route path="/admin/users" element={
+            <ProtectedRoute>
+              <UserManager />
+            </ProtectedRoute>
+          } />
+
+          {/* Settings */}
           <Route path="/admin/settings" element={
             <ProtectedRoute>
-              <SettingsEditor />
+              <Settings />
             </ProtectedRoute>
           } />
-          <Route path="/admin/settings/user" element={
+          <Route path="/admin/settings/profile" element={
             <ProtectedRoute>
-              <UserSettings />
+              <Settings />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/settings/site" element={
+            <ProtectedRoute requiredPermissions={['manage_settings', 'system_settings']}>
+              <Settings />
             </ProtectedRoute>
           } />
           <Route path="/admin/settings/security" element={
-            <ProtectedRoute>
-              <SecuritySettings />
+            <ProtectedRoute requiredPermissions={['manage_settings', 'system_settings']}>
+              <Settings />
             </ProtectedRoute>
           } />
-          <Route path="/admin/posts/create" element={
-            <ProtectedRoute>
-              <NewPage />
-            </ProtectedRoute>
-          } />
-            <Route path="/admin/posts" element={<ProtectedRoute><AllPosts /></ProtectedRoute>} />
-            <Route path="/admin/posts/drafts" element={<ProtectedRoute><DraftPosts /></ProtectedRoute>} />
-            <Route path="/admin/posts/published" element={<ProtectedRoute><PublishedPosts /></ProtectedRoute>} />
 
-            {/* Pages */}
-            <Route path="/admin/pages" element={<ProtectedRoute><Pages /></ProtectedRoute>} />
-            <Route path="/admin/pages/create" element={<ProtectedRoute><CreatePage /></ProtectedRoute>} />
-            <Route path="/admin/pages/templates" element={<ProtectedRoute><PageTemplates /></ProtectedRoute>} />
-            <Route path="/admin/pages/existing" element={<ProtectedRoute><ExistingPages /></ProtectedRoute>} />
-
-            {/* Categories */}
-            <Route path="/admin/categories" element={<ProtectedRoute><Categories /></ProtectedRoute>} />
-            <Route path="/admin/categories/create" element={<ProtectedRoute><CreateCategory /></ProtectedRoute>} />
-            <Route path="/admin/categories/manage" element={<ProtectedRoute><ManageCategories /></ProtectedRoute>} />
-
-            {/* Users */}
-            <Route path="/admin/users" element={<ProtectedRoute><AllUsers /></ProtectedRoute>} />
-            <Route path="/admin/users/roles" element={<ProtectedRoute><RolesPermissions /></ProtectedRoute>} />
-            <Route path="/admin/users/groups" element={<ProtectedRoute><UserGroups /></ProtectedRoute>} />
-
-            {/* Media */}
-            <Route path="/admin/media/images" element={<ProtectedRoute><Images /></ProtectedRoute>} />
-            <Route path="/admin/media/videos" element={<ProtectedRoute><Videos /></ProtectedRoute>} />
-            <Route path="/admin/media/documents" element={<ProtectedRoute><Documents /></ProtectedRoute>} />
+          {/* Favourites */}
           <Route path="/admin/favourites" element={
             <ProtectedRoute>
               <FavouritesPage />
             </ProtectedRoute>
           } />
+
+          {/* 404 - Catch all unmatched routes */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>

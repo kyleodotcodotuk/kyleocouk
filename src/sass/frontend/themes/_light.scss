@@ -1,0 +1,26 @@
+/* Light theme overrides - add only if needed *//* Light Theme for Frontend */
+
+:root {
+  // Light theme color overrides for frontend
+  --hero-bg: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --card-bg: #ffffff;
+  --card-hover-bg: #f8fafc;
+  --section-bg-alt: #f1f5f9;
+  
+  // Enhanced text contrast for light theme
+  --text-hero: #1e293b;
+  --text-subtitle: #64748b;
+  
+  // Light theme specific shadows
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --card-hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  
+  // Button variations for light theme
+  --btn-secondary-bg: #f1f5f9;
+  --btn-secondary-color: #475569;
+  --btn-secondary-hover-bg: #e2e8f0;
+  
+  // Border colors
+  --border-light: #e2e8f0;
+  --border-medium: #cbd5e1;
+}

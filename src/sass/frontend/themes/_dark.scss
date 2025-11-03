@@ -1,0 +1,30 @@
+/* Dark theme overrides - add only if needed *//* Dark Theme for Frontend */
+
+[data-theme="dark"] {
+  // Dark theme color overrides for frontend
+  --hero-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --card-bg: #1e293b;
+  --card-hover-bg: #334155;
+  --section-bg-alt: #0f172a;
+  
+  // Enhanced text contrast for dark theme
+  --text-hero: #f1f5f9;
+  --text-subtitle: #94a3b8;
+  
+  // Dark theme specific shadows
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --card-hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  
+  // Button variations for dark theme
+  --btn-secondary-bg: #334155;
+  --btn-secondary-color: #e2e8f0;
+  --btn-secondary-hover-bg: #475569;
+  
+  // Border colors
+  --border-light: #334155;
+  --border-medium: #475569;
+  
+  // Adjust gradients for dark theme
+  --gradient-hero: linear-gradient(135deg, var(--portfolio-primary) 0%, var(--portfolio-secondary) 100%);
+  --gradient-card: linear-gradient(145deg, #1e293b 0%, #334155 100%);
+}

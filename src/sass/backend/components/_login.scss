@@ -1,0 +1,26 @@
+.loginPage {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  .login-form {
+    width: 440px;
+    min-height: 300px;
+    margin: 20px auto;
+    border-radius: 20px;
+    background: #fefeff;
+    padding: 2rem 2rem 4rem;
+    position: relative;
+
+    input {
+      color: grey;
+      &:active,
+      &:focus {
+        color: black;
+      }
+    }
+
+    .btn-login {
+      background-color: green;
+    }
+  }
+}

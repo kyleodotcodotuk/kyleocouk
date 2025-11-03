@@ -1,43 +1,76 @@
-import React, { useState } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import { getAllUsers } from '../../data/users';
+import React, { useState } from "react";
+import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { getAllUsers } from "../../data/users";
 
 export default function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  
+
   const { login } = useAuth();
   const navigate = useNavigate();
-  const availableUsers = getAllUsers();
+  const users = getAllUsers();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
 
     const success = await login(username, password);
-    
+
     if (success) {
-      navigate('/admin');
+      navigate("/admin");
     } else {
-      setError('Invalid credentials. Check the available users below.');
+      setError("Invalid username or password. Please try again.");
     }
-    
+
     setLoading(false);
   };
 
-  const handleQuickLogin = (user) => {
+  const fillUserCredentials = (user) => {
     setUsername(user.username);
-    setPassword(user.password);
+    // Use the actual default passwords for development
+    const defaultPasswords = {
+      'admin': 'Admin2024!',
+      'user1': 'User2024!',
+      'user2': 'User2024!',
+      'user3': 'User2024!',
+      'user4': 'User2024!'
+    };
+    setPassword(defaultPasswords[user.username] || 'User2024!');
+    setError("");
   };
 
   return (
-    <div className="login-container">
+    <div className="loginPage">
       <div className="login-form">
-        <h2>CMS Login</h2>
+        <h2>Sign into CMS</h2>
+
+        <div className="quick-fill-buttons">
+          <p className="quick-fill-label">Quick Login (Development Only):</p>
+          <div className="user-buttons">
+            {users.map((user) => (
+              <button
+                key={user.id}
+                type="button"
+                className={`btn quick-fill-btn ${user.role.toLowerCase()}`}
+                onClick={() => fillUserCredentials(user)}
+                title={`Login as ${user.name} (${user.role})`}
+              >
+                <span className="user-info">
+                  <span className="user-name">{user.name}</span>
+                  <span className="user-role">{user.role}</span>
+                </span>
+                <span className="material-icons">
+                  {user.role === 'ADMIN' ? 'admin_panel_settings' : 'person'}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username:</label>
@@ -48,9 +81,10 @@ export default function Login() {
               onChange={(e) => setUsername(e.target.value)}
               required
               autoComplete="username"
+              placeholder="Enter your username"
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="password">Password:</label>
             <input
@@ -60,47 +94,17 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
               autoComplete="current-password"
+              placeholder="Enter your password"
             />
           </div>
-          
-          {error && <div className="error-message">{error}</div>}
-          
-          <button type="submit" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
+
+          {error && <div className="btn btn-danger error-message">{error}</div>}
+
+          <button type="submit" disabled={loading} className="btn btn-login">
+            <span className="material-icons">person</span>{" "}
+            {loading ? "Signing in..." : "Sign In"}
           </button>
         </form>
-        
-        <div className="available-users">
-          <h3>Available Users</h3>
-          <div className="users-grid">
-            {availableUsers.map(user => (
-              <div 
-                key={user.id} 
-                className="user-card"
-                onClick={() => handleQuickLogin(user)}
-              >
-                <div className="user-avatar">
-                  {user.avatar ? (
-                    <img src={user.avatar} alt={user.name} />
-                  ) : (
-                    <div className="user-initials">{user.initials}</div>
-                  )}
-                </div>
-                <div className="user-info">
-                  <div className="user-name">{user.name}</div>
-                  <div className="user-role">{user.role}</div>
-                  <div className="user-credentials">
-                    <small>Username: {user.username}</small>
-                    <small>Password: {user.password}</small>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="login-hint">
-            <small>Click on any user card to auto-fill their credentials</small>
-          </p>
-        </div>
       </div>
     </div>
   );

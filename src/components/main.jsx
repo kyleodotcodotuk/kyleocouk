@@ -142,6 +142,15 @@ export default function Header() {
                       {content.personal.email}
                     </a>
                   </p>
+                  <p>
+                    <a
+                      className="btn btn-secondary"
+                      tabIndex="0"
+                      href="/portfolio"
+                    >
+                      View My Portfolio
+                    </a>
+                  </p>
                 </div>
                 <img src={Me2} alt="Me" />
               </div>

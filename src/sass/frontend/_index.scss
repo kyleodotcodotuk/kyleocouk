@@ -1,0 +1,18 @@
+/* Frontend Styles Index - Public facing components */
+
+// Core frontend styles
+@use 'var' as *;
+@use 'themes';
+@use 'respond';
+
+// Layout (actual content)
+@use 'layout/header';   
+
+// Public pages and components
+@use 'main';
+@use 'switcher';
+@use 'portfolio';
+@use 'project-detail';
+@use 'not-found';
+
+// Base, other layout, components, pages, and themes are minimal placeholders

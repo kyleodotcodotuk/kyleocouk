@@ -1,0 +1,104 @@
+// User card component styles
+.user-card {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(91,33,182,0.08), 0 1.5px 4px rgba(91,33,182,0.04);
+  padding: 1.5rem 2rem;
+  min-width: 260px;
+  max-width: 320px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: box-shadow 0.2s;
+  border: 1px solid #ede9fe;
+
+  &:hover {
+    box-shadow: 0 4px 24px rgba(91,33,182,0.16), 0 2px 8px rgba(91,33,182,0.08);
+  }
+
+  &-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #ede9fe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #5b21b6;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+
+  &-initials {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #5b21b6;
+  }
+
+  &-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+    color: #2d225a;
+  }
+
+  &-role {
+    font-size: 0.95rem;
+    color: #7c3aed;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  &-detail {
+    font-size: 0.92rem;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    margin-bottom: 0.1rem;
+  }
+
+  &-status {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.2em 0.7em;
+    border-radius: 1em;
+    display: inline-block;
+    background: #f3f4f6;
+    color: #6b7280;
+
+    &.active {
+      background: #d1fae5;
+      color: #059669;
+    }
+
+    &.inactive {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+  }
+}
+
+.users-card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: flex-start;
+  margin-top: 2rem;
+}

@@ -1,19 +1,9 @@
-// GFonts
+// All @use statements must come first
+@use "frontend/var" as *;  // Use * to make variables available without namespace
+@use "backend/index" as backend;  // Use explicit namespace to avoid conflicts
+@use "frontend/index" as frontend;  // Use explicit namespace to avoid conflicts
+@use "frontend/themes";
+@use "frontend/respond";
+
+// External imports after @use
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
-
-// Base styles
-@import "reset";
-@import "var";
-
-// Components
-@import "main";
-@import "header"; 
-@import "timeline";
-@import "switcher";
-@import "admin";
-
-// Theme
-@import "themes";
-
-// Mob rules
-@import "respond";

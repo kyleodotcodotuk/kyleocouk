@@ -94,7 +94,7 @@ class CMSApiService {
     if (this.useDatabase) {
       try {
         // Try our local user authentication first
-        const localAuth = authenticateUser(username, password);
+        const localAuth = await authenticateUser(username, password);
         if (localAuth.success) {
           return localAuth;
         }
@@ -111,10 +111,10 @@ class CMSApiService {
       } catch (error) {
         console.error('Error logging in:', error);
         // Fallback to local auth
-        return authenticateUser(username, password);
+        return await authenticateUser(username, password);
       }
     } else {
-      return authenticateUser(username, password);
+      return await authenticateUser(username, password);
     }
   }
 
