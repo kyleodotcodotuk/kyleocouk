@@ -39,6 +39,7 @@ const ordinalSuffixOf = (i) => {
 export default function Header() {
   const { content } = useContent();
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -57,8 +58,6 @@ export default function Header() {
     const minutes = time.getMinutes().toString().padStart(2, "0"); // Pad minutes with leading 0
     return `${hours}:${minutes} ${getMeridian(time.getHours())}`;
   };
-
-  const [activeTab, setActiveTab] = useState(0);
 
   const handleTabClick = (index) => {
     setActiveTab(index);

@@ -47,7 +47,7 @@ export default function ProjectDetailPage() {
       navigate('/portfolio');
     }
     setLoading(false);
-  }, [fullSlug, navigate]);
+  }, [slug, navigate]);
 
   const nextImage = () => {
     if (project?.gallery) {
