@@ -5,6 +5,33 @@ export default function MediaLibrary() {
   const [mediaFiles, setMediaFiles] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
   const [view, setView] = useState('all'); // all, images, videos, documents
+  const [expandedImage, setExpandedImage] = useState(null);
+
+  // Dynamically import all images from the static folder
+  const importAll = (r) => {
+    return r.keys().map((fileName, index) => {
+      const imageUrl = r(fileName);
+      // Extract filename without extension
+      const nameWithoutExt = fileName.replace('./', '').replace(/\.[^/.]+$/, '');
+      
+      // Format the name: replace hyphens/underscores with spaces and capitalize words
+      const formattedName = nameWithoutExt
+        .replace(/[-_]/g, ' ')
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
+      
+      return {
+        id: `static-${index + 1}`,
+        name: formattedName,
+        url: imageUrl,
+        thumb: imageUrl
+      };
+    });
+  };
+
+  // Load all images from the static folder automatically
+  const staticImages = importAll(require.context('../../img/static', false, /\.(png|jpe?g|gif|webp|svg)$/i));
 
   useEffect(() => {
     // Load media files from localStorage
@@ -113,6 +140,87 @@ export default function MediaLibrary() {
       <div className="media-library">
         <div className="media-header">
           <h1>Media Library</h1>
+        </div>
+
+        {/* Static FTP Images Gallery */}
+        <div className="static-images-section">
+          <h2>
+            <span className="material-icons">folder_special</span>
+            Static FTP Images
+          </h2>
+          <p className="section-description">Click any image to view full size. These images are manually managed via FTP.</p>
+          
+          <div className="static-images-grid">
+            {staticImages.map(image => (
+              <div 
+                key={image.id} 
+                className="static-image-item"
+                onClick={() => setExpandedImage(image)}
+              >
+                <div className="static-image-thumb">
+                  <img src={image.thumb} alt={image.name} />
+                  <div className="image-overlay">
+                    <span className="material-icons">zoom_in</span>
+                  </div>
+                </div>
+                <div className="static-image-info">
+                  <span className="image-name">{image.name}</span>
+                  <button 
+                    className="btn btn-icon-small"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigator.clipboard.writeText(image.url);
+                    }}
+                    title="Copy URL"
+                  >
+                    <span className="material-icons">link</span>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Image Expansion Modal */}
+        {expandedImage && (
+          <div className="image-modal" onClick={() => setExpandedImage(null)}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <button 
+                className="modal-close"
+                onClick={() => setExpandedImage(null)}
+              >
+                <span className="material-icons">close</span>
+              </button>
+              <img src={expandedImage.url} alt={expandedImage.name} />
+              <div className="modal-info">
+                <h3>{expandedImage.name}</h3>
+                <div className="modal-actions">
+                  <button 
+                    className="btn btn-secondary"
+                    onClick={() => navigator.clipboard.writeText(expandedImage.url)}
+                  >
+                    <span className="material-icons">link</span>
+                    Copy URL
+                  </button>
+                  <button 
+                    className="btn btn-secondary"
+                    onClick={() => window.open(expandedImage.url, '_blank')}
+                  >
+                    <span className="material-icons">open_in_new</span>
+                    Open in New Tab
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* File Upload Section */}
+        <div className="upload-controls">
+          <h2>
+            <span className="material-icons">cloud_upload</span>
+            Upload New Files
+          </h2>
           <div className="upload-section">
             <input
               type="file"

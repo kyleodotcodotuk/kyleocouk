@@ -36,7 +36,7 @@ const defaultUsers = [
     role: 'ADMIN',
     location: 'Manchester, UK',
     status: 'online',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+    avatar: '/img/static/010.jpg',
     bio: 'Full-stack developer and system administrator',
     lastLogin: null,
     lastSeen: new Date().toISOString(),
