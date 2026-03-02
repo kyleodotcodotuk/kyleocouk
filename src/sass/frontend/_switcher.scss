@@ -2,7 +2,7 @@
 @use "var" as *;  // Import variables from same directory
 
 .content-switcher {
-  @if color.channel($secondary-colour, "lightness", hsl) >= 43% {
+  @if color.lightness($secondary-colour) >= 43% {
     color: $pure-black;
   } @else {
     color: $pure-white;
@@ -88,7 +88,7 @@
     }
     .btn {
       background-color: $main-colour;
-      @if color.channel($secondary-colour, "lightness", hsl) >= 43% {
+      @if color.lightness($secondary-colour) >= 43% {
         color: $pure-black;
       } @else {
         color: $pure-white;

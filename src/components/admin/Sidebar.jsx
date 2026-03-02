@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { getCurrentUser } from "../../data/users";
 import { getAvailableRoutes } from "../../config/adminRoutes";
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
   const [favourites, setFavourites] = useState(() => {
     try {
       return JSON.parse(localStorage.getItem("cmsFavourites")) || [];
@@ -158,6 +158,7 @@ const Sidebar = () => {
       setActiveItem(item.id);
       if (item.path) {
         navigate(item.path);
+        onNavigate();
       }
     }
   };
@@ -185,6 +186,7 @@ const Sidebar = () => {
       setActiveSubItem(parentItem, subItem);
       if (subItem.path) {
         navigate(subItem.path);
+        onNavigate();
       }
     }
   };
@@ -261,6 +263,7 @@ const Sidebar = () => {
     });
     if (subSubItem.path) {
       navigate(subSubItem.path);
+      onNavigate();
     }
   };
 
@@ -278,7 +281,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="cms-sidebar">
+    <aside className={`cms-sidebar ${isOpen ? "open" : ""}`}>
       {/* User Profile Section */}
       <div className="user-profile">
         <div className="avatar">
@@ -463,7 +466,10 @@ const Sidebar = () => {
           <li className="favourites-menu">
             <div
               className="nav-item"
-              onClick={() => navigate("/admin/favourites")}
+              onClick={() => {
+                navigate("/admin/favourites");
+                onNavigate();
+              }}
               style={{ cursor: "pointer" }}
             >
               <span className="nav-icon material-icons">star</span>

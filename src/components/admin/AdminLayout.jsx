@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { usersAPI } from '../../data/users';
 import Sidebar from './Sidebar'; 
 
 export default function AdminLayout({ children }) {
   const { logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [dashboardInfo, setDashboardInfo] = useState({
     currentTime: new Date(),
     userIP: 'Loading...',
@@ -74,6 +76,32 @@ export default function AdminLayout({ children }) {
     };
   }, [isAuthenticated]);
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle('admin-menu-open', isMobileMenuOpen);
+
+    return () => {
+      document.body.classList.remove('admin-menu-open');
+    };
+  }, [isMobileMenuOpen]);
+
   const formatTime = (date) => {
     return date.toLocaleTimeString('en-GB', { 
       hour: '2-digit', 
@@ -114,10 +142,27 @@ export default function AdminLayout({ children }) {
     return null;
   }
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <div className="back-end-admin">
       <div className="admin-layout">
         <nav className="admin-top-nav">
+        <button
+          type="button"
+          className="sidebar-toggle"
+          onClick={toggleMobileMenu}
+          aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMobileMenuOpen}
+        >
+          <span className="material-icons">{isMobileMenuOpen ? 'close' : 'menu'}</span>
+        </button>
         <div className="admin-nav-brand">
  
           <span className="system-status">System Online</span>
@@ -148,9 +193,15 @@ export default function AdminLayout({ children }) {
           </button>
         </div>
       </nav>
+
+        <div
+          className={`sidebar-overlay ${isMobileMenuOpen ? 'open' : ''}`}
+          onClick={closeMobileMenu}
+          aria-hidden={!isMobileMenuOpen}
+        />
       
         <div className="admin-body">
-          <Sidebar />
+          <Sidebar isOpen={isMobileMenuOpen} onNavigate={closeMobileMenu} />
           <main className="admin-main">
             {children}
           </main>
