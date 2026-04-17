@@ -164,13 +164,12 @@ export default function AdminLayout({ children }) {
           <span className="material-icons">{isMobileMenuOpen ? 'close' : 'menu'}</span>
         </button>
         <div className="admin-nav-brand">
- 
-          <span className="system-status">System Online</span>
+         <h1>Grey Cat CMS system</h1>
         </div>
         
         <div className="admin-nav-info">
           <div className="nav-info-item"> 
-            <span className="info-value">{formatTime(dashboardInfo.currentTime)}</span>
+            <span className="info-value">Local time: {formatTime(dashboardInfo.currentTime)}</span>
           </div>
           <div className="nav-info-item"> 
             <span className="info-value">{formatDate(dashboardInfo.currentTime)}</span>
@@ -183,12 +182,12 @@ export default function AdminLayout({ children }) {
         </div>
         
         <div className="admin-nav-actions">
-          <button onClick={() => window.open('/', '_blank')} className="btn btn-secondary">
-            <span className="btn-icon">◯</span>
+          <button onClick={() => window.open('/', '_blank')} className="btn btn-primary">
+            <span className="btn-icon"><span className="material-icons">subtitles</span></span>
             View Site
           </button>
           <button onClick={handleLogout} className="btn btn-danger">
-            <span className="btn-icon">◉</span>
+            <span className="btn-icon"><span className="material-icons">exit_to_app</span></span>
             Logout
           </button>
         </div>

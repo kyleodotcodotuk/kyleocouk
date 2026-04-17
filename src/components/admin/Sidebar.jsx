@@ -481,7 +481,7 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
 
       {/* Version info */}
       <div className="version-info">
-        <span className="version-text">Grey Cat v.1.0</span>
+        <span className="version-text">Grey Cat v.1.0 </span>
       </div>
 
       {/* Theme Switch */}

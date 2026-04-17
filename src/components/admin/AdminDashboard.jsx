@@ -127,18 +127,22 @@ export default function AdminDashboard() {
     <AdminLayout>
       <div className="admin-dashboard">
         <div className="dashboard-header">
-          <h1>Welcome back, {currentUser.name}!</h1>
-          <p>Overview of users and their content contributions</p>
+          <h1>Welcome, {currentUser.name}!</h1>
+          <p>Overview of users and their contributions</p>
         </div>
+
+        <hr />
 
         <div className="user-content-widget">
           <div className="widget-header">
             <h2>
               <span className="material-icons">people</span>
-              Users & Content Overview
+              User Overview
             </h2>
             <p>See what everyone's been working on</p>
           </div>
+
+          <hr />
 
           <div className="user-content-grid">
             {userContentStats.map(user => (
