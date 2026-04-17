@@ -12,6 +12,7 @@ import BlogEditor from './components/admin/BlogEditor';
 import MediaLibrary from './components/admin/MediaLibrary';
 import Settings from './components/admin/Settings';
 import UserManager from './components/admin/UserManager';
+import Chat from './components/admin/Chat';
 import PortfolioPage from './components/PortfolioPage';
 import ProjectDetailPage from './components/ProjectDetailPage';
 import {
@@ -143,6 +144,13 @@ function AppContent() {
           <Route path="/admin/users" element={
             <ProtectedRoute>
               <UserManager />
+            </ProtectedRoute>
+          } />
+
+          {/* Chat */}
+          <Route path="/admin/chat" element={
+            <ProtectedRoute>
+              <Chat />
             </ProtectedRoute>
           } />
 

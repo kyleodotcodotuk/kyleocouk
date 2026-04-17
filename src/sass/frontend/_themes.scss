@@ -17,7 +17,7 @@
   transition: 1s;
   box-shadow: $box-shadow-default;
   background-color: $pure-black;
-  @if color.channel($main-colour, "lightness", hsl) >=43% {
+  @if color.lightness($main-colour) >=43% {
     color: $pure-white;
   } @else {
     color: $pure-black;

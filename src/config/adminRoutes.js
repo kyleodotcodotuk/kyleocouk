@@ -68,6 +68,12 @@ export const adminRoutes = [
     path: '/admin/users'
   },
   {
+    id: 'chat',
+    label: 'Chat',
+    icon: 'chat',
+    path: '/admin/chat'
+  },
+  {
     id: 'settings',
     label: 'Settings',
     icon: 'settings',
@@ -111,6 +117,7 @@ export const isRouteAvailable = (path, userPermissions = [], routePermissions = 
     '/admin/blog/create',
     '/admin/media',
     '/admin/users',
+    '/admin/chat',
     '/admin/settings',
     '/admin/settings/profile',
     '/admin/settings/site',

@@ -141,10 +141,9 @@ export default function Header() {
                     >
                       {content.personal.email}
                     </a>
-                  </p>
-                  <p>
+            
                     <a
-                      className="btn btn-secondary"
+                      className="btn"
                       tabIndex="0"
                       href="/portfolio"
                     >
