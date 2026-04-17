@@ -7,16 +7,38 @@
     min-height: 300px;
     margin: 20px auto;
     border-radius: 20px;
-    background: #fefeff;
-    padding: 2rem 2rem 4rem;
+    background: #e6e6e6;
+    box-shadow:
+      rgba(0, 0, 0, 0.25) 0px 54px 55px,
+      rgba(0, 0, 0, 0.12) 0px -12px 30px,
+      rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba(0, 0, 0, 0.17) 0px 12px 13px,
+      rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    padding: 4rem 2rem;
     position: relative;
+
+    .btn {
+      width: 100%;
+      margin: 0;
+    }
+
+    .login-btns {
+      margin-block-start: 2.5em;
+      display: flex;
+      gap: 0 0.5em;
+      justify-content: space-between;
+    }
+
+    h2 {
+      margin: 0 0 0.7em 0; 
+    }
 
     input {
       color: grey;
       &:active,
       &:focus {
         color: black;
-      }
+      } 
     }
 
     .btn-login {

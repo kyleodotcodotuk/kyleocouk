@@ -46,9 +46,9 @@ export default function Login() {
   return (
     <div className="loginPage">
       <div className="login-form">
-        <h2>Sign into CMS</h2>
+        <h2>Sign into CMS <span className="material-icons">login</span></h2>
 
-        <div className="quick-fill-buttons">
+        { <div className="quick-fill-buttons">
           <p className="quick-fill-label">Quick Login (Development Only):</p>
           <div className="user-buttons">
             {users.map((user) => (
@@ -69,7 +69,7 @@ export default function Login() {
               </button>
             ))}
           </div>
-        </div>
+        </div> }
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -100,10 +100,18 @@ export default function Login() {
 
           {error && <div className="btn btn-danger error-message">{error}</div>}
 
+          <div className="login-btns">
+
           <button type="submit" disabled={loading} className="btn btn-login">
             <span className="material-icons">person</span>{" "}
             {loading ? "Signing in..." : "Sign In"}
           </button>
+
+          <button type="submit" disabled={loading} className="btn btn-primary">
+            <span className="material-icons">work</span>{" "}
+            {loading ? "Signing in..." : "Recruiter"}
+          </button>
+          </div>
         </form>
       </div>
     </div>
