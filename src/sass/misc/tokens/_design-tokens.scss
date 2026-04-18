@@ -1,0 +1,31 @@
+// Design Tokens for CMS (Feedback, Spacing, Typography, Z-index)
+:root {
+  // Feedback tokens
+  --feedback-success: #138f2b;
+  --feedback-success-bg: #e6f9ed;
+  --feedback-success-border: #b6e2c6;
+  --feedback-error: #b80c09;
+  --feedback-error-bg: #ffeaea;
+  --feedback-error-border: #f5b5b5;
+  --feedback-warning: #ffdc5e;
+  --feedback-warning-bg: #fffbe6;
+  --feedback-warning-border: #ffe9a7;
+  --feedback-info: #5B5F97;
+  --feedback-info-bg: #e8eafd;
+  --feedback-info-border: #bfc6f7;
+
+  // Spacing tokens
+  --space-xxs: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+
+  // Z-index tokens
+  --z-index-dropdown: 1000;
+  --z-index-modal: 1100;
+  --z-index-toast: 1200;
+  --z-index-tooltip: 1300;
+}

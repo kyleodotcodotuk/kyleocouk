@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import { postsAPI } from '../data/posts';
 import { usersAPI } from '../data/users';
 import { mediaAPI } from '../data/media';
 
@@ -9,20 +8,6 @@ const CMSDispatchContext = createContext();
 
 // Action types
 export const CMS_ACTIONS = {
-  // Posts
-  POSTS_LOADED: 'POSTS_LOADED',
-  POST_CREATED: 'POST_CREATED',
-  POST_UPDATED: 'POST_UPDATED',
-  POST_DELETED: 'POST_DELETED',
-  POSTS_BULK_UPDATED: 'POSTS_BULK_UPDATED',
-
-  // Users
-  USERS_LOADED: 'USERS_LOADED',
-  USER_CREATED: 'USER_CREATED',
-  USER_UPDATED: 'USER_UPDATED',
-  USER_DELETED: 'USER_DELETED',
-  SESSION_UPDATED: 'SESSION_UPDATED',
-
   // Media
   MEDIA_LOADED: 'MEDIA_LOADED',
   MEDIA_UPLOADED: 'MEDIA_UPLOADED',

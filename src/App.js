@@ -7,12 +7,8 @@ import Login from './components/admin/Login';
 import AdminDashboard from './components/admin/AdminDashboard';
 import Portfolio from './components/admin/Portfolio';
 import ProjectEditor from './components/admin/ProjectEditor';
-import BlogManager from './components/admin/BlogManager';
-import BlogEditor from './components/admin/BlogEditor';
 import MediaLibrary from './components/admin/MediaLibrary';
 import Settings from './components/admin/Settings';
-import UserManager from './components/admin/UserManager';
-import Chat from './components/admin/Chat';
 import PortfolioPage from './components/PortfolioPage';
 import ProjectDetailPage from './components/ProjectDetailPage';
 import {
@@ -91,33 +87,6 @@ function AppContent() {
             </ProtectedRoute>
           } />
 
-          {/* Blog Management */}
-          <Route path="/admin/blog" element={
-            <ProtectedRoute>
-              <BlogManager />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin/blog/posts" element={
-            <ProtectedRoute>
-              <BlogManager />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin/blog/drafts" element={
-            <ProtectedRoute>
-              <BlogManager />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin/blog/create" element={
-            <ProtectedRoute>
-              <BlogEditor />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin/blog/edit/:id" element={
-            <ProtectedRoute>
-              <BlogEditor />
-            </ProtectedRoute>
-          } />
-
           {/* Media Library */}
           <Route path="/admin/media" element={
             <ProtectedRoute>
@@ -140,20 +109,6 @@ function AppContent() {
             </ProtectedRoute>
           } />
 
-          {/* User Management */}
-          <Route path="/admin/users" element={
-            <ProtectedRoute>
-              <UserManager />
-            </ProtectedRoute>
-          } />
-
-          {/* Chat */}
-          <Route path="/admin/chat" element={
-            <ProtectedRoute>
-              <Chat />
-            </ProtectedRoute>
-          } />
-
           {/* Settings */}
           <Route path="/admin/settings" element={
             <ProtectedRoute>
@@ -166,11 +121,6 @@ function AppContent() {
             </ProtectedRoute>
           } />
           <Route path="/admin/settings/site" element={
-            <ProtectedRoute requiredPermissions={['manage_settings', 'system_settings']}>
-              <Settings />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin/settings/security" element={
             <ProtectedRoute requiredPermissions={['manage_settings', 'system_settings']}>
               <Settings />
             </ProtectedRoute>

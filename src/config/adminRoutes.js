@@ -30,48 +30,10 @@ export const adminRoutes = [
     ]
   },
   {
-    id: 'blog',
-    label: 'Blog Posts',
-    icon: 'article',
-    expanded: false,
-    children: [
-      { 
-        id: 'create-post', 
-        label: 'Create New Post', 
-        icon: 'add_circle',
-        path: '/admin/blog/create'
-      },
-      { 
-        id: 'all-posts', 
-        label: 'All Posts', 
-        icon: 'list',
-        path: '/admin/blog/posts'
-      },
-      { 
-        id: 'draft-posts', 
-        label: 'Draft Posts', 
-        icon: 'edit_note',
-        path: '/admin/blog/drafts'
-      }
-    ]
-  },
-  {
     id: 'media',
     label: 'Media Library',
     icon: 'perm_media',
     path: '/admin/media'
-  },
-  {
-    id: 'users',
-    label: 'User Management',
-    icon: 'people',
-    path: '/admin/users'
-  },
-  {
-    id: 'chat',
-    label: 'Chat',
-    icon: 'chat',
-    path: '/admin/chat'
   },
   {
     id: 'settings',
@@ -89,15 +51,7 @@ export const adminRoutes = [
         id: 'site-settings', 
         label: 'Site Settings', 
         icon: 'web',
-        path: '/admin/settings/site',
-        permissions: ['manage_settings', 'system_settings'] // Require admin permissions
-      },
-      { 
-        id: 'security', 
-        label: 'Security', 
-        icon: 'shield',
-        path: '/admin/settings/security',
-        permissions: ['manage_settings', 'system_settings'] // Require admin permissions
+        path: '/admin/settings/site'
       }
     ]
   }
@@ -111,17 +65,10 @@ export const isRouteAvailable = (path, userPermissions = [], routePermissions = 
     '/admin/portfolio',
     '/admin/portfolio/projects',
     '/admin/portfolio/skills',
-    '/admin/blog',
-    '/admin/blog/posts',
-    '/admin/blog/drafts', 
-    '/admin/blog/create',
     '/admin/media',
-    '/admin/users',
-    '/admin/chat',
     '/admin/settings',
     '/admin/settings/profile',
     '/admin/settings/site',
-    '/admin/settings/security',
     '/admin/favourites'
   ];
   
@@ -130,13 +77,8 @@ export const isRouteAvailable = (path, userPermissions = [], routePermissions = 
     return false;
   }
 
-  // Check user permissions for specific routes
-  if (path === '/admin/users') {
-    return userPermissions.includes('manage_users') || userPermissions.includes('*');
-  }
-
-  // Check site settings and security permissions
-  if (path === '/admin/settings/site' || path === '/admin/settings/security') {
+  // Check site settings permissions
+  if (path === '/admin/settings/site') {
     return userPermissions.includes('manage_settings') || 
            userPermissions.includes('system_settings') || 
            userPermissions.includes('*');

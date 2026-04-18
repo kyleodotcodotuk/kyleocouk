@@ -31,15 +31,7 @@ export default function Login() {
 
   const fillUserCredentials = (user) => {
     setUsername(user.username);
-    // Use the actual default passwords for development
-    const defaultPasswords = {
-      'admin': 'Admin2024!',
-      'user1': 'User2024!',
-      'user2': 'User2024!',
-      'user3': 'User2024!',
-      'user4': 'User2024!'
-    };
-    setPassword(defaultPasswords[user.username] || 'User2024!');
+    setPassword(user.password);
     setError("");
   };
 
@@ -48,28 +40,30 @@ export default function Login() {
       <div className="login-form">
         <h2>Sign into CMS <span className="material-icons">login</span></h2>
 
-        { <div className="quick-fill-buttons">
-          <p className="quick-fill-label">Quick Login (Development Only):</p>
-          <div className="user-buttons">
-            {users.map((user) => (
-              <button
-                key={user.id}
-                type="button"
-                className={`btn quick-fill-btn ${user.role.toLowerCase()}`}
-                onClick={() => fillUserCredentials(user)}
-                title={`Login as ${user.name} (${user.role})`}
-              >
-                <span className="user-info">
-                  <span className="user-name">{user.name}</span>
-                  <span className="user-role">{user.role}</span>
-                </span>
-                <span className="material-icons">
-                  {user.role === 'ADMIN' ? 'admin_panel_settings' : 'person'}
-                </span>
-              </button>
-            ))}
+        {users.length > 0 && (
+          <div className="quick-fill-buttons">
+            <p className="quick-fill-label">Quick Login (Development Only):</p>
+            <div className="user-buttons">
+              {users.map((user) => (
+                <button
+                  key={user.id}
+                  type="button"
+                  className={`btn quick-fill-btn ${user.role.toLowerCase()}`}
+                  onClick={() => fillUserCredentials(user)}
+                  title={`Login as ${user.name} (${user.role})`}
+                >
+                  <span className="user-info">
+                    <span className="user-name">{user.name}</span>
+                    <span className="user-role">{user.role}</span>
+                  </span>
+                  <span className="material-icons">
+                    {user.role === 'ADMIN' ? 'admin_panel_settings' : 'person'}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
-        </div> }
+        )}
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -101,16 +95,10 @@ export default function Login() {
           {error && <div className="btn btn-danger error-message">{error}</div>}
 
           <div className="login-btns">
-
-          <button type="submit" disabled={loading} className="btn btn-login">
-            <span className="material-icons">person</span>{" "}
-            {loading ? "Signing in..." : "Sign In"}
-          </button>
-
-          <button type="submit" disabled={loading} className="btn btn-primary">
-            <span className="material-icons">work</span>{" "}
-            {loading ? "Signing in..." : "Recruiter"}
-          </button>
+            <button type="submit" disabled={loading} className="btn btn-login">
+              <span className="material-icons">person</span>{" "}
+              {loading ? "Signing in..." : "Sign In"}
+            </button>
           </div>
         </form>
       </div>

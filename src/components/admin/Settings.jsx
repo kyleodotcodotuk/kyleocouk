@@ -6,15 +6,22 @@ import { getCurrentUser } from '../../data/users';
 export default function Settings() {
   const location = useLocation();
   const navigate = useNavigate();
-  const currentUser = getCurrentUser();
+  const [currentUser, setCurrentUser] = useState(null);
+
+  // Load current user on mount
+  useEffect(() => {
+    const user = getCurrentUser();
+    setCurrentUser(user);
+  }, []);
 
   // Check if user has admin permissions for site settings and security
   const hasAdminPermissions = useCallback(() => {
     if (!currentUser) return false;
     const permissions = currentUser.permissions || [];
-    return permissions.includes('manage_settings') || 
-           permissions.includes('system_settings') || 
-           permissions.includes('*');
+    // Admin has '*' permission or specific manage_settings/system_settings permissions
+    return permissions.includes('*') ||
+           permissions.includes('manage_settings') || 
+           permissions.includes('system_settings');
   }, [currentUser]);
 
   // Determine current tab based on URL and user permissions
@@ -54,19 +61,32 @@ export default function Settings() {
     };
     navigate(paths[newTab]);
   };
-  const [settings, setSettings] = useState({
-    // Profile settings
-    name: 'Kyle O',
-    email: 'hello@kyleo.co.uk',
-    bio: 'Web designer and developer based in Manchester, UK',
-    location: 'Manchester, UK',
-    website: 'https://kyleo.co.uk',
+  const [settings, setSettings] = useState(() => {
+    const saved = localStorage.getItem('portfolioSettings');
+    const defaultSettings = {
+      // Profile settings
+      name: 'Kyle O',
+      email: 'hello@kyleo.co.uk',
+      bio: 'Web designer and developer based in Manchester, UK',
+      location: 'Manchester, UK',
+      website: 'https://kyleo.co.uk',
+      
+      // Site settings
+      siteTitle: 'Kyle O - Web Designer',
+      siteDescription: 'Professional web design and development services',
+      timezone: 'Europe/London',
+      language: 'en-GB',
+      cmsVersion: localStorage.getItem('cmsVersion') || 'Grey Cat v.1.2'
+    };
     
-    // Site settings
-    siteTitle: 'Kyle O - Web Designer',
-    siteDescription: 'Professional web design and development services',
-    timezone: 'Europe/London',
-    language: 'en-GB'
+    if (saved) {
+      try {
+        return { ...defaultSettings, ...JSON.parse(saved) };
+      } catch (e) {
+        return defaultSettings;
+      }
+    }
+    return defaultSettings;
   });
 
   const handleSettingChange = (key, value) => {
@@ -78,6 +98,7 @@ export default function Settings() {
 
   const saveSettings = () => {
     localStorage.setItem('portfolioSettings', JSON.stringify(settings));
+    localStorage.setItem('cmsVersion', settings.cmsVersion);
     alert('Settings saved successfully!');
   };
 
@@ -103,22 +124,13 @@ export default function Settings() {
                 Profile
               </button>
               {hasAdminPermissions() && (
-                <>
-                  <button 
-                    className={activeTab === 'site' ? 'active' : ''}
-                    onClick={() => handleTabChange('site')}
-                  >
-                    <span className="material-icons">web</span>
-                    Site Settings
-                  </button>
-                  <button 
-                    className={activeTab === 'security' ? 'active' : ''}
-                    onClick={() => handleTabChange('security')}
-                  >
-                    <span className="material-icons">shield</span>
-                    Security
-                  </button>
-                </>
+                <button 
+                  className={activeTab === 'site' ? 'active' : ''}
+                  onClick={() => handleTabChange('site')}
+                >
+                  <span className="material-icons">web</span>
+                  Site Settings
+                </button>
               )}
             </div>
           </div>
@@ -227,51 +239,24 @@ export default function Settings() {
                       <option value="de-DE">German</option>
                     </select>
                   </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'security' && hasAdminPermissions() && (
-              <div className="settings-section">
-                <h2>Security Settings</h2>
-                <p>Manage your account security and access.</p>
-
-                <div className="security-info">
-                  <div className="info-card">
-                    <h3>Password Security</h3>
-                    <p>Your password was last changed 30 days ago.</p>
-                    <button className="btn btn-secondary">
-                      <span className="material-icons">lock</span>
-                      Change Password
-                    </button>
-                  </div>
-
-                  <div className="info-card">
-                    <h3>Session Management</h3>
-                    <p>You are currently logged in from 1 device.</p>
-                    <button className="btn btn-secondary">
-                      <span className="material-icons">devices</span>
-                      View Active Sessions
-                    </button>
-                  </div>
-
-                  <div className="info-card">
-                    <h3>Backup & Export</h3>
-                    <p>Download your portfolio data for backup.</p>
-                    <button className="btn btn-secondary">
-                      <span className="material-icons">download</span>
-                      Export Data
-                    </button>
+                  <div className="form-group">
+                    <label>CMS Version</label>
+                    <input
+                      type="text"
+                      value={settings.cmsVersion}
+                      onChange={(e) => handleSettingChange('cmsVersion', e.target.value)}
+                      placeholder="e.g., Grey Cat v.1.0"
+                    />
                   </div>
                 </div>
               </div>
             )}
 
             {/* Fallback for non-admin users trying to access admin sections */}
-            {!hasAdminPermissions() && (activeTab === 'site' || activeTab === 'security') && (
+            {!hasAdminPermissions() && (activeTab === 'site') && (
               <div className="settings-section">
                 <h2>Access Restricted</h2>
-                <p>You don't have permission to access this section. Only administrators can manage site settings and security.</p>
+                <p>You don't have permission to access this section. Only administrators can manage site settings.</p>
                 <button 
                   className="btn btn-primary" 
                   onClick={() => handleTabChange('profile')}

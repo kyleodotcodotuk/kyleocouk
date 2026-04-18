@@ -1,18 +1,20 @@
-/* Frontend Styles Index - Public facing components */
+// Core frontend styles (import from misc for shared styles)
+@use '../misc/var' as *;
+@use '../misc/themes';
+@use '../misc/respond';
 
-// Core frontend styles
-@use 'var' as *;
-@use 'themes';
-@use 'respond';
+// Shared misc styles  
+@use '../misc/main';
+@use '../misc/header' as misc-header;
+@use '../misc/reset';
+@use '../misc/switcher';
+@use '../misc/utils/utilities' as utils;
+@use '../misc/components/buttons' as buttons;
 
 // Layout (actual content)
-@use 'layout/header';   
+@use 'layout/header' as frontend-header;   
 
 // Public pages and components
-@use 'main';
-@use 'switcher';
 @use 'portfolio';
 @use 'project-detail';
 @use 'not-found';
-
-// Base, other layout, components, pages, and themes are minimal placeholders

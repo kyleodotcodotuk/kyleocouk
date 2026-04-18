@@ -1,5 +1,4 @@
-@use "sass:color";
-@use "../../misc/var" as *;  // Import variables from misc
+@use "var" as *;  // Import variables from same directory (misc)
 
 header {
   padding: 0 10%;
@@ -43,7 +42,7 @@ header {
 
   // Information
   h1 {
-    @if color.lightness($main-colour) >=43% {
+    @if lightness($main-colour) >=43% {
       color: $pure-black;
     } @else {
       color: $pure-white;
@@ -60,7 +59,7 @@ header {
     text-shadow: $subtle-shadow-text;
     font-size: 2.8em;
     margin-bottom: 32px;
-    @if color.lightness($main-colour) >=43% {
+    @if lightness($main-colour) >=43% {
       color: $pure-black;
     } @else {
       color: $pure-white;
@@ -82,9 +81,8 @@ header {
     display: inline-flex;
     li {
       margin: 0 4px 0 0;
-      overflow: hidden;
       a {
-        background-color: $main-lighten-10;
+        background-color: lighten($main-colour, 10%);
         overflow: hidden;
         height: 52px;
         width: 52px;
@@ -97,7 +95,7 @@ header {
         }
         &:hover,
         &:focus {
-          background-color: $main-lighten-20;
+          background-color: lighten($main-colour, 20%);
         }
       }
     }

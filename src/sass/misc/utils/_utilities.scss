@@ -1,0 +1,180 @@
+// Shared utility classes for both admin and frontend
+// General spacing utilities
+.m {
+  &-0 { margin: 0 !important; }
+  &-1 { margin: 0.25rem !important; }
+  &-2 { margin: 0.5rem !important; }
+  &-3 { margin: 1rem !important; }
+  &-4 { margin: 1.5rem !important; }
+  &-5 { margin: 2rem !important; }
+}
+
+.mt {
+  &-0 { margin-top: 0 !important; }
+  &-1 { margin-top: 0.25rem !important; }
+  &-2 { margin-top: 0.5rem !important; }
+  &-3 { margin-top: 1rem !important; }
+  &-4 { margin-top: 1.5rem !important; }
+  &-5 { margin-top: 2rem !important; }
+}
+
+.mb {
+  &-0 { margin-bottom: 0 !important; }
+  &-1 { margin-bottom: 0.25rem !important; }
+  &-2 { margin-bottom: 0.5rem !important; }
+  &-3 { margin-bottom: 1rem !important; }
+  &-4 { margin-bottom: 1.5rem !important; }
+  &-5 { margin-bottom: 2rem !important; }
+}
+
+.p {
+  &-0 { padding: 0 !important; }
+  &-1 { padding: 0.25rem !important; }
+  &-2 { padding: 0.5rem !important; }
+  &-3 { padding: 1rem !important; }
+  &-4 { padding: 1.5rem !important; }
+  &-5 { padding: 2rem !important; }
+}
+
+// Flexbox utilities
+.d-flex { display: flex !important; }
+.flex-row { flex-direction: row !important; }
+.flex-column { flex-direction: column !important; }
+.flex-wrap { flex-wrap: wrap !important; }
+.flex-nowrap { flex-wrap: nowrap !important; }
+
+.justify {
+  &-start { justify-content: flex-start !important; }
+  &-end { justify-content: flex-end !important; }
+  &-center { justify-content: center !important; }
+  &-between { justify-content: space-between !important; }
+  &-around { justify-content: space-around !important; }
+}
+
+.align {
+  &-start { align-items: flex-start !important; }
+  &-end { align-items: flex-end !important; }
+  &-center { align-items: center !important; }
+  &-stretch { align-items: stretch !important; }
+}
+
+// Text utilities
+.text {
+  &-left { text-align: left !important; }
+  &-center { text-align: center !important; }
+  &-right { text-align: right !important; }
+  &-justify { text-align: justify !important; }
+
+  &-primary { color: #3b82f6 !important; }
+  &-success { color: #10b981 !important; }
+  &-warning { color: #f59e0b !important; }
+  &-danger { color: #ef4444 !important; }
+  &-muted { color: #94a3b8 !important; }
+}
+
+// Font weights
+.fw {
+  &-light { font-weight: 300 !important; }
+  &-normal { font-weight: 400 !important; }
+  &-medium { font-weight: 500 !important; }
+  &-semibold { font-weight: 600 !important; }
+  &-bold { font-weight: 700 !important; }
+}
+
+// Display utilities
+.d {
+  &-none { display: none !important; }
+  &-block { display: block !important; }
+  &-inline { display: inline !important; }
+  &-inline-block { display: inline-block !important; }
+  &-grid { display: grid !important; }
+}
+
+// Position utilities
+.position {
+  &-relative { position: relative !important; }
+  &-absolute { position: absolute !important; }
+  &-fixed { position: fixed !important; }
+  &-sticky { position: sticky !important; }
+}
+
+// Background utilities
+.bg {
+  &-white { background-color: #ffffff !important; }
+  &-primary { background-color: #3b82f6 !important; }
+  &-success { background-color: #10b981 !important; }
+  &-warning { background-color: #f59e0b !important; }
+  &-danger { background-color: #ef4444 !important; }
+  &-light { background-color: #f8fafc !important; }
+  &-dark { background-color: #1e293b !important; }
+}
+
+// Border utilities
+.border {
+  &-0 { border: 0 !important; }
+  &-1 { border: 1px solid #e2e8f0 !important; }
+  &-2 { border: 2px solid #e2e8f0 !important; }
+  &-primary { border-color: #3b82f6 !important; }
+  &-success { border-color: #10b981 !important; }
+  &-warning { border-color: #f59e0b !important; }
+  &-danger { border-color: #ef4444 !important; }
+}
+
+// Border radius
+.rounded {
+  &-0 { border-radius: 0 !important; }
+  &-sm { border-radius: 0.25rem !important; }
+  &-md { border-radius: 0.5rem !important; }
+  &-lg { border-radius: 1rem !important; }
+  &-full { border-radius: 9999px !important; }
+}
+
+// Shadow utilities
+.shadow {
+  &-none { box-shadow: none !important; }
+  &-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important; }
+  &-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important; }
+  &-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important; }
+}
+
+// Width and height utilities
+.w {
+  &-25 { width: 25% !important; }
+  &-50 { width: 50% !important; }
+  &-75 { width: 75% !important; }
+  &-100 { width: 100% !important; }
+  &-auto { width: auto !important; }
+}
+
+.h {
+  &-25 { height: 25% !important; }
+  &-50 { height: 50% !important; }
+  &-75 { height: 75% !important; }
+  &-100 { height: 100% !important; }
+  &-auto { height: auto !important; }
+}
+
+// Opacity utilities
+.opacity {
+  &-0 { opacity: 0 !important; }
+  &-25 { opacity: 0.25 !important; }
+  &-50 { opacity: 0.5 !important; }
+  &-75 { opacity: 0.75 !important; }
+  &-100 { opacity: 1 !important; }
+}
+
+// Gap utilities
+.gap {
+  &-1 { gap: 0.25rem !important; }
+  &-2 { gap: 0.5rem !important; }
+  &-3 { gap: 1rem !important; }
+  &-4 { gap: 1.5rem !important; }
+  &-5 { gap: 2rem !important; }
+}
+
+// Overflow utilities
+.overflow {
+  &-hidden { overflow: hidden !important; }
+  &-auto { overflow: auto !important; }
+  &-scroll { overflow: scroll !important; }
+}

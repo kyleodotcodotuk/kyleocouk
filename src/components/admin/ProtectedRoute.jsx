@@ -31,7 +31,7 @@ export default function ProtectedRoute({ children, requiredPermissions = [] }) {
 
   // Check specific settings routes
   const pathname = location.pathname;
-  if (pathname === '/admin/settings/site' || pathname === '/admin/settings/security') {
+  if (pathname === '/admin/settings/site') {
     const userPermissions = currentUser?.permissions || [];
     const hasSettingsPermission = userPermissions.includes('manage_settings') || 
                                   userPermissions.includes('system_settings') || 

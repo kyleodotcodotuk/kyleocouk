@@ -296,7 +296,7 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
           )}
         </div>
         <div className="user-info">
-          <h3>{currentUser?.name || "Administrator"}</h3>
+          <h3>{currentUser?.displayRole || "Administrator"}</h3>
           <div className="detail-item">
             <span className="material-icons">location_on</span>
             <span className="location">
@@ -481,7 +481,7 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
 
       {/* Version info */}
       <div className="version-info">
-        <span className="version-text">Grey Cat v.1.0 </span>
+        <span className="version-text">{localStorage.getItem('cmsVersion') || 'Grey Cat v.1.0'}</span>
       </div>
 
       {/* Theme Switch */}

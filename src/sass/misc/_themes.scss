@@ -1,0 +1,95 @@
+@use "sass:color";
+@use "var" as *;  // Import variables from same directory (misc)
+
+// The button itself
+
+.theme-changer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0.8em 1.4em;
+  border: none;
+  border-radius: $border-radius;
+  margin: 1em;
+  z-index: 999;
+  cursor: pointer;
+  transition: 1s;
+  box-shadow: $box-shadow-default;
+  background-color: $pure-black;
+  @if lightness($main-colour) >=43% {
+    color: $pure-white;
+  } @else {
+    color: $pure-black;
+  }
+
+  &:hover {
+    transition: 1s;
+  }
+}
+
+// Default
+
+.default {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.default::-webkit-scrollbar-track {
+  background-color: $main-colour;
+}
+
+.default::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 10px;
+  background-color: $secondary-colour;
+  border-radius: 10px;
+}
+
+.default::-webkit-scrollbar-thumb {
+  background-color: $secondary-colour;
+  border-radius: 10px;
+}
+
+// Light theme
+
+.light-theme::-webkit-scrollbar-track {
+  background-color: $colour-light-theme-secondary;
+}
+
+.light-theme::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 10px;
+  background-color: $colour-light-theme-main;
+  border-radius: 10px;
+}
+
+.light-theme::-webkit-scrollbar-thumb {
+  background-color: $colour-light-theme-main;
+  border-radius: 10px;
+}
+
+.light-theme {
+  background: radial-gradient(
+    circle,
+    rgba(230, 164, 180, 1) 0%,
+    rgba(255, 248, 227, 1) 100%
+  );
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+
+  .theme-changer {
+    background-color: $colour-light-theme-main;
+    color: $pure-black;
+  }
+
+   
+}
