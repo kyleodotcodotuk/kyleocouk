@@ -13,11 +13,5 @@
 @use '../misc/components/buttons' as buttons;
 @use '../misc/components/media-library' as media-library;
 
-// Dashboard styles
-@use 'dashboard/index' as dashboard;
-
-// Page styles
-@use 'pages/index' as pages;
-
 // Shared utilities from misc
 @use '../misc/utils/utilities' as utils;
