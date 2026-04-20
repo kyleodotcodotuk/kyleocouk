@@ -23,7 +23,6 @@ export default function EditorDashboard() {
   const [mediaLibrary] = useState({
     totalFiles: 156,
     images: 89,
-    videos: 12,
     documents: 34,
     audio: 21,
     storageUsed: '2.1GB',
@@ -102,11 +101,6 @@ export default function EditorDashboard() {
               <span className="type-icon">🖼️</span>
               <span className="type-count">{media.images}</span>
               <span className="type-label">Images</span>
-            </div>
-            <div className="media-type">
-              <span className="type-icon">🎥</span>
-              <span className="type-count">{media.videos}</span>
-              <span className="type-label">Videos</span>
             </div>
             <div className="media-type">
               <span className="type-icon">📄</span>

@@ -4,7 +4,7 @@ import AdminLayout from './AdminLayout';
 export default function MediaLibrary() {
   const [mediaFiles, setMediaFiles] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
-  const [view, setView] = useState('all'); // all, images, videos, documents
+  const [view, setView] = useState('all'); // all, images, documents
   const [expandedImage, setExpandedImage] = useState(null);
 
   // Dynamically import all images from the static folder
@@ -121,7 +121,7 @@ export default function MediaLibrary() {
 
   const filteredFiles = mediaFiles.filter(file => {
     if (view === 'images') return file.type === 'image';
-    if (view === 'videos') return file.type === 'video';
+
     if (view === 'documents') return file.type === 'document';
     return true;
   });
@@ -255,13 +255,6 @@ export default function MediaLibrary() {
           >
             <span className="material-icons">image</span>
             Images ({mediaFiles.filter(f => f.type === 'image').length})
-          </button>
-          <button 
-            className={view === 'videos' ? 'active' : ''}
-            onClick={() => setView('videos')}
-          >
-            <span className="material-icons">videocam</span>
-            Videos ({mediaFiles.filter(f => f.type === 'video').length})
           </button>
           <button 
             className={view === 'documents' ? 'active' : ''}

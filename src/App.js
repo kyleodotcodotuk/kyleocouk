@@ -98,11 +98,6 @@ function AppContent() {
               <MediaLibrary />
             </ProtectedRoute>
           } />
-          <Route path="/admin/media/videos" element={
-            <ProtectedRoute>
-              <MediaLibrary />
-            </ProtectedRoute>
-          } />
           <Route path="/admin/media/documents" element={
             <ProtectedRoute>
               <MediaLibrary />
@@ -112,16 +107,6 @@ function AppContent() {
           {/* Settings */}
           <Route path="/admin/settings" element={
             <ProtectedRoute>
-              <Settings />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin/settings/profile" element={
-            <ProtectedRoute>
-              <Settings />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin/settings/site" element={
-            <ProtectedRoute requiredPermissions={['manage_settings', 'system_settings']}>
               <Settings />
             </ProtectedRoute>
           } />

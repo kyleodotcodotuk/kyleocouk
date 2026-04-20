@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import AdminLayout from './AdminLayout';
 import { getCurrentUser } from '../../data/users';
 
 export default function Settings() {
-  const location = useLocation();
-  const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
+  const [activeTab, setActiveTab] = useState('profile');
 
   // Load current user on mount
   useEffect(() => {
@@ -14,52 +12,21 @@ export default function Settings() {
     setCurrentUser(user);
   }, []);
 
-  // Check if user has admin permissions for site settings and security
+  // Check if user has admin permissions for site settings
   const hasAdminPermissions = useCallback(() => {
     if (!currentUser) return false;
     const permissions = currentUser.permissions || [];
-    // Admin has '*' permission or specific manage_settings/system_settings permissions
     return permissions.includes('*') ||
            permissions.includes('manage_settings') || 
            permissions.includes('system_settings');
   }, [currentUser]);
 
-  // Determine current tab based on URL and user permissions
-  const getCurrentTab = useCallback(() => {
-    const path = location.pathname;
-    if (path.includes('/site') && hasAdminPermissions()) return 'site';
-    if (path.includes('/security') && hasAdminPermissions()) return 'security';
-    return 'profile';
-  }, [location.pathname, hasAdminPermissions]);
-
-  const [activeTab, setActiveTab] = useState(() => getCurrentTab());
-
-  // Update tab when URL changes
-  useEffect(() => {
-    setActiveTab(getCurrentTab());
-  }, [getCurrentTab]);
-
-  // Redirect non-admin users to profile if they try to access admin-only sections
-  useEffect(() => {
-    const path = location.pathname;
-    if (!hasAdminPermissions() && (path.includes('/site') || path.includes('/security'))) {
-      navigate('/admin/settings/profile', { replace: true });
-    }
-  }, [location.pathname, hasAdminPermissions, navigate]);
-
   const handleTabChange = (newTab) => {
     // Check permissions before allowing tab change
-    if ((newTab === 'site' || newTab === 'security') && !hasAdminPermissions()) {
+    if (newTab === 'site' && !hasAdminPermissions()) {
       return; // Don't allow access
     }
-    
-    const basePath = '/admin/settings';
-    const paths = {
-      'profile': `${basePath}/profile`,
-      'site': `${basePath}/site`,
-      'security': `${basePath}/security`
-    };
-    navigate(paths[newTab]);
+    setActiveTab(newTab);
   };
   const [settings, setSettings] = useState(() => {
     const saved = localStorage.getItem('portfolioSettings');
@@ -89,6 +56,10 @@ export default function Settings() {
     return defaultSettings;
   });
 
+  const [editorContent, setEditorContent] = useState(() => {
+    return localStorage.getItem('settingsEditorContent') || '';
+  });
+
   const handleSettingChange = (key, value) => {
     setSettings(prev => ({
       ...prev,
@@ -99,6 +70,7 @@ export default function Settings() {
   const saveSettings = () => {
     localStorage.setItem('portfolioSettings', JSON.stringify(settings));
     localStorage.setItem('cmsVersion', settings.cmsVersion);
+    localStorage.setItem('settingsEditorContent', editorContent);
     alert('Settings saved successfully!');
   };
 
@@ -132,6 +104,13 @@ export default function Settings() {
                   Site Settings
                 </button>
               )}
+              <button 
+                className={activeTab === 'editor' ? 'active' : ''}
+                onClick={() => handleTabChange('editor')}
+              >
+                <span className="material-icons">edit</span>
+                Settings Editor
+              </button>
             </div>
           </div>
 
@@ -264,6 +243,23 @@ export default function Settings() {
                   <span className="material-icons">account_circle</span>
                   Go to Profile Settings
                 </button>
+              </div>
+            )}
+
+            {activeTab === 'editor' && (
+              <div className="settings-section">
+                <h2>Settings Editor</h2>
+                <p>Edit custom settings content and configuration.</p>
+
+                <div className="form-group">
+                  <label>Content</label>
+                  <textarea 
+                    value={editorContent}
+                    onChange={(e) => setEditorContent(e.target.value)}
+                    placeholder="Edit content here"
+                    rows="15"
+                  />
+                </div>
               </div>
             )}
           </div>

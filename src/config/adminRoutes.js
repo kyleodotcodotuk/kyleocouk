@@ -39,21 +39,7 @@ export const adminRoutes = [
     id: 'settings',
     label: 'Settings',
     icon: 'settings',
-    expanded: false,
-    children: [
-      { 
-        id: 'profile-settings', 
-        label: 'Profile Settings', 
-        icon: 'account_circle',
-        path: '/admin/settings/profile'
-      },
-      { 
-        id: 'site-settings', 
-        label: 'Site Settings', 
-        icon: 'web',
-        path: '/admin/settings/site'
-      }
-    ]
+    path: '/admin/settings'
   }
 ];
 
@@ -67,8 +53,6 @@ export const isRouteAvailable = (path, userPermissions = [], routePermissions = 
     '/admin/portfolio/skills',
     '/admin/media',
     '/admin/settings',
-    '/admin/settings/profile',
-    '/admin/settings/site',
     '/admin/favourites'
   ];
   
@@ -78,10 +62,11 @@ export const isRouteAvailable = (path, userPermissions = [], routePermissions = 
   }
 
   // Check site settings permissions
-  if (path === '/admin/settings/site') {
+  if (path === '/admin/settings') {
     return userPermissions.includes('manage_settings') || 
            userPermissions.includes('system_settings') || 
-           userPermissions.includes('*');
+           userPermissions.includes('*') ||
+           true; // Allow all users to access settings
   }
 
   // Check route-specific permissions if provided
