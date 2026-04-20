@@ -13,12 +13,14 @@ export default function AdminDashboard() {
   return (
     <AdminLayout>
       <div className="admin-dashboard">
-        <h1>Dashboard</h1>
+        <section className="welcome widget">
+        Your Dashboard 
+        </section>
         {currentUser ? (
-          <div>
-            <p>Welcome back!</p>
+          <section className="widget">
+            <h2>Welcome back !</h2>
             <p>Admin CMS is ready for development.</p>
-          </div>
+          </section>
         ) : (
           <p>Loading...</p>
         )}

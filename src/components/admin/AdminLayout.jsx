@@ -119,12 +119,7 @@ export default function AdminLayout({ children }) {
     });
   };
 
-  const getSessionDuration = () => {
-    const start = new Date(dashboardInfo.sessionStart);
-    const now = new Date();
-    const diff = Math.floor((now - start) / 1000 / 60); // minutes
-    return diff < 60 ? `${diff}m` : `${Math.floor(diff / 60)}h ${diff % 60}m`;
-  };
+ 
 
   const handleLogout = () => {
     const isConfirmed = window.confirm(
@@ -153,34 +148,21 @@ export default function AdminLayout({ children }) {
   return (
     <div className="back-end-admin">
       <div className="admin-layout">
-        <nav className="admin-top-nav">
+        <div className="admin-static-header">
         <button
           type="button"
-          className="sidebar-toggle"
           onClick={toggleMobileMenu}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileMenuOpen}
         >
           <span className="material-icons">{isMobileMenuOpen ? 'close' : 'menu'}</span>
         </button>
-        <div className="admin-nav-brand">
-         <h1>Grey Cat CMS system</h1>
-        </div>
-        
-        <div className="admin-nav-info">
-          <div className="nav-info-item"> 
-            <span className="info-value">Local time: {formatTime(dashboardInfo.currentTime)}</span>
-          </div>
-          <div className="nav-info-item"> 
-            <span className="info-value">{formatDate(dashboardInfo.currentTime)}</span>
-          </div> 
-          <div className="nav-info-item">
-            <span className="info-label">Session: </span>
-            <span className="info-value">{getSessionDuration()}</span>
-          </div>
-        </div>
-        
-        <div className="admin-nav-actions">
+             
+        <div className="admin-static-info">{formatTime(dashboardInfo.currentTime)} <br />
+           {formatDate(dashboardInfo.currentTime)}
+        </div> 
+        {/* Login buttons */}
+        <div className="admin-static-actions">
           <button onClick={() => window.open('/', '_blank')} className="btn btn-primary">
             <span className="btn-icon"><span className="material-icons">subtitles</span></span>
             View Site
@@ -190,13 +172,8 @@ export default function AdminLayout({ children }) {
             Logout
           </button>
         </div>
-      </nav>
+      </div>
 
-        <div
-          className={`sidebar-overlay ${isMobileMenuOpen ? 'open' : ''}`}
-          onClick={closeMobileMenu}
-          aria-hidden={!isMobileMenuOpen}
-        />
       
         <div className="admin-body">
           <Sidebar isOpen={isMobileMenuOpen} onNavigate={closeMobileMenu} />
