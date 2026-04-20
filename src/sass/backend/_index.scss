@@ -9,9 +9,5 @@
 // Layout components
 @use 'layout/index' as layout;
 
-// Component styles (now from misc)
-@use '../misc/components/buttons' as buttons;
-@use '../misc/components/media-library' as media-library;
-
-// Shared utilities from misc
-@use '../misc/utils/utilities' as utils;
+// Layout components
+@use 'admin/components' as components;

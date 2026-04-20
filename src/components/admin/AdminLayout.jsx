@@ -173,8 +173,7 @@ export default function AdminLayout({ children }) {
           </div>
           <div className="nav-info-item"> 
             <span className="info-value">{formatDate(dashboardInfo.currentTime)}</span>
-          </div>
-          {/* Location and IP removed as requested */}
+          </div> 
           <div className="nav-info-item">
             <span className="info-label">Session: </span>
             <span className="info-value">{getSessionDuration()}</span>
@@ -186,7 +185,7 @@ export default function AdminLayout({ children }) {
             <span className="btn-icon"><span className="material-icons">subtitles</span></span>
             View Site
           </button>
-          <button onClick={handleLogout} className="btn btn-danger">
+          <button onClick={handleLogout} className="btn btn-secondary">
             <span className="btn-icon"><span className="material-icons">exit_to_app</span></span>
             Logout
           </button>

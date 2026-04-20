@@ -5,6 +5,7 @@
 @use "frontend/index" as frontend;  // Use explicit namespace to avoid conflicts
 @use "misc/themes";
 @use "misc/respond";
+@use "backend/admin-components/index" as admin-comp;
 
 // External imports after @use
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap");

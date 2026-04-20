@@ -4,12 +4,9 @@
 @use '../misc/respond';
 
 // Shared misc styles  
-@use '../misc/main';
-@use '../misc/header' as misc-header;
+@use '../misc/main'; 
 @use '../misc/reset';
-@use '../misc/switcher';
-@use '../misc/utils/utilities' as utils;
-@use '../misc/components/buttons' as buttons;
+@use '../misc/switcher'; 
 
 // Layout (actual content)
 @use 'layout/header' as frontend-header;   
