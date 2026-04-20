@@ -3,18 +3,26 @@ const DEFAULT_USERS = [
   {
     id: 1,
     username: 'admin',
-    name: 'Admin',
+    name: 'Admin User',
     password: 'Admin2024!',
     role: 'ADMIN',
-    permissions: ['*'] // Admin has all permissions
+    permissions: ['*'], // Admin has all permissions
+    displayRole: 'Administrator',
+    initials: 'AD',
+     avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=admin',
+    location: 'Manchester, UK'
   },
   {
     id: 2,
     username: 'visitor',
-    name: 'Visitor',
+    name: 'Visitor User',
     password: 'Visitor2024!',
     role: 'VISITOR',
-    permissions: [] // Visitor has no special permissions
+    permissions: [], // Visitor has no special permissions
+    displayRole: 'Visitor',
+    initials: 'VU',
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=visitor',
+    location: 'Remote, UK'
   }
 ];
 
@@ -26,14 +34,28 @@ export const usersAPI = {
   authenticateUser: (username, password) => {
     const user = DEFAULT_USERS.find(u => u.username === username && u.password === password);
     if (user) {
-      const userData = { id: user.id, username: user.username, name: user.name, role: user.role, permissions: user.permissions };
+      const userData = {
+        id: user.id,
+        username: user.username,
+        name: user.name,
+        role: user.role,
+        permissions: user.permissions,
+        displayRole: user.displayRole,
+        initials: user.initials,
+        avatar: user.avatar,
+        location: user.location
+      };
       localStorage.setItem('currentUser', JSON.stringify(userData));
+      // Dispatch custom event for user change
+      window.dispatchEvent(new CustomEvent('userChanged', { detail: { user: userData } }));
       return { success: true, user: userData };
     }
     return { success: false, error: 'Invalid credentials' };
   },
   logoutUser: () => {
     localStorage.removeItem('currentUser');
+    // Dispatch custom event for user change
+    window.dispatchEvent(new CustomEvent('userChanged', { detail: { user: null } }));
   },
   isUserAuthenticated: () => {
     return !!localStorage.getItem('currentUser');

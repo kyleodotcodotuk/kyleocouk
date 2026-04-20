@@ -119,6 +119,17 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
       document.body.classList.add("dark-mode");
       localStorage.setItem("darkMode", "true");
     }
+
+    // Listen for user changes (login/logout)
+    const handleUserChange = (e) => {
+      setCurrentUserState(e.detail.user);
+    };
+
+    window.addEventListener('userChanged', handleUserChange);
+
+    return () => {
+      window.removeEventListener('userChanged', handleUserChange);
+    };
   }, []);
 
   // Update active menu item when route changes

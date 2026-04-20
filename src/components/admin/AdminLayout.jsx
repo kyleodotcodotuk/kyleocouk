@@ -94,7 +94,7 @@ export default function AdminLayout({ children }) {
             <span className="btn-icon"><span className="material-icons">subtitles</span></span>
             View Site
           </button>
-          <button onClick={handleLogout} className="btn btn-secondary">
+          <button onClick={handleLogout} className="btn btn-logout">
             <span className="btn-icon"><span className="material-icons">exit_to_app</span></span>
             Logout
           </button>
