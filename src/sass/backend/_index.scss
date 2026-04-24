@@ -1,13 +1,7 @@
-/* Backend Components - Complete Import Structure */
-
-// Import variables from misc
+// Import variables
 @use '../misc/var' as *;
 
 // Base backend styles
-@use 'admin_minimal';
-
-// Layout components
 @use 'layout/index' as layout;
-
-// Layout components
-@use 'admin/components' as components;
+@use 'admin_minimal'; 
+@use 'admin' as all;

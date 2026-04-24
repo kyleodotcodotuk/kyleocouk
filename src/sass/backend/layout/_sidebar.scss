@@ -12,29 +12,27 @@
   z-index: 1000;
 
   .user-profile {
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 0.5rem;
     justify-content: center;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
-    font-weight: 300;
-    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2rem 0;
+    background: rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid #2d3748;
   }
 
-  .avatar { 
-    width: 70px;
-    height: 70px;
-    background: #5b21b6;
-    font-weight: bold;
+  .avatar {
+    width: 66px;
+    height: 66px;
+    background: rgba(117, 39, 166, 1);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.6rem;
-    border-radius: 50%;
+    font-size: 1.4rem;
     overflow: hidden;
+    box-shadow: rgba(255, 255, 255, 1) 0 0px 1px 1px;
   }
 
   .user-info {
@@ -42,6 +40,7 @@
     h3 {
       margin: 0 0 0.5rem 0;
       font-size: 1rem;
+      font-weight: bold;
     }
   }
 
@@ -52,6 +51,7 @@
     margin-bottom: 0.25rem;
     font-size: 0.75rem;
     color: #a0aec0;
+    flex-direction: row-reverse;
 
     .material-icons {
       font-size: 14px;
@@ -73,7 +73,7 @@
 
       &.active {
         > .nav-item {
-          background: rgba(39, 103, 166, 0.85);
+          background: rgba(117, 39, 166, 0.85);
           color: white;
         }
 
@@ -190,14 +190,21 @@
   }
 
   .version-info {
-    padding: 1rem 1.5rem;
+    padding: 1rem;
     border-top: 1px solid #2d3748;
-    color: #718096;
+    color: #a0aec0;
     font-size: 0.75rem;
+    line-height: normal;
+    background: rgba(0, 0, 0, 0.5);
+    .version-text {
+      em {
+        opacity: 0.8;
+      }
+    }
   }
 
   .theme-switch-container {
-    padding: 1rem 1.5rem;
+    padding: 1rem;
     border-top: 1px solid #2d3748;
 
     .theme-switch {
@@ -260,10 +267,23 @@
   }
 }
 
+// LIGHT MODE SWITCH
 body:not(.dark-mode) .cms-sidebar {
   background: #ffffff;
   color: #1a202c;
   border-right: 1px solid #e2e8f0;
+  .avatar {
+    color: #ffffff;
+  }
+}
+body:not(.dark-mode) .admin-layout {
+  .admin-static-header {
+    background: #ffffff;
+    color: #1a202c;
+    .admin-static-info {
+      color: #1a202c;
+    }
+  }
 }
 
 @media (max-width: 768px) {

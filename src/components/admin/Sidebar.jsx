@@ -303,7 +303,7 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
               className="user-avatar"
             />
           ) : (
-            <span>{currentUser?.initials || "AD"}</span>
+            <span>{currentUser?.initials || "A"}</span>
           )}
         </div>
         <div className="user-info">
@@ -492,7 +492,7 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
 
       {/* Version info */}
       <div className="version-info">
-        <span className="version-text">{localStorage.getItem('cmsVersion') || 'Grey Cat v.1.0'}</span>
+        <span className="version-text">Grey Cat Content Management System © <em>{localStorage.getItem('cmsVersion') || ' Release 1.0'}</em></span>
       </div>
 
       {/* Theme Switch */}

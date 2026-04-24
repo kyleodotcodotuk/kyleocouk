@@ -12,12 +12,16 @@
   cursor: pointer;
   border: none;
   white-space: nowrap;
-  padding: 6px 12px;
+  padding: 12px 18px;
   font-size: 14px;
   line-height: 1.42857143;
   border-radius: 20px;
   user-select: none;
   box-shadow: 0 4px 20px rgba(26, 32, 44, 0.3);
+}
+
+.btn-icon {
+  display: flex;
 }
 
 .btn-primary {
@@ -30,11 +34,14 @@
 }
 
 .btn-secondary {
-  background:  rgb(7, 73, 7);
+  background: rgb(7, 73, 7);
   color: white;
 }
 
-.btn-logout { 
+.btn-logout {
   background: rgb(97, 0, 0);
   color: #ffffff;
+  &:hover { 
+    background-color: rgb(55, 0, 0);
+  }
 }

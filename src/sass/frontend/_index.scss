@@ -1,17 +1,15 @@
 // Core frontend styles (import from misc for shared styles)
 @use '../misc/var' as *;
 @use '../misc/themes';
-@use '../misc/respond';
 
-// Shared misc styles  
-@use '../misc/main'; 
-@use '../misc/reset';
+// Shared misc styles   
+@use '../frontend/layout/main';  
+@use '../frontend/layout/respond';  
+@use '../frontend/layout/header' as frontend-header;   
 @use '../misc/switcher'; 
 
-// Layout (actual content)
-@use 'layout/header' as frontend-header;   
-
 // Public pages and components
+@use 'reset';
 @use 'portfolio';
 @use 'project-detail';
 @use 'not-found';
