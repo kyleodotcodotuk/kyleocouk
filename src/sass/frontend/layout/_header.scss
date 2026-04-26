@@ -1,5 +1,5 @@
 @use "sass:color";
-@use "../../misc/var" as *;  // Import variables from misc
+@use "../../var" as *;  // Import variables
 
 header {
   padding: 0 10%;
