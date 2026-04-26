@@ -13,11 +13,10 @@ export default function NotFound() {
   };
 
   return (
-    <div className="not-found-page">
-      <div className="not-found-container">
+    <div className="not-found-page"> 
         <div className="not-found-content">
-          <div className="error-code">404</div>
-          <h1>Page Not Found</h1>
+           
+          <h1>404 &middot; Page Not Found</h1>
           <p className="error-message">
             Sorry, the page you're looking for doesn't exist or has been moved.
           </p>
@@ -34,10 +33,10 @@ export default function NotFound() {
           </div>
 
           <div className="helpful-links">
-            <h3>You might be looking for:</h3>
+            <h3>You might find useful:</h3>
             <ul>
               <li><a href="/">Homepage</a></li>
-              <li><a href="/portfolio">Portfolio</a></li>
+              <li><a href="/admin/portfolio">Portfolio</a></li>
               <li><a href="/login">Admin Login</a></li>
             </ul>
           </div>
@@ -50,8 +49,7 @@ export default function NotFound() {
             <div className="element element-3">📄</div>
             <div className="element element-4">❓</div>
           </div>
-        </div>
-      </div>
+        </div> 
     </div>
   );
 }

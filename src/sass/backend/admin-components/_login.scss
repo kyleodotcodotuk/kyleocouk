@@ -1,7 +1,12 @@
+
 .loginPage {
   display: flex;
   height: 100%;
+  font-family: "Inter", Arial, sans-serif;
   align-items: center;
+  background: linear-gradient(135deg, var(--primary-color, #007bff) 0%, var(--secondary-color, #6f42c1) 100%);
+
+
   .login-form {
     width: 440px;
     min-height: 300px;
@@ -19,26 +24,28 @@
 
     .btn {
       width: 100%;
-      margin: 0;
+      margin: 0 0 10px 0;
     }
 
     .login-btns {
-      margin-block-start: 2.5em;
+      margin-block-start: 0.5em;
       display: flex;
       gap: 0 0.5em;
       justify-content: space-between;
     }
 
     h2 {
-      margin: 0 0 0.7em 0; 
+      margin: 0 0 0.7em 0;
+      font-size: 2em;
     }
 
     input {
       color: grey;
+
       &:active,
       &:focus {
         color: black;
-      } 
+      }
     }
 
     .btn-login {

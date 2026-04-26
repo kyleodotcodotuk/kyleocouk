@@ -83,13 +83,14 @@ export default function AdminLayout({ children }) {
 
   return (
     <div className="back-end-admin">
-      <div className="admin-layout">
-        <div className="admin-static-header">
-        <div className="admin-static-info">{formatTime(dashboardInfo.currentTime)} <br />
+      <div className="main-layout">
+        {/* CMS HEADER */}
+        <div className="cms-static-inside-header">
+        <div className="inside-header-static-info">{formatTime(dashboardInfo.currentTime)} <br />
            {formatDate(dashboardInfo.currentTime)}
         </div> 
         {/* Login buttons */}
-        <div className="admin-static-actions">
+        <div className="inside-header-actions">
           <button onClick={() => window.open('/', '_blank')} className="btn btn-primary">
             <span className="btn-icon"><span className="material-icons">subtitles</span></span>
             View Site
@@ -102,13 +103,12 @@ export default function AdminLayout({ children }) {
       </div>
 
       
-        <div className="admin-body">
+  
           <Sidebar />
-          <main className="admin-main">
+          <main className="container">
             {children}
           </main>
-        </div>
-      </div>
+        </div> 
     </div>
   );
 }

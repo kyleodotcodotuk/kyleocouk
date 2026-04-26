@@ -12,7 +12,7 @@ export default function AdminDashboard() {
 
   return (
     <AdminLayout>
-      <div className="admin-dashboard">
+      <div className="dashboard">
         <section className="welcome widget">
           <h2>Welcome back !</h2>
           <p>Admin CMS is ready for development.</p>

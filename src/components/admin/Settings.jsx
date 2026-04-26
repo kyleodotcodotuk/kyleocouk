@@ -77,7 +77,7 @@ export default function Settings() {
   return (
     <AdminLayout>
       <div className="settings-page">
-        <div className="settings-header">
+        <div className="header">
           <h1>Settings</h1>
           <button className="btn btn-primary" onClick={saveSettings}>
             <span className="material-icons">save</span>
