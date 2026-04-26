@@ -1,3 +1,4 @@
+@use './../../var.scss' as *;
 
 .loginPage {
   display: flex;
@@ -24,7 +25,7 @@
 
     .btn {
       width: 100%;
-      margin: 0 0 10px 0;
+      margin: 0 0 10px 0; 
     }
 
     .login-btns {
@@ -48,8 +49,6 @@
       }
     }
 
-    .btn-login {
-      background-color: green;
-    }
+   
   }
 }

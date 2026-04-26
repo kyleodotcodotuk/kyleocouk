@@ -1,4 +1,4 @@
-/* Essential Admin Styles - Purged and Minimal */
+@use "../var" as *;
 
 // Backend admin area font override
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
@@ -15,7 +15,7 @@
  
 .main-layout {
   min-height: 100vh;
-  background: #f1f5f9;
+  background: var(--main-black);
   display: flex;
   flex-direction: column;
   margin-left: 300px;

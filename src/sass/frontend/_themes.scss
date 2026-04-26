@@ -10,17 +10,17 @@
   left: 0;
   padding: 0.8em 1.4em;
   border: none;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   margin: 1em;
   z-index: 999;
   cursor: pointer;
   transition: 1s;
-  box-shadow: $box-shadow-default;
-  background-color: $pure-black;
+  box-shadow: var(--box-shadow-default);
+  background-color: var(--pure-black);
   @if lightness($main-colour) >=43% {
-    color: $pure-white;
+    color: var(--pure-white);
   } @else {
-    color: $pure-black;
+    color: var(--pure-black);
   }
 
   &:hover {
@@ -40,36 +40,36 @@
 }
 
 .default::-webkit-scrollbar-track {
-  background-color: $main-colour;
+  background-color: var(--main-colour);
 }
 
 .default::-webkit-scrollbar {
   width: 10px;
   border-radius: 10px;
-  background-color: $secondary-colour;
+  background-color: var(--secondary-colour);
   border-radius: 10px;
 }
 
 .default::-webkit-scrollbar-thumb {
-  background-color: $secondary-colour;
+  background-color: var(--secondary-colour);
   border-radius: 10px;
 }
 
 // Light theme
 
 .light-theme::-webkit-scrollbar-track {
-  background-color: $colour-light-theme-secondary;
+  background-color: var(--colour-light-theme-secondary);
 }
 
 .light-theme::-webkit-scrollbar {
   width: 10px;
   border-radius: 10px;
-  background-color: $colour-light-theme-main;
+  background-color: var(--colour-light-theme-main);
   border-radius: 10px;
 }
 
 .light-theme::-webkit-scrollbar-thumb {
-  background-color: $colour-light-theme-main;
+  background-color: var(--colour-light-theme-main);
   border-radius: 10px;
 }
 
@@ -87,8 +87,8 @@
   overflow-y: scroll;
 
   .theme-changer {
-    background-color: $colour-light-theme-main;
-    color: $pure-black;
+    background-color: var(--colour-light-theme-main);
+    color: var(--pure-black);
   }
 
    

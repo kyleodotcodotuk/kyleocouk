@@ -1,0 +1,32 @@
+// LIGHT MODE
+body:not(.dark-mode) {
+     .cms-sidebar {
+  background: #ffffff;
+  color: #1a202c;
+  border-right: 1px solid #e2e8f0;
+  .avatar {
+    color: #ffffff;
+  }
+}
+ .admin-layout {
+  .admin-static-header {
+    background: #ffffff;
+    color: #1a202c;
+    .admin-static-info {
+      color: #1a202c;
+    }
+  }
+}
+
+.main-layout {
+    background-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .cms-sidebar {
+    width: 280px;
+    max-width: 85vw;
+    z-index: 1200;
+  }
+}
+}

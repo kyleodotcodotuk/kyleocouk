@@ -11,7 +11,7 @@ header {
   grid-template-columns: 50% 50%;
   align-content: center;
   align-items: center;
-  background: linear-gradient(342deg, $main-colour, $main-lighten-50);
+  background: linear-gradient(342deg, var(--main-colour), var(--main-lighten-50));
   background-size: 400% 400%;
   animation: MainGrad 14s ease infinite;
   // background: linear-gradient(to top, #f1e767 0%, #feb645 100%);
@@ -48,7 +48,7 @@ header {
     } @else {
       color: $pure-white;
     }
-    text-shadow: $subtle-shadow-text;
+    text-shadow: var(--subtle-shadow-text);
     letter-spacing: 0.03em;
     text-transform: capitalize;
     font-size: 4em;
@@ -57,7 +57,7 @@ header {
   }
 
   h2 {
-    text-shadow: $subtle-shadow-text;
+    text-shadow: var(--subtle-shadow-text);
     font-size: 2.8em;
     margin-bottom: 32px;
     @if color.lightness($main-colour) >=43% {
@@ -70,7 +70,7 @@ header {
   .date-and-time {
     padding: 0;
     margin: 0;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     line-height: 20px;
     font-size: 1em;
   }
@@ -84,7 +84,7 @@ header {
       margin: 0 4px 0 0;
       overflow: hidden;
       a {
-        background-color: $main-lighten-10;
+        background-color: var(--main-lighten-10);
         overflow: hidden;
         height: 52px;
         width: 52px;
@@ -97,7 +97,7 @@ header {
         }
         &:hover,
         &:focus {
-          background-color: $main-lighten-20;
+          background-color: var(--main-lighten-20);
         }
       }
     }
@@ -134,8 +134,8 @@ header {
       animation: RotateItAlways 5s linear infinite;
       background: conic-gradient(
         from 30deg,
-        $secondary-colour,
-        $pure-black 46%,
+        var(--secondary-colour),
+        var(--pure-black) 46%,
         transparent 46%
       );
       mask: radial-gradient(
@@ -157,8 +157,8 @@ header {
       animation: RotateItAlways 7s linear infinite;
       background: conic-gradient(
         from 30deg,
-        $secondary-colour,
-        $pure-black 46%,
+        var(--secondary-colour),
+        var(--pure-black) 46%,
         transparent 46%
       );
       mask: radial-gradient(
@@ -174,7 +174,7 @@ header {
       width: calc(100vw - 80px);
       max-width: 360px;
       max-height: 360px;
-      background-color: $pure-black;
+      background-color: var(--pure-black);
     }
   }
 }

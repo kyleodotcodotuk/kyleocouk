@@ -3,6 +3,7 @@
 
 // Base backend styles
 @use 'layout/index' as layout;
+@use 'admin/lightmode/index' as lightmode;
 @use 'admin_minimal'; 
 @use 'admin' as all;
 @use 'admin-components' as allComp;

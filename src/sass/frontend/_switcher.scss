@@ -3,12 +3,12 @@
 
 .content-switcher {
   @if color.lightness($secondary-colour) >= 43% {
-    color: $pure-black;
+    color: var(--pure-black);
   } @else {
-    color: $pure-white;
+    color: var(--pure-white);
   }
   overflow: hidden;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   margin: 24px 0;
   padding: 0;
   max-width: 660px;
@@ -26,7 +26,7 @@
       text-align: center;
       font-size: 1.5em;
       border-radius: 20px 20px 0 0;
-      background-color: rgba($secondary-colour, 0.7);
+      background-color: rgba(var(--secondary-colour-rgb), 0.7);
       &:focus-visible {
         outline: 2px solid #ffdd00;
         outline-offset: -2px;
@@ -36,7 +36,7 @@
         text-decoration: none;
       }
       &:hover {
-        background-color: $secondary-colour;
+        background-color: var(--secondary-colour);
         cursor: pointer;
       }
       &:not(:last-child) {
@@ -44,7 +44,7 @@
       }
     }
     .active {
-      background-color: $secondary-colour;
+      background-color: var(--secondary-colour);
     }
   }
   .tab-content {
@@ -56,12 +56,12 @@
     gap: 20px;
     justify-items: end;
     align-items: center;
-    background-color: $secondary-colour;
+    background-color: var(--secondary-colour);
     img {
       height: 250px;
       width: 250px;
-      border-radius: $border-radius-circle;
-      background-color: $main-colour;
+      border-radius: var(--border-radius-circle);
+      background-color: var(--main-colour);
       object-fit: cover;
       animation: rotate-left-right 2s 1;
     }
@@ -87,11 +87,11 @@
       color: inherit;
     }
     .btn {
-      background-color: $main-colour;
+      background-color: var(--main-colour);
       @if color.lightness($secondary-colour) >= 43% {
-        color: $pure-black;
+        color: var(--pure-black);
       } @else {
-        color: $pure-white;
+        color: var(--pure-white);
       }
       font-weight: 500;
       text-align: center;
