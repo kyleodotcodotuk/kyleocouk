@@ -1,54 +1,58 @@
-@use './../../var.scss' as *;
+@use "./../../var.scss" as *;
 
 .loginPage {
   display: flex;
   height: 100%;
   font-family: "Inter", Arial, sans-serif;
   align-items: center;
-  background: linear-gradient(135deg, var(--primary-color, #007bff) 0%, var(--secondary-color, #6f42c1) 100%);
-
+  background: var(--main-colour);
 
   .login-form {
     width: 440px;
     min-height: 300px;
     margin: 20px auto;
-    border-radius: 20px;
-    background: #e6e6e6;
-    box-shadow:
-      rgba(0, 0, 0, 0.25) 0px 54px 55px,
-      rgba(0, 0, 0, 0.12) 0px -12px 30px,
-      rgba(0, 0, 0, 0.12) 0px 4px 6px,
-      rgba(0, 0, 0, 0.17) 0px 12px 13px,
-      rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: var(--border-radius);
+    background: #1f1f1f;
+    color: white;
+    box-shadow:var(--box-shadow-highlight);
     padding: 4rem 2rem;
     position: relative;
 
     .btn {
       width: 100%;
-      margin: 0 0 10px 0; 
+      margin: 0 0 10px 0;
     }
 
     .login-btns {
-      margin-block-start: 0.5em;
+      margin-block-start: 1.5em;
       display: flex;
-      gap: 0 0.5em;
+      gap: 0 1em;
       justify-content: space-between;
     }
 
     h2 {
-      margin: 0 0 0.7em 0;
+      margin: 0 0 1em 0;
       font-size: 2em;
+      font-weight: bold;
+    }
+
+    label {
+      color: white;
     }
 
     input {
-      color: grey;
+      color: white;
 
       &:active,
       &:focus {
         color: black;
       }
     }
-
-   
   }
+
+  .disclaimer { color: red;}
 }
+
+// .quick-fill-buttons {
+//   display: none;
+// }

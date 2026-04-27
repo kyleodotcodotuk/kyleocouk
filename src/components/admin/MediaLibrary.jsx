@@ -137,10 +137,8 @@ export default function MediaLibrary() {
 
   return (
     <AdminLayout>
-      <div className="media-library">
-        <div className="media-header">
-          <h1>Media Library</h1>
-        </div>
+      <div className="dashboard"> 
+          <h1>Media Library</h1> 
 
         {/* Static FTP Images Gallery */}
         <div className="static-images-section">
@@ -158,7 +156,7 @@ export default function MediaLibrary() {
                 onClick={() => setExpandedImage(image)}
               >
                 <div className="static-image-thumb">
-                  <img src={image.thumb} alt={image.name} />
+                  <img height="150px" src={image.thumb} alt={image.name} />
                   <div className="image-overlay">
                     <span className="material-icons">zoom_in</span>
                   </div>

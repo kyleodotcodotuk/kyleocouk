@@ -243,7 +243,7 @@ export default function AdministratorDashboard() {
       <div className="widget-header">
         <span className="material-icons">people</span>
         <h3>User Management</h3>
-        <button className="widget-action" onClick={() => alert('Multi-user management will be available when you set up Supabase authentication')}>
+        <button className="widget-action" onClick={() => alert('Multi-user management requires additional backend setup')}>
           Setup
         </button>
       </div>

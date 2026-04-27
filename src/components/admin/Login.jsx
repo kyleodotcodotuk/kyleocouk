@@ -8,6 +8,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -16,6 +17,12 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
+    if (!disclaimerAccepted) {
+      alert("Please accept the disclaimer to proceed.");
+      return;
+    }
+
     setLoading(true);
 
     const success = await login(username, password);
@@ -38,7 +45,9 @@ export default function Login() {
   return (
     <div className="loginPage">
       <div className="login-form">
-        <h2>Sign into CMS <span className="material-icons">login</span></h2>
+        <h2>
+          Sign into the Greycat Content Management System <hr />
+        </h2>
 
         {users.length > 0 && (
           <div className="quick-fill-buttons">
@@ -57,7 +66,7 @@ export default function Login() {
                     <span className="user-role">{user.role}</span>
                   </span>
                   <span className="material-icons">
-                    {user.role === 'ADMIN' ? 'admin_panel_settings' : 'person'}
+                    {user.role === "ADMIN" ? "admin_panel_settings" : "person"}
                   </span>
                 </button>
               ))}
@@ -91,6 +100,17 @@ export default function Login() {
               placeholder="Enter your password"
             />
           </div>
+          <div className="disclaimer">
+            <label htmlFor="disclaimer">
+              <input
+                type="checkbox"
+                id="disclaimer"
+                checked={disclaimerAccepted}
+                onChange={(e) => setDisclaimerAccepted(e.target.checked)}
+              />
+              I accept this is not for misuse or plagerism.
+            </label>
+          </div>
 
           {error && <div className="btn btn-danger error-message">{error}</div>}
 
@@ -98,6 +118,15 @@ export default function Login() {
             <button type="submit" disabled={loading} className="btn btn-login">
               <span className="material-icons">person</span>{" "}
               {loading ? "Signing in..." : "Sign In"}
+            </button>
+
+            <button
+              type="button"
+              disabled={loading}
+              className="btn btn-primary"
+            >
+              <span className="material-icons">login</span>{" "}
+              {loading ? "Registering..." : "Register"}
             </button>
           </div>
         </form>

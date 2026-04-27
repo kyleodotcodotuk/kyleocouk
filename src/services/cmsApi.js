@@ -1,33 +1,10 @@
-import { supabase } from '../lib/supabase';
 import { authenticateUser, logoutUser, isUserAuthenticated, getCurrentUser } from '../data/users';
 
-// API service that can work with localStorage or Supabase
+// API service for localStorage-based content management
 class CMSApiService {
-  constructor() {
-    this.useDatabase = supabase !== null;
-  }
-
   // Content operations
   async getContent() {
-    if (this.useDatabase) {
-      try {
-        const { data, error } = await supabase
-          .from('cms_content')
-          .select('*')
-          .single();
-        
-        if (error && error.code !== 'PGRST116') { // Not found error
-          throw error;
-        }
-        
-        return data?.content || this.getDefaultContent();
-      } catch (error) {
-        console.error('Error fetching content from database:', error);
-        return this.getLocalStorageContent();
-      }
-    } else {
-      return this.getLocalStorageContent();
-    }
+    return this.getLocalStorageContent();
   }
 
   async updateContent(section, data) {
@@ -40,109 +17,26 @@ class CMSApiService {
       }
     };
 
-    if (this.useDatabase) {
-      try {
-        const { error } = await supabase
-          .from('cms_content')
-          .upsert({
-            id: 1, // Single row for content
-            content: newContent,
-            updated_at: new Date().toISOString()
-          });
-        
-        if (error) throw error;
-      } catch (error) {
-        console.error('Error updating content in database:', error);
-        // Fallback to localStorage
-        this.updateLocalStorageContent(newContent);
-      }
-    } else {
-      this.updateLocalStorageContent(newContent);
-    }
-
+    this.updateLocalStorageContent(newContent);
     return newContent;
   }
 
   async resetContent() {
     const defaultContent = this.getDefaultContent();
-    
-    if (this.useDatabase) {
-      try {
-        const { error } = await supabase
-          .from('cms_content')
-          .upsert({
-            id: 1,
-            content: defaultContent,
-            updated_at: new Date().toISOString()
-          });
-        
-        if (error) throw error;
-      } catch (error) {
-        console.error('Error resetting content in database:', error);
-        // Fallback to localStorage
-        localStorage.removeItem('cms_content');
-      }
-    } else {
-      localStorage.removeItem('cms_content');
-    }
-
+    localStorage.removeItem('cms_content');
     return defaultContent;
   }
 
   // Authentication operations
   async login(username, password) {
-    if (this.useDatabase) {
-      try {
-        // Try our local user authentication first
-        const localAuth = await authenticateUser(username, password);
-        if (localAuth.success) {
-          return localAuth;
-        }
-        
-        // Fallback to Supabase if local auth fails
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email: username.includes('@') ? username : `${username}@kyleo.co.uk`,
-          password: password
-        });
-        
-        if (error) throw error;
-        
-        return { success: true, user: data.user };
-      } catch (error) {
-        console.error('Error logging in:', error);
-        // Fallback to local auth
-        return await authenticateUser(username, password);
-      }
-    } else {
-      return await authenticateUser(username, password);
-    }
+    return await authenticateUser(username, password);
   }
 
   async logout() {
-    if (this.useDatabase) {
-      try {
-        const { error } = await supabase.auth.signOut();
-        if (error) throw error;
-      } catch (error) {
-        console.error('Error logging out:', error);
-      }
-    }
-    
-    // Always clear local storage and logout user
     logoutUser();
   }
 
   async getCurrentUser() {
-    if (this.useDatabase) {
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (user) return user;
-      } catch (error) {
-        console.error('Error getting current user:', error);
-      }
-    }
-    
-    // Check local authentication
     if (isUserAuthenticated()) {
       return getCurrentUser();
     }

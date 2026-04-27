@@ -132,8 +132,7 @@ export default function Header() {
                 <div>
                   {content.personal.bio.split('\n').map((paragraph, index) => (
                     <p key={index}>{paragraph}</p>
-                  ))}
-                  <p>
+                  ))} 
                     <a
                       className="btn"
                       tabIndex="0"
@@ -148,8 +147,10 @@ export default function Header() {
                       href="/portfolio"
                     >
                       View My Portfolio
-                    </a>
-                  </p>
+                    </a> 
+                    <a
+                      className="btn"
+                      tabIndex="0" href="/admin">See admin</a>
                 </div>
                 <img src={Me2} alt="Me" />
               </div>

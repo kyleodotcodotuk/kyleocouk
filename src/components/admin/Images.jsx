@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import AdminLayout from './AdminLayout';
-import { supabase, isSupabaseAvailable } from '../../lib/supabase';
 import LoadingSpinner from '../common/LoadingSpinner';
 
 const LOCAL_KEY = 'cms_images';
@@ -12,44 +11,31 @@ export default function Images() {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [error, setError] = useState('');
 
-  // Load images from Supabase or localStorage
+  // Load images from localStorage
   useEffect(() => {
-    const fetchImages = async () => {
+    const fetchImages = () => {
       setError('');
-      if (isSupabaseAvailable()) {
-        const { data, error } = await supabase.storage.from('images').list('', { limit: 100 });
-        if (error) setError(error.message);
-        else setFiles(data || []);
-      } else {
-        // Fallback: localStorage
-        const local = JSON.parse(localStorage.getItem(LOCAL_KEY) || '[]');
-        setFiles(local);
-      }
+      const local = JSON.parse(localStorage.getItem(LOCAL_KEY) || '[]');
+      setFiles(local);
     };
     fetchImages();
   }, [uploading]);
 
   // Handle file upload
-  const handleUpload = async (e) => {
+  const handleUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
     setUploading(true);
     setError('');
     try {
-      if (isSupabaseAvailable()) {
-        const { error } = await supabase.storage.from('images').upload(file.name, file, { upsert: true });
-        if (error) setError(error.message);
-      } else {
-        // Fallback: localStorage (base64)
-        const reader = new FileReader();
-        reader.onload = () => {
-          const local = JSON.parse(localStorage.getItem(LOCAL_KEY) || '[]');
-          local.push({ name: file.name, data: reader.result });
-          localStorage.setItem(LOCAL_KEY, JSON.stringify(local));
-          setFiles(local);
-        };
-        reader.readAsDataURL(file);
-      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        const local = JSON.parse(localStorage.getItem(LOCAL_KEY) || '[]');
+        local.push({ name: file.name, data: reader.result });
+        localStorage.setItem(LOCAL_KEY, JSON.stringify(local));
+        setFiles(local);
+      };
+      reader.readAsDataURL(file);
     } catch (err) {
       setError(err.message);
     }
@@ -57,13 +43,8 @@ export default function Images() {
   };
 
   // Handle preview
-  const handlePreview = async (file) => {
-    if (isSupabaseAvailable()) {
-      const { data } = supabase.storage.from('images').getPublicUrl(file.name);
-      setPreviewUrl(data.publicUrl);
-    } else {
-      setPreviewUrl(file.data);
-    }
+  const handlePreview = (file) => {
+    setPreviewUrl(file.data);
   };
 
   return (

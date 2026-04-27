@@ -1,11 +1,9 @@
-// Database service for handling both localStorage and Supabase
-import { supabase, isSupabaseAvailable } from '../lib/supabase'
+// Database service for localStorage-based content management
 
 // Storage keys
 const STORAGE_KEYS = {
   CONTENT: 'cms_content',
-  LAST_SYNC: 'cms_last_sync',
-  OFFLINE_CHANGES: 'cms_offline_changes'
+  LAST_SYNC: 'cms_last_sync'
 }
 
 // Default content structure
@@ -29,17 +27,6 @@ const DEFAULT_CONTENT = {
 class DatabaseService {
   constructor() {
     this.isOnline = navigator.onLine
-    this.syncInProgress = false
-    
-    // Listen for online/offline events
-    window.addEventListener('online', () => {
-      this.isOnline = true
-      this.syncOfflineChanges()
-    })
-    
-    window.addEventListener('offline', () => {
-      this.isOnline = false
-    })
   }
 
   // Get content from localStorage
@@ -65,197 +52,40 @@ class DatabaseService {
     }
   }
 
-  // Get content from Supabase
-  async getRemoteContent() {
-    if (!isSupabaseAvailable()) {
-      throw new Error('Supabase not available')
-    }
 
-    try {
-      const { data, error } = await supabase
-        .from('cms_content')
-        .select('content, updated_at')
-        .eq('id', 1)
-        .single()
 
-      if (error) {
-        throw error
-      }
-
-      return data ? data.content : DEFAULT_CONTENT
-    } catch (error) {
-      console.error('Error fetching remote content:', error)
-      throw error
-    }
-  }
-
-  // Save content to Supabase
-  async saveRemoteContent(content) {
-    if (!isSupabaseAvailable()) {
-      throw new Error('Supabase not available')
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from('cms_content')
-        .upsert({
-          id: 1,
-          content: content,
-          updated_at: new Date().toISOString()
-        })
-        .select()
-
-      if (error) {
-        throw error
-      }
-
-      return data
-    } catch (error) {
-      console.error('Error saving remote content:', error)
-      throw error
-    }
-  }
-
-  // Get content with fallback strategy
+  // Get content from localStorage
   async getContent() {
     try {
-      // If online and Supabase available, try remote first
-      if (this.isOnline && isSupabaseAvailable()) {
-        try {
-          const remoteContent = await this.getRemoteContent()
-          // Save to local as backup
-          this.saveLocalContent(remoteContent)
-          return remoteContent
-        } catch (error) {
-          console.warn('Failed to fetch remote content, falling back to local:', error)
-          return this.getLocalContent()
-        }
-      } else {
-        // Offline or no Supabase, use local
-        return this.getLocalContent()
-      }
+      return this.getLocalContent()
     } catch (error) {
       console.error('Error getting content:', error)
       return DEFAULT_CONTENT
     }
   }
 
-  // Save content with fallback strategy
+  // Save content to localStorage
   async saveContent(content) {
-    let localSaved = false
-    let remoteSaved = false
-
-    // Always save locally first for immediate feedback
-    localSaved = this.saveLocalContent(content)
-
-    // Try to save remotely if online
-    if (this.isOnline && isSupabaseAvailable()) {
-      try {
-        await this.saveRemoteContent(content)
-        remoteSaved = true
-        console.log('✅ Content saved to both local and remote storage')
-      } catch (error) {
-        console.warn('Failed to save remote content, saved locally only:', error)
-        // Store as offline change for later sync
-        this.storeOfflineChange(content)
-      }
-    } else {
-      console.log('📴 Offline mode: Content saved locally only')
-      this.storeOfflineChange(content)
-    }
-
+    const localSaved = this.saveLocalContent(content)
     return {
       success: localSaved,
-      local: localSaved,
-      remote: remoteSaved,
-      offline: !this.isOnline || !isSupabaseAvailable()
+      local: localSaved
     }
   }
 
-  // Store changes made while offline
-  storeOfflineChange(content) {
-    try {
-      const offlineChanges = JSON.parse(localStorage.getItem(STORAGE_KEYS.OFFLINE_CHANGES) || '[]')
-      offlineChanges.push({
-        content,
-        timestamp: new Date().toISOString()
-      })
-      localStorage.setItem(STORAGE_KEYS.OFFLINE_CHANGES, JSON.stringify(offlineChanges))
-    } catch (error) {
-      console.error('Error storing offline change:', error)
-    }
-  }
 
-  // Sync offline changes when coming back online
-  async syncOfflineChanges() {
-    if (this.syncInProgress || !isSupabaseAvailable()) {
-      return
-    }
-
-    this.syncInProgress = true
-
-    try {
-      const offlineChanges = JSON.parse(localStorage.getItem(STORAGE_KEYS.OFFLINE_CHANGES) || '[]')
-      
-      if (offlineChanges.length === 0) {
-        this.syncInProgress = false
-        return
-      }
-
-      console.log(`🔄 Syncing ${offlineChanges.length} offline changes...`)
-
-      // Get the latest change (most recent)
-      const latestChange = offlineChanges[offlineChanges.length - 1]
-      
-      // Try to save to remote
-      await this.saveRemoteContent(latestChange.content)
-      
-      // Clear offline changes on successful sync
-      localStorage.removeItem(STORAGE_KEYS.OFFLINE_CHANGES)
-      
-      console.log('✅ Offline changes synced successfully')
-    } catch (error) {
-      console.error('Failed to sync offline changes:', error)
-    } finally {
-      this.syncInProgress = false
-    }
-  }
 
   // Get sync status
   getSyncStatus() {
     const lastSync = localStorage.getItem(STORAGE_KEYS.LAST_SYNC)
-    const offlineChanges = JSON.parse(localStorage.getItem(STORAGE_KEYS.OFFLINE_CHANGES) || '[]')
     
     return {
       lastSync: lastSync ? new Date(lastSync) : null,
-      isOnline: this.isOnline,
-      supabaseAvailable: isSupabaseAvailable(),
-      pendingChanges: offlineChanges.length,
-      syncInProgress: this.syncInProgress
+      isOnline: this.isOnline
     }
   }
-
-  // Force sync (manual sync)
-  async forceSync() {
-    if (!this.isOnline || !isSupabaseAvailable()) {
-      throw new Error('Cannot sync: offline or Supabase unavailable')
-    }
-
-    try {
-      const localContent = this.getLocalContent()
-      await this.saveRemoteContent(localContent)
       
-      // Clear any offline changes
-      localStorage.removeItem(STORAGE_KEYS.OFFLINE_CHANGES)
-      
-      console.log('✅ Manual sync completed')
-      return true
-    } catch (error) {
-      console.error('Manual sync failed:', error)
-      throw error
-    }
-  }
-
+       
   // Reset to default content
   async resetContent() {
     const defaultContent = { ...DEFAULT_CONTENT }

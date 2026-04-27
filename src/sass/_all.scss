@@ -3,7 +3,7 @@
 @use "backend/index" as backend;  // Use explicit namespace to avoid conflicts
 @use "frontend/index" as frontend;  // Use explicit namespace to avoid conflicts
 @use "var" as *;  // Use * to make variables available without namespace
-@use "misc/tokens/index";  // Import all CSS custom property tokens 
+// @use "misc/tokens/index";  // Import all CSS custom property tokens 
 
 // External imports after @use
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap");
