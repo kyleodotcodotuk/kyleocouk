@@ -1,0 +1,35 @@
+@use "./../../var.scss" as *;
+
+.alert {
+  border-radius: var(--border-radius);
+  padding: var(--ad-spacing-lg);
+  margin-block-end: var(--ad-spacing-lg);
+  box-shadow: var(--box-shadow-default);
+  border: 1px solid;
+}
+
+.alert-danger {
+  background-color: var(--danger-colour); 
+  border-color: color-mix(in srgb, var(--danger-colour), black 30%);
+  color: $pure-white;
+}
+
+.alert-warning {
+  background-color:var(--warning-colour);
+   border-color: color-mix(in srgb, var(--warning-colour), black 30%);
+  color: #000000;
+}
+
+.alert-success {
+  background-color: var(--success-colour);
+ border-color: color-mix(in srgb, var(--success-colour), black 30%);
+  color: #ffffff;
+}
+
+
+
+.alert-info {
+  background-color: rgba(119, 119, 119, 0.1);
+  border-color: var(--info-colour);
+  color: var(--info-colour);
+}

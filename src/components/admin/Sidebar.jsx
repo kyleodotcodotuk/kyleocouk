@@ -1,13 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { getCurrentUser } from "../../data/users";
-import { getAvailableRoutes } from "../../config/adminRoutes";
+import { getAvailableRoutes, isRouteAvailable } from "../../config/adminRoutes";
 
 const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
   const [favourites, setFavourites] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem("cmsFavourites")) || [];
-    } catch {
+      let stored = JSON.parse(localStorage.getItem("cmsFavourites")) || [];
+      // Validate that all favorites are still valid routes
+      const validFavourites = stored.filter(fav => {
+        if (!fav || !fav.path) return false;
+        // Explicitly exclude removed pages by label or path
+        if (fav.label === 'general' || fav.path.includes('/general') || fav.path === 'general') return false;
+        return isRouteAvailable(fav.path);
+      });
+      
+      // If any were removed, update localStorage
+      if (validFavourites.length !== stored.length) {
+        localStorage.setItem("cmsFavourites", JSON.stringify(validFavourites));
+        console.log(`Cleaned up ${stored.length - validFavourites.length} invalid favorite(s)`);
+      }
+      
+      return validFavourites;
+    } catch (error) {
+      console.error('Error loading favorites:', error);
+      // If there's an error parsing, clear the corrupted data
+      localStorage.setItem("cmsFavourites", JSON.stringify([]));
       return [];
     }
   });
@@ -492,7 +510,7 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
 
       {/* Version info */}
       <div className="version-info">
-        <span className="version-text">Grey Cat Content Management System © <em>{localStorage.getItem('cmsVersion') || ' Release 5.2.1'}</em></span>
+        <span className="version-text">Grey Cat Content Management System © <em>{localStorage.getItem('cmsVersion') || ' v 5.2.1'}</em></span>
       </div>
 
       {/* Theme Switch */}

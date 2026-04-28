@@ -2,7 +2,7 @@
 
 .cms-sidebar {
   width: 300px;
-   background: var(--main-colour);
+  background: var(--main-colour);
   color: white;
   height: 100vh;
   overflow-y: auto;
@@ -16,10 +16,9 @@
   .user-profile {
     display: flex;
     align-items: center;
-    flex-direction: column;
     gap: 0.5rem;
     justify-content: center;
-    padding: 2rem 0; 
+    padding: 1.6rem 0;
     border-bottom: 1px solid #2d3748;
   }
 
@@ -37,11 +36,12 @@
   }
 
   .user-info {
-    text-align: center;
+    text-align: left;
     h3 {
       margin: 0;
+      color: var(--subtle-white);
       font-size: 1rem;
-      font-weight: normal; 
+      font-weight: normal;
     }
   }
 
@@ -50,8 +50,7 @@
     align-items: center;
     gap: 0.3rem;
     margin-bottom: 0.25rem;
-    font-size: 0.75rem;
-    color: #a0aec0;
+    font-size: 0.75rem; 
     flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
@@ -194,11 +193,10 @@
 
   .version-info {
     padding: 1rem;
-    border-top: 1px solid #2d3748;
     color: #a0aec0;
     font-size: 0.75rem;
     line-height: normal;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.1);
     .version-text {
       em {
         opacity: 0.8;
@@ -250,7 +248,7 @@
           left: 0;
           right: 0;
           bottom: 0;
-          background-color: #4a5568;
+          background-color: #5c687c;
           transition: 0.4s;
           border-radius: 24px;
 
@@ -270,4 +268,3 @@
     }
   }
 }
-

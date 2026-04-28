@@ -13,7 +13,6 @@ export default function AdminDashboard() {
   return (
     <AdminLayout>
       <div className="dashboard">
-
         <section className="widget">
           <h2 className="widget-heading">
             Welcome back <span className="material-icons">waving_hand</span>
@@ -21,7 +20,7 @@ export default function AdminDashboard() {
           <hr />
           <p>Admin CMS is ready for development.</p>
         </section>
-        
+
         {currentUser ? (
           <section className="widget">
             <h2 className="widget-heading">
@@ -38,7 +37,20 @@ export default function AdminDashboard() {
         ) : (
           <p>Loading...</p>
         )}
+      </div>
 
+      <div className="widget">
+        <div role="alert" className="alert alert-danger">
+          This is an alert
+        </div>
+
+        <div role="alert" className="alert alert-warning">
+          This is an alert
+        </div>
+
+        <div role="alert" className="alert alert-success">
+          This is an alert
+        </div>
       </div>
     </AdminLayout>
   );
