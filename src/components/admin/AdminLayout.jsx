@@ -86,7 +86,10 @@ export default function AdminLayout({ children }) {
       <div className="main-layout">
         {/* CMS HEADER */}
         <div className="cms-static-inside-header">
-        <div className="inside-header-static-info">{formatTime(dashboardInfo.currentTime)} <br />
+          
+        <div className="inside-header-static-info">
+          <span className="material-icons">radio_button_checked</span>
+          {formatTime(dashboardInfo.currentTime)} <br /> 
            {formatDate(dashboardInfo.currentTime)}
         </div> 
         {/* Login buttons */}

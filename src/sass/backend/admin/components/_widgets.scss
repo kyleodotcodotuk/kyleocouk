@@ -1,9 +1,24 @@
+@use "sass:color";
+@use "./../../../var.scss" as *;
+
 .widget {
-  background-color: #ffffff;
-  padding: 2rem 2rem 3rem 2rem;
+  background-color: var(--ad-bg-secondary);
+  padding: var(--ad-spacing-lg);
+  padding-bottom: var(--ad-spacing-xxl);
   display: grid;
-  margin: 1em;
-  box-shadow: 0 4px 20px rgba(26, 32, 44, 0.3);
-  border-radius: 20px;
+  margin-block-end: var(--ad-spacing-lg);
+  box-shadow: var(--box-shadow-default);
+  border-radius: var(--border-radius);
   gap: 1rem;
+  overflow: hidden;
+  .widget-heading {
+    font-weight: bold;
+    font-size: 2em; 
+  }
+  .material-icons {
+    border-radius: var(--border-radius-circle);
+    background-color: var(--main-colour);
+    padding: var(--ad-spacing-sm);
+    font-size: var(--ad-font-size-sm);
+  }
 }

@@ -12,7 +12,7 @@
     font-family: "Inter", Arial, sans-serif;
   }
 }
- 
+
 .main-layout {
   min-height: 100vh;
   background: var(--main-black);
@@ -21,24 +21,27 @@
   margin-left: 300px;
 
   .cms-static-inside-header {
-    background: #1a202c;
+    background: var(--main-darken-10);
     color: #fff;
     padding: 0.75rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 20px rgba(26, 32, 44, 0.3);
+    box-shadow: 0 1px 0 0 rgb(255, 255, 255);
     z-index: 10;
-    min-height: 60px;
+    min-height: 50px;
     border-bottom: 1px solid #2d3748;
     .inside-header-static-info {
       display: flex;
-      gap: 0.5em;
+      gap: 1em;
       color: #ffffff;
+      align-items: center;
+      line-height: 1.2;
+      font-size: 0.9rem;
     }
   }
   .inside-header-actions {
     display: flex;
-    gap: 0.5em;
+    gap: 1em;
   }
 }

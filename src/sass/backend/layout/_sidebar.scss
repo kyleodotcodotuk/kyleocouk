@@ -1,6 +1,8 @@
+@use "../../var" as *;
+
 .cms-sidebar {
   width: 300px;
-  background: #1a202c;
+   background: var(--main-colour);
   color: white;
   height: 100vh;
   overflow-y: auto;
@@ -17,15 +19,14 @@
     flex-direction: column;
     gap: 0.5rem;
     justify-content: center;
-    padding: 2rem 0;
-    background: rgba(0, 0, 0, 0.5);
+    padding: 2rem 0; 
     border-bottom: 1px solid #2d3748;
   }
 
   .avatar {
     width: 66px;
     height: 66px;
-    background: rgba(117, 39, 166, 1);
+    background: var(--menu-highlight);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -38,9 +39,9 @@
   .user-info {
     text-align: center;
     h3 {
-      margin: 0 0 0.5rem 0;
+      margin: 0;
       font-size: 1rem;
-      font-weight: bold;
+      font-weight: normal; 
     }
   }
 
@@ -52,9 +53,11 @@
     font-size: 0.75rem;
     color: #a0aec0;
     flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
 
     .material-icons {
-      font-size: 14px;
+      font-size: 1rem;
     }
   }
 
@@ -73,7 +76,7 @@
 
       &.active {
         > .nav-item {
-          background: rgba(117, 39, 166, 0.85);
+          background: var(--menu-highlight);
           color: white;
         }
 

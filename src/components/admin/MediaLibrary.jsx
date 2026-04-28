@@ -137,11 +137,10 @@ export default function MediaLibrary() {
 
   return (
     <AdminLayout>
-      <div className="dashboard"> 
-          <h1>Media Library</h1> 
+      <div className="dashboard">  
 
         {/* Static FTP Images Gallery */}
-        <div className="static-images-section">
+        <div className="widget static-images-section">
           <h2>
             <span className="material-icons">folder_special</span>
             Static FTP Images

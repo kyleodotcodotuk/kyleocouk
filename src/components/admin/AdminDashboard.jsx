@@ -13,21 +13,32 @@ export default function AdminDashboard() {
   return (
     <AdminLayout>
       <div className="dashboard">
-        <section className="welcome widget">
-          <h2>Welcome back !</h2>
+
+        <section className="widget">
+          <h2 className="widget-heading">
+            Welcome back <span className="material-icons">waving_hand</span>
+          </h2>
+          <hr />
           <p>Admin CMS is ready for development.</p>
         </section>
+        
         {currentUser ? (
           <section className="widget">
-            <h2>List of outstanding CMS</h2>
+            <h2 className="widget-heading">
+              Next CMS tasks <span className="material-icons">check</span>
+            </h2>
+            <hr />
             <ul>
               <li>Projects</li>
-              <li></li>
+              <li>Find what to use for skills page</li>
+              <li>Bare bones usability</li>
+              <li>Login error stuff</li>
             </ul>
           </section>
         ) : (
           <p>Loading...</p>
         )}
+
       </div>
     </AdminLayout>
   );

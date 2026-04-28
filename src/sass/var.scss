@@ -1,11 +1,10 @@
 @use "sass:color";
 
-// CSS Custom Properties (Variables) for shared styling
 :root {
   // Key color variables
-  --main-colour: #5B5F97;
-  --secondary-colour: #1f1f1f;
-  --tertiary-colour: #ffffff;
+  --main-colour: #7d56ff;
+  --secondary-colour: #729bbb;
+  --tertiary-colour: #ff0000;
 
   // Specific colours
   --gold-colour: #ffd700;
@@ -13,6 +12,7 @@
   --info-colour: #777777;
   --danger-colour: #b80c09;
   --success-colour: #138f2b;
+  --menu-highlight: #812db6;
 
   // Light shades (pre-calculated colors)
   --main-lighten-10: #6e74ad;
@@ -58,7 +58,7 @@
 
 // SCSS variables for conditional logic and functions
 // These reference the CSS variables above
-$main-colour: #5B5F97;
+$main-colour: #5b5f97;
 $secondary-colour: #1f1f1f;
 $tertiary-colour: #ffffff;
 $pure-white: #ffffff;
