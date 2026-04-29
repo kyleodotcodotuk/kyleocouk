@@ -1,0 +1,21 @@
+.column-wrapper {
+  display: flex;
+  gap: 2.5%;
+  justify-content: center;
+}
+.img-wrapper-grid{
+  display: flex;
+}
+
+.fullWidth {
+  width: 100%;
+}
+.left-column {
+  width: 50%;
+}
+.right-column {
+  width: 50%;
+}
+.third-column {
+  width: 33%;
+}

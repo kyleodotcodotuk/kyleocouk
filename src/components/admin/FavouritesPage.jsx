@@ -35,11 +35,16 @@ export default function FavouritesPage() {
 
   return (
     <AdminLayout>
-      <section className="widget cms-dashboard">
-        <h1>Favourites</h1>
+      <div className="dashboard">
+      <section className="widget">
+          <h2 className="widget-heading">
+                  Favourites <span className="material-icons">favorite</span>
+                </h2>
+        <hr />
         <p>Quickly access your most-used CMS pages here. Favourite any page from the menu for easy access.</p>
         {favourites.length === 0 ? (
-          <p className="alert cms-favourites-empty">You have not favourited any pages yet.</p>
+          <div className="alert alert-warning">
+                  <span className="material-icons">assignment_late</span> You have not favourited any pages yet.</div>
         ) : (
           <div className="cms-favourites-list">
             {favourites.map(fav => (
@@ -51,6 +56,7 @@ export default function FavouritesPage() {
           </div>
         )}
       </section>
+      </div>
     </AdminLayout>
   );
 }

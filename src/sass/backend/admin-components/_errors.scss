@@ -6,30 +6,45 @@
   margin-block-end: var(--ad-spacing-lg);
   box-shadow: var(--box-shadow-default);
   border: 1px solid;
+  display: flex;
+  align-items: center;
+  span {
+    margin-right: 15px;
+  }
 }
 
 .alert-danger {
-  background-color: var(--danger-colour); 
+  background-color: var(--danger-colour);
   border-color: color-mix(in srgb, var(--danger-colour), black 30%);
   color: $pure-white;
+  .material-icons {
+    background: color-mix(in srgb, var(--danger-colour), black 30%);
+  }
 }
 
 .alert-warning {
-  background-color:var(--warning-colour);
-   border-color: color-mix(in srgb, var(--warning-colour), black 30%);
+  background-color: var(--warning-colour);
+  border-color: color-mix(in srgb, var(--warning-colour), black 30%);
   color: #000000;
+  .material-icons {
+    background: color-mix(in srgb, var(--warning-colour), black 30%);
+  }
 }
 
 .alert-success {
   background-color: var(--success-colour);
- border-color: color-mix(in srgb, var(--success-colour), black 30%);
+  border-color: color-mix(in srgb, var(--success-colour), black 30%);
   color: #ffffff;
+  .material-icons {
+    background: color-mix(in srgb, var(--success-colour), black 30%);
+  }
 }
 
-
-
 .alert-info {
-  background-color: rgba(119, 119, 119, 0.1);
-  border-color: var(--info-colour);
-  color: var(--info-colour);
+  background-color:  var(--info-colour);
+  border-color:  color-mix(in srgb, var(--info-colour), black 30%);
+  color: var(--pure-black);
+  .material-icons {
+    background: color-mix(in srgb, var(--info-colour), black 30%);
+  }
 }

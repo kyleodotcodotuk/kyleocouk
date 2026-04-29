@@ -76,8 +76,10 @@ export default function Settings() {
 
   return (
     <AdminLayout>
-      <div className="settings-page">
-        <div className="header">
+       <div className="dashboard">
+        {/* Full sized widget */}
+        <div className="fullWidth"> 
+        <div className="widget">
           <h1>Settings</h1>
           <button className="btn btn-primary" onClick={saveSettings}>
             <span className="material-icons">save</span>
@@ -264,6 +266,7 @@ export default function Settings() {
             )}
           </div>
         </div>
+      </div>
       </div>
     </AdminLayout>
   );
