@@ -32,7 +32,7 @@ export default function Settings() {
     const saved = localStorage.getItem('portfolioSettings');
     const defaultSettings = {
       // Profile settings
-      name: 'Kyle O',
+      name: 'Kyle OConnor',
       email: 'hello@kyleo.co.uk',
       bio: 'Web designer and developer based in Manchester, UK',
       location: 'Manchester, UK',
@@ -85,7 +85,7 @@ export default function Settings() {
             <span className="material-icons">save</span>
             Save Changes
           </button>
-        </div>
+
 
         <div className="settings-container">
           <div className="settings-sidebar">
@@ -267,7 +267,7 @@ export default function Settings() {
           </div>
         </div>
       </div>
-      </div>
+      </div>        </div>
     </AdminLayout>
   );
 }

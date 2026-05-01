@@ -3,7 +3,7 @@ const DEFAULT_USERS = [
   {
     id: 1,
     username: 'admin',
-    name: 'Admin User',
+    name: 'Kyle OConnor',
     password: 'Admin2024!',
     role: 'ADMIN',
     permissions: ['*'], // Admin has all permissions
