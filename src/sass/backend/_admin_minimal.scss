@@ -15,15 +15,15 @@
 
 .main-layout {
   min-height: 100vh;
-  background: var(--main-black);
+  background: var(--dashboard-bg);
   display: flex;
   flex-direction: column;
   margin-left: 300px;
 
   .cms-static-inside-header {
-    background: var(--main-darken-10);
+    background: var(--admin-header);
     color: #fff;
-    padding: 0.75rem 2rem;
+    padding: 0.75rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
