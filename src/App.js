@@ -5,12 +5,8 @@ import { ContentProvider, useContent } from './contexts/ContentContext';
 import { Main, NotFound } from "./components";
 import Login from './components/admin/Login';
 import AdminDashboard from './components/admin/AdminDashboard';
-import Portfolio from './components/admin/Portfolio';
-import ProjectEditor from './components/admin/ProjectEditor';
 import MediaLibrary from './components/admin/MediaLibrary';
 import Settings from './components/admin/Settings';
-import PortfolioPage from './components/PortfolioPage';
-import ProjectDetailPage from './components/ProjectDetailPage';
 import {
   FavouritesPage
 } from './components/admin';
@@ -46,10 +42,6 @@ function AppContent() {
             </>
           } />
           
-          {/* Public Portfolio routes */}
-          <Route path="/portfolio" element={<PortfolioPage />} />
-          <Route path="/portfolio/:slug" element={<ProjectDetailPage />} />
-          
           {/* Auth routes */}
           <Route path="/login" element={<Login />} />
           
@@ -60,33 +52,6 @@ function AppContent() {
             </ProtectedRoute>
           } />
           
-          {/* Portfolio Management */}
-          <Route path="/admin/portfolio" element={
-            <ProtectedRoute>
-              <Portfolio />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin/portfolio/projects" element={
-            <ProtectedRoute>
-              <Portfolio />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin/portfolio/projects/create" element={
-            <ProtectedRoute>
-              <ProjectEditor />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin/portfolio/projects/edit/:id" element={
-            <ProtectedRoute>
-              <ProjectEditor />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin/portfolio/skills" element={
-            <ProtectedRoute>
-              <Portfolio />
-            </ProtectedRoute>
-          } />
-
           {/* Media Library */}
           <Route path="/admin/media" element={
             <ProtectedRoute>

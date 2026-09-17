@@ -1,0 +1,137 @@
+.bio-area {
+  margin-block-start: var(--fe-font-size-md); 
+  
+  .button-wrapper {
+    display: flex;
+    margin-block-start: var(--fe-spacing-md);
+    gap: var(--fe-spacing-xs);
+  }
+}
+
+  // Information
+  h1 {
+    text-shadow: var(--subtle-shadow-text);
+    letter-spacing: 0.03em;
+    text-transform: capitalize;
+    font-size: 4em;
+    position: relative;
+    margin: 8px 0; 
+  }
+
+  h2 {
+    text-shadow: var(--subtle-shadow-text);
+    font-size: 2.8em;
+    margin-bottom: 32px;
+    margin: 0;
+  }
+
+.date-and-time {
+  padding: 0;
+  margin: 0 0 16px 0;
+  line-height: 20px;
+  font-size: 0.8em;
+}
+
+// Social
+.social-icons {
+  padding: 0;
+
+  display: inline-flex;
+  li {
+    margin: 0 4px 0 0;
+    overflow: hidden;
+    a {
+      background-color: var(--main-lighten-10);
+      overflow: hidden;
+      height: 52px;
+      width: 52px;
+      display: grid;
+      align-content: center;
+      justify-content: center;
+      border-radius: 50%;
+      img {
+        min-height: 20px;
+      }
+      &:hover,
+      &:focus {
+        background-color: var(--main-lighten-20);
+      }
+    }
+  }
+
+}
+
+// Image
+.image-wrapper {
+  position: relative;
+  padding: 30px;
+
+  @keyframes RotateItAlways {
+    0% {
+      transform: 0;
+    }
+
+    50% {
+      transform: rotate(180deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  &:before {
+    content: "";
+    border-radius: 999px;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 110%;
+    width: 110%;
+    animation: RotateItAlways 5s linear infinite;
+    background: conic-gradient(
+      from 30deg,
+      var(--secondary-colour),
+      var(--pure-black) 46%,
+      transparent 46%
+    );
+    mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - 4px),
+      #fff calc(100% - 4px + 1px)
+    );
+  }
+
+  &:after {
+    content: "";
+    border-radius: 999px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    animation: RotateItAlways 7s linear infinite;
+    background: conic-gradient(
+      from 30deg,
+      var(--secondary-colour),
+      var(--pure-black) 46%,
+      transparent 46%
+    );
+    mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - 3px),
+      #fff calc(100% - 3px + 1px)
+    );
+  }
+
+  img {
+    border-radius: 50%;
+    display: block;
+    width: calc(100vw - 80px);
+    max-width: 360px;
+    max-height: 360px;
+    background-color: var(--pure-black);
+  }
+}

@@ -1,0 +1,52 @@
+// Frontend design tokens (CSS custom properties)
+// Scoped to the public-facing site — admin/backend tokens live under misc/tokens.
+:root {
+  // Typography
+  --fe-font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --fe-font-size-xs: 0.75rem;
+  --fe-font-size-sm: 0.875rem;
+  --fe-font-size-md: 1rem;
+  --fe-font-size-lg: 1.25rem;
+  --fe-font-size-xl: 1.5rem;
+  --fe-font-size-2xl: 2rem;
+
+  --fe-line-height-tight: 1.25;
+  --fe-line-height-normal: 1.5;
+  --fe-line-height-relaxed: 1.75;
+
+  // Spacing
+  --fe-spacing-xs: 0.25rem;
+  --fe-spacing-sm: 0.5rem;
+  --fe-spacing-md: 1rem;
+  --fe-spacing-lg: 1.5rem;
+  --fe-spacing-xl: 2rem;
+
+  // Layout
+  --fe-container-max-width: 1200px;
+  --fe-container-padding: 1rem;
+  --fe-grid-gap: 1rem;
+
+  // Theme colours
+  --fe-primary-color: #007bff;
+  --fe-secondary-color: #6c757d;
+  --fe-success-color: #28a745;
+  --fe-danger-color: #dc3545;
+  --fe-warning-color: #ffc107;
+  --fe-info-color: #17a2b8;
+
+  // Text colours
+  --fe-text-primary: #212529;
+  --fe-text-secondary: #6c757d;
+  --fe-text-muted: #868e96;
+
+  // Background colours
+  --fe-bg-primary: #ffffff;
+  --fe-bg-secondary: #f8f9fa;
+  --fe-bg-tertiary: #e9ecef;
+
+  // Radius
+
+  --fe-all-border-radius: 20px;
+}
+

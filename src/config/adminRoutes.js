@@ -10,26 +10,6 @@ export const adminRoutes = [
     active: true
   },
   {
-    id: 'portfolio',
-    label: 'Portfolio',
-    icon: 'work',
-    expanded: false,
-    children: [
-      { 
-        id: 'portfolio-projects', 
-        label: 'Projects', 
-        icon: 'folder_special',
-        path: '/admin/portfolio/projects'
-      },
-      { 
-        id: 'portfolio-skills', 
-        label: 'Skills & Expertise', 
-        icon: 'psychology',
-        path: '/admin/portfolio/skills'
-      }
-    ]
-  },
-  {
     id: 'media',
     label: 'Media Library',
     icon: 'perm_media',
@@ -48,9 +28,6 @@ export const isRouteAvailable = (path, userPermissions = [], routePermissions = 
   // Available routes in your application
   const availableRoutes = [
     '/admin',
-    '/admin/portfolio',
-    '/admin/portfolio/projects',
-    '/admin/portfolio/skills',
     '/admin/media',
     '/admin/settings',
     '/admin/favourites'

@@ -36,7 +36,6 @@ export default function NotFound() {
             <h3>You might find useful:</h3>
             <ul>
               <li><a href="/">Homepage</a></li>
-              <li><a href="/admin/portfolio">Portfolio</a></li>
               <li><a href="/login">Admin Login</a></li>
             </ul>
           </div>

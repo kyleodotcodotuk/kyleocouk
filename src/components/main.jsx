@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useContent } from "../contexts/ContentContext";
 import Me from "../img/me.svg";
-import Me2 from "../img/me.png";
-import Code from "../img/code.png";
 import Github from "../icons/github.svg";
 import Bitcoin from "../icons/bitcoin.svg";
 
@@ -20,6 +18,8 @@ const monthNames = [
   "November",
   "December",
 ];
+
+const roles = ["Developer", "Expert", "Professional", "Engineer", "Specialist" , "Wizard"];
 
 const ordinalSuffixOf = (i) => {
   const j = i % 10;
@@ -39,6 +39,7 @@ const ordinalSuffixOf = (i) => {
 export default function Header() {
   const { content } = useContent();
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [roleIndex, setRoleIndex] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -46,6 +47,14 @@ export default function Header() {
     }, 1000);
 
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const roleTimer = setInterval(() => {
+      setRoleIndex((index) => (index + 1) % roles.length);
+    }, 5000);
+
+    return () => clearInterval(roleTimer);
   }, []);
 
   const getMeridian = (hour) => {
@@ -58,18 +67,24 @@ export default function Header() {
     return `${hours}:${minutes} ${getMeridian(time.getHours())}`;
   };
 
-  const [activeTab, setActiveTab] = useState(0);
-
-  const handleTabClick = (index) => {
-    setActiveTab(index);
-  };
-
   return (
     <header>
       <div className="left-side">
-        <h1>{content.personal.title}</h1>
-        <h2>{content.personal.name}</h2>
+        <h1>UI {roles[roleIndex]}</h1>
 
+        <h2>Kyle O'Connor</h2>
+
+        <p className="date-and-time">
+          {content.personal.location}
+          <br />
+          <strong>{formatTime(currentTime)}</strong>
+          &nbsp;&middot;&nbsp;
+          {`${currentTime.getDate()}${ordinalSuffixOf(currentTime.getDate())} ${
+            monthNames[currentTime.getMonth()]
+          } ${currentTime.getFullYear()}`}
+        </p>
+
+        
         <ul className="social-icons">
           {content.social.github && (
             <li>
@@ -97,92 +112,26 @@ export default function Header() {
           )}
         </ul>
 
-        <p className="date-and-time">
-          {content.personal.location}
-          <br />
-          <strong>{formatTime(currentTime)}</strong>
-          &nbsp;&middot;&nbsp;
-          {`${currentTime.getDate()}${ordinalSuffixOf(currentTime.getDate())} ${
-            monthNames[currentTime.getMonth()]
-          } ${currentTime.getFullYear()}`}
-        </p>
-
-        <div className="content-switcher">
-          <ul>
-            <li
-              onClick={() => handleTabClick(0)}
-              onKeyDown={(e) => e.key === "Enter" && handleTabClick(0)}
-              className={activeTab === 0 ? "active" : ""}
-              tabIndex="0"
-            >
-              Me
-            </li>
-            <li
-              onClick={() => handleTabClick(1)}
-              onKeyDown={(e) => e.key === "Enter" && handleTabClick(1)}
-              className={activeTab === 1 ? "active" : ""}
-              tabIndex="0"
-            >
-              Expertise
-            </li>
-          </ul>
-          <div>
-            {activeTab === 0 && (
-              <div className="tab-content">
-                <div>
-                  {content.personal.bio.split('\n').map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                  ))} 
-                    <a
-                      className="btn"
-                      tabIndex="0"
-                      href={`mailto:${content.personal.email}`}
-                    >
-                      {content.personal.email}
-                    </a>
-            
-                    <a
-                      className="btn"
-                      tabIndex="0"
-                      href="/portfolio"
-                    >
-                      View My Portfolio
-                    </a> 
-                    <a
-                      className="btn"
-                      tabIndex="0" href="/admin">See admin</a>
-                </div>
-                <img src={Me2} alt="Me" />
-              </div>
-            )}
-            {activeTab === 1 && (
-              <div className="tab-content">
-                <div>
-                  {content.expertise.description.split('\n').map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                  ))}
-                </div>
-                <img src={Code} alt="" />
-              </div>
-            )}
-            {activeTab === 2 && (
-              <div className="tab-content">
-                <div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Praesent neque nisl, cursus a condimentum eu, posuere non
-                    augue.
-                  </p>
-                </div>
-                <img
-                  width={200}
-                  height={200}
-                  src="https://picsum.photos/200"
-                  alt=""
-                />
-              </div>
-            )}
-          </div>
+        <div className="bio-area">
+          <p>
+            Hello, I am Kyle O'Connor! Currently a UI developer, AKA a front end
+            developer, web designer or other similar terminology. I live in
+            Tameside, more well known as a part of Greater Manchester. With a
+            remote based job for a company in Surrey. Interested in any
+            services, I'll see what I can do for you, email me.
+          </p>
+          <div className="button-wrapper">
+          <a
+            className="btn btn-secondary"
+            tabIndex="0"
+            href={`mailto:${content.personal.email}`}
+          >
+            {content.personal.email}
+          </a>
+          <a className="btn btn-secondary" tabIndex="0" href="/admin">
+            See admin
+          </a>
+        </div>
         </div>
       </div>
 

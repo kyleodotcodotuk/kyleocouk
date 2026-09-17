@@ -20,6 +20,7 @@
   user-select: none;
   box-shadow: var(--box-shadow-default);
   transition: 0.3s;
+  text-decoration: none;
 
   &:hover {
     filter: brightness(90%);
