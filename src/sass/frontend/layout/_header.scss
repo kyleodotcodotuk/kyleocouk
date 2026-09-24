@@ -18,6 +18,10 @@ header {
   );
   background-size: 400% 400%;
   animation: MainGrad 14s ease infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
   // background: linear-gradient(to top, #f1e767 0%, #feb645 100%);
 
   @keyframes MainGrad {

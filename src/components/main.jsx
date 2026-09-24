@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useContent } from "../contexts/ContentContext";
 import Me from "../img/me.svg";
 import Github from "../icons/github.svg";
@@ -36,8 +37,12 @@ const ordinalSuffixOf = (i) => {
   return "th";
 };
 
+const prefersReducedMotion = () =>
+  window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
 export default function Header() {
   const { content } = useContent();
+  const { personal, social } = content;
   const [currentTime, setCurrentTime] = useState(new Date());
   const [roleIndex, setRoleIndex] = useState(0);
 
@@ -50,6 +55,8 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const roleTimer = setInterval(() => {
       setRoleIndex((index) => (index + 1) % roles.length);
     }, 5000);
@@ -70,68 +77,63 @@ export default function Header() {
   return (
     <header>
       <div className="left-side">
-        <h1>UI {roles[roleIndex]}</h1>
+        {/* Screen readers get the real job title; the rotating word is decorative */}
+        <h1>
+          <span className="visually-hidden">{personal.title}</span>
+          <span aria-hidden="true">UI {roles[roleIndex]}</span>
+        </h1>
 
-        <h2>Kyle O'Connor</h2>
+        <h2>{personal.name}</h2>
 
         <p className="date-and-time">
-          {content.personal.location}
+          {personal.location}
           <br />
-          <strong>{formatTime(currentTime)}</strong>
-          &nbsp;&middot;&nbsp;
-          {`${currentTime.getDate()}${ordinalSuffixOf(currentTime.getDate())} ${
-            monthNames[currentTime.getMonth()]
-          } ${currentTime.getFullYear()}`}
+          <time dateTime={currentTime.toISOString()}>
+            <strong>{formatTime(currentTime)}</strong>
+            &nbsp;&middot;&nbsp;
+            {`${currentTime.getDate()}${ordinalSuffixOf(currentTime.getDate())} ${
+              monthNames[currentTime.getMonth()]
+            } ${currentTime.getFullYear()}`}
+          </time>
         </p>
 
-        
         <ul className="social-icons">
-          {content.social.github && (
+          {social.github && (
             <li>
               <a
-                href={content.social.github}
+                href={social.github}
                 target="_blank"
                 rel="noreferrer"
-                alt="Scrutinise me"
+                aria-label="GitHub (opens in a new tab)"
               >
-                <img src={Github} alt="github icon" />
+                <img src={Github} alt="" />
               </a>
             </li>
           )}
-          {content.social.bitcoin && (
+          {social.bitcoin && (
             <li>
               <a
-                href={content.social.bitcoin}
+                href={social.bitcoin}
                 target="_blank"
                 rel="noreferrer"
-                alt="Gimmie gimmie gimmie"
+                aria-label="Tip me in Bitcoin (opens in a new tab)"
               >
-                <img src={Bitcoin} alt="bitcoin icon" />
+                <img src={Bitcoin} alt="" />
               </a>
             </li>
           )}
         </ul>
 
         <div className="bio-area">
-          <p>
-            Hello, I am Kyle O'Connor! Currently a UI developer, AKA a front end
-            developer, web designer or other similar terminology. I live in
-            Tameside, more well known as a part of Greater Manchester. With a
-            remote based job for a company in Surrey. Interested in any
-            services, I'll see what I can do for you, email me.
-          </p>
+          <p>{personal.bio}</p>
           <div className="button-wrapper">
-          <a
-            className="btn btn-secondary"
-            tabIndex="0"
-            href={`mailto:${content.personal.email}`}
-          >
-            {content.personal.email}
-          </a>
-          <a className="btn btn-secondary" tabIndex="0" href="/admin">
-            See admin
-          </a>
-        </div>
+            <a className="btn btn-secondary" href={`mailto:${personal.email}`}>
+              {personal.email}
+            </a>
+            <Link className="btn btn-secondary" to="/login">
+              Explore the CMS demo
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -139,11 +141,10 @@ export default function Header() {
         <div className="image-wrapper">
           <img
             src={Me}
-            alt="Me"
-            title="A picture of me"
-            height="360px"
-            width="360px"
-            loading="lazy"
+            alt={`Illustration of ${personal.name}`}
+            height="360"
+            width="360"
+            fetchpriority="high"
           />
         </div>
       </div>

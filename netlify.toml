@@ -3,23 +3,10 @@
   publish = "build/"
   command = "npm run build"
 
-# Netlify Functions directory
 [build.environment]
-  NODE_VERSION = "18"
-  NPM_FLAGS = "--production=false"
+  NODE_VERSION = "20"
 
-# Handle client-side routing for React
-[[redirects]]
-  from = "/admin/*"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/login"
-  to = "/index.html"
-  status = 200
-
-# Catch-all for React Router
+# Client-side routing: let React Router handle every path
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -30,13 +17,13 @@
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self';"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; frame-ancestors 'none';"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
 
-# Cache static assets
+# Cache static assets (filenames are content-hashed)
 [[headers]]
   for = "/static/*"
   [headers.values]

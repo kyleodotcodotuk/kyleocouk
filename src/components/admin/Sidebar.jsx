@@ -1,7 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { getCurrentUser } from "../../data/users";
+import { useAuth } from "../../contexts/AuthContext";
 import { getAvailableRoutes, isRouteAvailable } from "../../config/adminRoutes";
+
+// Lets clickable non-button elements respond to Enter/Space like a button
+const pressable = (onActivate) => ({
+  role: "button",
+  tabIndex: 0,
+  onClick: onActivate,
+  onKeyDown: (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onActivate(e);
+    }
+  },
+});
 
 const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
   const [favourites, setFavourites] = useState(() => {
@@ -44,10 +57,28 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
     });
   };
 
+  const favouriteToggleProps = (menuItem) => {
+    const isFavourite = favourites.some((f) => f.path === menuItem.path);
+    return {
+      ...pressable((e) => {
+        e.stopPropagation();
+        toggleFavourite({
+          label: menuItem.label,
+          path: menuItem.path,
+          icon: menuItem.icon,
+        });
+      }),
+      "aria-pressed": isFavourite,
+      "aria-label": `${isFavourite ? "Remove" : "Add"} ${menuItem.label} ${
+        isFavourite ? "from" : "to"
+      } favourites`,
+    };
+  };
+
   const navigate = useNavigate();
   const location = useLocation();
   const [isDarkMode, setIsDarkMode] = useState(true); // Default to dark mode
-  const [currentUser, setCurrentUserState] = useState(null);
+  const { user: currentUser } = useAuth();
 
   // Get dynamic menu items based on available routes
   const getInitialMenuItems = () => {
@@ -123,10 +154,6 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
   };
 
   useEffect(() => {
-    // Load current user
-    const user = getCurrentUser();
-    setCurrentUserState(user);
-
     const savedMode = localStorage.getItem("darkMode");
     if (savedMode) {
       setIsDarkMode(savedMode === "true");
@@ -137,17 +164,6 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
       document.body.classList.add("dark-mode");
       localStorage.setItem("darkMode", "true");
     }
-
-    // Listen for user changes (login/logout)
-    const handleUserChange = (e) => {
-      setCurrentUserState(e.detail.user);
-    };
-
-    window.addEventListener('userChanged', handleUserChange);
-
-    return () => {
-      window.removeEventListener('userChanged', handleUserChange);
-    };
   }, []);
 
   // Update active menu item when route changes
@@ -352,8 +368,13 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
               `}
             >
               {/* Main menu item */}
-              <div className="nav-item" onClick={() => toggleMenuItem(item)}>
-                <span className="nav-icon material-icons">{item.icon}</span>
+              <div
+                className="nav-item"
+                aria-current={item.active ? "page" : undefined}
+                aria-expanded={item.children?.length ? !!item.expanded : undefined}
+                {...pressable(() => toggleMenuItem(item))}
+              >
+                <span className="nav-icon material-icons" aria-hidden="true">{item.icon}</span>
                 <span className="nav-label">{item.label}</span>
                 {item.children && item.children.length > 0 && (
                   <span
@@ -384,7 +405,8 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
                     >
                       <div
                         className="sub-nav-item"
-                        onClick={() => toggleSubMenuItem(item, subItem)}
+                        aria-current={subItem.active ? "page" : undefined}
+                        {...pressable(() => toggleSubMenuItem(item, subItem))}
                       >
                         <span className="sub-nav-icon material-icons">
                           {subItem.icon}
@@ -406,14 +428,7 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
                               cursor: "pointer",
                               verticalAlign: "middle",
                             }}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              toggleFavourite({
-                                label: subItem.label,
-                                path: subItem.path,
-                                icon: subItem.icon,
-                              });
-                            }}
+                            {...favouriteToggleProps(subItem)}
                           >
                             {favourites.some((f) => f.path === subItem.path)
                               ? "star"
@@ -441,9 +456,10 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
                             >
                               <div
                                 className="sub-sub-nav-item"
-                                onClick={() =>
+                                aria-current={subSubItem.active ? "page" : undefined}
+                                {...pressable(() =>
                                   setActiveSubSubItem(item, subItem, subSubItem)
-                                }
+                                )}
                               >
                                 <span className="sub-sub-nav-icon material-icons">
                                   {subSubItem.icon}
@@ -465,14 +481,7 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
                                     cursor: "pointer",
                                     verticalAlign: "middle",
                                   }}
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    toggleFavourite({
-                                      label: subSubItem.label,
-                                      path: subSubItem.path,
-                                      icon: subSubItem.icon,
-                                    });
-                                  }}
+                                  {...favouriteToggleProps(subSubItem)}
                                 >
                                   {favourites.some(
                                     (f) => f.path === subSubItem.path
@@ -495,13 +504,14 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
           <li className="favourites-menu">
             <div
               className="nav-item"
-              onClick={() => {
+              aria-current={location.pathname === "/admin/favourites" ? "page" : undefined}
+              {...pressable(() => {
                 navigate("/admin/favourites");
                 onNavigate();
-              }}
+              })}
               style={{ cursor: "pointer" }}
             >
-              <span className="nav-icon material-icons">star</span>
+              <span className="nav-icon material-icons" aria-hidden="true">star</span>
               <span className="nav-label">Favourites</span>
             </div>
           </li>
@@ -516,7 +526,11 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
       {/* Theme Switch */}
       <div className="theme-switch-container">
         <div className="switch-row">
-          <div className="theme-switch" onClick={toggleDarkMode}>
+          <div
+            className="theme-switch"
+            aria-pressed={!isDarkMode}
+            {...pressable(toggleDarkMode)}
+          >
             <span className="theme-icon material-icons">
               {isDarkMode ? "light_mode" : "dark_mode"}
             </span>
@@ -524,7 +538,7 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
               {isDarkMode ? "Light Mode" : "Dark Mode"}
             </span>
             <div className="switch-toggle">
-              <input type="checkbox" checked={!isDarkMode} readOnly />
+              <input type="checkbox" checked={!isDarkMode} readOnly tabIndex={-1} aria-hidden="true" />
               <span className="slider"></span>
             </div>
           </div>

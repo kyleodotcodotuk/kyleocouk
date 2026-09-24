@@ -1,5 +1,5 @@
-// Dynamic route configuration for admin menu
-// This configuration automatically generates the sidebar menu based on available routes
+// Route configuration for the admin sidebar menu.
+// Items can have `children` (and grandchildren) - the Sidebar renders up to three levels.
 
 export const adminRoutes = [
   {
@@ -8,6 +8,12 @@ export const adminRoutes = [
     icon: 'dashboard',
     path: '/admin',
     active: true
+  },
+  {
+    id: 'components',
+    label: 'Components',
+    icon: 'widgets',
+    path: '/admin/components'
   },
   {
     id: 'media',
@@ -23,90 +29,12 @@ export const adminRoutes = [
   }
 ];
 
-// Helper function to check if a route exists and user has permission
-export const isRouteAvailable = (path, userPermissions = [], routePermissions = []) => {
-  // Available routes in your application
-  const availableRoutes = [
-    '/admin',
-    '/admin/media',
-    '/admin/settings',
-    '/admin/favourites'
-  ];
-  
-  // Check if route is available
-  if (!availableRoutes.includes(path)) {
-    return false;
-  }
+const availablePaths = new Set([
+  ...adminRoutes.map((route) => route.path),
+  '/admin/favourites'
+]);
 
-  // Check site settings permissions
-  if (path === '/admin/settings') {
-    return userPermissions.includes('manage_settings') || 
-           userPermissions.includes('system_settings') || 
-           userPermissions.includes('*') ||
-           true; // Allow all users to access settings
-  }
+// Used to drop stale favourites that point at pages which no longer exist
+export const isRouteAvailable = (path) => availablePaths.has(path);
 
-  // Check route-specific permissions if provided
-  if (routePermissions && routePermissions.length > 0) {
-    return routePermissions.some(permission => 
-      userPermissions.includes(permission) || userPermissions.includes('*')
-    );
-  }
-
-  // Default: route is available
-  return true;
-};
-
-// Get current user permissions
-export const getUserPermissions = () => {
-  try {
-    // Import here to avoid circular dependency
-    const { usersAPI } = require('../data/users');
-    const currentUser = usersAPI.getCurrentUser();
-    return currentUser?.permissions || [];
-  } catch (error) {
-    return [];
-  }
-};
-
-// Filter routes based on availability and permissions
-export const getAvailableRoutes = (userPermissions = null) => {
-  const permissions = userPermissions || getUserPermissions();
-  
-  return adminRoutes.filter(route => {
-    if (route.children) {
-      // Filter children based on permissions
-      const availableChildren = route.children.filter(child => {
-        const childPermissions = child.permissions || [];
-        return isRouteAvailable(child.path, permissions, childPermissions);
-      });
-      
-      // Special handling for settings menu
-      if (route.id === 'settings') {
-        if (availableChildren.length === 0) {
-          return false; // No available settings at all
-        } else if (availableChildren.length === 1 && availableChildren[0].id === 'profile-settings') {
-          // Only profile settings available - return as single item
-          return {
-            ...route,
-            path: availableChildren[0].path,
-            children: undefined // Remove children to make it a single item
-          };
-        } else {
-          // Multiple settings available - return with children
-          return { ...route, children: availableChildren };
-        }
-      }
-      
-      // For other menus with children
-      if (availableChildren.length > 0) {
-        return { ...route, children: availableChildren };
-      }
-      return false;
-    }
-    
-    // For routes without children, check permissions
-    const routePermissions = route.permissions || [];
-    return isRouteAvailable(route.path, permissions, routePermissions);
-  }).filter(route => route !== false);
-};
+export const getAvailableRoutes = () => adminRoutes;

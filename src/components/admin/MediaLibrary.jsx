@@ -1,109 +1,114 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import AdminLayout from "./AdminLayout";
+
+// Turn "./new-york.jpg" into "New York"
+const formatName = (fileName) =>
+  fileName
+    .replace("./", "")
+    .replace(/\.[^/.]+$/, "")
+    .replace(/[-_]/g, " ")
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+
+const context = require.context("../../img/static", false, /\.(png|jpe?g|gif|webp|svg)$/i);
+const images = context.keys().map((fileName, index) => ({
+  id: `static-${index + 1}`,
+  name: formatName(fileName),
+  url: context(fileName),
+}));
 
 export default function MediaLibrary() {
   const [expandedImage, setExpandedImage] = useState(null);
+  const [copied, setCopied] = useState(false);
+  const dialogRef = useRef(null);
 
-  // Dynamically import all images from the static folder
-  const importAll = (r) => {
-    return r.keys().map((fileName, index) => {
-      const imageUrl = r(fileName);
-      // Extract filename without extension
-      const nameWithoutExt = fileName
-        .replace("./", "")
-        .replace(/\.[^/.]+$/, "");
+  // Native <dialog> gives us focus trapping, Escape to close and focus
+  // return to the triggering button without any extra code
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (expandedImage && !dialog.open) dialog.showModal();
+  }, [expandedImage]);
 
-      // Format the name: replace hyphens/underscores with spaces and capitalize words
-      const formattedName = nameWithoutExt
-        .replace(/[-_]/g, " ")
-        .split(" ")
-        .map(
-          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
-        )
-        .join(" ");
+  const closeDialog = () => dialogRef.current?.close();
 
-      return {
-        id: `static-${index + 1}`,
-        name: formattedName,
-        url: imageUrl,
-        thumb: imageUrl,
-      };
-    });
+  const copyUrl = async () => {
+    try {
+      await navigator.clipboard.writeText(new URL(expandedImage.url, window.location.origin).href);
+      setCopied(true);
+    } catch {
+      setCopied(false);
+    }
   };
-
-  // Load all images from the static folder
-  const images = importAll(
-    require.context("../../img/static", false, /\.(png|jpe?g|gif|webp|svg)$/i),
-  );
 
   return (
     <AdminLayout>
       <div className="dashboard">
-        {/* Images Grid */}
         <section className="widget">
-          <h2 className="widget-heading">
-            Media Library <span className="material-icons">perm_media</span>
-          </h2>
+          <h1 className="widget-heading">
+            Media Library <span className="material-icons" aria-hidden="true">perm_media</span>
+          </h1>
           <hr />
-          <p>Browse and view your image library.</p>
+          <p>Browse and preview the image library.</p>
 
           {images.length === 0 ? (
-            <div className="alert alert-warning">
-              <span className="material-icons">image_not_supported</span>
-              <h3>No images found</h3>
-              <p>Add images to the static folder to display them here.</p>
+            <div className="alert alert-warning" role="status">
+              <span className="material-icons" aria-hidden="true">image_not_supported</span>
+              No images found. Add images to src/img/static to display them here.
             </div>
           ) : (
-            <div className="img-grid">
+            <ul className="img-grid">
               {images.map((image) => (
-                <div
-                  key={image.id}
-                  className="media-item"
-                  onClick={() => setExpandedImage(image)}
-                >
-                  <img height="150px" src={image.thumb} alt={image.name} />
-                  <h4 title={image.name}>{image.name}</h4>
-                </div>
+                <li key={image.id}>
+                  <button
+                    type="button"
+                    className="media-item"
+                    onClick={() => {
+                      setCopied(false);
+                      setExpandedImage(image);
+                    }}
+                  >
+                    <img src={image.url} alt="" loading="lazy" decoding="async" />
+                    <span className="media-item__name">{image.name}</span>
+                  </button>
+                </li>
               ))}
-            </div>
+            </ul>
           )}
         </section>
 
-        {/* Image Expansion Modal */}
-        {expandedImage && (
-          <div className="image-modal" onClick={() => setExpandedImage(null)}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <button
-                className="modal-close"
-                onClick={() => setExpandedImage(null)}
-              >
-                <span className="material-icons">close</span>
+        <dialog
+          ref={dialogRef}
+          className="image-modal"
+          aria-labelledby="image-modal-title"
+          onClose={() => setExpandedImage(null)}
+          onClick={(e) => {
+            // Clicking the backdrop (the dialog element itself) closes it
+            if (e.target === e.currentTarget) closeDialog();
+          }}
+        >
+          {expandedImage && (
+            <div className="modal-content">
+              <button type="button" className="modal-close" onClick={closeDialog} aria-label="Close preview">
+                <span className="material-icons" aria-hidden="true">close</span>
               </button>
               <img src={expandedImage.url} alt={expandedImage.name} />
               <div className="modal-info">
-                <h3>{expandedImage.name}</h3>
+                <h2 id="image-modal-title">{expandedImage.name}</h2>
                 <div className="modal-actions">
-                  <button
-                    className="btn btn-secondary"
-                    onClick={() =>
-                      navigator.clipboard.writeText(expandedImage.url)
-                    }
-                  >
-                    <span className="material-icons">link</span>
-                    Copy URL
+                  <button type="button" className="btn btn-secondary" onClick={copyUrl}>
+                    <span className="material-icons" aria-hidden="true">{copied ? "check" : "link"}</span>
+                    <span aria-live="polite">{copied ? "Copied" : "Copy URL"}</span>
                   </button>
-                  <button
-                    className="btn btn-secondary"
-                    onClick={() => window.open(expandedImage.url, "_blank")}
-                  >
-                    <span className="material-icons">open_in_new</span>
-                    Open in New Tab
-                  </button>
+                  <a className="btn btn-secondary" href={expandedImage.url} target="_blank" rel="noreferrer">
+                    <span className="material-icons" aria-hidden="true">open_in_new</span>
+                    Open in new tab
+                  </a>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </dialog>
       </div>
     </AdminLayout>
   );

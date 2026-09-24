@@ -1,0 +1,26 @@
+// Admin design tokens (CSS custom properties).
+// Frontend tokens live in frontend/_tokens.scss.
+:root {
+  // Spacing
+  --ad-spacing-xs: 0.25rem;
+  --ad-spacing-sm: 0.5rem;
+  --ad-spacing-md: 1rem;
+  --ad-spacing-lg: 1.5rem;
+  --ad-spacing-xl: 2rem;
+  --ad-spacing-xxl: 3rem;
+
+  // Typography
+  --ad-font-size-sm: 0.875rem;
+  --ad-font-size-md: 1rem;
+  --ad-font-size-lg: 1.25rem;
+
+  // Surfaces
+  --ad-bg-primary: #ffffff;
+  --ad-bg-secondary: #f1f3f4;
+  --ad-bg-tertiary: #e8eaed;
+  --ad-text-primary: #202124;
+  --ad-text-secondary: #5f6368;
+
+  // Focus
+  --ad-focus-ring: 0 0 0 3px var(--info-blue);
+}

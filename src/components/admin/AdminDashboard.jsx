@@ -1,106 +1,67 @@
-import React, { useState, useEffect } from "react";
-import { usersAPI } from "../../data/users";
+import React from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
+import showcase from "../../showcase";
 import AdminLayout from "./AdminLayout";
 
-export default function AdminDashboard() {
-  const [currentUser, setCurrentUser] = useState(null);
+const shortcuts = [
+  {
+    to: "/admin/components",
+    icon: "widgets",
+    title: "Components",
+    text: `Browse ${showcase.length} live UI components and how they're built.`,
+  },
+  {
+    to: "/admin/settings",
+    icon: "settings",
+    title: "Settings",
+    text: "Edit the homepage profile and social links.",
+  },
+  {
+    to: "/admin/media",
+    icon: "perm_media",
+    title: "Media Library",
+    text: "A browsable image grid with a preview dialog.",
+  },
+];
 
-  useEffect(() => {
-    const user = usersAPI.getCurrentUser();
-    setCurrentUser(user);
-  }, []);
+export default function AdminDashboard() {
+  const { user } = useAuth();
+  const firstName = user?.name.split(" ")[0];
 
   return (
     <AdminLayout>
       <div className="dashboard">
-        {/* Full sized widget */}
         <div className="fullWidth">
           <section className="widget">
-            <h2 className="widget-heading">
-              Welcome back <span className="material-icons">waving_hand</span>
-            </h2>
+            <h1 className="widget-heading">
+              Welcome back, {firstName}{" "}
+              <span className="material-icons" aria-hidden="true">waving_hand</span>
+            </h1>
             <hr />
-            <p>Admin CMS is ready for development.</p>
+            <p>
+              Grey Cat is a demo CMS I built to show my front-end work: layout,
+              navigation, forms and accessible components. It runs entirely in
+              your browser, so nothing you change here reaches a server.
+            </p>
           </section>
         </div>
-        {/* 50 50 SPLIT */}
-        <div className="fullWidth">
-          <div className="column-wrapper">
-            {/* LEFT SIDE */}
-            <div className="left-column">
-              {currentUser ? (
-                <section className="widget">
-                  <h2 className="widget-heading">
-                    Next CMS tasks <span className="material-icons">check</span>
-                  </h2>
-                  <hr />
-                  <ul>
-                    <li>Projects</li>
-                    <li>Find what to use for skills page</li>
-                    <li>Bare bones usability</li>
-                    <li>Login error stuff</li>
-                  </ul>
-                </section>
-              ) : (
-                <p>Loading...</p>
-              )}
-            </div>
-            {/* RIGHT SIDE */}
-            <div className="right-column">
+
+        <div className="column-wrapper">
+          {shortcuts.map((shortcut) => (
+            <div className="third-column" key={shortcut.to}>
               <section className="widget">
                 <h2 className="widget-heading">
-                  Error handling <span className="material-icons">check</span>
+                  {shortcut.title}{" "}
+                  <span className="material-icons" aria-hidden="true">{shortcut.icon}</span>
                 </h2>
-                <hr />
-                <div role="alert" className="alert alert-danger">
-                  <span className="material-icons">warning</span>
-                  This is an alert showing a denial or hard problem
-                </div>
-
-                <div role="alert" className="alert alert-warning">
-                  <span className="material-icons">assignment_late</span>
-                  This is an alert showing an error, like a soft warning
-                </div>
-
-                <div role="alert" className="alert alert-success">
-                  <span className="material-icons">check</span>
-                  This is an alert showing the action was successful
-                </div>
-
-                <div role="alert" className="alert alert-info">
-                  <span className="material-icons">info</span>
-                  This is an alert showing information that might be useful
-                </div>
+                <p>{shortcut.text}</p>
+                <Link className="btn btn-primary" to={shortcut.to}>
+                  Open {shortcut.title}
+                </Link>
               </section>
             </div>
-          </div>
-          {/* Thirds */}
-          <div className="column-wrapper">
-            <div className="third-column">
-              <div className="widget">
-                 <h2 className="widget-heading">
-                  1/3rd <span className="material-icons">view_column</span>
-                </h2>
-                <div className="alert alert-info">test</div>
-              </div>
-            </div>
-            <div className="third-column">
-              <div className="widget">
-                 <h2 className="widget-heading">
-                  1/3rd <span className="material-icons">view_column</span>
-                </h2>
-                <div className="alert alert-info">test</div>
-              </div>
-            </div>
-             <div className="third-column">
-              <div className="widget">
-                 <h2 className="widget-heading">
-                  1/3rd <span className="material-icons">view_column</span>
-                </h2>
-                <div className="alert alert-info">test</div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </AdminLayout>

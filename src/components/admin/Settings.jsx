@@ -1,273 +1,159 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useRef } from 'react';
 import AdminLayout from './AdminLayout';
-import { getCurrentUser } from '../../data/users';
+import { useContent } from '../../contexts/ContentContext';
+import defaultContent from '../../data/content';
+
+const TABS = [
+  { id: 'profile', label: 'Profile', icon: 'account_circle' },
+  { id: 'social', label: 'Social Links', icon: 'share' },
+];
 
 export default function Settings() {
-  const [currentUser, setCurrentUser] = useState(null);
+  const { content, updateContent, resetContent } = useContent();
   const [activeTab, setActiveTab] = useState('profile');
+  const [draft, setDraft] = useState(content);
+  const [status, setStatus] = useState(null);
+  const tabRefs = useRef({});
 
-  // Load current user on mount
-  useEffect(() => {
-    const user = getCurrentUser();
-    setCurrentUser(user);
-  }, []);
-
-  // Check if user has admin permissions for site settings
-  const hasAdminPermissions = useCallback(() => {
-    if (!currentUser) return false;
-    const permissions = currentUser.permissions || [];
-    return permissions.includes('*') ||
-           permissions.includes('manage_settings') || 
-           permissions.includes('system_settings');
-  }, [currentUser]);
-
-  const handleTabChange = (newTab) => {
-    // Check permissions before allowing tab change
-    if (newTab === 'site' && !hasAdminPermissions()) {
-      return; // Don't allow access
-    }
-    setActiveTab(newTab);
-  };
-  const [settings, setSettings] = useState(() => {
-    const saved = localStorage.getItem('portfolioSettings');
-    const defaultSettings = {
-      // Profile settings
-      name: 'Kyle OConnor',
-      email: 'hello@kyleo.co.uk',
-      bio: 'Web designer and developer based in Manchester, UK',
-      location: 'Manchester, UK',
-      website: 'https://kyleo.co.uk',
-      
-      // Site settings
-      siteTitle: 'Kyle O - Web Designer',
-      siteDescription: 'Professional web design and development services',
-      timezone: 'Europe/London',
-      language: 'en-GB',
-      cmsVersion: localStorage.getItem('cmsVersion') || 'Grey Cat v.1.2'
-    };
-    
-    if (saved) {
-      try {
-        return { ...defaultSettings, ...JSON.parse(saved) };
-      } catch (e) {
-        return defaultSettings;
-      }
-    }
-    return defaultSettings;
-  });
-
-  const [editorContent, setEditorContent] = useState(() => {
-    return localStorage.getItem('settingsEditorContent') || '';
-  });
-
-  const handleSettingChange = (key, value) => {
-    setSettings(prev => ({
-      ...prev,
-      [key]: value
-    }));
+  const handleChange = (section, key, value) => {
+    setDraft((prev) => ({ ...prev, [section]: { ...prev[section], [key]: value } }));
+    setStatus(null);
   };
 
   const saveSettings = () => {
-    localStorage.setItem('portfolioSettings', JSON.stringify(settings));
-    localStorage.setItem('cmsVersion', settings.cmsVersion);
-    localStorage.setItem('settingsEditorContent', editorContent);
-    alert('Settings saved successfully!');
+    updateContent('personal', draft.personal);
+    updateContent('social', draft.social);
+    setStatus({ type: 'success', message: 'Saved. Open "View Site" to see your changes.' });
+  };
+
+  const handleReset = () => {
+    resetContent();
+    setDraft(defaultContent);
+    setStatus({ type: 'info', message: 'Content reset to the defaults.' });
+  };
+
+  // Arrow-key navigation between tabs, per the WAI-ARIA tabs pattern
+  const handleTabKeyDown = (e) => {
+    const index = TABS.findIndex((tab) => tab.id === activeTab);
+    let next = null;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = (index + 1) % TABS.length;
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = (index - 1 + TABS.length) % TABS.length;
+    if (e.key === 'Home') next = 0;
+    if (e.key === 'End') next = TABS.length - 1;
+    if (next === null) return;
+    e.preventDefault();
+    setActiveTab(TABS[next].id);
+    tabRefs.current[TABS[next].id]?.focus();
+  };
+
+  const field = (section, key, label, props = {}) => {
+    const id = `${section}-${key}`;
+    const Input = props.multiline ? 'textarea' : 'input';
+    const { multiline, ...rest } = props;
+    return (
+      <div className="form-group">
+        <label htmlFor={id}>{label}</label>
+        <Input
+          id={id}
+          value={draft[section][key] || ''}
+          onChange={(e) => handleChange(section, key, e.target.value)}
+          {...rest}
+        />
+      </div>
+    );
   };
 
   return (
     <AdminLayout>
-       <div className="dashboard">
-        {/* Full sized widget */}
-        <div className="fullWidth"> 
-        <div className="widget">
-          <h1>Settings</h1>
-          <button className="btn btn-primary" onClick={saveSettings}>
-            <span className="material-icons">save</span>
-            Save Changes
-          </button>
-
-
-        <div className="settings-container">
-          <div className="settings-sidebar">
-            <div className="settings-nav">
-              <button 
-                className={activeTab === 'profile' ? 'active' : ''}
-                onClick={() => handleTabChange('profile')}
-              >
-                <span className="material-icons">account_circle</span>
-                Profile
+      <div className="dashboard">
+        <div className="fullWidth">
+          <div className="widget">
+            <h1>Settings</h1>
+            <div className="form-actions">
+              <button className="btn btn-primary" onClick={saveSettings}>
+                <span className="material-icons" aria-hidden="true">save</span>
+                Save Changes
               </button>
-              {hasAdminPermissions() && (
-                <button 
-                  className={activeTab === 'site' ? 'active' : ''}
-                  onClick={() => handleTabChange('site')}
-                >
-                  <span className="material-icons">web</span>
-                  Site Settings
-                </button>
-              )}
-              <button 
-                className={activeTab === 'editor' ? 'active' : ''}
-                onClick={() => handleTabChange('editor')}
-              >
-                <span className="material-icons">edit</span>
-                Settings Editor
+              <button className="btn btn-secondary" onClick={handleReset}>
+                <span className="material-icons" aria-hidden="true">restart_alt</span>
+                Reset to defaults
               </button>
             </div>
-          </div>
 
-          <div className="settings-content">
-            {activeTab === 'profile' && (
-              <div className="settings-section">
-                <h2>Profile Settings</h2>
-                <p>Update your personal information and professional details.</p>
-
-                <div className="form-group">
-                  <label>Full Name</label>
-                  <input
-                    type="text"
-                    value={settings.name}
-                    onChange={(e) => handleSettingChange('name', e.target.value)}
-                  />
+            <div aria-live="polite">
+              {status && (
+                <div className={`alert alert-${status.type}`}>
+                  <span className="material-icons" aria-hidden="true">
+                    {status.type === 'success' ? 'check' : 'info'}
+                  </span>
+                  {status.message}
                 </div>
+              )}
+            </div>
 
-                <div className="form-group">
-                  <label>Email Address</label>
-                  <input
-                    type="email"
-                    value={settings.email}
-                    onChange={(e) => handleSettingChange('email', e.target.value)}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Bio</label>
-                  <textarea
-                    value={settings.bio}
-                    onChange={(e) => handleSettingChange('bio', e.target.value)}
-                    rows={4}
-                    placeholder="Tell visitors about yourself..."
-                  />
-                </div>
-
-                <div className="form-row">
-                  <div className="form-group">
-                    <label>Location</label>
-                    <input
-                      type="text"
-                      value={settings.location}
-                      onChange={(e) => handleSettingChange('location', e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Website</label>
-                    <input
-                      type="url"
-                      value={settings.website}
-                      onChange={(e) => handleSettingChange('website', e.target.value)}
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'site' && hasAdminPermissions() && (
-              <div className="settings-section">
-                <h2>Site Settings</h2>
-                <p>Configure your website's global settings and preferences.</p>
-
-                <div className="form-group">
-                  <label>Site Title</label>
-                  <input
-                    type="text"
-                    value={settings.siteTitle}
-                    onChange={(e) => handleSettingChange('siteTitle', e.target.value)}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Site Description</label>
-                  <textarea
-                    value={settings.siteDescription}
-                    onChange={(e) => handleSettingChange('siteDescription', e.target.value)}
-                    rows={3}
-                    placeholder="Brief description for SEO and social sharing"
-                  />
-                </div>
-
-                <div className="form-row">
-                  <div className="form-group">
-                    <label>Timezone</label>
-                    <select
-                      value={settings.timezone}
-                      onChange={(e) => handleSettingChange('timezone', e.target.value)}
-                    >
-                      <option value="Europe/London">London (GMT/BST)</option>
-                      <option value="America/New_York">New York (EST/EDT)</option>
-                      <option value="America/Los_Angeles">Los Angeles (PST/PDT)</option>
-                      <option value="Europe/Paris">Paris (CET/CEST)</option>
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label>Language</label>
-                    <select
-                      value={settings.language}
-                      onChange={(e) => handleSettingChange('language', e.target.value)}
-                    >
-                      <option value="en-GB">English (UK)</option>
-                      <option value="en-US">English (US)</option>
-                      <option value="fr-FR">French</option>
-                      <option value="de-DE">German</option>
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label>CMS Version</label>
-                    <input
-                      type="text"
-                      value={settings.cmsVersion}
-                      onChange={(e) => handleSettingChange('cmsVersion', e.target.value)}
-                      placeholder="e.g., Grey Cat v.1.0"
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Fallback for non-admin users trying to access admin sections */}
-            {!hasAdminPermissions() && (activeTab === 'site') && (
-              <div className="settings-section">
-                <h2>Access Restricted</h2>
-                <p>You don't have permission to access this section. Only administrators can manage site settings.</p>
-                <button 
-                  className="btn btn-primary" 
-                  onClick={() => handleTabChange('profile')}
+            <div className="settings-container">
+              <div className="settings-sidebar">
+                <div
+                  className="settings-nav"
+                  role="tablist"
+                  aria-label="Settings sections"
+                  aria-orientation="vertical"
+                  onKeyDown={handleTabKeyDown}
                 >
-                  <span className="material-icons">account_circle</span>
-                  Go to Profile Settings
-                </button>
-              </div>
-            )}
-
-            {activeTab === 'editor' && (
-              <div className="settings-section">
-                <h2>Settings Editor</h2>
-                <p>Edit custom settings content and configuration.</p>
-
-                <div className="form-group">
-                  <label>Content</label>
-                  <textarea 
-                    value={editorContent}
-                    onChange={(e) => setEditorContent(e.target.value)}
-                    placeholder="Edit content here"
-                    rows="15"
-                  />
+                  {TABS.map((tab) => (
+                    <button
+                      key={tab.id}
+                      ref={(el) => (tabRefs.current[tab.id] = el)}
+                      id={`tab-${tab.id}`}
+                      role="tab"
+                      aria-selected={activeTab === tab.id}
+                      aria-controls={`panel-${tab.id}`}
+                      tabIndex={activeTab === tab.id ? 0 : -1}
+                      className={activeTab === tab.id ? 'active' : ''}
+                      onClick={() => setActiveTab(tab.id)}
+                    >
+                      <span className="material-icons" aria-hidden="true">{tab.icon}</span>
+                      {tab.label}
+                    </button>
+                  ))}
                 </div>
               </div>
-            )}
+
+              <div className="settings-content">
+                {activeTab === 'profile' && (
+                  <div
+                    className="settings-section"
+                    role="tabpanel"
+                    id="panel-profile"
+                    aria-labelledby="tab-profile"
+                  >
+                    <h2>Profile</h2>
+                    <p>These details appear on the public homepage.</p>
+                    {field('personal', 'name', 'Full name', { type: 'text', autoComplete: 'name' })}
+                    {field('personal', 'email', 'Email address', { type: 'email', autoComplete: 'email' })}
+                    {field('personal', 'location', 'Location', { type: 'text' })}
+                    {field('personal', 'bio', 'Bio', { multiline: true, rows: 5 })}
+                  </div>
+                )}
+
+                {activeTab === 'social' && (
+                  <div
+                    className="settings-section"
+                    role="tabpanel"
+                    id="panel-social"
+                    aria-labelledby="tab-social"
+                  >
+                    <h2>Social Links</h2>
+                    <p>Leave a field empty to hide that icon.</p>
+                    {field('social', 'github', 'GitHub URL', { type: 'url' })}
+                    {field('social', 'bitcoin', 'Bitcoin / Strike URL', { type: 'url' })}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      </div>        </div>
     </AdminLayout>
   );
 }

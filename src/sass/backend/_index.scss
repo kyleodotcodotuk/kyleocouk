@@ -1,6 +1,8 @@
 // Import variables
 @use '../var' as *;
 
+@use 'tokens';
+
 // Base backend styles
 @use 'layout/index' as layout;
 @use 'admin/lightmode/index' as lightmode;

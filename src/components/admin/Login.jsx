@@ -1,44 +1,31 @@
 import React, { useState } from "react";
-import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { getAllUsers } from "../../data/users";
+import { useAuth, DEMO_CREDENTIALS } from "../../contexts/AuthContext";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
 
   const { login } = useAuth();
   const navigate = useNavigate();
-  const users = getAllUsers();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
 
-    if (!disclaimerAccepted) {
-      alert("Please accept the disclaimer to proceed.");
-      return;
-    }
-
-    setLoading(true);
-
-    const success = await login(username, password);
-
-    if (success) {
+    if (login(username, password)) {
       navigate("/admin");
     } else {
-      setError("Invalid username or password. Please try again.");
+      setError(
+        `Those details didn't match. Try "${DEMO_CREDENTIALS.username}" / "${DEMO_CREDENTIALS.password}".`
+      );
     }
-
-    setLoading(false);
   };
 
-  const fillUserCredentials = (user) => {
-    setUsername(user.username);
-    setPassword(user.password);
+  const fillDemoCredentials = () => {
+    setUsername(DEMO_CREDENTIALS.username);
+    setPassword(DEMO_CREDENTIALS.password);
     setError("");
   };
 
@@ -46,35 +33,18 @@ export default function Login() {
     <div className="loginPage">
       <div className="login-form">
         <h2>
-          Sign into the Greycat Content Management System <hr />
+          Sign into the Grey Cat Content Management System <hr />
         </h2>
 
-        {users.length > 0 && (
-          <div className="quick-fill-buttons">
-            <p className="quick-fill-label">Quick Login (Development Only):</p>
-            <div className="user-buttons">
-              {users.map((user) => (
-                <button
-                  key={user.id}
-                  type="button"
-                  className={`btn quick-fill-btn ${user.role.toLowerCase()}`}
-                  onClick={() => fillUserCredentials(user)}
-                  title={`Login as ${user.name} (${user.role})`}
-                >
-                  <span className="user-info">
-                    <span className="user-name">{user.name}</span>
-                    <span className="user-role">{user.role}</span>
-                  </span>
-                  <span className="material-icons">
-                    {user.role === "ADMIN" ? "admin_panel_settings" : "person"}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
+        <div className="alert alert-info">
+          <span className="material-icons" aria-hidden="true">info</span>
+          <p>
+            This CMS is a front-end showcase. There's no server behind it, and
+            any edits stay in your browser.
+          </p>
+        </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} noValidate>
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input
@@ -82,9 +52,9 @@ export default function Login() {
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              required
               autoComplete="username"
-              placeholder="Enter your username"
+              placeholder={DEMO_CREDENTIALS.username}
+              aria-describedby={error ? "login-error" : undefined}
             />
           </div>
 
@@ -95,38 +65,31 @@ export default function Login() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
               autoComplete="current-password"
-              placeholder="Enter your password"
+              placeholder={DEMO_CREDENTIALS.password}
+              aria-describedby={error ? "login-error" : undefined}
             />
           </div>
-          <div className="disclaimer">
-            <label htmlFor="disclaimer">
-              <input
-                type="checkbox"
-                id="disclaimer"
-                checked={disclaimerAccepted}
-                onChange={(e) => setDisclaimerAccepted(e.target.checked)}
-              />
-              I accept this is not for misuse or plagerism.
-            </label>
-          </div>
 
-          {error && <div className="btn btn-danger error-message">{error}</div>}
+          {error && (
+            <div id="login-error" role="alert" className="alert alert-danger">
+              <span className="material-icons" aria-hidden="true">warning</span>
+              {error}
+            </div>
+          )}
 
           <div className="login-btns">
-            <button type="submit" disabled={loading} className="btn btn-login">
-              <span className="material-icons">person</span>{" "}
-              {loading ? "Signing in..." : "Sign In"}
+            <button type="submit" className="btn btn-login">
+              <span className="material-icons" aria-hidden="true">login</span>
+              Sign in
             </button>
-
             <button
               type="button"
-              disabled={loading}
               className="btn btn-primary"
+              onClick={fillDemoCredentials}
             >
-              <span className="material-icons">login</span>{" "}
-              {loading ? "Registering..." : "Register"}
+              <span className="material-icons" aria-hidden="true">key</span>
+              Use demo login
             </button>
           </div>
         </form>

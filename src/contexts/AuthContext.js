@@ -1,6 +1,17 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import cmsApi from '../services/cmsApi';
-import { isRouteAvailable } from '../config/adminRoutes';
+import React, { createContext, useContext, useState } from 'react';
+
+// The admin area is a front-end showcase, not a real CMS. "Signing in" just
+// starts a demo session in this browser tab - there are no real accounts.
+const SESSION_KEY = 'cms_demo_session';
+
+export const DEMO_CREDENTIALS = { username: 'demo', password: 'demo' };
+
+export const DEMO_USER = {
+  name: "Kyle O'Connor",
+  displayRole: 'Administrator',
+  initials: 'KO',
+  location: 'Manchester, UK',
+};
 
 const AuthContext = createContext();
 
@@ -12,85 +23,45 @@ export const useAuth = () => {
   return context;
 };
 
-// Validate and clean up user favorites on login
-const validateAndCleanFavorites = () => {
+const readSession = () => {
   try {
-    const storedFavorites = JSON.parse(localStorage.getItem('cmsFavourites')) || [];
-    const validFavorites = storedFavorites.filter(fav => {
-      if (!fav || !fav.path) return false;
-      // Explicitly exclude removed pages by label or path
-      if (fav.label === 'general' || fav.path.includes('/general') || fav.path === 'general') return false;
-      return isRouteAvailable(fav.path);
-    });
-    
-    if (validFavorites.length !== storedFavorites.length) {
-      // Update favorites with only valid ones
-      localStorage.setItem('cmsFavourites', JSON.stringify(validFavorites));
-      console.log(`Cleaned up favorites: removed ${storedFavorites.length - validFavorites.length} invalid entries`);
-    }
-  } catch (error) {
-    console.error('Error validating favorites:', error);
-    // If there's an error, clear corrupted data
-    localStorage.setItem('cmsFavourites', JSON.stringify([]));
+    return sessionStorage.getItem(SESSION_KEY) === 'true';
+  } catch {
+    return false;
   }
 };
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(readSession);
 
-  // Check if user is already logged in on app start
-  useEffect(() => {
-    const checkAuth = async () => {
+  const login = (username, password) => {
+    const valid =
+      username.trim().toLowerCase() === DEMO_CREDENTIALS.username &&
+      password === DEMO_CREDENTIALS.password;
+    if (valid) {
       try {
-        const user = await cmsApi.getCurrentUser();
-        setIsAuthenticated(!!user);
-      } catch (error) {
-        console.error('Error checking authentication:', error);
-        setIsAuthenticated(false);
-      } finally {
-        setLoading(false);
+        sessionStorage.setItem(SESSION_KEY, 'true');
+      } catch {
+        // ignore - session just won't survive a refresh
       }
-    };
-
-    checkAuth();
-  }, []);
-
-  const login = async (username, password) => {
-    try {
-      const result = await cmsApi.login(username, password);
-      if (result.success) {
-        setIsAuthenticated(true);
-        // Validate and clean up favorites on login
-        validateAndCleanFavorites();
-        return true;
-      }
-      return false;
-    } catch (error) {
-      console.error('Login error:', error);
-      return false;
+      setIsAuthenticated(true);
     }
+    return valid;
   };
 
-  const logout = async () => {
+  const logout = () => {
     try {
-      await cmsApi.logout();
-    } catch (error) {
-      console.error('Logout error:', error);
-    } finally {
-      setIsAuthenticated(false);
+      sessionStorage.removeItem(SESSION_KEY);
+    } catch {
+      // ignore
     }
-  };
-
-  const value = {
-    isAuthenticated,
-    login,
-    logout,
-    loading
+    setIsAuthenticated(false);
   };
 
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, user: isAuthenticated ? DEMO_USER : null, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

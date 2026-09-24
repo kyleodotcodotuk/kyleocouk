@@ -1,0 +1,210 @@
+// Styles for the /admin/components showcase and its examples.
+// Example classes are prefixed `sc-` to keep them isolated from the CMS chrome.
+
+.back-end-admin {
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--ad-focus-ring);
+  }
+}
+
+.sc-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ad-spacing-sm);
+  padding: 0;
+  list-style: none;
+
+  a {
+    display: inline-block;
+    padding: var(--ad-spacing-xs) var(--ad-spacing-md);
+    border-radius: 999px;
+    background: var(--main-colour);
+    color: var(--pure-white);
+    text-decoration: none;
+  }
+}
+
+.sc-example {
+  scroll-margin-top: var(--ad-spacing-lg);
+}
+
+.sc-preview {
+  padding: var(--ad-spacing-lg);
+  border: 1px dashed var(--ad-text-secondary);
+  border-radius: var(--border-radius);
+  background: var(--ad-bg-primary);
+
+  // Widgets give icons a filled circle; examples need plain icons
+  .material-icons {
+    padding: 0;
+    background: none;
+    color: inherit;
+    border-radius: 0;
+  }
+}
+
+.sc-notes {
+  summary {
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  ul {
+    margin-block: var(--ad-spacing-sm);
+    padding-inline-start: var(--ad-spacing-lg);
+  }
+}
+
+.sc-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ad-spacing-md);
+  align-items: center;
+}
+
+.sc-stack {
+  display: grid;
+  gap: var(--ad-spacing-md);
+  max-width: 24rem;
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  filter: none;
+}
+
+.sc-icon-btn {
+  padding: 12px;
+}
+
+// Toggle switch
+.sc-switch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--ad-spacing-md);
+
+  &__control {
+    position: relative;
+    flex-shrink: 0;
+    width: 3rem;
+    height: 1.75rem;
+    padding: 0;
+    border: 2px solid var(--ad-text-secondary);
+    border-radius: 999px;
+    background: var(--ad-bg-tertiary);
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &[aria-checked="true"] {
+      background: var(--main-colour);
+      border-color: var(--main-colour);
+
+      .sc-switch__thumb {
+        transform: translateX(1.25rem);
+      }
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: var(--pure-white);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__control,
+    &__thumb {
+      transition: none;
+    }
+  }
+}
+
+// Accordion
+.sc-accordion {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  border: 1px solid var(--ad-bg-tertiary);
+
+  &__item + &__item {
+    border-top: 1px solid var(--ad-bg-tertiary);
+  }
+
+  &__heading {
+    font-size: var(--ad-font-size-md);
+  }
+
+  &__trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: var(--ad-spacing-md);
+    border: none;
+    background: var(--ad-bg-secondary);
+    color: var(--ad-text-primary);
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+
+    .material-icons {
+      transition: transform 0.2s;
+    }
+
+    &[aria-expanded="true"] .material-icons {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__panel {
+    padding: var(--ad-spacing-md);
+  }
+}
+
+// Settings tabs
+.settings-container {
+  display: grid;
+  grid-template-columns: minmax(10rem, 14rem) 1fr;
+  gap: var(--ad-spacing-lg);
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.settings-nav {
+  display: grid;
+  gap: var(--ad-spacing-xs);
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: var(--ad-spacing-sm);
+    padding: var(--ad-spacing-sm) var(--ad-spacing-md);
+    border: none;
+    border-radius: var(--border-radius);
+    background: transparent;
+    color: var(--ad-text-primary);
+    text-align: left;
+    cursor: pointer;
+
+    &.active {
+      background: var(--main-colour);
+      color: var(--pure-white);
+    }
+  }
+}

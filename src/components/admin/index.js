@@ -1,6 +1,6 @@
-// Clean admin components - only exports for components that are actually used
 export { default as AdminDashboard } from './AdminDashboard';
 export { default as AdminLayout } from './AdminLayout';
+export { default as ComponentsPage } from './ComponentsPage';
 export { default as FavouritesPage } from './FavouritesPage';
 export { default as Login } from './Login';
 export { default as MediaLibrary } from './MediaLibrary';
