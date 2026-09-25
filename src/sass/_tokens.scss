@@ -10,7 +10,6 @@
   --warning-colour: #fadf7b;
   --danger-colour: #d63936;
   --info-colour: #dfdfdf;
-  --favourite-colour: #ffd700;
 
   // Neutrals (edit me)
   --pure-white: #ffffff;
@@ -38,8 +37,11 @@
 
   // Areas
   --admin-header: var(--dark-colour);
-  --dashboard-bg: #444444;
-  --sidebar-bg: var(--main-colour);
+  --dashboard-bg: var(--pure-white);
+  --sidebar-bg: var(--surface-primary);
+  --sidebar-text: var(--text-primary);
+  --sidebar-text-muted: var(--text-secondary);
+  --sidebar-border: var(--border-colour);
   --menu-highlight: var(--dark-colour);
 
   // Shape (edit --border-radius; the rest scale with it)
@@ -67,4 +69,37 @@
   --font-family: "Inter", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
   --font-size-md: 1rem;
   --font-size-lg: 1.25rem;
+}
+
+// Dark theme: the sidebar switch sets data-theme="dark" on <html>
+:root[data-theme="dark"] {
+  --surface-primary: #2a3140;
+  --surface-secondary: var(--dark-colour);
+  --surface-tertiary: #3a4253;
+  --border-colour: #434c5e;
+  --text-primary: #e8eaed;
+  --text-secondary: #b0b8c4;
+
+  --dashboard-bg: #1b2029;
+  --sidebar-bg: var(--main-colour);
+  --sidebar-text: var(--text-on-dark);
+  --sidebar-text-muted: var(--text-on-dark-muted);
+  --sidebar-border: rgba(0, 0, 0, 0.25);
+}
+
+// Native controls and scrollbars in the CMS match (the public site stays as is)
+:root[data-theme="dark"] .back-end-admin {
+  color-scheme: dark;
+}
+
+// Greyscale accessibility mode: the sidebar switch sets data-greyscale on <html>.
+// Dialogs and view transitions render in the top layer, outside <html>'s filter.
+// ::view-transition gets its own rule so browsers without it keep the others.
+:root[data-greyscale],
+:root[data-greyscale] dialog {
+  filter: grayscale(1);
+}
+
+:root[data-greyscale]::view-transition {
+  filter: grayscale(1);
 }

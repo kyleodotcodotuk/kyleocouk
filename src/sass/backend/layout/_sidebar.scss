@@ -1,7 +1,8 @@
 .cms-sidebar {
   width: 300px;
   background: var(--sidebar-bg);
-  color: var(--pure-white);
+  color: var(--sidebar-text);
+  border-right: 1px solid var(--sidebar-border);
   height: 100vh;
   overflow-y: auto;
   display: flex;
@@ -10,6 +11,7 @@
   top: 0;
   left: 0;
   z-index: 1000;
+  transition: width 0.2s ease;
 
   .user-profile {
     display: flex;
@@ -25,6 +27,7 @@
     width: 66px;
     height: 66px;
     background: var(--menu-highlight);
+    color: var(--pure-white);
     border-radius: var(--border-radius-circle);
     display: flex;
     align-items: center;
@@ -38,7 +41,7 @@
     text-align: left;
     h3 {
       margin: 0;
-      color: var(--subtle-white);
+      color: var(--sidebar-text);
       font-size: 1rem;
       font-weight: normal;
     }
@@ -91,12 +94,6 @@
           max-height: 1000px;
         }
       }
-
-      &.favourites-menu {
-        border-top: 1px solid rgba(0, 0, 0, 0.25);
-        margin-top: 1rem;
-        padding-top: 1rem;
-      }
     }
 
     .nav-item,
@@ -108,7 +105,7 @@
       padding: 0.75rem 1.5rem;
       cursor: pointer;
       transition: all 0.2s ease;
-      color: var(--text-on-dark);
+      color: var(--sidebar-text);
       position: relative;
     }
 
@@ -175,28 +172,11 @@
       overflow: hidden;
       transition: max-height 0.3s ease;
     }
-
-    .favourite-star {
-      margin-left: 8px;
-      font-size: 1rem;
-      color: var(--text-on-dark-muted);
-      opacity: 0.7;
-      cursor: pointer;
-      vertical-align: middle;
-
-      &:hover {
-        opacity: 1;
-      }
-
-      &.is-favourite {
-        color: var(--favourite-colour);
-      }
-    }
   }
 
   .version-info {
     padding: 1rem;
-    color: var(--text-on-dark-muted);
+    color: var(--sidebar-text-muted);
     font-size: 0.75rem;
     line-height: normal;
     background: rgba(0, 0, 0, 0.1);
@@ -209,15 +189,23 @@
 
   .theme-switch-container {
     padding: 1rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    border-top: 1px solid var(--sidebar-border);
     background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 
     .theme-switch {
+      width: 100%;
+      border: none;
+      background: none;
+      font: inherit;
+      text-align: left;
       display: flex;
       align-items: center;
       gap: 0.75rem;
       cursor: pointer;
-      color: var(--text-on-dark-muted);
+      color: var(--sidebar-text-muted);
       padding: 0.2rem 0;
 
       .theme-label {
@@ -226,23 +214,11 @@
       }
 
       .switch-toggle {
+        display: block;
+        flex-shrink: 0;
         position: relative;
         width: 44px;
         height: 24px;
-
-        input {
-          opacity: 0;
-          width: 0;
-          height: 0;
-
-          &:checked + .slider {
-            background-color: var(--accent-colour);
-
-            &:before {
-              transform: translateX(20px);
-            }
-          }
-        }
 
         .slider {
           position: absolute;
@@ -268,6 +244,87 @@
           }
         }
       }
+
+      &[aria-checked="true"] .slider {
+        background-color: var(--accent-colour);
+
+        &:before {
+          transform: translateX(20px);
+        }
+      }
+
+      &:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+        border-radius: var(--border-radius);
+      }
     }
+  }
+}
+
+// Icon rail: labels stay in the accessibility tree, just visually hidden
+.cms-sidebar.is-collapsed {
+  width: 72px;
+  overflow-x: hidden;
+
+  .user-profile {
+    padding: 1rem 0;
+  }
+
+  .avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+
+  .user-info,
+  .version-info,
+  .switch-toggle,
+  .expand-icon,
+  .sub-menu {
+    display: none;
+  }
+
+  .nav-label,
+  .theme-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .cms-nav .nav-item,
+  .theme-switch-container .theme-switch {
+    justify-content: center;
+    padding-inline: 0;
+  }
+
+  .theme-switch-container {
+    padding-inline: 0.5rem;
+  }
+}
+
+.main-layout {
+  transition: margin-left 0.2s ease;
+
+  &:has(> .cms-sidebar.is-collapsed) {
+    margin-left: 72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cms-sidebar,
+  .main-layout {
+    transition: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .cms-sidebar {
+    width: 280px;
+    max-width: 85vw;
+    z-index: 1200;
   }
 }

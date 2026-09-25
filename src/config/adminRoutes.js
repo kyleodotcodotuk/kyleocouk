@@ -29,12 +29,4 @@ export const adminRoutes = [
   }
 ];
 
-const availablePaths = new Set([
-  ...adminRoutes.map((route) => route.path),
-  '/admin/favourites'
-]);
-
-// Used to drop stale favourites that point at pages which no longer exist
-export const isRouteAvailable = (path) => availablePaths.has(path);
-
 export const getAvailableRoutes = () => adminRoutes;

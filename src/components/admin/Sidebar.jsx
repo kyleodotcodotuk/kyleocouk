@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import { getAvailableRoutes, isRouteAvailable } from "../../config/adminRoutes";
+import { getAvailableRoutes } from "../../config/adminRoutes";
 import useViewTransitionNavigate from "../../hooks/useViewTransitionNavigate";
+import {
+  getDarkMode,
+  getGreyscale,
+  getSidebarCollapsed,
+  setDarkMode,
+  setGreyscale,
+  setSidebarCollapsed,
+} from "../../utils/displayPrefs";
 
 // Lets clickable non-button elements respond to Enter/Space like a button
 const pressable = (onActivate) => ({
@@ -18,67 +26,11 @@ const pressable = (onActivate) => ({
 });
 
 const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
-  const [favourites, setFavourites] = useState(() => {
-    try {
-      let stored = JSON.parse(localStorage.getItem("cmsFavourites")) || [];
-      // Validate that all favorites are still valid routes
-      const validFavourites = stored.filter(fav => {
-        if (!fav || !fav.path) return false;
-        // Explicitly exclude removed pages by label or path
-        if (fav.label === 'general' || fav.path.includes('/general') || fav.path === 'general') return false;
-        return isRouteAvailable(fav.path);
-      });
-      
-      // If any were removed, update localStorage
-      if (validFavourites.length !== stored.length) {
-        localStorage.setItem("cmsFavourites", JSON.stringify(validFavourites));
-        console.log(`Cleaned up ${stored.length - validFavourites.length} invalid favorite(s)`);
-      }
-      
-      return validFavourites;
-    } catch (error) {
-      console.error('Error loading favorites:', error);
-      // If there's an error parsing, clear the corrupted data
-      localStorage.setItem("cmsFavourites", JSON.stringify([]));
-      return [];
-    }
-  });
-
-  // Add/remove a page from favourites
-  const toggleFavourite = (fav) => {
-    setFavourites((prev) => {
-      let updated;
-      if (prev.some((f) => f.path === fav.path)) {
-        updated = prev.filter((f) => f.path !== fav.path);
-      } else {
-        updated = [...prev, fav];
-      }
-      localStorage.setItem("cmsFavourites", JSON.stringify(updated));
-      return updated;
-    });
-  };
-
-  const favouriteToggleProps = (menuItem) => {
-    const isFavourite = favourites.some((f) => f.path === menuItem.path);
-    return {
-      ...pressable((e) => {
-        e.stopPropagation();
-        toggleFavourite({
-          label: menuItem.label,
-          path: menuItem.path,
-          icon: menuItem.icon,
-        });
-      }),
-      "aria-pressed": isFavourite,
-      "aria-label": `${isFavourite ? "Remove" : "Add"} ${menuItem.label} ${
-        isFavourite ? "from" : "to"
-      } favourites`,
-    };
-  };
-
   const navigate = useViewTransitionNavigate();
   const location = useLocation();
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(getDarkMode);
+  const [isGreyscale, setIsGreyscale] = useState(getGreyscale);
+  const [isCollapsed, setIsCollapsed] = useState(getSidebarCollapsed);
   const { user: currentUser } = useAuth();
 
   // Get dynamic menu items based on available routes
@@ -154,19 +106,6 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
     });
   };
 
-  useEffect(() => {
-    const savedMode = localStorage.getItem("darkMode");
-    if (savedMode) {
-      setIsDarkMode(savedMode === "true");
-      document.body.classList.toggle("dark-mode", savedMode === "true");
-    } else {
-      // No saved preference yet: follow the operating system setting
-      const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? true;
-      setIsDarkMode(prefersDark);
-      document.body.classList.toggle("dark-mode", prefersDark);
-    }
-  }, []);
-
   // Update active menu item when route changes
   useEffect(() => {
     setMenuItems((prevItems) => {
@@ -178,10 +117,19 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
   }, [location.pathname]);
 
   const toggleDarkMode = () => {
-    const newMode = !isDarkMode;
-    setIsDarkMode(newMode);
-    localStorage.setItem("darkMode", newMode.toString());
-    document.body.classList.toggle("dark-mode", newMode);
+    setDarkMode(!isDarkMode);
+    setIsDarkMode(!isDarkMode);
+  };
+
+  const toggleGreyscale = () => {
+    setGreyscale(!isGreyscale);
+    setIsGreyscale(!isGreyscale);
+  };
+
+  // Collapse to an icon rail, like the WordPress "Collapse menu" control
+  const toggleCollapsed = () => {
+    setSidebarCollapsed(!isCollapsed);
+    setIsCollapsed(!isCollapsed);
   };
 
   const [menuItems, setMenuItems] = useState(() => {
@@ -327,7 +275,9 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
   };
 
   return (
-    <aside className={`cms-sidebar ${isOpen ? "open" : ""}`}>
+    <aside
+      className={`cms-sidebar ${isOpen ? "open" : ""} ${isCollapsed ? "is-collapsed" : ""}`}
+    >
       {/* User Profile Section */}
       <div className="user-profile">
         <div className="avatar">
@@ -371,6 +321,7 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
               {/* Main menu item */}
               <div
                 className="nav-item"
+                title={isCollapsed ? item.label : undefined}
                 aria-current={item.active ? "page" : undefined}
                 aria-expanded={item.children?.length ? !!item.expanded : undefined}
                 {...pressable(() => toggleMenuItem(item))}
@@ -413,21 +364,6 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
                           {subItem.icon}
                         </span>
                         <span className="sub-nav-label">{subItem.label}</span>
-                        {/* Only show favourite star for sub menu items without children (leaf nodes) */}
-                        {!subItem.children && (
-                          <span
-                            className={`material-icons favourite-star ${
-                              favourites.some((f) => f.path === subItem.path)
-                                ? "is-favourite"
-                                : ""
-                            }`}
-                            {...favouriteToggleProps(subItem)}
-                          >
-                            {favourites.some((f) => f.path === subItem.path)
-                              ? "star"
-                              : "star_border"}
-                          </span>
-                        )}
                         {subItem.children && subItem.children.length > 0 && (
                           <span
                             className={`expand-icon material-icons ${
@@ -460,20 +396,6 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
                                 <span className="sub-sub-nav-label">
                                   {subSubItem.label}
                                 </span>
-                                <span
-                                  className={`material-icons favourite-star ${
-                                    favourites.some((f) => f.path === subSubItem.path)
-                                      ? "is-favourite"
-                                      : ""
-                                  }`}
-                                  {...favouriteToggleProps(subSubItem)}
-                                >
-                                  {favourites.some(
-                                    (f) => f.path === subSubItem.path
-                                  )
-                                    ? "star"
-                                    : "star_border"}
-                                </span>
                               </div>
                             </li>
                           ))}
@@ -485,21 +407,6 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
               )}
             </li>
           ))}
-          {/* Favourites menu item */}
-          <li className="favourites-menu">
-            <div
-              className="nav-item"
-              aria-current={location.pathname === "/admin/favourites" ? "page" : undefined}
-              {...pressable(() => {
-                navigate("/admin/favourites");
-                onNavigate();
-              })}
-              style={{ cursor: "pointer" }}
-            >
-              <span className="nav-icon material-icons" aria-hidden="true">star</span>
-              <span className="nav-label">Favourites</span>
-            </div>
-          </li>
         </ul>
       </nav>
 
@@ -508,26 +415,47 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
         <span className="version-text">Grey Cat CMS © <em>{localStorage.getItem('cmsVersion') || ' v 1.3.1'}</em></span>
       </div>
 
-      {/* Theme Switch */}
+      {/* Display switches */}
       <div className="theme-switch-container">
-        <div className="switch-row">
-          <div
-            className="theme-switch"
-            aria-pressed={!isDarkMode}
-            {...pressable(toggleDarkMode)}
-          >
-            <span className="theme-icon material-icons">
-              {isDarkMode ? "light_mode" : "dark_mode"}
-            </span>
-            <span className="theme-label">
-              {isDarkMode ? "Light Mode" : "Dark Mode"}
-            </span>
-            <div className="switch-toggle">
-              <input type="checkbox" checked={!isDarkMode} readOnly tabIndex={-1} aria-hidden="true" />
-              <span className="slider"></span>
-            </div>
-          </div>
-        </div>
+        <button
+          type="button"
+          className="theme-switch"
+          onClick={toggleCollapsed}
+          title={isCollapsed ? "Expand menu" : undefined}
+        >
+          <span className="theme-icon material-icons" aria-hidden="true">
+            {isCollapsed ? "keyboard_double_arrow_right" : "keyboard_double_arrow_left"}
+          </span>
+          <span className="theme-label">{isCollapsed ? "Expand menu" : "Collapse menu"}</span>
+        </button>
+        <button
+          type="button"
+          role="switch"
+          className="theme-switch"
+          aria-checked={!isDarkMode}
+          onClick={toggleDarkMode}
+          title={isCollapsed ? "Light mode" : undefined}
+        >
+          <span className="theme-icon material-icons" aria-hidden="true">light_mode</span>
+          <span className="theme-label">Light mode</span>
+          <span className="switch-toggle" aria-hidden="true">
+            <span className="slider"></span>
+          </span>
+        </button>
+        <button
+          type="button"
+          role="switch"
+          className="theme-switch"
+          aria-checked={isGreyscale}
+          onClick={toggleGreyscale}
+          title={isCollapsed ? "Greyscale" : undefined}
+        >
+          <span className="theme-icon material-icons" aria-hidden="true">contrast</span>
+          <span className="theme-label">Greyscale</span>
+          <span className="switch-toggle" aria-hidden="true">
+            <span className="slider"></span>
+          </span>
+        </button>
       </div>
     </aside>
   );

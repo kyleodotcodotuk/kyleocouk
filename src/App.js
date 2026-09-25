@@ -7,7 +7,6 @@ import { Main, NotFound } from "./components";
 import {
   AdminDashboard,
   ComponentsPage,
-  FavouritesPage,
   Login,
   MediaLibrary,
   ProtectedRoute,
@@ -19,8 +18,7 @@ const adminPages = [
   { path: '/admin', element: <AdminDashboard /> },
   { path: '/admin/components', element: <ComponentsPage /> },
   { path: '/admin/media', element: <MediaLibrary /> },
-  { path: '/admin/settings', element: <Settings /> },
-  { path: '/admin/favourites', element: <FavouritesPage /> }
+  { path: '/admin/settings', element: <Settings /> }
 ];
 
 function App() {

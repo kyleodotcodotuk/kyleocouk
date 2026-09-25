@@ -25,12 +25,6 @@ export default function CommandPalette({ onLogout }) {
         icon: route.icon,
         run: () => navigate(route.path),
       })),
-      {
-        label: "Favourites",
-        group: "Page",
-        icon: "star",
-        run: () => navigate("/admin/favourites"),
-      },
       ...showcase.map((item) => ({
         label: item.title,
         group: "Component",
