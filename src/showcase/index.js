@@ -4,6 +4,9 @@ import Buttons from "./examples/Buttons";
 import Alerts from "./examples/Alerts";
 import ToggleSwitch from "./examples/ToggleSwitch";
 import Accordion from "./examples/Accordion";
+import Tabs from "./examples/Tabs";
+import DataTable from "./examples/DataTable";
+import Toasts from "./examples/Toasts";
 
 export const SOURCE_BASE_URL =
   "https://github.com/kyleodotcodotuk/kyleocouk/blob/main/";
@@ -58,6 +61,46 @@ const showcase = [
     ],
     source: "src/showcase/examples/Accordion.jsx",
     Component: Accordion,
+  },
+  {
+    id: "tabs",
+    title: "Tabs",
+    icon: "tab",
+    summary: "A reusable tabs component with automatic activation.",
+    notes: [
+      "Follows the WAI-ARIA tabs pattern: arrow keys, Home and End move between tabs.",
+      "Roving tabindex keeps only the selected tab in the tab order, so Tab goes straight to the panel.",
+      "Hidden panels use the hidden attribute, so their content can't be tabbed to.",
+    ],
+    source: "src/showcase/examples/Tabs.jsx",
+    Component: Tabs,
+  },
+  {
+    id: "data-table",
+    title: "Data Table",
+    icon: "table_chart",
+    summary: "A sortable, filterable table of CMS pages.",
+    notes: [
+      "Sortable headers are real buttons, and aria-sort tells screen readers the current order.",
+      "The result count sits in a polite live region and describes the filter input.",
+      'The scroll wrapper is a focusable, labelled region, so keyboard users can scroll it on small screens.',
+      "Each row's title is a row header (th scope=\"row\"), so cells are announced with context.",
+    ],
+    source: "src/showcase/examples/DataTable.jsx",
+    Component: DataTable,
+  },
+  {
+    id: "toasts",
+    title: "Toasts",
+    icon: "campaign",
+    summary: "App-wide notifications that stack and dismiss themselves.",
+    notes: [
+      "Toasts render into a live region that's always in the page, so each one is announced.",
+      "The auto-dismiss timer pauses on hover and focus, giving people time to read or dismiss.",
+      "Any component can raise one through the useToast() hook. Settings uses it when you save.",
+    ],
+    source: "src/showcase/examples/Toasts.jsx",
+    Component: Toasts,
   },
 ];
 

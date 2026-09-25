@@ -4,13 +4,22 @@ const defaultContent = {
   personal: {
     name: "Kyle O'Connor",
     title: "UI Developer",
-    location: "Manchester · United Kingdom",
+    tagline: "I build accessible, fast interfaces that are a pleasure to use.",
+    location: "Working remotely from Greater Manchester, UK",
     email: "info@kyleo.co.uk",
-    bio: "Hello, I am Kyle O'Connor! Currently a UI developer, AKA a front end developer, web designer or other similar terminology. I live in Tameside, more well known as a part of Greater Manchester. With a remote based job for a company in Surrey. Interested in any services, I'll see what I can do for you, email me.",
+    // Comma-separated so it can be edited as one field in Settings
+    skills: "Accessibility, Design systems, React, Sass",
   },
   social: {
     github: "https://github.com/kyleodotcodotuk",
-    bitcoin: "https://strike.me/kyleocouk/",
+    linkedin: "",
+    cv: "",
+  },
+  // Empty values fall back to the defaults in src/sass/_tokens.scss
+  theme: {
+    mainColour: "",
+    secondaryColour: "",
+    radius: "",
   },
 };
 

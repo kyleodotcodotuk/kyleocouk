@@ -1,9 +1,7 @@
-@use "./../../var.scss" as *;
-
 .loginPage {
   display: flex;
   height: 100%;
-  font-family: "Inter", Arial, sans-serif;
+  font-family: var(--font-family);
   align-items: center;
   background: var(--main-colour);
 
@@ -12,9 +10,9 @@
     min-height: 300px;
     margin: 20px auto;
     border-radius: var(--border-radius);
-    background: #1f1f1f;
-    color: white;
-    box-shadow:var(--box-shadow-highlight);
+    background: var(--dark-colour);
+    color: var(--pure-white);
+    box-shadow: var(--box-shadow-highlight);
     padding: 4rem 2rem;
     position: relative;
 
@@ -37,21 +35,15 @@
     }
 
     label {
-      color: white;
+      color: var(--pure-white);
     }
 
-    input { 
+    input {
 
       &:active,
       &:focus {
-        color: black;
+        color: var(--text-primary);
       }
     }
   }
-
-  .disclaimer { color: red;}
 }
-
-// .quick-fill-buttons {
-//   display: none;
-// }

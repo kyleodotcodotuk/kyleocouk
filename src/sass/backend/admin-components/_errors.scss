@@ -1,10 +1,8 @@
-@use "./../../var.scss" as *;
-
 .alert {
   border-radius: var(--border-radius);
-  padding: var(--ad-spacing-lg);
-  margin-block-end: var(--ad-spacing-lg);
-  box-shadow: var(--box-shadow-default); 
+  padding: var(--spacing-lg);
+  margin-block-end: var(--spacing-lg);
+  box-shadow: var(--box-shadow-default);
   display: flex;
   align-items: center;
   span {
@@ -15,7 +13,7 @@
 .alert-danger {
   background-color: var(--danger-colour);
   border-color: color-mix(in srgb, var(--danger-colour), black 30%);
-  color: $pure-white;
+  color: var(--pure-white);
   .material-icons {
     background: color-mix(in srgb, var(--danger-colour), black 30%);
   }
@@ -24,7 +22,7 @@
 .alert-warning {
   background-color: var(--warning-colour);
   border-color: color-mix(in srgb, var(--warning-colour), black 30%);
-  color: #000000;
+  color: var(--pure-black);
   .material-icons {
     background: color-mix(in srgb, var(--warning-colour), black 30%);
   }
@@ -33,18 +31,18 @@
 .alert-success {
   background-color: var(--success-colour);
   border-color: color-mix(in srgb, var(--success-colour), black 30%);
-  color: #ffffff;
+  color: var(--pure-white);
   .material-icons {
     background: color-mix(in srgb, var(--success-colour), black 30%);
   }
 }
 
 .alert-info {
-  background-color:  var(--info-colour);
-  border-color:  color-mix(in srgb, var(--info-colour), black 30%);
+  background-color: var(--info-colour);
+  border-color: color-mix(in srgb, var(--info-colour), black 30%);
   color: var(--pure-black);
-  box-shadow: inset 6px 0 0 var(--info-blue);
+  box-shadow: inset 6px 0 0 var(--accent-colour);
   .material-icons {
-    background: color-mix(in srgb, var(--info-blue), black 30%);
+    background: color-mix(in srgb, var(--accent-colour), black 30%);
   }
 }

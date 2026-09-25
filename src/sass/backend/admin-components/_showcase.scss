@@ -4,21 +4,21 @@
 .back-end-admin {
   :focus-visible {
     outline: none;
-    box-shadow: var(--ad-focus-ring);
+    box-shadow: var(--focus-ring);
   }
 }
 
 .sc-toc {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--ad-spacing-sm);
+  gap: var(--spacing-sm);
   padding: 0;
   list-style: none;
 
   a {
     display: inline-block;
-    padding: var(--ad-spacing-xs) var(--ad-spacing-md);
-    border-radius: 999px;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius-pill);
     background: var(--main-colour);
     color: var(--pure-white);
     text-decoration: none;
@@ -26,14 +26,14 @@
 }
 
 .sc-example {
-  scroll-margin-top: var(--ad-spacing-lg);
+  scroll-margin-top: var(--spacing-lg);
 }
 
 .sc-preview {
-  padding: var(--ad-spacing-lg);
-  border: 1px dashed var(--ad-text-secondary);
+  padding: var(--spacing-lg);
+  border: 1px dashed var(--text-secondary);
   border-radius: var(--border-radius);
-  background: var(--ad-bg-primary);
+  background: var(--surface-primary);
 
   // Widgets give icons a filled circle; examples need plain icons
   .material-icons {
@@ -51,21 +51,21 @@
   }
 
   ul {
-    margin-block: var(--ad-spacing-sm);
-    padding-inline-start: var(--ad-spacing-lg);
+    margin-block: var(--spacing-sm);
+    padding-inline-start: var(--spacing-lg);
   }
 }
 
 .sc-row {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--ad-spacing-md);
+  gap: var(--spacing-md);
   align-items: center;
 }
 
 .sc-stack {
   display: grid;
-  gap: var(--ad-spacing-md);
+  gap: var(--spacing-md);
   max-width: 24rem;
 }
 
@@ -85,7 +85,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--ad-spacing-md);
+  gap: var(--spacing-md);
 
   &__control {
     position: relative;
@@ -93,9 +93,9 @@
     width: 3rem;
     height: 1.75rem;
     padding: 0;
-    border: 2px solid var(--ad-text-secondary);
-    border-radius: 999px;
-    background: var(--ad-bg-tertiary);
+    border: 2px solid var(--text-secondary);
+    border-radius: var(--border-radius-pill);
+    background: var(--surface-tertiary);
     cursor: pointer;
     transition: background-color 0.2s;
 
@@ -120,7 +120,7 @@
     left: 2px;
     width: 1.25rem;
     height: 1.25rem;
-    border-radius: 50%;
+    border-radius: var(--border-radius-circle);
     background: var(--pure-white);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     transition: transform 0.2s;
@@ -138,14 +138,14 @@
 .sc-accordion {
   border-radius: var(--border-radius);
   overflow: hidden;
-  border: 1px solid var(--ad-bg-tertiary);
+  border: 1px solid var(--surface-tertiary);
 
   &__item + &__item {
-    border-top: 1px solid var(--ad-bg-tertiary);
+    border-top: 1px solid var(--surface-tertiary);
   }
 
   &__heading {
-    font-size: var(--ad-font-size-md);
+    font-size: var(--font-size-md);
   }
 
   &__trigger {
@@ -153,10 +153,10 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: var(--ad-spacing-md);
+    padding: var(--spacing-md);
     border: none;
-    background: var(--ad-bg-secondary);
-    color: var(--ad-text-primary);
+    background: var(--surface-secondary);
+    color: var(--text-primary);
     font-weight: 700;
     text-align: left;
     cursor: pointer;
@@ -171,7 +171,7 @@
   }
 
   &__panel {
-    padding: var(--ad-spacing-md);
+    padding: var(--spacing-md);
   }
 }
 
@@ -179,7 +179,7 @@
 .settings-container {
   display: grid;
   grid-template-columns: minmax(10rem, 14rem) 1fr;
-  gap: var(--ad-spacing-lg);
+  gap: var(--spacing-lg);
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -188,17 +188,17 @@
 
 .settings-nav {
   display: grid;
-  gap: var(--ad-spacing-xs);
+  gap: var(--spacing-xs);
 
   button {
     display: flex;
     align-items: center;
-    gap: var(--ad-spacing-sm);
-    padding: var(--ad-spacing-sm) var(--ad-spacing-md);
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
     border: none;
     border-radius: var(--border-radius);
     background: transparent;
-    color: var(--ad-text-primary);
+    color: var(--text-primary);
     text-align: left;
     cursor: pointer;
 
@@ -207,4 +207,103 @@
       color: var(--pure-white);
     }
   }
+}
+
+// Each preview is a size container, so examples respond to the space they
+// get rather than the viewport
+.sc-preview {
+  container-type: inline-size;
+}
+
+@container (max-width: 30rem) {
+  .sc-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+// Tabs
+.sc-tabs {
+  &__list {
+    display: flex;
+    gap: var(--spacing-xs);
+    border-bottom: 2px solid var(--surface-tertiary);
+  }
+
+  &__tab {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    background: transparent;
+    color: var(--text-primary);
+    font-weight: 700;
+    cursor: pointer;
+
+    &[aria-selected="true"] {
+      border-bottom-color: var(--main-colour);
+      color: var(--main-colour);
+    }
+  }
+
+  &__panel {
+    padding: var(--spacing-md) 0;
+  }
+}
+
+// Data table
+.sc-table {
+  &__filter {
+    max-width: 20rem;
+  }
+
+  &__count {
+    font-size: 0.875rem;
+  }
+
+  &__scroll {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    min-width: 36rem;
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  caption {
+    text-align: left;
+    font-weight: 700;
+    padding-bottom: var(--spacing-sm);
+  }
+
+  th,
+  td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--surface-tertiary);
+  }
+
+  thead button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+}
+
+.sc-status {
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--border-radius-pill);
+  font-size: 0.8rem;
+  background: var(--surface-tertiary);
+
+  &--published { background: var(--success-colour); color: var(--pure-black); }
+  &--draft { background: var(--warning-colour); color: var(--pure-black); }
 }

@@ -1,9 +1,7 @@
 export { default as AdminDashboard } from './AdminDashboard';
-export { default as AdminLayout } from './AdminLayout';
 export { default as ComponentsPage } from './ComponentsPage';
 export { default as FavouritesPage } from './FavouritesPage';
 export { default as Login } from './Login';
 export { default as MediaLibrary } from './MediaLibrary';
 export { default as ProtectedRoute } from './ProtectedRoute';
 export { default as Settings } from './Settings';
-export { default as Sidebar } from './Sidebar';

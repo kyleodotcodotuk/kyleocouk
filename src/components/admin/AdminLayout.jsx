@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import CommandPalette from './CommandPalette';
 
 export default function AdminLayout({ children }) {
   const { logout } = useAuth();
@@ -55,6 +56,7 @@ export default function AdminLayout({ children }) {
           </div>
           {/* Header actions */}
           <div className="inside-header-actions">
+            <CommandPalette onLogout={handleLogout} />
             <a href="/" target="_blank" rel="noreferrer" className="btn btn-primary">
               <span className="btn-icon"><span className="material-icons" aria-hidden="true">subtitles</span></span>
               View Site

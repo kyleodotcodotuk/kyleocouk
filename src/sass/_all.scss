@@ -1,6 +1,3 @@
-// All @use statements must come first
-// @use "backend/admin-components/index" as admin-comp;
-@use "backend/index" as backend;  // Use explicit namespace to avoid conflicts
-@use "frontend/index" as frontend;  // Use explicit namespace to avoid conflicts
-@use "var" as *;  // Use * to make variables available without namespace
-
+@use "tokens";
+@use "backend/index" as backend;
+@use "frontend/index" as frontend;

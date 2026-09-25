@@ -1,12 +1,9 @@
-@use "sass:color";
-@use "./../../../var.scss" as *;
-
 .widget {
-  background-color: var(--ad-bg-secondary);
-  padding: var(--ad-spacing-lg);
-  padding-bottom: var(--ad-spacing-xxl);
+  background-color: var(--surface-secondary);
+  padding: var(--spacing-lg);
+  padding-bottom: var(--spacing-xxl);
   display: grid;
-  margin-block-end: var(--ad-spacing-lg);
+  margin-block-end: var(--spacing-lg);
   box-shadow: var(--box-shadow-default);
   border-radius: var(--border-radius);
   gap: 1rem;
@@ -19,7 +16,7 @@
     border-radius: var(--border-radius-circle);
     background-color: var(--main-colour);
     color: var(--pure-white);
-    padding: var(--ad-spacing-sm);
-    // font-size: var(--ad-font-size-lg);
+    padding: var(--spacing-sm);
+    // font-size: var(--font-size-lg);
   }
 }

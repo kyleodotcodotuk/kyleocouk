@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useContent } from "../contexts/ContentContext";
 import Me from "../img/me.svg";
 import Github from "../icons/github.svg";
-import Bitcoin from "../icons/bitcoin.svg";
 
 const monthNames = [
   "January",
@@ -43,6 +42,10 @@ const prefersReducedMotion = () =>
 export default function Header() {
   const { content } = useContent();
   const { personal, social } = content;
+  const skills = (personal.skills || "")
+    .split(",")
+    .map((skill) => skill.trim())
+    .filter(Boolean);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [roleIndex, setRoleIndex] = useState(0);
 
@@ -85,6 +88,16 @@ export default function Header() {
 
         <h2>{personal.name}</h2>
 
+        <p className="tagline">{personal.tagline}</p>
+
+        {skills.length > 0 && (
+          <ul className="skills" aria-label="What I focus on">
+            {skills.map((skill) => (
+              <li key={skill}>{skill}</li>
+            ))}
+          </ul>
+        )}
+
         <p className="date-and-time">
           {personal.location}
           <br />
@@ -95,45 +108,48 @@ export default function Header() {
               monthNames[currentTime.getMonth()]
             } ${currentTime.getFullYear()}`}
           </time>
+          <span className="visually-hidden"> (my local time)</span>
         </p>
 
-        <ul className="social-icons">
-          {social.github && (
-            <li>
-              <a
-                href={social.github}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub (opens in a new tab)"
-              >
-                <img src={Github} alt="" />
-              </a>
-            </li>
-          )}
-          {social.bitcoin && (
-            <li>
-              <a
-                href={social.bitcoin}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Tip me in Bitcoin (opens in a new tab)"
-              >
-                <img src={Bitcoin} alt="" />
-              </a>
-            </li>
-          )}
-        </ul>
-
         <div className="bio-area">
-          <p>{personal.bio}</p>
           <div className="button-wrapper">
-            <a className="btn btn-secondary" href={`mailto:${personal.email}`}>
-              {personal.email}
-            </a>
             <Link className="btn btn-secondary" to="/login">
-              Explore the CMS demo
+              See my component work <span aria-hidden="true">&rarr;</span>
             </Link>
           </div>
+
+          <ul className="contact-links">
+            {social.github && (
+              <li>
+                <a
+                  className="icon-link"
+                  href={social.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="GitHub (opens in a new tab)"
+                >
+                  <img src={Github} alt="" />
+                </a>
+              </li>
+            )}
+            <li>
+              <a href={`mailto:${personal.email}`}>{personal.email}</a>
+            </li>
+            {social.linkedin && (
+              <li>
+                <a href={social.linkedin} target="_blank" rel="noreferrer">
+                  LinkedIn<span className="visually-hidden"> (opens in a new tab)</span>
+                </a>
+              </li>
+            )}
+            {social.cv && (
+              <li>
+                <a href={social.cv} target="_blank" rel="noreferrer">
+                  CV<span className="visually-hidden"> (opens in a new tab)</span>
+                </a>
+              </li>
+            )}
+          </ul>
         </div>
       </div>
 

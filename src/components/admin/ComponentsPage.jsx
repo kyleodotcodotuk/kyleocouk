@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import AdminLayout from "./AdminLayout";
 import showcase, { SOURCE_BASE_URL } from "../../showcase";
 
 export default function ComponentsPage() {
+  const { hash } = useLocation();
+
+  // Client-side navigation doesn't jump to #anchors, so do it here. Focus
+  // moves too, so keyboard and screen reader users land on the component.
+  useEffect(() => {
+    if (!hash) return;
+    const target = document.getElementById(hash.slice(1));
+    target?.scrollIntoView();
+    target?.focus({ preventScroll: true });
+  }, [hash]);
+
   return (
     <AdminLayout>
       <div className="dashboard">
@@ -27,7 +39,13 @@ export default function ComponentsPage() {
         </section>
 
         {showcase.map(({ id, title, icon, summary, notes, source, Component }) => (
-          <section className="widget sc-example" key={id} id={id} aria-labelledby={`${id}-title`}>
+          <section
+            className="widget sc-example"
+            key={id}
+            id={id}
+            tabIndex={-1}
+            aria-labelledby={`${id}-title`}
+          >
             <h2 className="widget-heading" id={`${id}-title`}>
               {title} <span className="material-icons" aria-hidden="true">{icon}</span>
             </h2>

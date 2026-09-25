@@ -15,7 +15,7 @@ const shortcuts = [
     to: "/admin/settings",
     icon: "settings",
     title: "Settings",
-    text: "Edit the homepage profile and social links.",
+    text: "Edit the homepage profile and links, or retheme the site live.",
   },
   {
     to: "/admin/media",
@@ -43,6 +43,10 @@ export default function AdminDashboard() {
               Grey Cat is a demo CMS I built to show my front-end work: layout,
               navigation, forms and accessible components. It runs entirely in
               your browser, so nothing you change here reaches a server.
+            </p>
+            <p>
+              Press <kbd>Ctrl</kbd> + <kbd>K</kbd> (<kbd>⌘</kbd> + <kbd>K</kbd> on a Mac) to jump to any
+              page or component, or try the live theme editor in Settings.
             </p>
           </section>
         </div>

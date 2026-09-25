@@ -1,6 +1,3 @@
-@use "sass:color";
-@use "./../../../var.scss" as *;
-
 .btn {
   display: inline-flex;
   gap: 0 0.5rem;
@@ -34,25 +31,25 @@
 
 .btn-primary {
   background: var(--main-colour);
-  color: white;
+  color: var(--pure-white);
 }
 
 .btn-secondary {
   background: var(--secondary-colour);
-  color: white;
+  color: var(--pure-white);
 }
 
 .btn-danger {
   background: var(--danger-colour);
-  color: #ffffff;
+  color: var(--pure-white);
 }
 
 .btn-logout {
   background: var(--danger-colour);
-  color: #ffffff;
+  color: var(--pure-white);
 }
 
 .btn-login {
   background-color: var(--success-colour);
-  color: color-mix(in srgb, var(--success-colour), #fff 100%);
+  color: var(--pure-white);
 }

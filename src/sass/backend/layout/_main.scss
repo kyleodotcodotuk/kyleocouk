@@ -1,8 +1,10 @@
-.admin-main {
-  padding: 2rem;
+.container {
+  padding: 1.5rem;
+  overflow: hidden;
 }
 
-.container { 
-  padding: 1.5rem; 
-  overflow: hidden;
+// Page content cross-fades between admin pages (see useViewTransitionNavigate);
+// the header and sidebar stay put
+.container {
+  view-transition-name: admin-content;
 }

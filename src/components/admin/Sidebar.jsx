@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { getAvailableRoutes, isRouteAvailable } from "../../config/adminRoutes";
+import useViewTransitionNavigate from "../../hooks/useViewTransitionNavigate";
 
 // Lets clickable non-button elements respond to Enter/Space like a button
 const pressable = (onActivate) => ({
@@ -75,9 +76,9 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
     };
   };
 
-  const navigate = useNavigate();
+  const navigate = useViewTransitionNavigate();
   const location = useLocation();
-  const [isDarkMode, setIsDarkMode] = useState(true); // Default to dark mode
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const { user: currentUser } = useAuth();
 
   // Get dynamic menu items based on available routes
@@ -159,10 +160,10 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
       setIsDarkMode(savedMode === "true");
       document.body.classList.toggle("dark-mode", savedMode === "true");
     } else {
-      // If no saved preference, default to dark mode
-      setIsDarkMode(true);
-      document.body.classList.add("dark-mode");
-      localStorage.setItem("darkMode", "true");
+      // No saved preference yet: follow the operating system setting
+      const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? true;
+      setIsDarkMode(prefersDark);
+      document.body.classList.toggle("dark-mode", prefersDark);
     }
   }, []);
 
@@ -415,19 +416,11 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
                         {/* Only show favourite star for sub menu items without children (leaf nodes) */}
                         {!subItem.children && (
                           <span
-                            className="material-icons favourite-star"
-                            style={{
-                              marginLeft: 8,
-                              fontSize: "1rem",
-                              color: favourites.some(
-                                (f) => f.path === subItem.path
-                              )
-                                ? "#ffd700"
-                                : "#b0b7c3",
-                              opacity: 0.7,
-                              cursor: "pointer",
-                              verticalAlign: "middle",
-                            }}
+                            className={`material-icons favourite-star ${
+                              favourites.some((f) => f.path === subItem.path)
+                                ? "is-favourite"
+                                : ""
+                            }`}
                             {...favouriteToggleProps(subItem)}
                           >
                             {favourites.some((f) => f.path === subItem.path)
@@ -468,19 +461,11 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
                                   {subSubItem.label}
                                 </span>
                                 <span
-                                  className="material-icons favourite-star"
-                                  style={{
-                                    marginLeft: 8,
-                                    fontSize: "1rem",
-                                    color: favourites.some(
-                                      (f) => f.path === subSubItem.path
-                                    )
-                                      ? "#ffd700"
-                                      : "#b0b7c3",
-                                    opacity: 0.7,
-                                    cursor: "pointer",
-                                    verticalAlign: "middle",
-                                  }}
+                                  className={`material-icons favourite-star ${
+                                    favourites.some((f) => f.path === subSubItem.path)
+                                      ? "is-favourite"
+                                      : ""
+                                  }`}
                                   {...favouriteToggleProps(subSubItem)}
                                 >
                                   {favourites.some(
@@ -520,7 +505,7 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
 
       {/* Version info */}
       <div className="version-info">
-        <span className="version-text">Grey Cat Content Management System © <em>{localStorage.getItem('cmsVersion') || ' v 5.2.1'}</em></span>
+        <span className="version-text">Grey Cat CMS © <em>{localStorage.getItem('cmsVersion') || ' v 1.3.1'}</em></span>
       </div>
 
       {/* Theme Switch */}

@@ -6,27 +6,27 @@
     display: block;
     margin-bottom: 0.75rem;
     font-weight: 700;
-    color: #1e293b;
-    font-size: 1.25rem; 
+    color: var(--text-primary);
+    font-size: 1.25rem;
   }
 
   input,
   textarea {
     width: 100%;
     padding: 1rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 12px;
+    border: 2px solid var(--border-colour);
+    border-radius: var(--border-radius-lg);
     font-size: 1rem;
     font-family: inherit;
     transition: all 0.3s ease;
-    background: #f8fafc;
-    color: #1e293b;
+    background: var(--surface-secondary);
+    color: var(--text-primary);
 
     &:focus {
       outline: none;
-      border-color: #3b82f6;
-      background: #ffffff;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      border-color: var(--accent-colour);
+      background: var(--surface-primary);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-colour) 15%, transparent);
     }
   }
 
@@ -39,7 +39,7 @@
   small {
     display: block;
     margin-top: 0.75rem;
-    color: #64748b;
+    color: var(--text-secondary);
     font-size: 0.85rem;
     font-weight: 500;
   }
@@ -53,79 +53,45 @@
 }
 
 // Message styles
-.success-message {
-  background: #d1fae5;
-  color: #065f46;
-  padding: 1.25rem;
-  border-radius: 12px;
-  margin-top: 1.5rem;
-  border: 1px solid #34d399;
-  font-weight: 600;
-  box-shadow: 0 4px 6px -1px rgba(52, 211, 153, 0.1);
-}
-
 .error-message {
-  background: #fee2e2;
-  color: #991b1b;
+  background: color-mix(in srgb, var(--danger-colour) 15%, var(--pure-white));
+  color: color-mix(in srgb, var(--danger-colour), var(--pure-black) 40%);
   padding: 1.25rem;
-  border-radius: 12px;
+  border-radius: var(--border-radius-lg);
   margin-top: 1.5rem;
-  border: 1px solid #f87171;
+  border: 1px solid var(--danger-colour);
   font-weight: 600;
-  box-shadow: 0 4px 6px -1px rgba(248, 113, 113, 0.1);
+  box-shadow: 0 4px 6px -1px color-mix(in srgb, var(--danger-colour) 10%, transparent);
 }
 
 // Loading states
 .loading {
   text-align: center;
   padding: 2rem;
-  color: #64748b;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
-.loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
+// Highlight the label of the field being edited
+.form-group:has(:focus-visible) label {
+  color: var(--main-colour);
 }
 
-// Loading spinner sizes
-.loading-spinner {
-  position: relative;
-  display: inline-block;
-
-  &-small .spinner-circle {
-    width: 24px;
-    height: 24px;
+// Theme editor fields in Settings
+.theme-field {
+  input[type="color"] {
+    width: 4rem;
+    height: 2.5rem;
+    padding: 0.25rem;
   }
 
-  &-medium .spinner-circle {
-    width: 40px;
-    height: 40px;
+  input[type="range"] {
+    width: min(20rem, 100%);
+    padding: 0;
   }
 
-  &-large .spinner-circle {
-    width: 56px;
-    height: 56px;
+  output {
+    margin-inline-start: 0.5rem;
+    font-weight: 700;
   }
-}
-
-.spinner-circle {
-  border: 3px solid #e2e8f0;
-  border-top: 3px solid #3b82f6;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-.loading-message {
-  margin-top: 1rem;
-  color: #64748b;
-  font-weight: 500;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }

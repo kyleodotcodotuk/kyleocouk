@@ -1,0 +1,46 @@
+// Favourites page (src/components/admin/FavouritesPage.jsx)
+.cms-favourites-list {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--border-radius);
+    background: var(--surface-primary);
+    cursor: grab;
+  }
+
+  li.is-dragging {
+    opacity: 0.5;
+  }
+
+  a {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 0.5rem;
+    color: inherit;
+  }
+}
+
+// Widgets give icons a filled circle; these rows need plain icons
+.cms-favourites-list .material-icons {
+  padding: 0;
+  background: none;
+  color: inherit;
+}
+
+.cms-favourite-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.cms-favourites-add {
+  padding: 0;
+  list-style: none;
+}

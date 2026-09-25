@@ -1,32 +1,24 @@
-// LIGHT MODE
+// Light mode (the default until the sidebar toggle adds .dark-mode)
 body:not(.dark-mode) {
-     .cms-sidebar {
-  background: #ffffff;
-  color: #1a202c;
-  border-right: 1px solid #e2e8f0;
-  .avatar {
-    color: #ffffff;
-  }
-}
- .admin-layout {
-  .admin-static-header {
-    background: #ffffff;
-    color: #1a202c;
-    .admin-static-info {
-      color: #1a202c;
+  .cms-sidebar {
+    background: var(--surface-primary);
+    color: var(--text-primary);
+    border-right: 1px solid var(--border-colour);
+
+    .avatar {
+      color: var(--pure-white);
     }
   }
-}
 
-.main-layout {
-    background-color: #ffffff;
-}
-
-@media (max-width: 768px) {
-  .cms-sidebar {
-    width: 280px;
-    max-width: 85vw;
-    z-index: 1200;
+  .main-layout {
+    background-color: var(--surface-primary);
   }
-}
+
+  @media (max-width: 768px) {
+    .cms-sidebar {
+      width: 280px;
+      max-width: 85vw;
+      z-index: 1200;
+    }
+  }
 }

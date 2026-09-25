@@ -1,0 +1,70 @@
+// Design tokens: the single source of CSS custom properties for the site
+:root {
+  // Brand (edit me)
+  --main-colour: #4c436b;
+  --secondary-colour: #729bbb;
+  --accent-colour: #3b86dd;
+
+  // Status (edit me)
+  --success-colour: #4dc665;
+  --warning-colour: #fadf7b;
+  --danger-colour: #d63936;
+  --info-colour: #dfdfdf;
+  --favourite-colour: #ffd700;
+
+  // Neutrals (edit me)
+  --pure-white: #ffffff;
+  --subtle-white: #ffe8e8;
+  --pure-black: #000000;
+  --dark-colour: #232a36;
+
+  // Brand shades, derived from --main-colour
+  --main-lighten-10: color-mix(in srgb, var(--main-colour), white 20%);
+  --main-lighten-20: color-mix(in srgb, var(--main-colour), white 30%);
+  --main-lighten-50: color-mix(in srgb, var(--main-colour), white 65%);
+
+  // Dark shades, derived from --dark-colour
+  --dark-raised: color-mix(in srgb, var(--dark-colour), white 8%);
+
+  // Light surfaces and text
+  --surface-primary: var(--pure-white);
+  --surface-secondary: #f1f3f4;
+  --surface-tertiary: #e8eaed;
+  --border-colour: #e2e8f0;
+  --text-primary: #202124;
+  --text-secondary: #5f6368;
+  --text-on-dark: #fafafa;
+  --text-on-dark-muted: #a0aec0;
+
+  // Areas
+  --admin-header: var(--dark-colour);
+  --dashboard-bg: #444444;
+  --sidebar-bg: var(--main-colour);
+  --menu-highlight: var(--dark-colour);
+
+  // Shape (edit --border-radius; the rest scale with it)
+  --border-radius: 6px;
+  --border-radius-lg: calc(var(--border-radius) * 2);
+  --border-radius-pill: 999px;
+  --border-radius-circle: 50%;
+
+  // Shadows
+  --box-shadow-default: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  --box-shadow-highlight: rgb(38, 57, 77) 0px 20px 30px -10px;
+  --subtle-shadow-text: 1px 1px 1px rgba(0, 0, 0, 0.35);
+  --focus-ring: 0 0 0 3px var(--accent-colour);
+  --backdrop: rgba(0, 0, 0, 0.6);
+
+  // Spacing
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+
+  // Typography
+  --font-family: "Inter", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+}
