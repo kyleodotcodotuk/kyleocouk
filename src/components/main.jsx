@@ -19,7 +19,24 @@ const monthNames = [
   "December",
 ];
 
-const roles = ["Developer", "Expert", "Professional", "Engineer", "Specialist" , "Wizard"];
+const roles = [
+  "Developer",
+  "Wizard",
+  "Expert",
+  "Engineer",  
+  "Designer",
+  "Architect",
+  "Specialist",
+  "Lead",
+  "Mentor",
+  "Consultant",
+  "Innovator",
+  "Problem Solver",
+  "Creator",
+  "Strategist",
+  "Technologist", 
+  "Professional",
+];
 
 const ordinalSuffixOf = (i) => {
   const j = i % 10;
@@ -48,6 +65,8 @@ export default function Header() {
     .filter(Boolean);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [roleIndex, setRoleIndex] = useState(0);
+  // Ensure we always have at least one role to avoid modulo-by-zero or undefined lookups
+  const effectiveRoles = Array.isArray(roles) && roles.length ? roles : ["Developer"];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -57,15 +76,23 @@ export default function Header() {
     return () => clearInterval(timer);
   }, []);
 
+  // Always rotate roles automatically every 6 seconds.
   useEffect(() => {
-    if (prefersReducedMotion()) return;
-
+    const len = effectiveRoles.length || 1;
+    console.debug("roles: starting rotation (interval 6000ms)", { length: len });
     const roleTimer = setInterval(() => {
-      setRoleIndex((index) => (index + 1) % roles.length);
-    }, 5000);
+      setRoleIndex((index) => (index + 1) % len);
+    }, 6000);
 
-    return () => clearInterval(roleTimer);
-  }, []);
+    return () => {
+      console.debug("roles: stopping rotation");
+      clearInterval(roleTimer);
+    };
+  }, [effectiveRoles.length]);
+
+  useEffect(() => {
+    console.debug("roles: index changed", { roleIndex, displayed: effectiveRoles[roleIndex % effectiveRoles.length] });
+  }, [roleIndex, effectiveRoles]);
 
   const getMeridian = (hour) => {
     return hour >= 12 ? "pm" : "am";
@@ -83,7 +110,7 @@ export default function Header() {
         {/* Screen readers get the real job title; the rotating word is decorative */}
         <h1>
           <span className="visually-hidden">{personal.title}</span>
-          <span aria-hidden="true">UI {roles[roleIndex]}</span>
+          <span aria-hidden="true">UI {effectiveRoles[roleIndex % effectiveRoles.length]}</span>
         </h1>
 
         <h2>{personal.name}</h2>
