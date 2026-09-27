@@ -38,7 +38,7 @@ const roles = [
   "Professional",
 ];
 
-const effectiveRoles = roles.length ? roles : ["Developer"];
+const effectiveRoles = roles;
 
 const ordinalSuffixOf = (i) => {
   const j = i % 10;
@@ -81,11 +81,7 @@ export default function Header() {
     }, 6000);
 
     return () => clearInterval(roleTimer);
-  }, [effectiveRoles.length]);
-
-  useEffect(() => {
-    console.debug("roles: index changed", { roleIndex, displayed: effectiveRoles[roleIndex % effectiveRoles.length] });
-  }, [roleIndex, effectiveRoles]);
+  }, []);
 
   const getMeridian = (hour) => {
     return hour >= 12 ? "pm" : "am";
