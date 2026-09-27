@@ -23,7 +23,7 @@ const roles = [
   "Developer",
   "Wizard",
   "Expert",
-  "Engineer",  
+  "Engineer",
   "Designer",
   "Architect",
   "Specialist",
@@ -34,9 +34,11 @@ const roles = [
   "Problem Solver",
   "Creator",
   "Strategist",
-  "Technologist", 
+  "Technologist",
   "Professional",
 ];
+
+const effectiveRoles = roles.length ? roles : ["Developer"];
 
 const ordinalSuffixOf = (i) => {
   const j = i % 10;
@@ -53,9 +55,6 @@ const ordinalSuffixOf = (i) => {
   return "th";
 };
 
-const prefersReducedMotion = () =>
-  window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-
 export default function Header() {
   const { content } = useContent();
   const { personal, social } = content;
@@ -65,8 +64,6 @@ export default function Header() {
     .filter(Boolean);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [roleIndex, setRoleIndex] = useState(0);
-  // Ensure we always have at least one role to avoid modulo-by-zero or undefined lookups
-  const effectiveRoles = Array.isArray(roles) && roles.length ? roles : ["Developer"];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -76,18 +73,14 @@ export default function Header() {
     return () => clearInterval(timer);
   }, []);
 
-  // Always rotate roles automatically every 6 seconds.
+  // Rotate roles automatically every 6 seconds.
   useEffect(() => {
     const len = effectiveRoles.length || 1;
-    console.debug("roles: starting rotation (interval 6000ms)", { length: len });
     const roleTimer = setInterval(() => {
       setRoleIndex((index) => (index + 1) % len);
     }, 6000);
 
-    return () => {
-      console.debug("roles: stopping rotation");
-      clearInterval(roleTimer);
-    };
+    return () => clearInterval(roleTimer);
   }, [effectiveRoles.length]);
 
   useEffect(() => {
