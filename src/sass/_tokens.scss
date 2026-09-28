@@ -40,7 +40,9 @@
   --text-on-dark-muted: #a0aec0;
 
   // Areas
-  --admin-header: var(--dark-colour);
+  --admin-header: var(--surface-primary);
+  --admin-header-text: var(--text-primary);
+  --admin-header-border: var(--border-colour);
   --dashboard-bg: var(--pure-white);
   --sidebar-bg: var(--surface-primary);
   --sidebar-text: var(--text-primary);
@@ -94,6 +96,9 @@
   --text-secondary: #b0b8c4;
 
   --dashboard-bg: #1b2029;
+  --admin-header: var(--dark-colour);
+  --admin-header-text: var(--text-on-dark);
+  --admin-header-border: var(--dark-raised);
   --sidebar-bg: var(--main-colour);
   --sidebar-text: var(--text-on-dark);
   --sidebar-text-muted: var(--text-on-dark-muted);
