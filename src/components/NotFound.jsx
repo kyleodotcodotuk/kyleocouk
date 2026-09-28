@@ -1,8 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import useDocumentTitle, { SITE_NAME } from '../hooks/useDocumentTitle';
 
 export default function NotFound() {
   const navigate = useNavigate();
+  useDocumentTitle(`Page not found · ${SITE_NAME}`);
 
   const goHome = () => {
     navigate('/');

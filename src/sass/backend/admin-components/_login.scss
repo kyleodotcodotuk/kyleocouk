@@ -24,7 +24,8 @@
     .login-btns {
       margin-block-start: 1.5em;
       display: flex;
-      gap: 0 1em;
+      flex-wrap: wrap;
+      gap: 1em;
       justify-content: space-between;
     }
 

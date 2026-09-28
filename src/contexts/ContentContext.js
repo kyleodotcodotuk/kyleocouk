@@ -9,7 +9,7 @@ const STORAGE_KEY = 'cms_content';
 // Keep in sync with src/sass/_tokens.scss.
 export const THEME_DEFAULTS = {
   mainColour: '#4c436b',
-  secondaryColour: '#729bbb',
+  secondaryColour: '#f2a65a',
   radius: 6,
 };
 

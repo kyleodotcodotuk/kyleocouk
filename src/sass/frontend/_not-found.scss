@@ -65,13 +65,16 @@
   }
 
   a {
-    color: var(--secondary-colour);
-    text-decoration: none;
+    // Apricot is too light for text on white, so it's only the underline
+    color: var(--main-colour);
+    text-decoration: underline;
+    text-decoration-color: var(--secondary-colour);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
 
     &:hover,
     &:focus {
-      color: var(--main-colour);
-      text-decoration: underline;
+      text-decoration-color: currentColor;
     }
   }
 }

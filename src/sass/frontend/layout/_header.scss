@@ -39,9 +39,11 @@ header {
   .left-side {
     display: grid;
     background-color: var(--main-colour);
-    color: var(--pure-white);
+    color: var(--on-main-colour);
     padding: var(--spacing-xl) var(--spacing-lg);
     border-radius: var(--border-radius-lg);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    position: relative;
   }
 
   .right-side {

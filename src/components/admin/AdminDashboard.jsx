@@ -6,6 +6,12 @@ import AdminLayout from "./AdminLayout";
 
 const shortcuts = [
   {
+    to: "/admin/pages",
+    icon: "article",
+    title: "Pages",
+    text: "Search, sort and edit site pages, with validation and unsaved-change warnings.",
+  },
+  {
     to: "/admin/components",
     icon: "widgets",
     title: "Components",
@@ -17,25 +23,19 @@ const shortcuts = [
     title: "Settings",
     text: "Edit the homepage profile and links, or retheme the site live.",
   },
-  {
-    to: "/admin/media",
-    icon: "perm_media",
-    title: "Media Library",
-    text: "A browsable image grid with a preview dialog.",
-  },
 ];
 
 export default function AdminDashboard() {
   const { user } = useAuth();
-  const firstName = user?.name.split(" ")[0];
+  const greeting = user?.isGuest ? "Welcome" : `Welcome back, ${user?.name.split(" ")[0]}`;
 
   return (
-    <AdminLayout>
+    <AdminLayout title="Dashboard" showBreadcrumbs={false}>
       <div className="dashboard">
         <div className="fullWidth">
           <section className="widget">
             <h1 className="widget-heading">
-              Welcome back, {firstName}{" "}
+              {greeting}{" "}
               <span className="material-icons" aria-hidden="true">waving_hand</span>
             </h1>
             <hr />

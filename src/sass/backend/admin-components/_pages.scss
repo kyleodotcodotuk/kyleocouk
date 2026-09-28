@@ -1,0 +1,187 @@
+// Skip link, breadcrumbs and the Pages section
+
+// Hidden until focused, then pinned to the top-left above everything
+.skip-link {
+  position: absolute;
+  top: var(--spacing-sm);
+  left: var(--spacing-sm);
+  z-index: 1000;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius);
+  background: var(--dark-colour);
+  color: var(--pure-white);
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-200%);
+
+  &:focus {
+    transform: none;
+  }
+}
+
+// The skip link focuses <main>; it doesn't need a visible ring of its own
+main:focus {
+  outline: none;
+}
+
+.breadcrumbs {
+  margin-bottom: var(--spacing-md);
+  font-size: 0.875rem;
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+
+    & + li::before {
+      content: "/";
+      margin: 0 var(--spacing-sm);
+      color: var(--text-secondary);
+    }
+  }
+
+  a {
+    color: var(--text-primary);
+  }
+
+  [aria-current="page"] {
+    color: var(--text-secondary);
+    // Long page titles are cut short rather than wrapping the trail
+    max-width: 40ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+
+  h1 {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+  }
+}
+
+.empty-state {
+  display: grid;
+  justify-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xxl) var(--spacing-lg);
+  text-align: center;
+
+  > .material-icons {
+    font-size: 3rem;
+    color: var(--text-secondary);
+  }
+
+  h1,
+  h2,
+  p {
+    margin: 0;
+  }
+
+  &--compact {
+    padding: var(--spacing-lg);
+  }
+}
+
+.pages-filters {
+  display: grid;
+  grid-template-columns: minmax(12rem, 24rem) minmax(10rem, 14rem);
+  gap: 0 var(--spacing-md);
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.page-editor {
+  form {
+    max-width: 48rem;
+  }
+
+  &__state {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+
+  &__dirty {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-pill);
+    background: color-mix(in srgb, var(--warning-colour) 50%, var(--pure-white));
+    color: var(--pure-black);
+    font-weight: 700;
+  }
+
+  &__status {
+    padding: 0;
+    border: none;
+
+    legend {
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+  }
+
+  &__actions {
+    flex-wrap: wrap;
+  }
+
+  // Keeps the destructive action away from Save
+  &__delete {
+    margin-left: auto;
+  }
+}
+
+// kyleo.co.uk/ [slug]
+.slug-input {
+  display: flex;
+  align-items: stretch;
+
+  &__prefix {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--spacing-sm) 0 var(--spacing-md);
+    border: 2px solid var(--border-colour);
+    border-right: none;
+    border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
+    background: var(--surface-tertiary);
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  input {
+    min-width: 0;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
+
+  input:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}

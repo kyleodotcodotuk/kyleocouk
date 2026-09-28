@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { flushSync } from "react-dom";
 import { useNavigate } from "react-router-dom";
+import { confirmDiscardChanges } from "../utils/unsavedChanges";
 
 // Drop-in replacement for useNavigate that cross-fades between pages using
 // the View Transitions API. Browsers without it (or visitors who prefer
@@ -10,6 +11,7 @@ export default function useViewTransitionNavigate() {
 
   return useCallback(
     (to, options) => {
+      if (!confirmDiscardChanges()) return;
       const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
       if (!document.startViewTransition || reduceMotion) {
         navigate(to, options);

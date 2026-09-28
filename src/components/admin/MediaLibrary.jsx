@@ -42,7 +42,7 @@ export default function MediaLibrary() {
   };
 
   return (
-    <AdminLayout>
+    <AdminLayout title="Media Library">
       <div className="dashboard">
         <section className="widget">
           <h1 className="widget-heading">

@@ -10,6 +10,12 @@ export const adminRoutes = [
     active: true
   },
   {
+    id: 'pages',
+    label: 'Pages',
+    icon: 'article',
+    path: '/admin/pages'
+  },
+  {
     id: 'components',
     label: 'Components',
     icon: 'widgets',

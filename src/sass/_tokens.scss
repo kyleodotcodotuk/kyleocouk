@@ -2,7 +2,7 @@
 :root {
   // Brand (edit me)
   --main-colour: #4c436b;
-  --secondary-colour: #729bbb;
+  --secondary-colour: #f2a65a;
   --accent-colour: #3b86dd;
 
   // Status (edit me)
@@ -21,6 +21,10 @@
   --main-lighten-10: color-mix(in srgb, var(--main-colour), white 20%);
   --main-lighten-20: color-mix(in srgb, var(--main-colour), white 30%);
   --main-lighten-50: color-mix(in srgb, var(--main-colour), white 65%);
+
+  // Text on the brand colours; flipped light/dark where supported (below)
+  --on-main-colour: var(--pure-white);
+  --on-secondary-colour: var(--dark-colour);
 
   // Dark shades, derived from --dark-colour
   --dark-raised: color-mix(in srgb, var(--dark-colour), white 8%);
@@ -69,6 +73,15 @@
   --font-family: "Inter", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
   --font-size-md: 1rem;
   --font-size-lg: 1.25rem;
+}
+
+// Light or dark text depending on how light each brand colour is. The clamp
+// turns OKLCH lightness into 1 (white) below 0.65 and 0.25 (soft black) above.
+@supports (color: oklch(from red l c h)) {
+  :root {
+    --on-main-colour: oklch(from var(--main-colour) clamp(0.25, (0.65 - l) * 1000, 1) 0 0);
+    --on-secondary-colour: oklch(from var(--secondary-colour) clamp(0.25, (0.65 - l) * 1000, 1) 0 0);
+  }
 }
 
 // Dark theme: the sidebar switch sets data-theme="dark" on <html>

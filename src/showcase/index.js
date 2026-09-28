@@ -7,6 +7,8 @@ import Accordion from "./examples/Accordion";
 import Tabs from "./examples/Tabs";
 import DataTable from "./examples/DataTable";
 import Toasts from "./examples/Toasts";
+import TimeOff from "./examples/TimeOff";
+import CurrencyConverter from "./examples/CurrencyConverter";
 
 export const SOURCE_BASE_URL =
   "https://github.com/kyleodotcodotuk/kyleocouk/blob/main/";
@@ -79,12 +81,15 @@ const showcase = [
     id: "data-table",
     title: "Data Table",
     icon: "table_chart",
-    summary: "A sortable, filterable table of CMS pages.",
+    summary: "A sortable, filterable team directory, stress-tested with awkward real-world data.",
     notes: [
+      "Test data covers long and accented names, Greek, Chinese and right-to-left Arabic, long titles and a missing value.",
+      "Filtering ignores accents (\"zoe\" finds \"Zoë\") and sorting uses Intl.Collator, so Å sorts with A rather than after Z.",
+      "Names are wrapped in <bdi> so right-to-left text can't reorder what's around it.",
       "Sortable headers are real buttons, and aria-sort tells screen readers the current order.",
       "The result count sits in a polite live region and describes the filter input.",
       'The scroll wrapper is a focusable, labelled region, so keyboard users can scroll it on small screens.',
-      "Each row's title is a row header (th scope=\"row\"), so cells are announced with context.",
+      "Each person's name is a row header (th scope=\"row\"), so cells are announced with context.",
     ],
     source: "src/showcase/examples/DataTable.jsx",
     Component: DataTable,
@@ -101,6 +106,36 @@ const showcase = [
     ],
     source: "src/showcase/examples/Toasts.jsx",
     Component: Toasts,
+  },
+  {
+    id: "time-off",
+    title: "Time Off Booking",
+    icon: "beach_access",
+    summary: "An intranet leave widget: allowance, date range, validation and upcoming bookings.",
+    notes: [
+      "Native date inputs give everyone their platform's own accessible picker, rather than a custom calendar.",
+      "Working days skip weekends and bank holidays, and the count updates in a polite live region.",
+      "On submit, focus moves to an error summary whose links jump to each field (the GOV.UK pattern).",
+      "Each error is tied to its field with aria-describedby and aria-invalid, and starts with a hidden \"Error:\".",
+      "The allowance is a native <meter>, with aria-valuetext so it's read as days left, not a percentage.",
+      "Cancelling moves focus to the list heading, because the button that had focus no longer exists.",
+    ],
+    source: "src/showcase/examples/TimeOff.jsx",
+    Component: TimeOff,
+  },
+  {
+    id: "currency-converter",
+    title: "Currency Converter",
+    icon: "currency_exchange",
+    summary: "Converts as you type, formatting each currency the way it's written at home.",
+    notes: [
+      "Intl.NumberFormat handles symbols, separators and decimals: 1.234,56 € in German, ¥ with no decimals, 3 for the dinar.",
+      "The amount is a text input with inputmode=\"decimal\": type=\"number\" rejects commas and changes on scroll.",
+      "The result updates on every keystroke but is only announced once typing pauses, so it isn't noisy.",
+      "The icon-only swap button has an aria-label, and focus stays on it after swapping.",
+    ],
+    source: "src/showcase/examples/CurrencyConverter.jsx",
+    Component: CurrencyConverter,
   },
 ];
 

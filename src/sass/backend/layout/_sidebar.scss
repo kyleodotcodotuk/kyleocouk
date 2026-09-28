@@ -34,7 +34,7 @@
     justify-content: center;
     font-size: 1.4rem;
     overflow: hidden;
-    box-shadow: var(--pure-white) 0 0 1px 2px;
+    box-shadow: var(--pure-white) 0 0 0 2px;
   }
 
   .user-info {
@@ -42,8 +42,7 @@
     h3 {
       margin: 0;
       color: var(--sidebar-text);
-      font-size: 1rem;
-      font-weight: normal;
+      font-size: 1rem; 
     }
   }
 

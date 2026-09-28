@@ -16,7 +16,7 @@ export default function ComponentsPage() {
   }, [hash]);
 
   return (
-    <AdminLayout>
+    <AdminLayout title="Components">
       <div className="dashboard">
         <section className="widget">
           <h1 className="widget-heading">

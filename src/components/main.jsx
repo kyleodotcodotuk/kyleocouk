@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useContent } from "../contexts/ContentContext";
+import useDocumentTitle, { SITE_NAME } from "../hooks/useDocumentTitle";
 import Me from "../img/me.svg";
 import Github from "../icons/github.svg";
+import Email from "../icons/email.svg";
+import Linkedin from "../icons/linkedin.svg";
+import Cv from "../icons/cv.svg";
 
 const monthNames = [
   "January",
@@ -58,6 +62,8 @@ const ordinalSuffixOf = (i) => {
 export default function Header() {
   const { content } = useContent();
   const { personal, social } = content;
+  // Matches the <title> in public/index.html, restored when coming back from the CMS
+  useDocumentTitle(`Professional Web Developer and Designer | ${SITE_NAME}`);
   const skills = (personal.skills || "")
     .split(",")
     .map((skill) => skill.trim())
@@ -99,7 +105,9 @@ export default function Header() {
         {/* Screen readers get the real job title; the rotating word is decorative */}
         <h1>
           <span className="visually-hidden">{personal.title}</span>
-          <span aria-hidden="true">UI {effectiveRoles[roleIndex % effectiveRoles.length]}</span>
+          <span aria-hidden="true">
+            UI {effectiveRoles[roleIndex % effectiveRoles.length]}
+          </span>
         </h1>
 
         <h2>{personal.name}</h2>
@@ -127,46 +135,60 @@ export default function Header() {
           <span className="visually-hidden"> (my local time)</span>
         </p>
 
-        <div className="bio-area">
-          <div className="button-wrapper">
-            <Link className="btn btn-secondary" to="/login">
-              See my component work <span aria-hidden="true">&rarr;</span>
-            </Link>
-          </div>
-
-          <ul className="contact-links">
-            {social.github && (
-              <li>
-                <a
-                  className="icon-link"
-                  href={social.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="GitHub (opens in a new tab)"
-                >
-                  <img src={Github} alt="" />
-                </a>
-              </li>
-            )}
+        <ul className="contact-links">
+          {social.github && (
             <li>
-              <a href={`mailto:${personal.email}`}>{personal.email}</a>
+              <a
+                className="icon-link"
+                href={social.github}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub (opens in a new tab)"
+              >
+                <img src={Github} alt="" />
+              </a>
             </li>
-            {social.linkedin && (
-              <li>
-                <a href={social.linkedin} target="_blank" rel="noreferrer">
-                  LinkedIn<span className="visually-hidden"> (opens in a new tab)</span>
-                </a>
-              </li>
-            )}
-            {social.cv && (
-              <li>
-                <a href={social.cv} target="_blank" rel="noreferrer">
-                  CV<span className="visually-hidden"> (opens in a new tab)</span>
-                </a>
-              </li>
-            )}
-          </ul>
-        </div>
+          )}
+          <li>
+            <a
+              className="icon-link"
+              href="mailto:info@kyleo.co.uk"
+              aria-label="Email me"
+            >
+              <img src={Email} alt="" />
+            </a>
+          </li>
+          {social.linkedin && (
+            <li>
+              <a
+                className="icon-link"
+                href={social.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn (opens in a new tab)"
+              >
+                <img src={Linkedin} alt="" />
+              </a>
+            </li>
+          )}
+          {social.cv && (
+            <li>
+              <a
+                className="icon-link"
+                href={social.cv}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="CV (opens in a new tab)"
+              >
+                <img src={Cv} alt="" />
+              </a>
+            </li>
+          )}
+        </ul>
+
+        <Link className="btn btn-secondary btn-static-bottom-right" to="/login">
+          See my component work <span aria-hidden="true">&rarr;</span>
+        </Link>
       </div>
 
       <div className="right-side">

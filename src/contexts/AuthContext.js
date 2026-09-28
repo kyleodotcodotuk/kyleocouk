@@ -2,16 +2,40 @@ import React, { createContext, useContext, useState } from 'react';
 
 // The admin area is a front-end showcase, not a real CMS. "Signing in" just
 // starts a demo session in this browser tab - there are no real accounts.
+// These details ship in the JavaScript bundle, so they aren't a security
+// measure: the admin login just keeps the guest view as the public default.
 const SESSION_KEY = 'cms_demo_session';
 
-export const DEMO_CREDENTIALS = { username: 'demo', password: 'demo' };
-
-export const DEMO_USER = {
-  name: "Kyle O'Connor",
-  displayRole: 'Administrator',
-  initials: 'KO',
-  location: 'Manchester, UK',
+const ACCOUNTS = {
+  guest: {
+    password: 'guest',
+    user: {
+      name: 'Guest',
+      isGuest: true,
+      displayRole: 'Guest',
+      icon: 'person',
+      detailIcon: 'visibility',
+      location: 'Viewing the demo',
+    },
+  },
+  kyle: {
+    password: 'admin',
+    user: {
+      name: "Kyle O'Connor",
+      isGuest: false,
+      displayRole: 'Administrator',
+      initials: 'KO',
+      detailIcon: 'location_on',
+      location: 'Manchester, UK',
+    },
+  },
 };
+
+// The public login offered on the sign-in page
+export const DEMO_CREDENTIALS = { username: 'guest', password: ACCOUNTS.guest.password };
+
+// Development shortcut for the admin button on the sign-in page - remove for live
+export const ADMIN_CREDENTIALS = { username: 'kyle', password: ACCOUNTS.kyle.password };
 
 const AuthContext = createContext();
 
@@ -25,26 +49,28 @@ export const useAuth = () => {
 
 const readSession = () => {
   try {
-    return sessionStorage.getItem(SESSION_KEY) === 'true';
+    const saved = sessionStorage.getItem(SESSION_KEY);
+    // Sessions from before accounts existed stored 'true'; treat them as guests
+    if (saved === 'true') return 'guest';
+    return ACCOUNTS[saved] ? saved : null;
   } catch {
-    return false;
+    return null;
   }
 };
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(readSession);
+  const [username, setUsername] = useState(readSession);
 
-  const login = (username, password) => {
-    const valid =
-      username.trim().toLowerCase() === DEMO_CREDENTIALS.username &&
-      password === DEMO_CREDENTIALS.password;
+  const login = (enteredUsername, password) => {
+    const key = enteredUsername.trim().toLowerCase();
+    const valid = Boolean(ACCOUNTS[key]) && ACCOUNTS[key].password === password;
     if (valid) {
       try {
-        sessionStorage.setItem(SESSION_KEY, 'true');
+        sessionStorage.setItem(SESSION_KEY, key);
       } catch {
         // ignore - session just won't survive a refresh
       }
-      setIsAuthenticated(true);
+      setUsername(key);
     }
     return valid;
   };
@@ -55,13 +81,13 @@ export const AuthProvider = ({ children }) => {
     } catch {
       // ignore
     }
-    setIsAuthenticated(false);
+    setUsername(null);
   };
 
+  const user = username ? ACCOUNTS[username].user : null;
+
   return (
-    <AuthContext.Provider
-      value={{ isAuthenticated, user: isAuthenticated ? DEMO_USER : null, login, logout }}
-    >
+    <AuthContext.Provider value={{ isAuthenticated: Boolean(user), user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

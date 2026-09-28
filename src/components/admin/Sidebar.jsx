@@ -79,15 +79,19 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
   // Auto-detect active menu item based on current route
   const updateActiveItemFromRoute = (items) => {
     const currentPath = location.pathname;
+    // Sub-pages (e.g. /admin/pages/about) keep their section highlighted.
+    // The dashboard is the root of every admin path, so it only matches exactly.
+    const matches = (path) =>
+      path === currentPath || (path && path !== "/admin" && currentPath.startsWith(`${path}/`));
 
     return items.map((item) => {
-      if (item.path === currentPath) {
+      if (matches(item.path)) {
         return { ...item, active: true };
       }
 
       if (item.children) {
         const updatedChildren = item.children.map((child) => {
-          if (child.path === currentPath) {
+          if (matches(child.path)) {
             return { ...child, active: true };
           }
           return { ...child, active: false };
@@ -287,6 +291,8 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
               alt={currentUser.name}
               className="user-avatar"
             />
+          ) : currentUser?.icon ? (
+            <span className="material-icons" aria-hidden="true">{currentUser.icon}</span>
           ) : (
             <span>{currentUser?.initials || "A"}</span>
           )}
@@ -294,7 +300,9 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
         <div className="user-info">
           <h3>{currentUser?.displayRole || "Administrator"}</h3>
           <div className="detail-item">
-            <span className="material-icons">location_on</span>
+            <span className="material-icons" aria-hidden="true">
+              {currentUser?.detailIcon || "location_on"}
+            </span>
             <span className="location">
               {currentUser?.location || "Manchester, UK"}
             </span>
@@ -412,7 +420,7 @@ const Sidebar = ({ isOpen = false, onNavigate = () => {} }) => {
 
       {/* Version info */}
       <div className="version-info">
-        <span className="version-text">Grey Cat CMS © <em>{localStorage.getItem('cmsVersion') || ' v 1.3.1'}</em></span>
+        <span className="version-text">Grey Cat CMS © <em>{localStorage.getItem('cmsVersion') || ' v 1.4'}</em></span>
       </div>
 
       {/* Display switches */}

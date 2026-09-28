@@ -1,33 +1,23 @@
-.bio-area {
-  margin-block-start: var(--font-size-md);
-
-  .button-wrapper {
-    display: flex;
-    margin-block-start: var(--spacing-md);
-    gap: var(--spacing-xs);
-  }
+// Information
+h1 {
+  text-shadow: var(--subtle-shadow-text);
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  font-size: 3em;
+  position: relative;
+  margin: 0;
 }
 
-  // Information
-  h1 {
-    text-shadow: var(--subtle-shadow-text);
-    letter-spacing: 0.03em;
-    text-transform: capitalize;
-    font-size: 4em;
-    position: relative;
-    margin: 8px 0;
-  }
-
-  h2 {
-    text-shadow: var(--subtle-shadow-text);
-    font-size: 2.8em;
-    margin-bottom: 32px;
-    margin: 0;
-  }
+h2 {
+  text-shadow: var(--subtle-shadow-text);
+  font-size: 2em;
+  margin-bottom: 32px;
+  margin: 0;
+}
 
 .date-and-time {
   padding: 0;
-  margin: 0 0 16px 0;
+  margin-block-start: var(--font-size-sm);
   line-height: 20px;
   font-size: 0.8em;
 }
@@ -59,7 +49,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm);
   margin: var(--spacing-lg) 0 0;
   padding: 0;
   list-style: none;
@@ -160,4 +150,10 @@
     max-height: 360px;
     background-color: var(--pure-black);
   }
+}
+
+.btn-static-bottom-right {
+  position: absolute;
+  right: var(--spacing-lg);
+  bottom: var(--spacing-xl);
 }

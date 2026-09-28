@@ -14,28 +14,21 @@
   background-color: var(--danger-colour);
   border-color: color-mix(in srgb, var(--danger-colour), black 30%);
   color: var(--pure-white);
-  .material-icons {
-    padding: 12px; border-radius: var(--border-radius);
-    background: color-mix(in srgb, var(--danger-colour), black 30%);
-  }
+ 
 }
 
 .alert-warning {
   background-color: var(--warning-colour);
   border-color: color-mix(in srgb, var(--warning-colour), black 30%);
   color: var(--pure-black);
-  .material-icons {
-    background: color-mix(in srgb, var(--warning-colour), black 30%);
-  }
+ 
 }
 
 .alert-success {
   background-color: var(--success-colour);
   border-color: color-mix(in srgb, var(--success-colour), black 30%);
   color: var(--pure-white);
-  .material-icons {
-    background: color-mix(in srgb, var(--success-colour), black 30%);
-  }
+  
 }
 
 .alert-info {
@@ -43,7 +36,5 @@
   border-color: color-mix(in srgb, var(--info-colour), black 30%);
   color: var(--pure-black);
   box-shadow: inset 6px 0 0 var(--accent-colour);
-  .material-icons {
-    background: color-mix(in srgb, var(--accent-colour), black 30%);
-  }
+ 
 }

@@ -1,35 +1,55 @@
 import React, { useId, useState } from "react";
 
+// Deliberately awkward data: long and accented names, non-Latin and
+// right-to-left scripts, long titles, and a missing value
 const rows = [
-  { title: "Homepage", author: "Kyle O'Connor", status: "Published", updated: "2026-09-24" },
-  { title: "About me", author: "Kyle O'Connor", status: "Draft", updated: "2026-09-18" },
-  { title: "Accessibility statement", author: "Sam Taylor", status: "Published", updated: "2026-08-30" },
-  { title: "Component guidelines", author: "Alex Morgan", status: "In review", updated: "2026-09-21" },
-  { title: "Contact", author: "Sam Taylor", status: "Published", updated: "2026-07-12" },
-  { title: "Release notes", author: "Alex Morgan", status: "Draft", updated: "2026-09-25" },
+  { id: 1, name: "Maria del Carmen Fernández-Villaverde de la Cruz", jobTitle: "Principal Accessibility & Inclusive Design Systems Engineer", location: "Santiago de Compostela, Spain", status: "Active", joined: "2019-03-11" },
+  { id: 2, name: "Bo Li", jobTitle: "CTO", location: "Shenzhen, China", status: "Active", joined: "2016-01-04" },
+  { id: 3, name: "Nguyễn Thị Minh Khai", jobTitle: "Senior Front-end Developer", location: "Ho Chi Minh City, Vietnam", status: "Away", joined: "2021-07-19" },
+  { id: 4, name: "Oluwaseun Adebayo-Okonkwo", jobTitle: "Head of Customer Experience, EMEA", location: "Lagos, Nigeria", status: "Active", joined: "2020-11-02" },
+  { id: 5, name: "Sigríður Þórhallsdóttir", jobTitle: "UX Researcher", location: "Reykjavík, Iceland", status: "Invited", joined: "2026-09-22" },
+  { id: 6, name: "محمد عبد الله الشمري", jobTitle: "Product Manager", location: "Riyadh, Saudi Arabia", status: "Active", joined: "2022-05-30" },
+  { id: 7, name: "Zoë Ångström-Øberg", jobTitle: "Interim Associate Vice President of Internal Communications and Employee Engagement", location: "Malmö, Sweden", status: "Away", joined: "2018-09-14" },
+  { id: 8, name: "Χριστίνα Παπαδοπούλου", jobTitle: "Content Designer", location: "Thessaloniki, Greece", status: "Active", joined: "2023-02-06" },
+  { id: 9, name: "Jean-Baptiste Lefèvre-Dubois", jobTitle: "Développeur Full-stack", location: "", status: "Invited", joined: "2026-09-26" },
+  { id: 10, name: "Siobhán Ní Mhaolagáin", jobTitle: "Engineering Manager", location: "Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch, Wales, UK", status: "Active", joined: "2017-06-26" },
+  { id: 11, name: "王秀英", jobTitle: "Data Analyst", location: "Taipei, Taiwan", status: "Away", joined: "2024-10-01" },
+  { id: 12, name: "Krzysztof Brzęczyszczykiewicz", jobTitle: "QA Automation Lead", location: "Kraków, Poland", status: "Active", joined: "2015-04-20" },
 ];
 
 const columns = [
-  { key: "title", label: "Title" },
-  { key: "author", label: "Author" },
+  { key: "name", label: "Name" },
+  { key: "jobTitle", label: "Job title" },
+  { key: "location", label: "Location" },
   { key: "status", label: "Status" },
-  { key: "updated", label: "Last updated" },
+  { key: "joined", label: "Joined" },
 ];
 
 const formatDate = (iso) =>
   new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
 
+// Sorts accented letters next to their base letter (Å with A) and numbers naturally
+const collator = new Intl.Collator("en", { sensitivity: "base", numeric: true });
+
+// Lower-cased with accents stripped, so "zoe" finds "Zoë"
+const normalise = (value) =>
+  value.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
+
 export default function DataTableDemo() {
   const [query, setQuery] = useState("");
-  const [sort, setSort] = useState({ key: "updated", direction: "descending" });
+  const [sort, setSort] = useState({ key: "name", direction: "ascending" });
   const id = useId();
 
-  const search = query.trim().toLowerCase();
+  const search = normalise(query.trim());
   const visibleRows = rows
-    .filter((row) => Object.values(row).some((value) => value.toLowerCase().includes(search)))
+    .filter((row) =>
+      columns.some(({ key }) => normalise(row[key]).includes(search))
+    )
     .sort((a, b) => {
+      // Empty values always sit at the bottom, whichever way it's sorted
+      if (!a[sort.key] || !b[sort.key]) return !a[sort.key] - !b[sort.key];
       // ISO dates sort correctly as strings, so one comparison covers every column
-      const result = a[sort.key].localeCompare(b[sort.key]);
+      const result = collator.compare(a[sort.key], b[sort.key]);
       return sort.direction === "ascending" ? result : -result;
     });
 
@@ -43,7 +63,7 @@ export default function DataTableDemo() {
   return (
     <div className="sc-table">
       <div className="form-group sc-table__filter">
-        <label htmlFor={`${id}-filter`}>Filter pages</label>
+        <label htmlFor={`${id}-filter`}>Filter people</label>
         <input
           id={`${id}-filter`}
           type="search"
@@ -54,13 +74,13 @@ export default function DataTableDemo() {
       </div>
 
       <p id={`${id}-count`} className="sc-table__count" aria-live="polite">
-        Showing {visibleRows.length} of {rows.length} pages
+        Showing {visibleRows.length} of {rows.length} people
       </p>
 
       {/* A focusable, labelled region lets keyboard users scroll the table sideways */}
       <div className="sc-table__scroll" role="region" aria-labelledby={`${id}-caption`} tabIndex={0}>
         <table>
-          <caption id={`${id}-caption`}>CMS pages</caption>
+          <caption id={`${id}-caption`}>Team directory</caption>
           <thead>
             <tr>
               {columns.map((column) => {
@@ -80,16 +100,27 @@ export default function DataTableDemo() {
           </thead>
           <tbody>
             {visibleRows.map((row) => (
-              <tr key={row.title}>
-                <th scope="row">{row.title}</th>
-                <td>{row.author}</td>
+              <tr key={row.id}>
+                {/* bdi keeps right-to-left names from reordering the text around them */}
+                <th scope="row">
+                  <bdi>{row.name}</bdi>
+                </th>
+                <td>{row.jobTitle}</td>
                 <td>
-                  <span className={`sc-status sc-status--${row.status.toLowerCase().replace(" ", "-")}`}>
+                  {row.location || (
+                    <>
+                      <span aria-hidden="true">&mdash;</span>
+                      <span className="visually-hidden">Not set</span>
+                    </>
+                  )}
+                </td>
+                <td>
+                  <span className={`sc-status sc-status--${row.status.toLowerCase()}`}>
                     {row.status}
                   </span>
                 </td>
                 <td>
-                  <time dateTime={row.updated}>{formatDate(row.updated)}</time>
+                  <time dateTime={row.joined}>{formatDate(row.joined)}</time>
                 </td>
               </tr>
             ))}
@@ -97,7 +128,7 @@ export default function DataTableDemo() {
         </table>
       </div>
 
-      {visibleRows.length === 0 && <p>No pages match "{query}".</p>}
+      {visibleRows.length === 0 && <p>No people match "{query}".</p>}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth, DEMO_CREDENTIALS } from "../../contexts/AuthContext";
+import { useAuth, DEMO_CREDENTIALS, ADMIN_CREDENTIALS } from "../../contexts/AuthContext";
+import useDocumentTitle, { CMS_NAME } from "../../hooks/useDocumentTitle";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -8,6 +9,7 @@ export default function Login() {
   const [error, setError] = useState("");
 
   const { login } = useAuth();
+  useDocumentTitle(`Sign in · ${CMS_NAME}`);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -23,9 +25,9 @@ export default function Login() {
     }
   };
 
-  const fillDemoCredentials = () => {
-    setUsername(DEMO_CREDENTIALS.username);
-    setPassword(DEMO_CREDENTIALS.password);
+  const fillCredentials = (credentials) => {
+    setUsername(credentials.username);
+    setPassword(credentials.password);
     setError("");
   };
 
@@ -86,10 +88,19 @@ export default function Login() {
             <button
               type="button"
               className="btn btn-primary"
-              onClick={fillDemoCredentials}
+              onClick={() => fillCredentials(DEMO_CREDENTIALS)}
             >
               <span className="material-icons" aria-hidden="true">key</span>
-              Use demo login
+              Use guest login
+            </button>
+            {/* Development shortcut - remove this button for live */}
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => fillCredentials(ADMIN_CREDENTIALS)}
+            >
+              <span className="material-icons" aria-hidden="true">admin_panel_settings</span>
+              Use admin login
             </button>
           </div>
         </form>
