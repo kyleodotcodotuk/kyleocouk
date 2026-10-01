@@ -15,6 +15,36 @@ const faqs = [
     answer:
       "Admin interfaces are where UI work gets hard: dense forms, navigation, states and accessibility.",
   },
+  {
+    question: "How is accessibility tested?",
+    answer:
+      "Keyboard-only walkthroughs, screen reader checks and automated audits, with semantic HTML and ARIA only where it's needed.",
+  },
+  {
+    question: "Does it work on mobile?",
+    answer:
+      "Yes - every layout is built mobile-first and checked at small widths, with touch targets sized for fingers rather than cursors.",
+  },
+  {
+    question: "Is there a dark mode?",
+    answer:
+      "Yes - use the switch in the admin sidebar. Colours are defined as tokens, so the whole admin swaps theme in one place.",
+  },
+  {
+    question: "Where do the images in the media library come from?",
+    answer:
+      "Any image dropped into the static image folder is picked up automatically at build time and named from its file name.",
+  },
+  {
+    question: "Can I use these components in my own project?",
+    answer:
+      "Feel free to take inspiration - each example is a small, self-contained React component with its own styles.",
+  },
+  {
+    question: "How do I get in touch?",
+    answer:
+      "Use the contact details on the homepage - I'm always happy to talk about front-end, design systems and accessibility.",
+  },
 ];
 
 function AccordionItem({ question, answer, isOpen, onToggle }) {
